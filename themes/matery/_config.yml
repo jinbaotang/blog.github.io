@@ -39,7 +39,7 @@ dream:
   showTitle: true
   title: 欢迎关注
   text: 我搬到谁的隔壁，谁成了我的邻居。鸣谢生命有你参与，笑纳我的邀请。
-  img: https://pic1.zhimg.com/80/v2-0205cde00e314b1414a5e9d94106a431_r.jpg
+  img: 
 
 # Whether to display the musics.
 # 是否在首页显示音乐.
@@ -90,17 +90,17 @@ indexbtn:
   enable: true
   name: Github
   icon: fa-github-alt
-  url: https://github.com/godweiyang
+  url: https://github.com/jinbaotang
 
 # The configurations of the second line of home banner
 # icon/button will not show up if you leave the corresponding socialLink empty
 # 首页 banner 中的第二行个人信息配置，留空即不启用
 socialLink:
-  qq: 792321264
-  github: godweiyang
-  weibo: godweiyang
-  email: godweiyang@gmail.com
-  zhihu: godweiyang
+  qq: 995339765
+  github: jinbaotang
+  weibo: jinbaotang
+  email: jinbaotang@gmail.com
+  zhihu: jinbaotang
 
 # Whether to activate the Post TOC, and Configure which title types are supported by TOC support.
 # You can add `toc: false` to the Front-matter of a post to turn off the TOC.
@@ -165,20 +165,19 @@ text:
 # profile in about page, including avatars, career, and personal introductions.
 # 在”关于”页面中配置个人信息，包括头像、职业和个人介绍.
 profile:
-  avatar: /medias/avatars/avatar.jpg
-  career: 华东师范大学 | 计算机科学与技术 | AntNLP
-  introduction: 我是华东师范大学计算机科学与技术专业2018级硕士研究生。直研进入本校计算机系攻读硕士，研究方向是深度学习与自然语言处理。我们实验室是AntNLP，欢迎大家报考！欢迎关注我的微信公众号「算法码上来」，干货每天不错过！
-
+  avatar: /medias/avatars/jinbao.jpg
+  career: 山东理工大学 | 车辆工程 | embedded
+  introduction: 我目前是一名嵌入式软件工程师，希望能够坚持写博客，记录技术、感悟以及一些心情。
 # config my projects informations in about page.
 # If you don't want to display this `My Projects` content, you can deactivate or delete this configuration.
 # 在“关于”页面配置"我的项目"信息，如果你不需要这些信息则可以将其设置为不激活或者将其删除.
 myProjects:
-  enable: true
+  enable: false
   data:
     hexo-matery-modified:
       icon: fa-meetup
       iconBackground: 'linear-gradient(to bottom right, #66BB6A 0%, #81C784 100%)'
-      url: https://github.com/godweiyang/hexo-matery-modified
+      url: https://github.com/jinbaotang/hexo-matery-modified
       desc: 我的个性化配置过的博客源码，即下即用。
     Span-Linearization-Parser:
         icon: fa-database
@@ -188,7 +187,7 @@ myProjects:
     ECNU-BeamerTemplate:
         icon: fa-file-text-o
         iconBackground: 'linear-gradient(to bottom right, #29B6F6 0%, #1E88E5 100%)'
-        url: https://github.com/godweiyang/ECNU_BeamerTemplate
+        url: https://github.com/jinbaotang/ECNU_BeamerTemplate
         desc: 基于Latex Beamer的华东师范大学PPT模板。
 
 # config my skills informations in about page.
@@ -240,12 +239,12 @@ postCalendar: true
 # Gitalk 评论模块的配置，默认为不激活
 gitalk:
   enable: true
-  owner: godweiyang
-  repo: godweiyang.github.io
+  owner: jinbaotang
+  repo: jinbaotang.github.io
   oauth:
-    clientId: 查教程获取
-    clientSecret: 查教程获取
-  admin: godweiyang
+    clientId: b772e60fdc4bd3a33ea8
+    clientSecret: f69fbf7f96f6209a5259e85681324ad30b5f8776
+  admin: jinbaotang
 
 # the Gitment config，default disabled
 # Gitment 评论模块的配置，默认为不激活
@@ -287,7 +286,7 @@ valine:
 # 配置是否在 header 中显示 fork me on github 的图标，默认为true，你可以修改为你的仓库地址.
 githubLink:
   enable: true
-  url: https://github.com/godweiyang/hexo-matery-modified
+  url: https://github.com/jinbaotang/hexo-matery-modified
   title: Fork Me
 
 # The password verification feature of read post. To use this feature,

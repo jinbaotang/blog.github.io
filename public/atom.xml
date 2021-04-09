@@ -2,11 +2,11 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>金宝的博客</title>
   
-  <subtitle>记录</subtitle>
+  <subtitle>随便写点</subtitle>
   <link href="https://jinbaotang.cn/atom.xml" rel="self"/>
   
   <link href="https://jinbaotang.cn/"/>
-  <updated>2021-04-08T02:38:50.575Z</updated>
+  <updated>2021-04-08T16:39:59.144Z</updated>
   <id>https://jinbaotang.cn/</id>
   
   <author>
@@ -17,24 +17,12 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>5W2H | 关于写博客的七点反思</title>
-    <link href="https://jinbaotang.cn/2020/01/14/5w2h-godweiyang/"/>
-    <id>https://jinbaotang.cn/2020/01/14/5w2h-godweiyang/</id>
+    <title>我为什么要写博客</title>
+    <link href="https://jinbaotang.cn/2020/01/14/jinbaotang-why-write/"/>
+    <id>https://jinbaotang.cn/2020/01/14/jinbaotang-why-write/</id>
     <published>2020-01-14T07:27:31.000Z</published>
-    <updated>2021-04-08T02:38:50.575Z</updated>
+    <updated>2021-04-08T16:39:59.144Z</updated>
     
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;关注公众号【算法码上来】，每日算法干货马上就来！&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;img src=&quot;/medias/contact.jpg&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;When？什么时候开始写的？&quot;&gt;&lt;a</summary>
-        
-      
     
     
     
