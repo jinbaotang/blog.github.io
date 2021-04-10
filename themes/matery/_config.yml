@@ -242,8 +242,8 @@ gitalk:
   owner: jinbaotang
   repo: jinbaotang.github.io
   oauth:
-    clientId: b772e60fdc4bd3a33ea8
-    clientSecret: f69fbf7f96f6209a5259e85681324ad30b5f8776
+    clientId: 0c037b7925b6151e6ff0
+    clientSecret:  c3a5d75463d128ce1bf6582d085f34346a3a12c7 
   admin: jinbaotang
 
 # the Gitment config，default disabled
