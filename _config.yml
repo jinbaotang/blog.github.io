@@ -113,7 +113,7 @@ theme: matery
 deploy:
 - type: git
   repository:
-    github: git@github.com:jinbaotang/blog.github.io.git
+    github: git@github.com:jinbaotang/jinbaotang.github.io.git
   branch: master
 - type: baidu_url_submitter
 
