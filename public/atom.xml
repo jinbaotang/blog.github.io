@@ -6,7 +6,7 @@
   <link href="https://jinbaotang.cn/atom.xml" rel="self"/>
   
   <link href="https://jinbaotang.cn/"/>
-  <updated>2021-04-12T11:00:21.518Z</updated>
+  <updated>2021-05-04T17:20:52.658Z</updated>
   <id>https://jinbaotang.cn/</id>
   
   <author>
@@ -17,12 +17,52 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>基于openssl实现tls+socket的安全通信</title>
+    <link href="https://jinbaotang.cn/2021/05/05/tls-socket/"/>
+    <id>https://jinbaotang.cn/2021/05/05/tls-socket/</id>
+    <published>2021-05-04T17:13:00.000Z</published>
+    <updated>2021-05-04T17:20:52.658Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;记录基于openssl来实现tls的安全通信，借助BSD socket接口来实现。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&quot;一、-背景&quot;&gt;&lt;a href=&quot;#一、-背景&quot; class=&quot;headerlink&quot; title=&quot;一、</summary>
+        
+      
+    
+    
+    
+    <category term="协议栈" scheme="https://jinbaotang.cn/categories/%E5%8D%8F%E8%AE%AE%E6%A0%88/"/>
+    
+    
+    <category term="tls,opensll" scheme="https://jinbaotang.cn/tags/tls-opensll/"/>
+    
+  </entry>
+  
+  <entry>
     <title>LwIP使用select，close socket资源释放不完全问题</title>
     <link href="https://jinbaotang.cn/2021/04/12/lwip-close-socket-select/"/>
     <id>https://jinbaotang.cn/2021/04/12/lwip-close-socket-select/</id>
     <published>2021-04-12T10:56:38.000Z</published>
-    <updated>2021-04-12T11:00:21.518Z</updated>
+    <updated>2021-05-04T17:23:01.115Z</updated>
     
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;这篇文章本应该在4月就写好的，但是博客评论系统一直没有搭建好，走了很多弯路，现在好了，delay这么久，终于要要补过来了。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;该文章完全原创，除通用、广泛的知识点外，均为个人总结，如</summary>
+        
+      
     
     
     
@@ -38,7 +78,7 @@
     <link href="https://jinbaotang.cn/2021/04/11/why-write/"/>
     <id>https://jinbaotang.cn/2021/04/11/why-write/</id>
     <published>2021-04-11T07:27:31.000Z</published>
-    <updated>2021-05-03T17:40:38.445Z</updated>
+    <updated>2021-05-04T08:05:06.353Z</updated>
     
     
       

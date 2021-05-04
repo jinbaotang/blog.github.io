@@ -29,9 +29,10 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="金宝的博客" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="金宝的博客" type="application/atom+xml">
+</head>
 
 
 
@@ -478,21 +479,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-04-12
+                    2021-05-05
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    0
+                    3.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    14 分
                 </div>
                 
 
@@ -507,12 +508,305 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <blockquote>
+<p>这篇文章本应该在4月就写好的，但是博客评论系统一直没有搭建好，走了很多弯路，现在好了，delay这么久，终于要要补过来了。</p>
+</blockquote>
+<blockquote>
+<p>该文章完全原创，除通用、广泛的知识点外，均为个人总结，如需转载还望备注出处，同时如有错误还请指出，虚心接受。</p>
+</blockquote>
+<h1 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h1><h2 id="1-题外话"><a href="#1-题外话" class="headerlink" title="1. 题外话"></a>1. 题外话</h2><p>  以这篇文章为第一篇技术文章，一是萌生写博客的契机是换工作，另外就是这篇文章是我在怿星解决的最后一个bug。</p>
+<p><img src="/medias/lwip-close-socket-select/jinbao-ept.jpg"></p>
+<p>  问题来源是，跑在基于LwIP+FreeRTOS环境的DoIP，在反复初始化/反初始化时几次之后就会失败了。年初由于任务紧张，检查了下初始化和反初始化函数的流程，改掉了几处可能会出现问题的地方，问题依旧。但是同样的上层处理代码，在windows和linux环境下是没问题的，基本怀疑是LwIP某处不完善引起。一直拖到要离职，终于在离开的最后一天解决了，也算是给在怿星的DoIP协议栈画上一个属于自己的句号。</p>
+<p>   LwIP 全名为 Light weight IP，意思是轻量化的 TCP/IP 协议， 是瑞典计算机科学院(SICS)的 Adam Dunkels 开发的一个小型开源的 TCP/IP 协议栈。 LwIP 的设计初衷是：用少量的资源消耗(RAM)实现一个较为完整的 TCP/IP 协议栈，其中“完整”主要指的是 TCP 协议的完整性， 实现的重点是在保持 TCP 协议主要功能的基础上减少对 RAM 的占用。此外 LwIP既可以移植到操作系统上运行，也可以在无操作系统的情况下独立运行。</p>
+<h2 id="2-原因"><a href="#2-原因" class="headerlink" title="2. 原因"></a>2. 原因</h2><p>  引起该问题的根本原因是，LwIP select函数里如果判断对应的socket没有事件产生（读/写/异常），进行简单处理后则改线程休眠，让出cpu控制权。如果在select休眠期间，进行了close socket的操作，会释放对应的socket pcb（<strong>close(socket)<strong>是成功的），然后在select休眠结束后，判断该socket资源不存在，则直接退出select函数，</strong>但是</strong>此时该socket的select_wait标志位没被清除。LwIP在分配socket时（资源都是静态分配的，类似于有一个socket数组，若分配则对应标志位为真），socket是否空闲是会对select_wait该标志位进行判断，所以即使该socket没有被使用，调用*socket()*函数时也会认为该socket是被占用的，所以几次之后，socket资源被<strong>假耗尽</strong>。</p>
+<h2 id="3-解决"><a href="#3-解决" class="headerlink" title="3. 解决"></a>3. 解决</h2><p>  知道原因后，问题就好解决了。有以下两个解决问题的思路。</p>
+<ol>
+<li>更改LwIP源码，对对应的标志位进行判断和清除。该解决方案，如果能够push到LwIP主分支，则是一劳永逸的，否则如果要跟随LwIP官方更新，自己得维护一套代码，并持续merge。</li>
+<li>使用者，在使用接口时，做同步。即在select休眠期间不允许进行close socket操作，同时在close socket也不允许进入select函数。所以只要在两个函数之间加上条件判断就好。</li>
+</ol>
+<p>  考虑到维护成本，最终选择方案2.</p>
+<h1 id="二、分析"><a href="#二、分析" class="headerlink" title="二、分析"></a>二、分析</h1><p>  解决思路在上面已经给出，下面主要想从源码级对问题进行分析。原因中，涉及三个函数，</p>
+<ol>
+<li><p>socket函数，即lwip_socket，函数原型如下：<br><code>int lwip_socket(int domain, int type, int protocol)</code></p>
+</li>
+<li><p>close函数，即lwip_close，原型如下：<br><code>int lwip_close(int s)</code></p>
+</li>
+<li><p>select函数， 即lwip_select(),原型如下：<br><code>intlwip_select(int maxfdp1, fd_set *readset, fd_set *writeset, fd_set *exceptset, struct timeval *timeout)</code></p>
+</li>
+</ol>
+<h2 id="1-拓展"><a href="#1-拓展" class="headerlink" title="1. 拓展"></a>1. 拓展</h2><p>  LwIP本身提供了类似于bsd socket编程模型，同时也实现了简易版的select函数。</p>
+<p>  关于socket编程的教程是实在太多了，在这不再重复去描述，<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39634961/article/details/80236161">socket编程参考链接</a>。辅导过一些人进行socket编程，初学者包括我自己，容易忽略的一点就是，作为server时，listen-socket和accept-socket不是一回事。可以理解为listen-socket窗口，窗口只是负责监听有谁要走通道，走哪个通道，并把真正的通道–accept-socket给到上层。对于其他的，感觉跑跑示例程序，单步走一下，就基本理解了。</p>
+<p>  在不使用select时，并没有发现socket资源释放不完全的问题。本文不展开讲解lwip select的实现，但是对于select的使用需要稍微展开下，<a target="_blank" rel="noopener" href="https://www.cnblogs.com/skyfsm/p/7079458.html">select编程参考链接</a>。关于select本质上是一个同步I/O函数，只不过改同步函数可以同时监控多个”IO”通道，所以也称为多路复用。熟悉了上面的socket编程后，如果需要实现多个socket同时通信的话，就应该给每个socket开一个线程，在负载不是特别高的情况下会显得效率特别低，同时线程太多，就不得不考虑资源竞争的问题，如果竞态条件太多，也容易产生问题（<strong>多线程资源竞争问题</strong>）。多路复用即是用一个线程监听多个通道（描述符），一旦某个描述符就绪（可读、可写或者异常），就通知程序进行相应的读写操作。上庙的描述，看起来select是异步的，其实不然，因为产生读写事件后，应用程序必须自己负责读写操作，读写操作本身是阻塞的，而异步I/O是不需要自己读写；同时即使没有读写事件产生，select函数本身也是阻塞的，加了超时也是阻塞的，只不过给阻塞增加了一个时间限制。</p>
+<p>  select最早于1983年出现在4.2BSD中，它通过一个select()系统调用来监视多个文件描述符的数组，当select()返回后，该数组中就绪的文件描述符便会被内核修改标志位，使得进程可以获得这些文件描述符从而进行后续的读写操作。从<a target="_blank" rel="noopener" href="https://www.cnblogs.com/skyfsm/p/7079458.html">select编程参考链接</a>中可以看出最终每个socket都对应到每个bit上，如果对应的socket有事件产生，则会被置位。</p>
+<h2 id="2-函数分析"><a href="#2-函数分析" class="headerlink" title="2. 函数分析"></a>2. 函数分析</h2><p>  该节分析函数socket，close，select实现细节。<strong>LwIP版本2.1.4</strong>。</p>
+<h3 id="2-1-socket函数"><a href="#2-1-socket函数" class="headerlink" title="2.1 socket函数"></a>2.1 socket函数</h3><p>  lwip中<code>#define socket lwip_socket</code>.</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">lwip_socket</span><span class="token punctuation">(</span><span class="token keyword">int</span> domain<span class="token punctuation">,</span> <span class="token keyword">int</span> type<span class="token punctuation">,</span> <span class="token keyword">int</span> protocol<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">struct</span> <span class="token class-name">netconn</span> <span class="token operator">*</span>conn<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> i<span class="token punctuation">;</span>
+    <span class="token function">LWIP_UNUSED_ARG</span><span class="token punctuation">(</span>domain<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">/* @todo: check this */</span>
+    <span class="token comment">/* create a netconn */</span>
+    <span class="token comment">/* 下面主要是针对不同的socket类型，分配空间，对相应的成员进行赋值，空间资源为预分配给lwip的堆空间
+     */</span>
+    <span class="token keyword">switch</span> <span class="token punctuation">(</span>type<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">case</span> SOCK_RAW<span class="token operator">:</span>
+        conn <span class="token operator">=</span> <span class="token function">netconn_new_with_proto_and_callback</span><span class="token punctuation">(</span>
+            <span class="token function">DOMAIN_TO_NETCONN_TYPE</span><span class="token punctuation">(</span>domain<span class="token punctuation">,</span> NETCONN_RAW<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token class-name">u8_t</span><span class="token punctuation">)</span>protocol<span class="token punctuation">,</span>
+            event_callback<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">LWIP_DEBUGF</span><span class="token punctuation">(</span>SOCKETS_DEBUG<span class="token punctuation">,</span>
+                    <span class="token punctuation">(</span><span class="token string">"lwip_socket(%s, SOCK_RAW, %d) = "</span><span class="token punctuation">,</span>
+                     domain <span class="token operator">==</span> PF_INET <span class="token operator">?</span> <span class="token string">"PF_INET"</span> <span class="token operator">:</span> <span class="token string">"UNKNOWN"</span><span class="token punctuation">,</span> protocol<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> SOCK_DGRAM<span class="token operator">:</span>
+        conn <span class="token operator">=</span> <span class="token function">netconn_new_with_callback</span><span class="token punctuation">(</span>
+            <span class="token function">DOMAIN_TO_NETCONN_TYPE</span><span class="token punctuation">(</span>domain<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>protocol <span class="token operator">==</span> IPPROTO_UDPLITE<span class="token punctuation">)</span>
+                                                <span class="token operator">?</span> NETCONN_UDPLITE
+                                                <span class="token operator">:</span> NETCONN_UDP<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            event_callback<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">LWIP_DEBUGF</span><span class="token punctuation">(</span>SOCKETS_DEBUG<span class="token punctuation">,</span>
+                    <span class="token punctuation">(</span><span class="token string">"lwip_socket(%s, SOCK_DGRAM, %d) = "</span><span class="token punctuation">,</span>
+                     domain <span class="token operator">==</span> PF_INET <span class="token operator">?</span> <span class="token string">"PF_INET"</span> <span class="token operator">:</span> <span class="token string">"UNKNOWN"</span><span class="token punctuation">,</span> protocol<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> SOCK_STREAM<span class="token operator">:</span>
+        conn <span class="token operator">=</span> <span class="token function">netconn_new_with_callback</span><span class="token punctuation">(</span>
+            <span class="token function">DOMAIN_TO_NETCONN_TYPE</span><span class="token punctuation">(</span>domain<span class="token punctuation">,</span> NETCONN_TCP<span class="token punctuation">)</span><span class="token punctuation">,</span> event_callback<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">LWIP_DEBUGF</span><span class="token punctuation">(</span>SOCKETS_DEBUG<span class="token punctuation">,</span>
+                    <span class="token punctuation">(</span><span class="token string">"lwip_socket(%s, SOCK_STREAM, %d) = "</span><span class="token punctuation">,</span>
+                     domain <span class="token operator">==</span> PF_INET <span class="token operator">?</span> <span class="token string">"PF_INET"</span> <span class="token operator">:</span> <span class="token string">"UNKNOWN"</span><span class="token punctuation">,</span> protocol<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">default</span><span class="token operator">:</span>
+        <span class="token function">LWIP_DEBUGF</span><span class="token punctuation">(</span>SOCKETS_DEBUG<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token string">"lwip_socket(%d, %d/UNKNOWN, %d) = -1\n"</span><span class="token punctuation">,</span>
+                                    domain<span class="token punctuation">,</span> type<span class="token punctuation">,</span> protocol<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">set_errno</span><span class="token punctuation">(</span>EINVAL<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>conn<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">LWIP_DEBUGF</span><span class="token punctuation">(</span>SOCKETS_DEBUG<span class="token punctuation">,</span>
+                    <span class="token punctuation">(</span><span class="token string">"-1 / ENOBUFS (could not create netconn)\n"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">set_errno</span><span class="token punctuation">(</span>ENOBUFS<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">/* 
+    *上面已经分配好了，对应的connection空间，最终要对应的socket上，即socket数组，见下面alloc_socket实现。 
+    */</span>
+    i <span class="token operator">=</span> <span class="token function">alloc_socket</span><span class="token punctuation">(</span>conn<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>i <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">netconn_delete</span><span class="token punctuation">(</span>conn<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">set_errno</span><span class="token punctuation">(</span>ENFILE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    conn<span class="token operator">-&gt;</span>socket <span class="token operator">=</span> i<span class="token punctuation">;</span>
+    <span class="token function">LWIP_DEBUGF</span><span class="token punctuation">(</span>SOCKETS_DEBUG<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">set_errno</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> i<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">alloc_socket</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">netconn</span> <span class="token operator">*</span>newconn<span class="token punctuation">,</span> <span class="token keyword">int</span> accepted<span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token keyword">int</span> i<span class="token punctuation">;</span>
+  <span class="token function">SYS_ARCH_DECL_PROTECT</span><span class="token punctuation">(</span>lev<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">/* allocate a new socket identifier */</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> NUM_SOCKETS<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">/* Protect socket array */</span>
+    <span class="token function">SYS_ARCH_PROTECT</span><span class="token punctuation">(</span>lev<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>sockets<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>conn <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>sockets<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>select_waiting <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      sockets<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>conn       <span class="token operator">=</span> newconn<span class="token punctuation">;</span>
+      <span class="token comment">/* The socket is not yet known to anyone, so no need to protect
+         after having marked it as used. */</span>
+      <span class="token function">SYS_ARCH_UNPROTECT</span><span class="token punctuation">(</span>lev<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      sockets<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>lastdata   <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+      sockets<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>lastoffset <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+      sockets<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>rcvevent   <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+      <span class="token comment">/* TCP sendbuf is empty, but the socket is not yet writable until connected
+       * (unless it has been created by accept()). */</span>
+      sockets<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>sendevent  <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token function">NETCONNTYPE_GROUP</span><span class="token punctuation">(</span>newconn<span class="token operator">-&gt;</span>type<span class="token punctuation">)</span> <span class="token operator">==</span> NETCONN_TCP <span class="token operator">?</span> <span class="token punctuation">(</span>accepted <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      sockets<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>errevent   <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+      sockets<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>err        <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span> i <span class="token operator">+</span> LWIP_SOCKET_OFFSET<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">SYS_ARCH_UNPROTECT</span><span class="token punctuation">(</span>lev<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>  可以看到，判断socket资源是否有人在使用时，除了判断socket-&gt;conn是否为空，还会判断select_waiting是否等于0。其中select_waiting标识该socket正在被多少个线程在使用。即要释放socket资源（说释放有点不是很准确，因为在lwip中，socket资源是编译前分配的），两个重要条件是，socket-&gt;conn必须为空，并且select_waiting要为0.</p>
+<h3 id="2-2-close函数"><a href="#2-2-close函数" class="headerlink" title="2.2 close函数"></a>2.2 close函数</h3><p>  接下来看看close函数的实现，看为啥会导致资源释放不完全。</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">lwip_close</span><span class="token punctuation">(</span><span class="token keyword">int</span> s<span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token keyword">struct</span> <span class="token class-name">lwip_sock</span> <span class="token operator">*</span>sock<span class="token punctuation">;</span>
+  <span class="token keyword">int</span> is_tcp <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token class-name">err_t</span> err<span class="token punctuation">;</span>
+
+  <span class="token function">LWIP_DEBUGF</span><span class="token punctuation">(</span>SOCKETS_DEBUG<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token string">"lwip_close(%d)\n"</span><span class="token punctuation">,</span> s<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token comment">/* 本质上是，通过socket数组下标获取到socket结构体 */</span>
+  sock <span class="token operator">=</span> <span class="token function">get_socket</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>sock<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>sock<span class="token operator">-&gt;</span>conn <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    is_tcp <span class="token operator">=</span> <span class="token function">NETCONNTYPE_GROUP</span><span class="token punctuation">(</span><span class="token function">netconn_type</span><span class="token punctuation">(</span>sock<span class="token operator">-&gt;</span>conn<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">==</span> NETCONN_TCP<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    <span class="token function">LWIP_ASSERT</span><span class="token punctuation">(</span><span class="token string">"sock-&gt;lastdata == NULL"</span><span class="token punctuation">,</span> sock<span class="token operator">-&gt;</span>lastdata <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">if</span> <span class="token expression">LWIP_IGMP</span></span>
+  <span class="token comment">/* drop all possibly joined IGMP memberships */</span>
+  <span class="token function">lwip_socket_drop_registered_memberships</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">endif</span> <span class="token comment">/* LWIP_IGMP */</span></span>
+	<span class="token comment">/* 释放从lwip内存堆里分配到空间 */</span>
+  err <span class="token operator">=</span> <span class="token function">netconn_delete</span><span class="token punctuation">(</span>sock<span class="token operator">-&gt;</span>conn<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>err <span class="token operator">!=</span> ERR_OK<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">sock_set_errno</span><span class="token punctuation">(</span>sock<span class="token punctuation">,</span> <span class="token function">err_to_errno</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+	<span class="token comment">/* 主要是对socket结构体成员进行反初始化，并对数据空间进行释放，看下述对该函数实现分析 */</span>
+  <span class="token function">free_socket</span><span class="token punctuation">(</span>sock<span class="token punctuation">,</span> is_tcp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">set_errno</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">free_socket</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">lwip_sock</span> <span class="token operator">*</span>sock<span class="token punctuation">,</span> <span class="token keyword">int</span> is_tcp<span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token keyword">void</span> <span class="token operator">*</span>lastdata<span class="token punctuation">;</span>
+
+  lastdata         <span class="token operator">=</span> sock<span class="token operator">-&gt;</span>lastdata<span class="token punctuation">;</span>
+  sock<span class="token operator">-&gt;</span>lastdata   <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+  sock<span class="token operator">-&gt;</span>lastoffset <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  sock<span class="token operator">-&gt;</span>err        <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+  <span class="token comment">/* Protect socket array */</span>
+  <span class="token comment">/* 对socket-&gt;conn进行置空 */</span>
+  <span class="token function">SYS_ARCH_SET</span><span class="token punctuation">(</span>sock<span class="token operator">-&gt;</span>conn<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">/* don't use 'sock' after this line, as another task might have allocated it */</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>lastdata <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>is_tcp<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">pbuf_free</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">pbuf</span> <span class="token operator">*</span><span class="token punctuation">)</span>lastdata<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      <span class="token function">netbuf_delete</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">netbuf</span> <span class="token operator">*</span><span class="token punctuation">)</span>lastdata<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>  上述两个函数分析可知，<code>close</code>函数只能使socket-&gt;conn为空，并不能使select_waiting为0，所以其实只有<code>close</code>函数是不能使socket资源完全释放的。</p>
+<h3 id="2-3-select函数"><a href="#2-3-select函数" class="headerlink" title="2.3 select函数"></a>2.3 select函数</h3><p>  从<em>select_waiting</em>名字中能比较容易的猜到，该变量跟select函数肯定是强相关的。全局搜索select_waiting，果然只有select函数有进行写操作。下面分析select函数，该函数较长，做必要的简化。</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">lwip_select</span><span class="token punctuation">(</span><span class="token keyword">int</span> maxfdp1<span class="token punctuation">,</span> fd_set <span class="token operator">*</span>readset<span class="token punctuation">,</span> fd_set <span class="token operator">*</span>writeset<span class="token punctuation">,</span> fd_set <span class="token operator">*</span>exceptset<span class="token punctuation">,</span> <span class="token keyword">struct</span> <span class="token class-name">timeval</span> <span class="token operator">*</span>timeout<span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token class-name">u32_t</span> waitres <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token keyword">int</span> nready<span class="token punctuation">;</span>
+  fd_set lreadset<span class="token punctuation">,</span> lwriteset<span class="token punctuation">,</span> lexceptset<span class="token punctuation">;</span>
+  <span class="token class-name">u32_t</span> msectimeout<span class="token punctuation">;</span>
+  <span class="token keyword">struct</span> <span class="token class-name">lwip_select_cb</span> select_cb<span class="token punctuation">;</span>
+  <span class="token keyword">int</span> i<span class="token punctuation">;</span>
+  <span class="token keyword">int</span> maxfdp2<span class="token punctuation">;</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">if</span> <span class="token expression">LWIP_NETCONN_SEM_PER_THREAD</span></span>
+  <span class="token keyword">int</span> waited <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">endif</span></span>
+  <span class="token comment">/* Go through each socket in each list to count number of sockets which
+     currently match */</span>
+  <span class="token comment">/* 
+  *扫描所有socket对应的bit，如果有准备好，则直接将对应的bit置上，后面可以看出，该函数简单的赋值后就退出了，
+  *不涉及对select_waiting的操作。
+   */</span>
+  nready <span class="token operator">=</span> <span class="token function">lwip_selscan</span><span class="token punctuation">(</span>maxfdp1<span class="token punctuation">,</span> readset<span class="token punctuation">,</span> writeset<span class="token punctuation">,</span> exceptset<span class="token punctuation">,</span> <span class="token operator">&amp;</span>lreadset<span class="token punctuation">,</span> <span class="token operator">&amp;</span>lwriteset<span class="token punctuation">,</span> <span class="token operator">&amp;</span>lexceptset<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">/* If we don't have any current events, then suspend if we are supposed to */</span>
+  <span class="token comment">/* 只有没有相应的socket准备好并且没有超时，才回置位select_waiting, 并挂起线程。 */</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>nready<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>timeout <span class="token operator">&amp;&amp;</span> timeout<span class="token operator">-&gt;</span>tv_sec <span class="token operator">==</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> timeout<span class="token operator">-&gt;</span>tv_usec <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">LWIP_DEBUGF</span><span class="token punctuation">(</span>SOCKETS_DEBUG<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token string">"lwip_select: no timeout, returning 0\n"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token comment">/* This is OK as the local fdsets are empty and nready is zero,
+         or we would have returned earlier. */</span>
+      <span class="token keyword">goto</span> return_copy_fdsets<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">/* 省略一堆处理，可以看到只要该socket设置了，读写异常通知，并且socket是存在的，则会将select_wainting增加1 */</span>
+    <span class="token comment">/* Increase select_waiting for each socket we are interested in */</span>
+    maxfdp2 <span class="token operator">=</span> maxfdp1<span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> LWIP_SOCKET_OFFSET<span class="token punctuation">;</span> i <span class="token operator">&lt;</span> maxfdp1<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>readset <span class="token operator">&amp;&amp;</span> <span class="token function">FD_ISSET</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> readset<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">||</span>
+          <span class="token punctuation">(</span>writeset <span class="token operator">&amp;&amp;</span> <span class="token function">FD_ISSET</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> writeset<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">||</span>
+          <span class="token punctuation">(</span>exceptset <span class="token operator">&amp;&amp;</span> <span class="token function">FD_ISSET</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> exceptset<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">struct</span> <span class="token class-name">lwip_sock</span> <span class="token operator">*</span>sock<span class="token punctuation">;</span>
+        <span class="token function">SYS_ARCH_PROTECT</span><span class="token punctuation">(</span>lev<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        sock <span class="token operator">=</span> <span class="token function">tryget_socket</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>sock <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          sock<span class="token operator">-&gt;</span>select_waiting<span class="token operator">++</span><span class="token punctuation">;</span>
+          <span class="token function">LWIP_ASSERT</span><span class="token punctuation">(</span><span class="token string">"sock-&gt;select_waiting &gt; 0"</span><span class="token punctuation">,</span> sock<span class="token operator">-&gt;</span>select_waiting <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+          <span class="token comment">/* Not a valid socket */</span>
+          nready <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+          maxfdp2 <span class="token operator">=</span> i<span class="token punctuation">;</span>
+          <span class="token function">SYS_ARCH_UNPROTECT</span><span class="token punctuation">(</span>lev<span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token function">SYS_ARCH_UNPROTECT</span><span class="token punctuation">(</span>lev<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>nready <span class="token operator">&gt;=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">/* 
+    *执行完上述操作，还会再扫描一次是否有socket有事件产生，删除细节。
+    *因为上述，如果socket资源过多，会消耗不少资源，再扫描一次可以提高效率。
+    */</span>
+      <span class="token comment">/* 休眠指定时间，让出cpu控制权 */</span>
+      waitres <span class="token operator">=</span> <span class="token function">sys_arch_sem_wait</span><span class="token punctuation">(</span><span class="token function">SELECT_SEM_PTR</span><span class="token punctuation">(</span>select_cb<span class="token punctuation">.</span>sem<span class="token punctuation">)</span><span class="token punctuation">,</span> msectimeout<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">/* 休眠结束， 将对应socket-&gt;select_waiting减1 */</span>
+    <span class="token comment">/* Decrease select_waiting for each socket we are interested in */</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> LWIP_SOCKET_OFFSET<span class="token punctuation">;</span> i <span class="token operator">&lt;</span> maxfdp2<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>readset <span class="token operator">&amp;&amp;</span> <span class="token function">FD_ISSET</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> readset<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">||</span>
+          <span class="token punctuation">(</span>writeset <span class="token operator">&amp;&amp;</span> <span class="token function">FD_ISSET</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> writeset<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">||</span>
+          <span class="token punctuation">(</span>exceptset <span class="token operator">&amp;&amp;</span> <span class="token function">FD_ISSET</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> exceptset<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">struct</span> <span class="token class-name">lwip_sock</span> <span class="token operator">*</span>sock<span class="token punctuation">;</span>
+        <span class="token function">SYS_ARCH_PROTECT</span><span class="token punctuation">(</span>lev<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        sock <span class="token operator">=</span> <span class="token function">tryget_socket</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">/* 减1，必须socket是还在的 */</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>sock <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token comment">/* for now, handle select_waiting==0... */</span>
+          <span class="token function">LWIP_ASSERT</span><span class="token punctuation">(</span><span class="token string">"sock-&gt;select_waiting &gt; 0"</span><span class="token punctuation">,</span> sock<span class="token operator">-&gt;</span>select_waiting <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token keyword">if</span> <span class="token punctuation">(</span>sock<span class="token operator">-&gt;</span>select_waiting <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            sock<span class="token operator">-&gt;</span>select_waiting<span class="token operator">--</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+          <span class="token comment">/* Not a valid socket */</span>
+          nready <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token function">SYS_ARCH_UNPROTECT</span><span class="token punctuation">(</span>lev<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">/* 删除不影响分析代码，感兴趣参考源码。 */</span>
+  <span class="token keyword">return</span> nready<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong></strong></p><center><strong>这是这一张来自未来的select函数处理流程图</strong><center><strong></strong><p></p>
+<p>  参考上述代码分析，特别注意<em>socket-&gt;select_waiting</em>加1和减1的地方，可以看到，如果socket存在且的确需要监听事件，且并不是进来事件就已经产生或者已经超时，一定会加1；然后线程会有可能会进行休眠；正常情况下，休眠结束后，<em>socket-&gt;select_waiting</em>减1，离开该函数，<em>socket-&gt;select_waiting</em>恢复原值。<strong>但是</strong>，如果在线程休眠期间，恰巧在另外一个线程进行了close操作，事件就变味了。</p>
+<p>  如果在休眠期间进行了<code>close(socket)</code>,则通过<code>tyr_socket(socket)</code>获取不到socket结构体，则<em>socket-&gt;select_waiting</em>不会进行减1，后面执行一系列语句后，退出该函数，<em>socket-&gt;select_waiting</em>没有恢复原值，且比进来时大1。针对该函数，<em>socket-&gt;select_waiting</em>加1的次数是*&gt;=<em>减1的次数，所以如果只要在函数退出时没有恢复原值，则</em>socket-&gt;select_waiting*永远不可能再减为0了，此时socket资源就出现了<strong>假占用</strong>，该socket再也不能被其他人使用了。</p>
+<h1 id="三、解决方案"><a href="#三、解决方案" class="headerlink" title="三、解决方案"></a>三、解决方案</h1><p>  第二章已经对产生的原因进行了分析。解决问题的思路也想一开始提到的有两种，为了不改lwip源码，使用了第二种思路。下面用伪代码给出解决方案。需要使用到两个flag<code>closing_socket_flag</code>和·selecting_flag`。<br><strong>thread1</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">int adaptor_closesocket(int socket){
+    while(get_select_processing()){
+        sleep(1);
+    }
+    set_closesocket_processing(true);
+    ret = close(socket);
+    set_closescoket_processing(false);
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>thread2</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">int select_loop(int socket){
+    while(get_closesocket_processing()){
+        sleep(1);
+    }
+    set_select_processing(true);
+    select_return = select(sockMAX + 1, &amp;read_set, NULL, &amp;exception_set, &amp;timeout);
+    set_select_processing(false);
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>  上面的解决方案，我认为是最为简单通用的解决方案，当然针对两个flag肯定还是需要加锁的。另外还有一种思路就是使用通知类似于condition的方法。知道了错误原因，解决方法的思路就是做同步。</p>
+<h1 id="四、写在最后"><a href="#四、写在最后" class="headerlink" title="四、写在最后"></a>四、写在最后</h1><p>  LwIP无疑是一个很优秀的轻量版的TCP/IP协议实现了，在开发DoIP时由于是跨平台，在windows和linux都是支持的，所以比较简单就定位出了问题是出在了LwI协议本身。和大佬讨论过，觉得这也不属于LwIP本身的一个bug，感觉更像是feature实现的不够完整，但是light weight也已经足够了。同时在使用LwIP本身也学到了很多技巧，如连接符**##**的使用、在MCU上实现分配空间的解决方案。<br><img src="https://savannah.nongnu.org/images/Savannah.theme/floating.png"></p>
+</center></center>
                 
             </div>
             <hr/>
@@ -1044,18 +1338,17 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/04/12/lwip-close-socket-select/">
+                <a href="/2021/05/05/tls-socket/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="LwIP使用select，close socket资源释放不完全问题">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="基于openssl实现tls+socket的安全通信">
                         
-                        <span class="card-title">LwIP使用select，close socket资源释放不完全问题</span>
+                        <span class="card-title">基于openssl实现tls+socket的安全通信</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1065,9 +1358,9 @@
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-04-12
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-05-05
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1080,12 +1373,11 @@
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/LwIP/">
-                        <span class="chip bg-color">LwIP</span>
+                    <a href="/tags/tls-opensll/">
+                        <span class="chip bg-color">tls,opensll</span>
                     </a>
                     
                 </div>
@@ -1391,10 +1683,10 @@
                                         金宝
                                     </a>
                                     |&nbsp;Powered by&nbsp;<a href="https://github.com/jinbaotang/" target="_blank">jinbao</a> |&nbsp;Theme&nbsp;
-                                    <a href="https://github.com/jinbaotang/jinbaotang.githuh.io" target="_blank">jinbao-modify</a>
+                                    <a href="https://github.com/jinbaotang/jinbaotang.githuh.io" target="_blank">jinbao-matery-modify</a>
                                     <br>
                                     
-                                        &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span class="white-color">1.4k</span>&nbsp;字
+                                        &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span class="white-color">5.1k</span>&nbsp;字
                                         
                                             
                                                 
