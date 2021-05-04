@@ -245,8 +245,7 @@ gitalk:
     clientId: f2b2a69ea8b8fe7f47f9
     clientSecret: 70e5efd1c9338799338122d631c9d24f93b9dcb7
   admin: jinbaotang
-  proxy: 'https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token'
-
+# proxy: 'https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token'
 
 # the Gitment config，default disabled
 # Gitment 评论模块的配置，默认为不激活
@@ -274,9 +273,9 @@ livere:
 # To use it, activate the configuration item and set appId and appKey.
 # Valine 评论模块的配置，默认为不激活，如要使用，就请激活该配置项，并设置 appId 和 appKey.
 valine:
-  enable: false
-  appId: 查教程获取
-  appKey: 查教程获取
+  enable: true
+  appId: u8mcnI498PEQRk7z9pjH3rzE-gzGzoHsz
+  appKey: rdOVQCGteA094mRYaD9bAitn
   notify: false
   verify: false
   visitor: false
@@ -327,7 +326,8 @@ libs:
     lightgallery: /libs/lightGallery/css/lightgallery.min.css # V1.6.11
     aplayer: /libs/aplayer/APlayer.min.css
     dplayer: /libs/dplayer/DPlayer.min.css
-    gitalk: /libs/gitalk/gitalk.css
+    gitalk: https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.css
+    # 或者 https://unpkg.com/gitalk/dist/gitalk.css
     jqcloud: /libs/jqcloud/jqcloud.css
     tocbot: /libs/tocbot/tocbot.css
   js:
@@ -346,7 +346,7 @@ libs:
     dplayer: /libs/dplayer/DPlayer.min.js
     crypto: /libs/cryptojs/crypto-js.min.js
     echarts: /libs/echarts/echarts.min.js
-    gitalk: /libs/gitalk/gitalk.min.js
+    gitalk: https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js
     jqcloud: /libs/jqcloud/jqcloud-1.0.4.min.js
     tocbot: /libs/tocbot/tocbot.min.js
     snow: /libs/others/snow.js
