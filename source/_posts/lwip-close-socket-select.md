@@ -27,7 +27,7 @@ categories:
 
 &emsp;&emsp; LwIP 全名为 Light weight IP，意思是轻量化的 TCP/IP 协议， 是瑞典计算机科学院(SICS)的 Adam Dunkels 开发的一个小型开源的 TCP/IP 协议栈。 LwIP 的设计初衷是：用少量的资源消耗(RAM)实现一个较为完整的 TCP/IP 协议栈，其中“完整”主要指的是 TCP 协议的完整性， 实现的重点是在保持 TCP 协议主要功能的基础上减少对 RAM 的占用。此外 LwIP既可以移植到操作系统上运行，也可以在无操作系统的情况下独立运行。
 ## 2. 原因
-&emsp;&emsp;引起该问题的根本原因是，LwIP select函数里如果判断对应的socket没有事件产生（读/写/异常），进行简单处理后则改线程休眠，让出cpu控制权。如果在select休眠期间，进行了close socket的操作，会释放对应的socket pcb（**close(socket)**是成功的），然后在select休眠结束后，判断该socket资源不存在，则直接退出select函数，**但是**此时该socket的select_wait标志位没被清除。LwIP在分配socket时（资源都是静态分配的，类似于有一个socket数组，若分配则对应标志位为真），socket是否空闲是会对select_wait该标志位进行判断，所以即使该socket没有被使用，调用*socket()*函数时也会认为该socket是被占用的，所以几次之后，socket资源被**假耗尽**。
+&emsp;&emsp;引起该问题的根本原因是，LwIP select函数里如果判断对应的socket没有事件产生（读/写/异常），进行简单处理后则改线程休眠，让出cpu控制权。如果在select休眠期间，进行了close socket的操作，会释放对应的socket pcb（**close\(socket\)**是成功的），然后在select休眠结束后，判断该socket资源不存在，则直接退出select函数，**但是**此时该socket的select_wait标志位没被清除。LwIP在分配socket时（资源都是静态分配的，类似于有一个socket数组，若分配则对应标志位为真），socket是否空闲是会对select_wait该标志位进行判断，所以即使该socket没有被使用，调用*socket()*函数时也会认为该socket是被占用的，所以几次之后，socket资源被**假耗尽**。
 
 ## 3. 解决
 &emsp;&emsp;知道原因后，问题就好解决了。有以下两个解决问题的思路。
@@ -312,7 +312,7 @@ int lwip_select(int maxfdp1, fd_set *readset, fd_set *writeset, fd_set *exceptse
 }
 ```
 
-**<center>这是这一张来自未来的select函数处理流程图<center>**
+**<center>这是这一张来自未来的select函数处理流程图</center>**
 
 &emsp;&emsp;参考上述代码分析，特别注意*socket->select_waiting*加1和减1的地方，可以看到，如果socket存在且的确需要监听事件，且并不是进来事件就已经产生或者已经超时，一定会加1；然后线程会有可能会进行休眠；正常情况下，休眠结束后，*socket->select_waiting*减1，离开该函数，*socket->select_waiting*恢复原值。**但是**，如果在线程休眠期间，恰巧在另外一个线程进行了close操作，事件就变味了。
 
@@ -321,7 +321,7 @@ int lwip_select(int maxfdp1, fd_set *readset, fd_set *writeset, fd_set *exceptse
 # 三、解决方案
 &emsp;&emsp;第二章已经对产生的原因进行了分析。解决问题的思路也想一开始提到的有两种，为了不改lwip源码，使用了第二种思路。下面用伪代码给出解决方案。需要使用到两个flag`closing_socket_flag`和·selecting_flag`。
 **thread1**
-```
+```c
 int adaptor_closesocket(int socket){
     while(get_select_processing()){
         sleep(1);
@@ -333,7 +333,7 @@ int adaptor_closesocket(int socket){
 ```
 
 **thread2**
-```
+```c
 int select_loop(int socket){
     while(get_closesocket_processing()){
         sleep(1);
@@ -345,11 +345,10 @@ int select_loop(int socket){
 ```
 &emsp;&emsp;上面的解决方案，我认为是最为简单通用的解决方案，当然针对两个flag肯定还是需要加锁的。另外还有一种思路就是使用通知类似于condition的方法。知道了错误原因，解决方法的思路就是做同步。
 
-
 # 四、写在最后
-&emsp;&emsp;LwIP无疑是一个很优秀的轻量版的TCP/IP协议实现了，在开发DoIP时由于是跨平台，在windows和linux都是支持的，所以比较简单就定位出了问题是出在了LwI协议本身。和大佬讨论过，觉得这也不属于LwIP本身的一个bug，感觉更像是feature实现的不够完整，但是light weight也已经足够了。同时在使用LwIP本身也学到了很多技巧，如连接符**##**的使用、在MCU上实现分配空间的解决方案。
-![](https://savannah.nongnu.org/images/Savannah.theme/floating.png)
+&emsp;&emsp;LwIP无疑是一个很优秀的轻量版的TCP/IP协议实现了，虽然上面的socket接口都是简化版，当时以为如果功能是支持的，在使用以为可以跟BSD的一样。因为在开发DoIP时是跨平台，上层应用代码是一样的，在windows和linux都是支持的，所以比较简单就初步定位出了问题应该是出在了LwIP协议本身，但是当时由于现象特别奇怪（略过不表），也费了一般周折才最终定位出来。一开始觉得认为这是一个bug，后面跟老虞（技术偶像）深度讨论过，觉得这也不属于LwIP本身的一个bug，感觉更像是feature实现的不够完整，但是light weight也已经足够了。同时在使用LwIP本身也学到了很多技巧，如连接符**##**的使用、在MCU上实现分配空间的解决方案。
 
+![](https://savannah.nongnu.org/images/Savannah.theme/floating.png)
 
 
 

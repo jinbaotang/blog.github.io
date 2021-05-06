@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="LwIP使用select，close socket资源释放不完全问题, Ethernet stack, embeded software, dignostic ">
-    <meta name="description" content="山东理工大学 | 车辆工程 | 嵌入式">
+    <meta name="description" content="车辆工程 | 嵌入式">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -148,7 +148,7 @@
         <div class="logo-name">金宝的博客</div>
         <div class="logo-desc">
             
-            山东理工大学 | 车辆工程 | 嵌入式
+            车辆工程 | 嵌入式
             
         </div>
     </div>
@@ -486,14 +486,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.6k
+                    3.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    14 分
+                    15 分
                 </div>
                 
 
@@ -782,31 +782,32 @@
   <span class="token keyword">return</span> nready<span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p><strong></strong></p><center><strong>这是这一张来自未来的select函数处理流程图</strong><center><strong></strong><p></p>
+<p><strong></strong></p><center><strong>这是这一张来自未来的select函数处理流程图</strong></center><p></p>
 <p>  参考上述代码分析，特别注意<em>socket-&gt;select_waiting</em>加1和减1的地方，可以看到，如果socket存在且的确需要监听事件，且并不是进来事件就已经产生或者已经超时，一定会加1；然后线程会有可能会进行休眠；正常情况下，休眠结束后，<em>socket-&gt;select_waiting</em>减1，离开该函数，<em>socket-&gt;select_waiting</em>恢复原值。<strong>但是</strong>，如果在线程休眠期间，恰巧在另外一个线程进行了close操作，事件就变味了。</p>
 <p>  如果在休眠期间进行了<code>close(socket)</code>,则通过<code>tyr_socket(socket)</code>获取不到socket结构体，则<em>socket-&gt;select_waiting</em>不会进行减1，后面执行一系列语句后，退出该函数，<em>socket-&gt;select_waiting</em>没有恢复原值，且比进来时大1。针对该函数，<em>socket-&gt;select_waiting</em>加1的次数是*&gt;=<em>减1的次数，所以如果只要在函数退出时没有恢复原值，则</em>socket-&gt;select_waiting*永远不可能再减为0了，此时socket资源就出现了<strong>假占用</strong>，该socket再也不能被其他人使用了。</p>
 <h1 id="三、解决方案"><a href="#三、解决方案" class="headerlink" title="三、解决方案"></a>三、解决方案</h1><p>  第二章已经对产生的原因进行了分析。解决问题的思路也想一开始提到的有两种，为了不改lwip源码，使用了第二种思路。下面用伪代码给出解决方案。需要使用到两个flag<code>closing_socket_flag</code>和·selecting_flag`。<br><strong>thread1</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">int adaptor_closesocket(int socket){
-    while(get_select_processing()){
-        sleep(1);
-    }
-    set_closesocket_processing(true);
-    ret = close(socket);
-    set_closescoket_processing(false);
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">adaptor_closesocket</span><span class="token punctuation">(</span><span class="token keyword">int</span> socket<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token function">get_select_processing</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">set_closesocket_processing</span><span class="token punctuation">(</span>true<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    ret <span class="token operator">=</span> <span class="token function">close</span><span class="token punctuation">(</span>socket<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">set_closescoket_processing</span><span class="token punctuation">(</span>false<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><strong>thread2</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">int select_loop(int socket){
-    while(get_closesocket_processing()){
-        sleep(1);
-    }
-    set_select_processing(true);
-    select_return = select(sockMAX + 1, &amp;read_set, NULL, &amp;exception_set, &amp;timeout);
-    set_select_processing(false);
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">select_loop</span><span class="token punctuation">(</span><span class="token keyword">int</span> socket<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token function">get_closesocket_processing</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">set_select_processing</span><span class="token punctuation">(</span>true<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    select_return <span class="token operator">=</span> <span class="token function">select</span><span class="token punctuation">(</span>sockMAX <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>read_set<span class="token punctuation">,</span> <span class="token constant">NULL</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>exception_set<span class="token punctuation">,</span> <span class="token operator">&amp;</span>timeout<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">set_select_processing</span><span class="token punctuation">(</span>false<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>  上面的解决方案，我认为是最为简单通用的解决方案，当然针对两个flag肯定还是需要加锁的。另外还有一种思路就是使用通知类似于condition的方法。知道了错误原因，解决方法的思路就是做同步。</p>
-<h1 id="四、写在最后"><a href="#四、写在最后" class="headerlink" title="四、写在最后"></a>四、写在最后</h1><p>  LwIP无疑是一个很优秀的轻量版的TCP/IP协议实现了，在开发DoIP时由于是跨平台，在windows和linux都是支持的，所以比较简单就定位出了问题是出在了LwI协议本身。和大佬讨论过，觉得这也不属于LwIP本身的一个bug，感觉更像是feature实现的不够完整，但是light weight也已经足够了。同时在使用LwIP本身也学到了很多技巧，如连接符**##**的使用、在MCU上实现分配空间的解决方案。<br><img src="https://savannah.nongnu.org/images/Savannah.theme/floating.png"></p>
-</center></center>
+<h1 id="四、写在最后"><a href="#四、写在最后" class="headerlink" title="四、写在最后"></a>四、写在最后</h1><p>  LwIP无疑是一个很优秀的轻量版的TCP/IP协议实现了，虽然上面的socket接口都是简化版，当时以为如果功能是支持的，在使用以为可以跟BSD的一样。因为在开发DoIP时是跨平台，上层应用代码是一样的，在windows和linux都是支持的，所以比较简单就初步定位出了问题应该是出在了LwIP协议本身，但是当时由于现象特别奇怪（略过不表），也费了一般周折才最终定位出来。一开始觉得认为这是一个bug，后面跟老虞（技术偶像）深度讨论过，觉得这也不属于LwIP本身的一个bug，感觉更像是feature实现的不够完整，但是light weight也已经足够了。同时在使用LwIP本身也学到了很多技巧，如连接符**##**的使用、在MCU上实现分配空间的解决方案。</p>
+<p><img src="https://savannah.nongnu.org/images/Savannah.theme/floating.png"></p>
+
                 
             </div>
             <hr/>
@@ -1686,7 +1687,7 @@
                                     <a href="https://github.com/jinbaotang/jinbaotang.githuh.io" target="_blank">jinbao-matery-modify</a>
                                     <br>
                                     
-                                        &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span class="white-color">5.1k</span>&nbsp;字
+                                        &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span class="white-color">5.2k</span>&nbsp;字
                                         
                                             
                                                 
