@@ -8,7 +8,7 @@ date: 2021-04-11 15:27:31
 password:
 summary:
 tags:
-- 博客
+- 个人
 categories:
 - 随笔
 ---

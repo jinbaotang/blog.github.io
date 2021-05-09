@@ -5,8 +5,8 @@
 # Site
 title: 金宝的博客
 subtitle: 随便写点
-description:  车辆工程 | 嵌入式 
-keywords: "Ethernet stack, embeded software, dignostic "
+description: 唐金宝 | 车辆工程 | 软件工程师 
+keywords: "Ethernet stack, embeded software, dignostic"
 author: 金宝
 language: zh-CN
 timezone:
@@ -153,5 +153,5 @@ live2d:
 baidu_url_submit:
   count: 100
   host: jinbaotang.cn
-  token: jp7MKvOw74Yh3F09
+  token: oJynnOVEGftPtYik
   path: baidu_urls.txt

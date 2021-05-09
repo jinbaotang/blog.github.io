@@ -305,7 +305,7 @@ gitalk:
     clientId: f2b2a69ea8b8fe7f47f9
     clientSecret: 70e5efd1c9338799338122d631c9d24f93b9dcb7
   admin: jinbaotang
-# proxy: 'https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token'
+  proxy: 'https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token'
 
 # the Gitment config，default disabled
 # Gitment 评论模块的配置，默认为不激活
