@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>金宝的博客</title>
+  
+  <subtitle>随便写点</subtitle>
+  <link href="https://jinbaotang.cn/atom.xml" rel="self"/>
+  
+  <link href="https://jinbaotang.cn/"/>
+  <updated>2021-05-07T08:55:11.000Z</updated>
+  <id>https://jinbaotang.cn/</id>
+  
+  <author>
+    <name>金宝</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>socket-can基础知识和使用</title>
+    <link href="https://jinbaotang.cn/2021/05/07/socket-can/"/>
+    <id>https://jinbaotang.cn/2021/05/07/socket-can/</id>
+    <published>2021-05-07T14:13:00.000Z</published>
+    <updated>2021-05-07T08:55:11.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;第一次接触socket can, 学习和使用的过程，也记录下来，加深印象。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&quot;一、-原理&quot;&gt;&lt;a href=&quot;#一、-原理&quot; class=&quot;headerlink&quot; title=&quot;一、</summary>
+        
+      
+    
+    
+    
+    <category term="协议栈" scheme="https://jinbaotang.cn/categories/%E5%8D%8F%E8%AE%AE%E6%A0%88/"/>
+    
+    
+    <category term="socket" scheme="https://jinbaotang.cn/tags/socket/"/>
+    
+    <category term="can" scheme="https://jinbaotang.cn/tags/can/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>基于openssl实现tls+socket的安全通信</title>
+    <link href="https://jinbaotang.cn/2021/05/05/tls-socket/"/>
+    <id>https://jinbaotang.cn/2021/05/05/tls-socket/</id>
+    <published>2021-05-04T17:13:00.000Z</published>
+    <updated>2021-05-09T13:49:24.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;记录基于openssl来实现tls的安全通信，借助BSD socket接口来实现。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&quot;一、-背景&quot;&gt;&lt;a href=&quot;#一、-背景&quot; class=&quot;headerlink&quot; title=&quot;一、</summary>
+        
+      
+    
+    
+    
+    <category term="协议栈" scheme="https://jinbaotang.cn/categories/%E5%8D%8F%E8%AE%AE%E6%A0%88/"/>
+    
+    
+    <category term="socket" scheme="https://jinbaotang.cn/tags/socket/"/>
+    
+    <category term="tls" scheme="https://jinbaotang.cn/tags/tls/"/>
+    
+    <category term="openssl" scheme="https://jinbaotang.cn/tags/openssl/"/>
+    
+    <category term="ethernet" scheme="https://jinbaotang.cn/tags/ethernet/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>LwIP使用select，close socket资源释放不完全问题</title>
+    <link href="https://jinbaotang.cn/2021/04/12/lwip-close-socket-select/"/>
+    <id>https://jinbaotang.cn/2021/04/12/lwip-close-socket-select/</id>
+    <published>2021-04-12T10:56:38.000Z</published>
+    <updated>2021-05-09T13:49:16.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;这篇文章本应该在4月就写好的，但是博客评论系统一直没有搭建好，走了很多弯路，现在好了，delay这么久，终于要要补过来了。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;该文章完全原创，除通用、广泛的知识点外，均为个人总结，如</summary>
+        
+      
+    
+    
+    
+    <category term="协议栈" scheme="https://jinbaotang.cn/categories/%E5%8D%8F%E8%AE%AE%E6%A0%88/"/>
+    
+    
+    <category term="LwIP" scheme="https://jinbaotang.cn/tags/LwIP/"/>
+    
+    <category term="socket" scheme="https://jinbaotang.cn/tags/socket/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>我为什么要写博客</title>
+    <link href="https://jinbaotang.cn/2021/04/11/why-write/"/>
+    <id>https://jinbaotang.cn/2021/04/11/why-write/</id>
+    <published>2021-04-11T07:27:31.000Z</published>
+    <updated>2021-05-09T13:49:32.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;关于这篇博客，想记录下自己当前写博客的原因，同时也希望记录自己当前自己的一些看法，后面持续更新。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;记于2021.4&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1</summary>
+        
+      
+    
+    
+    
+    <category term="随笔" scheme="https://jinbaotang.cn/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+    <category term="个人" scheme="https://jinbaotang.cn/tags/%E4%B8%AA%E4%BA%BA/"/>
+    
+  </entry>
+  
+</feed>
