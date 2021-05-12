@@ -30,7 +30,7 @@
   </url>
   
   <url>
-    <loc>https://jinbaotang.cn/categories/index.html</loc>
+    <loc>https://jinbaotang.cn/about/index.html</loc>
     
     <lastmod>2021-05-08</lastmod>
     
@@ -44,13 +44,6 @@
   </url>
   
   <url>
-    <loc>https://jinbaotang.cn/friends/index.html</loc>
-    
-    <lastmod>2021-05-08</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://jinbaotang.cn/contact/index.html</loc>
     
     <lastmod>2021-05-08</lastmod>
@@ -58,7 +51,7 @@
   </url>
   
   <url>
-    <loc>https://jinbaotang.cn/about/index.html</loc>
+    <loc>https://jinbaotang.cn/categories/index.html</loc>
     
     <lastmod>2021-05-08</lastmod>
     
@@ -66,6 +59,13 @@
   
   <url>
     <loc>https://jinbaotang.cn/tags/index.html</loc>
+    
+    <lastmod>2021-05-08</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jinbaotang.cn/friends/index.html</loc>
     
     <lastmod>2021-05-08</lastmod>
     
@@ -95,20 +95,6 @@
 
   
   <url>
-    <loc>https://jinbaotang.cn/tags/socket/</loc>
-    <lastmod>2021-05-12</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jinbaotang.cn/tags/can/</loc>
-    <lastmod>2021-05-12</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://jinbaotang.cn/tags/LwIP/</loc>
     <lastmod>2021-05-12</lastmod>
     <changefreq>daily</changefreq>
@@ -116,7 +102,7 @@
   </url>
   
   <url>
-    <loc>https://jinbaotang.cn/tags/%E4%B8%AA%E4%BA%BA/</loc>
+    <loc>https://jinbaotang.cn/tags/socket/</loc>
     <lastmod>2021-05-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -138,6 +124,20 @@
   
   <url>
     <loc>https://jinbaotang.cn/tags/ethernet/</loc>
+    <lastmod>2021-05-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jinbaotang.cn/tags/%E4%B8%AA%E4%BA%BA/</loc>
+    <lastmod>2021-05-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jinbaotang.cn/tags/can/</loc>
     <lastmod>2021-05-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
