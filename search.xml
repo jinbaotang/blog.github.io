@@ -78,9 +78,9 @@
       
         <tags>
             
-            <tag> LwIP </tag>
-            
             <tag> socket </tag>
+            
+            <tag> LwIP </tag>
             
         </tags>
       
