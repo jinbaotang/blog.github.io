@@ -79,7 +79,7 @@
     <link href="https://jinbaotang.cn/2021/05/05/tls-socket/"/>
     <id>https://jinbaotang.cn/2021/05/05/tls-socket/</id>
     <published>2021-05-04T17:13:00.000Z</published>
-    <updated>2021-06-05T11:04:50.227Z</updated>
+    <updated>2021-06-05T13:12:50.995Z</updated>
     
     
       
@@ -96,9 +96,9 @@
     <category term="协议栈" scheme="https://jinbaotang.cn/categories/%E5%8D%8F%E8%AE%AE%E6%A0%88/"/>
     
     
-    <category term="socket" scheme="https://jinbaotang.cn/tags/socket/"/>
-    
     <category term="tls" scheme="https://jinbaotang.cn/tags/tls/"/>
+    
+    <category term="socket" scheme="https://jinbaotang.cn/tags/socket/"/>
     
     <category term="openssl" scheme="https://jinbaotang.cn/tags/openssl/"/>
     
