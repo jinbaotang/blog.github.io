@@ -4,7 +4,7 @@
 
     <head>
         <meta charset="utf-8">
-        <meta name="keywords" content="基于openssl实现tls+socket的安全通信, Ethernet stack, embeded software, dignostic">
+        <meta name="keywords" content="关于重构的收获-1, Ethernet stack, embeded software, dignostic">
         <meta name="description" content="唐金宝 | 车辆工程 | 软件工程师">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -18,7 +18,7 @@
 
 
             <title>
-                基于openssl实现tls+socket的安全通信 | 金宝的博客
+                关于重构的收获-1 | 金宝的博客
             </title>
             <link rel="icon" type="image/png" href="/medias/logo.png">
 
@@ -326,12 +326,12 @@
 
         
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/27.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">基于openssl实现tls+socket的安全通信</h1>
+                    <h1 class="description center-align post-title">关于重构的收获-1</h1>
                 </div>
             </div>
         </div>
@@ -447,20 +447,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/socket/">
-                                <span class="chip bg-color">socket</span>
-                            </a>
-                        
-                            <a href="/tags/tls/">
-                                <span class="chip bg-color">tls</span>
-                            </a>
-                        
-                            <a href="/tags/openssl/">
-                                <span class="chip bg-color">openssl</span>
-                            </a>
-                        
-                            <a href="/tags/ethernet/">
-                                <span class="chip bg-color">ethernet</span>
+                            <a href="/tags/refactor/">
+                                <span class="chip bg-color">refactor</span>
                             </a>
                         
                     </div>
@@ -471,8 +459,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E5%8D%8F%E8%AE%AE%E6%A0%88/" class="post-category">
-                                协议栈
+                            <a href="/categories/%E4%B8%AA%E4%BA%BA/" class="post-category">
+                                个人
                             </a>
                         
                     </div>
@@ -484,21 +472,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-05-05
+                    2021-06-05
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-05-09
+                    2021-06-05
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    168
+                    313
                 </div>
                 
 
@@ -529,10 +517,9 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <blockquote>
-<p>记录基于openssl来实现tls的安全通信，借助BSD socket接口来实现。</p>
+<p>记录第一次稍大规模的重构。这是我第三次写DoIP, 第一次写CANTP、UDS、router。</p>
 </blockquote>
-<h1 id="一、-背景"><a href="#一、-背景" class="headerlink" title="一、 背景"></a>一、 背景</h1><p>&emsp;&emsp;由于业务需要，得使用tls来完成安全通信，需求也是借助开源的openssl来实现。整了好几天，现在还没实现openssl+socket来进行安全通信。目前是证书都已经生成，但是server获取client证书出错。</p>
-<p>&emsp;&emsp;其中在生成证书的过程中，也走了不少弯路，网上没有找到一篇介绍加密通信、证书原理以及使用openssl的文章，所以就萌生了自己在尝试的过程中，记录一下自己的解决轨迹。</p>
+<h1 id="一、-背景"><a href="#一、-背景" class="headerlink" title="一、 背景"></a>一、 背景</h1><p>&emsp;&emsp;在<a href="https://jinbaotang.cn/2021/04/11/why-write/">为什么要写博客</a>里提到了，由于个人关系，换工作了。新工作的首要任务就是优化已有代码，在花了一段时间阅读代码整体框架后，发现已有的代码框架层次不太清楚，如果要优化的话，总感觉是在做错误的事。进而跟领导提出重构的想法，领导也赞同。就开始<strong>浴火重生</strong>之路了，跟之前的工作背景相关，重构了就想做成可迭代、跨平台的，所以在过去的一两个月不是就是在设计就是在验证了，这段时间，无论是在车上、洗澡还是睡觉前都是在脑子里跑流程，也真正的体会到了<em>面向对象</em>（虽然我是用c）带来的好处了。也终于一点点的体会到了，原来之前老虞（<strong>技术偶像之一</strong>）看着规范写代码也没有这么的神奇，<em>注：离老虞的水平当然还有很远的路，梦想还是要有的嘛，莫欺少年穷。</em>—记于2021.06.05</p>
 
                 
             </div>
@@ -559,7 +546,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://jinbaotang.cn/2021/05/05/tls-socket/">https://jinbaotang.cn/2021/05/05/tls-socket/</a>
+                    <a href="https://jinbaotang.cn/2021/06/05/refactor-1/">https://jinbaotang.cn/2021/06/05/refactor-1/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -597,20 +584,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/socket/">
-                                    <span class="chip bg-color">socket</span>
-                                </a>
-                            
-                                <a href="/tags/tls/">
-                                    <span class="chip bg-color">tls</span>
-                                </a>
-                            
-                                <a href="/tags/openssl/">
-                                    <span class="chip bg-color">openssl</span>
-                                </a>
-                            
-                                <a href="/tags/ethernet/">
-                                    <span class="chip bg-color">ethernet</span>
+                                <a href="/tags/refactor/">
+                                    <span class="chip bg-color">refactor</span>
                                 </a>
                             
                         </div>
@@ -781,7 +756,7 @@
         repo: 'jinbaotang.github.io',
         owner: 'jinbaotang',
         admin: "jinbaotang",
-        id: '2021-05-05T01-13-00',
+        id: '2021-06-05T22-13-00',
         distractionFreeMode: true, // Facebook-like distraction free mode
         createIssueManually: true,
         proxy: 'https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token',
@@ -1077,9 +1052,60 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2021/06/05/refactor-1/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/27.jpg" class="responsive-img" alt="关于重构的收获-1">
+                        
+                        <span class="card-title">关于重构的收获-1</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-06-05
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E4%B8%AA%E4%BA%BA/" class="post-category">
+                                    个人
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/refactor/">
+                        <span class="chip bg-color">refactor</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/2021/05/07/socket-can/">
                     <div class="card-image">
@@ -1097,9 +1123,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-05-07
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-05-07
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1121,59 +1147,6 @@
                     
                     <a href="/tags/can/">
                         <span class="chip bg-color">can</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2021/04/12/lwip-close-socket-select/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="LwIP使用select，close socket资源释放不完全问题">
-                        
-                        <span class="card-title">LwIP使用select，close socket资源释放不完全问题</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-04-12
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E5%8D%8F%E8%AE%AE%E6%A0%88/" class="post-category">
-                                    协议栈
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/socket/">
-                        <span class="chip bg-color">socket</span>
-                    </a>
-                    
-                    <a href="/tags/LwIP/">
-                        <span class="chip bg-color">LwIP</span>
                     </a>
                     
                 </div>

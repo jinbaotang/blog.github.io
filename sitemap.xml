@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://jinbaotang.cn/2021/06/05/refactor-1/</loc>
+    
+    <lastmod>2021-06-05</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://jinbaotang.cn/baidu_verify_code-N7k3G0CKsp.html</loc>
     
     <lastmod>2021-05-12</lastmod>
@@ -37,14 +44,7 @@
   </url>
   
   <url>
-    <loc>https://jinbaotang.cn/contact/index.html</loc>
-    
-    <lastmod>2021-05-08</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://jinbaotang.cn/friends/index.html</loc>
+    <loc>https://jinbaotang.cn/categories/index.html</loc>
     
     <lastmod>2021-05-08</lastmod>
     
@@ -58,14 +58,21 @@
   </url>
   
   <url>
-    <loc>https://jinbaotang.cn/about/index.html</loc>
+    <loc>https://jinbaotang.cn/friends/index.html</loc>
     
     <lastmod>2021-05-08</lastmod>
     
   </url>
   
   <url>
-    <loc>https://jinbaotang.cn/categories/index.html</loc>
+    <loc>https://jinbaotang.cn/contact/index.html</loc>
+    
+    <lastmod>2021-05-08</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jinbaotang.cn/about/index.html</loc>
     
     <lastmod>2021-05-08</lastmod>
     
@@ -95,14 +102,21 @@
 
   
   <url>
-    <loc>https://jinbaotang.cn/tags/tls/</loc>
+    <loc>https://jinbaotang.cn/tags/socket/</loc>
     <lastmod>2021-06-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://jinbaotang.cn/tags/socket/</loc>
+    <loc>https://jinbaotang.cn/tags/can/</loc>
+    <lastmod>2021-06-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jinbaotang.cn/tags/tls/</loc>
     <lastmod>2021-06-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -123,7 +137,7 @@
   </url>
   
   <url>
-    <loc>https://jinbaotang.cn/tags/can/</loc>
+    <loc>https://jinbaotang.cn/tags/refactor/</loc>
     <lastmod>2021-06-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -147,6 +161,13 @@
   
   <url>
     <loc>https://jinbaotang.cn/categories/%E5%8D%8F%E8%AE%AE%E6%A0%88/</loc>
+    <lastmod>2021-06-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jinbaotang.cn/categories/%E4%B8%AA%E4%BA%BA/</loc>
     <lastmod>2021-06-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>

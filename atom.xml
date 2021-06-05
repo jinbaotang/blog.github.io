@@ -6,7 +6,7 @@
   <link href="https://jinbaotang.cn/atom.xml" rel="self"/>
   
   <link href="https://jinbaotang.cn/"/>
-  <updated>2021-05-07T08:55:11.000Z</updated>
+  <updated>2021-06-05T07:27:29.671Z</updated>
   <id>https://jinbaotang.cn/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>关于重构的收获-1</title>
+    <link href="https://jinbaotang.cn/2021/06/05/refactor-1/"/>
+    <id>https://jinbaotang.cn/2021/06/05/refactor-1/</id>
+    <published>2021-06-05T14:13:00.000Z</published>
+    <updated>2021-06-05T07:27:29.671Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;记录第一次稍大规模的重构。这是我第三次写DoIP, 第一次写CANTP、UDS、router。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&quot;一、-背景&quot;&gt;&lt;a href=&quot;#一、-背景&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="个人" scheme="https://jinbaotang.cn/categories/%E4%B8%AA%E4%BA%BA/"/>
+    
+    
+    <category term="refactor" scheme="https://jinbaotang.cn/tags/refactor/"/>
+    
+  </entry>
   
   <entry>
     <title>socket-can基础知识和使用</title>
@@ -70,9 +98,9 @@
     <category term="协议栈" scheme="https://jinbaotang.cn/categories/%E5%8D%8F%E8%AE%AE%E6%A0%88/"/>
     
     
-    <category term="tls" scheme="https://jinbaotang.cn/tags/tls/"/>
-    
     <category term="socket" scheme="https://jinbaotang.cn/tags/socket/"/>
+    
+    <category term="tls" scheme="https://jinbaotang.cn/tags/tls/"/>
     
     <category term="openssl" scheme="https://jinbaotang.cn/tags/openssl/"/>
     
