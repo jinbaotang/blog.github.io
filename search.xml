@@ -8,7 +8,7 @@
       <link href="2021/06/05/refactor-1/"/>
       <url>2021/06/05/refactor-1/</url>
       
-        <content type="html"><![CDATA[<blockquote><p>记录第一次稍大规模的重构。这是我第三次写DoIP, 第1.5次写UDS，第一次写CANTP、router。</p></blockquote><h1 id="一、-背景"><a href="#一、-背景" class="headerlink" title="一、 背景"></a>一、 背景</h1><p>&emsp;&emsp;在<a href="https://jinbaotang.cn/2021/04/11/why-write/">为什么要写博客</a>里提到了，由于个人关系，换工作了。新工作的首要任务就是优化已有代码，在花了一段时间阅读代码整体框架后，发现已有的代码框架层次不太清楚，如果要优化的话，总感觉是在做错误的事。进而跟领导提出重构的想法，领导也赞同。就开始<strong>浴火重生</strong>之路了，跟之前的工作背景相关，重构了就想做成可迭代、跨平台的，所以在过去的一两个月不是就是在设计就是在验证了，这段时间，无论是在车上、洗澡还是睡觉前都是在脑子里跑流程，也真正的体会到了<em>面向对象</em>（虽然我是用c）带来的好处了。也终于一点点的体会到了，原来之前老虞（<strong>技术偶像之一</strong>）看着规范写代码也没有这么的神奇，<em>注：离老虞的水平当然还有很远的路，梦想还是要有的嘛，莫欺少年穷。</em>—记于2021.06.05 <img src="/medias/refactor/dream.jpeg"></p>]]></content>
+        <content type="html"><![CDATA[<blockquote><p>记录第一次稍大规模的重构。这是我第三次写DoIP, 第1.5次写UDS，第一次写CANTP、router。</p></blockquote><h1 id="一、-背景"><a href="#一、-背景" class="headerlink" title="一、 背景"></a>一、 背景</h1><p>&emsp;&emsp;在<a href="https://jinbaotang.cn/2021/04/11/why-write/">为什么要写博客</a>里提到了，由于个人关系，换工作了。新工作的首要任务就是优化已有代码，在花了一段时间阅读代码整体框架后，发现已有的代码框架层次不太清楚，如果要优化的话，总感觉是在做错误的事。进而跟领导提出重构的想法，领导也赞同。就开始<strong>浴火重生</strong>之路了，跟之前的工作背景相关，重构了就想做成可迭代、跨平台的，所以在过去的一两个月不是就是在设计就是在验证了，这段时间，无论是在车上、洗澡还是睡觉前都是在脑子里跑流程，也真正的体会到了<em>面向对象</em>（虽然我是用c）带来的好处了。也终于一点点的体会到了，原来之前老虞（<strong>技术偶像之一</strong>）看着规范写代码也没有这么的神奇，<em>注：离老虞的水平当然还有很远的路，梦想还是要有的嘛，莫欺少年穷。</em>—记于2021.06.05 <img src="/medias/refactor-1/dream.jpeg"></p>]]></content>
       
       
       <categories>
@@ -60,7 +60,7 @@
       <link href="2021/05/05/tls-socket/"/>
       <url>2021/05/05/tls-socket/</url>
       
-        <content type="html"><![CDATA[<blockquote><p>记录基于openssl来实现tls的安全通信，借助BSD socket接口来实现。也做tls简单的科普。</p></blockquote><blockquote><p>周五朋友圈突然看到前东家，也写了一篇关于tls的简单科普，突然想起我也有一个半成品文章关于tls的。这段时间由于工作繁忙，不是在refactor就是在baidu/google，不过还是蛮有意思的，等重构完成，想好好的总结一下。<a href="http://"></a></p></blockquote><h1 id="一、-背景"><a href="#一、-背景" class="headerlink" title="一、 背景"></a>一、 背景</h1><p>&emsp;&emsp;由于业务需要，得使用tls来完成安全通信，需求也是借助开源的openssl来实现。整了好几天，现在还没实现openssl+socket来进行安全通信。目前是证书都已经生成，但是server获取client证书出错。</p><p>&emsp;&emsp;其中在生成证书的过程中，也走了不少弯路，网上没有找到一篇介绍加密通信、证书原理以及使用openssl的文章，所以就萌生了自己在尝试的过程中，记录一下自己的解决轨迹。</p><p>&emsp;&emsp;</p>]]></content>
+        <content type="html"><![CDATA[<blockquote><p>记录基于openssl来实现tls的安全通信，借助BSD socket接口来实现。也做tls简单的科普。</p></blockquote><blockquote><p>周五朋友圈突然看到前东家，也写了一篇关于tls的简单科普，突然想起我也有一个半成品文章关于tls的。这段时间由于工作繁忙，不是在refactor就是在baidu/google，不过还是蛮有意思的，等重构完成，想好好的总结一下,在<a href="https://jinbaotang.cn/2021/06/05/refactor-1/">代码重构-1</a>会这次重构带来的一些个人的进步，以及还待改进的地方。</p></blockquote><h1 id="一、-背景"><a href="#一、-背景" class="headerlink" title="一、 背景"></a>一、 背景</h1><p>&emsp;&emsp;由于业务需要，得使用tls来完成安全通信，需求也是借助开源的openssl来实现。整了好几天，现在还没实现openssl+socket来进行安全通信。目前是证书都已经生成，但是server获取client证书出错。</p><p>&emsp;&emsp;其中在生成证书的过程中，也走了不少弯路，网上没有找到一篇介绍加密通信、证书原理以及使用openssl的文章，所以就萌生了自己在尝试的过程中，记录一下自己的解决轨迹。</p><h1 id="二、关于tls"><a href="#二、关于tls" class="headerlink" title="二、关于tls"></a>二、关于tls</h1><h2 id="1-tls的介绍"><a href="#1-tls的介绍" class="headerlink" title="1. tls的介绍"></a>1. tls的介绍</h2><p>&emsp;emsp;</p>]]></content>
       
       
       <categories>
