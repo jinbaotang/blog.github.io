@@ -6,7 +6,7 @@
   <link href="https://jinbaotang.cn/atom.xml" rel="self"/>
   
   <link href="https://jinbaotang.cn/"/>
-  <updated>2021-06-05T07:27:29.671Z</updated>
+  <updated>2021-06-05T07:29:15.580Z</updated>
   <id>https://jinbaotang.cn/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>关于重构的收获-1</title>
+    <title>代码重构-1</title>
     <link href="https://jinbaotang.cn/2021/06/05/refactor-1/"/>
     <id>https://jinbaotang.cn/2021/06/05/refactor-1/</id>
     <published>2021-06-05T14:13:00.000Z</published>
-    <updated>2021-06-05T07:27:29.671Z</updated>
+    <updated>2021-06-05T07:29:15.580Z</updated>
     
     
       
@@ -79,7 +79,7 @@
     <link href="https://jinbaotang.cn/2021/05/05/tls-socket/"/>
     <id>https://jinbaotang.cn/2021/05/05/tls-socket/</id>
     <published>2021-05-04T17:13:00.000Z</published>
-    <updated>2021-05-09T13:49:24.000Z</updated>
+    <updated>2021-06-05T07:28:22.845Z</updated>
     
     
       
@@ -87,9 +87,7 @@
         
         
     <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;记录基于openssl来实现tls的安全通信，借助BSD socket接口来实现。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h1 id=&quot;一、-背景&quot;&gt;&lt;a href=&quot;#一、-背景&quot; class=&quot;headerlink&quot; title=&quot;一、</summary>
+&lt;p&gt;记录基于openssl来实现tls的安全通信，借助BSD</summary>
         
       
     
@@ -98,9 +96,9 @@
     <category term="协议栈" scheme="https://jinbaotang.cn/categories/%E5%8D%8F%E8%AE%AE%E6%A0%88/"/>
     
     
-    <category term="socket" scheme="https://jinbaotang.cn/tags/socket/"/>
-    
     <category term="tls" scheme="https://jinbaotang.cn/tags/tls/"/>
+    
+    <category term="socket" scheme="https://jinbaotang.cn/tags/socket/"/>
     
     <category term="openssl" scheme="https://jinbaotang.cn/tags/openssl/"/>
     
