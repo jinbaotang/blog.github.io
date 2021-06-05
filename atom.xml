@@ -6,7 +6,7 @@
   <link href="https://jinbaotang.cn/atom.xml" rel="self"/>
   
   <link href="https://jinbaotang.cn/"/>
-  <updated>2021-06-05T07:29:15.580Z</updated>
+  <updated>2021-06-05T07:32:15.205Z</updated>
   <id>https://jinbaotang.cn/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://jinbaotang.cn/2021/06/05/refactor-1/"/>
     <id>https://jinbaotang.cn/2021/06/05/refactor-1/</id>
     <published>2021-06-05T14:13:00.000Z</published>
-    <updated>2021-06-05T07:29:15.580Z</updated>
+    <updated>2021-06-05T07:32:15.205Z</updated>
     
     
       
@@ -29,7 +29,7 @@
         
         
     <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;记录第一次稍大规模的重构。这是我第三次写DoIP, 第一次写CANTP、UDS、router。&lt;/p&gt;
+&lt;p&gt;记录第一次稍大规模的重构。这是我第三次写DoIP, 第1.5次写UDS，第一次写CANTP、router。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h1 id=&quot;一、-背景&quot;&gt;&lt;a href=&quot;#一、-背景&quot; class=&quot;headerlink&quot;</summary>
         
