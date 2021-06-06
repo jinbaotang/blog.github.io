@@ -4,7 +4,7 @@
 
     <head>
         <meta charset="utf-8">
-        <meta name="keywords" content="基于openssl实现tls+socket的安全通信, Ethernet stack, embeded software, dignostic">
+        <meta name="keywords" content="基于openssl实现tls+socket的安全通信-1, Ethernet stack, embeded software, dignostic">
         <meta name="description" content="唐金宝 | 车辆工程 | 软件工程师">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -18,7 +18,7 @@
 
 
             <title>
-                基于openssl实现tls+socket的安全通信 | 金宝的博客
+                基于openssl实现tls+socket的安全通信-1 | 金宝的博客
             </title>
             <link rel="icon" type="image/png" href="/medias/logo.png">
 
@@ -326,12 +326,12 @@
 
         
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">基于openssl实现tls+socket的安全通信</h1>
+                    <h1 class="description center-align post-title">基于openssl实现tls+socket的安全通信-1</h1>
                 </div>
             </div>
         </div>
@@ -498,14 +498,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    4.9k
+                    5.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    17 分
+                    18 分
                 </div>
                 
 
@@ -667,8 +667,16 @@
 <li><p>步骤 15. ClosedConnection – 通讯结束后，任何一方发出断开 SSL 连接的消息。</p>
 </li>
 </ul>
-<p>从上面我们可知，最简单、应用广泛的应用场景即是server验证client了，我们今天就以这个为例。</p>
-<h3 id="1-秘钥、证书等生成"><a href="#1-秘钥、证书等生成" class="headerlink" title="1). 秘钥、证书等生成"></a>1). 秘钥、证书等生成</h3>
+<p>SSL握手主要完成以下任务：</p>
+<ol>
+<li> 协商使用的加密套件。加密套件中包括一组加密参数，这些参数指定了加密算法和密钥的长度等信息。</li>
+<li>验证对方的身份，此操作是可选的。</li>
+<li>确定使用的加密算法。</li>
+<li>SSL握手过程采用非对称加密方法传递数据，由此来建立一个安全的SSL会话。SSL握手完成后，通信双方将采用对称加密方法传递实际的应用数据。</li>
+</ol>
+<p>最简单、应用广泛的应用场景即是server验证client了</p>
+<h3 id="1-秘钥、证书等生成"><a href="#1-秘钥、证书等生成" class="headerlink" title="1). 秘钥、证书等生成"></a>1). 秘钥、证书等生成</h3><p><strong>暂时没有时间展开细讲，可以参考<a target="_blank" rel="noopener" href="https://github.com/jinbaotang/tls_test">我的git仓库–tls_test</a></strong>,这块东西涉及的还是蛮多，感觉可以另开一个话题了，如果不在这篇文章继续，就可以参考链接<a href="https://jinbaotang.cn/2021/06/06/tls-socket2/">基于openssl实现tls+socket的安全通信-2</a>,</p>
+
                 
             </div>
             <hr/>
@@ -1589,7 +1597,7 @@
                                     <a href="https://github.com/jinbaotang/jinbaotang.githuh.io" target="_blank">jinbao-matery-modify</a>
                                     <br>
                                     
-                                        &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span class="white-color">10.5k</span>&nbsp;字
+                                        &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span class="white-color">10.8k</span>&nbsp;字
                                         
                                             
                                                 

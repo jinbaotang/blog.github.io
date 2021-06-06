@@ -6,7 +6,7 @@
   <link href="https://jinbaotang.cn/atom.xml" rel="self"/>
   
   <link href="https://jinbaotang.cn/"/>
-  <updated>2021-06-05T07:44:43.496Z</updated>
+  <updated>2021-06-06T12:50:34.359Z</updated>
   <id>https://jinbaotang.cn/</id>
   
   <author>
@@ -15,6 +15,38 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>基于openssl实现tls+socket的安全通信-2</title>
+    <link href="https://jinbaotang.cn/2021/06/06/tls-socket2/"/>
+    <id>https://jinbaotang.cn/2021/06/06/tls-socket2/</id>
+    <published>2021-06-06T12:46:00.000Z</published>
+    <updated>2021-06-06T12:50:34.359Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://jinbaotang.cn/2021/05/05/tls-socket/&quot;&gt;接基于openssl实现tls+socket的安全通信-1&lt;/a&gt;,这篇还要是讲解生成秘钥、证书，并且是使用&lt;em&gt;socket</summary>
+        
+      
+    
+    
+    
+    <category term="协议栈" scheme="https://jinbaotang.cn/categories/%E5%8D%8F%E8%AE%AE%E6%A0%88/"/>
+    
+    
+    <category term="socket" scheme="https://jinbaotang.cn/tags/socket/"/>
+    
+    <category term="tls" scheme="https://jinbaotang.cn/tags/tls/"/>
+    
+    <category term="openssl" scheme="https://jinbaotang.cn/tags/openssl/"/>
+    
+    <category term="ethernet" scheme="https://jinbaotang.cn/tags/ethernet/"/>
+    
+  </entry>
   
   <entry>
     <title>代码重构-1</title>
@@ -75,11 +107,11 @@
   </entry>
   
   <entry>
-    <title>基于openssl实现tls+socket的安全通信</title>
+    <title>基于openssl实现tls+socket的安全通信-1</title>
     <link href="https://jinbaotang.cn/2021/05/05/tls-socket/"/>
     <id>https://jinbaotang.cn/2021/05/05/tls-socket/</id>
     <published>2021-05-04T17:13:00.000Z</published>
-    <updated>2021-06-06T08:18:17.978Z</updated>
+    <updated>2021-06-06T12:54:08.832Z</updated>
     
     
       
