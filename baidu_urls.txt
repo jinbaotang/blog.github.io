@@ -1,3 +1,5 @@
+https://jinbaotang.cn/2021/06/06/linux-develop-tips1/
+https://jinbaotang.cn/2021/06/06/how-mcu2linux/
 https://jinbaotang.cn/2021/06/06/tls-socket2/
 https://jinbaotang.cn/2021/06/05/refactor-1/
 https://jinbaotang.cn/2021/05/07/socket-can/

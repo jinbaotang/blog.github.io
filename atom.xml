@@ -6,7 +6,7 @@
   <link href="https://jinbaotang.cn/atom.xml" rel="self"/>
   
   <link href="https://jinbaotang.cn/"/>
-  <updated>2021-06-06T12:50:34.359Z</updated>
+  <updated>2021-06-06T13:14:45.215Z</updated>
   <id>https://jinbaotang.cn/</id>
   
   <author>
@@ -15,6 +15,69 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>linux间网络通信无界面抓包和文件同步</title>
+    <link href="https://jinbaotang.cn/2021/06/06/linux-develop-tips1/"/>
+    <id>https://jinbaotang.cn/2021/06/06/linux-develop-tips1/</id>
+    <published>2021-06-06T13:00:38.000Z</published>
+    <updated>2021-06-06T13:14:45.215Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;这周四、五折腾来了两天，实现了wireshark远程抓包，以及两个linux之间文件同步。也许没多难，但是我折腾了好久，觉得可以记录下。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&quot;一、-背景&quot;&gt;&lt;a href=&quot;#一、-背景&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="linux" scheme="https://jinbaotang.cn/categories/linux/"/>
+    
+    
+    <category term="linux" scheme="https://jinbaotang.cn/tags/linux/"/>
+    
+    <category term="wireshark" scheme="https://jinbaotang.cn/tags/wireshark/"/>
+    
+    <category term="rsync" scheme="https://jinbaotang.cn/tags/rsync/"/>
+    
+    <category term="pcap" scheme="https://jinbaotang.cn/tags/pcap/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>我是如何从MCU开发转到linux开发</title>
+    <link href="https://jinbaotang.cn/2021/06/06/how-mcu2linux/"/>
+    <id>https://jinbaotang.cn/2021/06/06/how-mcu2linux/</id>
+    <published>2021-06-06T13:00:38.000Z</published>
+    <updated>2021-06-06T13:20:40.785Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;从大二开始玩单片机，2019年想转linux开发，但是无从下手，在工作中，终于在2020年中无缝、平滑过渡到linux上开发，想会议下自己转变之路，同时也希望后面自己进一步成长后，现在的认知是对，然后能够帮助同样迷惑小伙伴。&lt;/p&gt;
+&lt;/block</summary>
+        
+      
+    
+    
+    
+    <category term="linux" scheme="https://jinbaotang.cn/categories/linux/"/>
+    
+    
+    <category term="linux" scheme="https://jinbaotang.cn/tags/linux/"/>
+    
+    <category term="mcu" scheme="https://jinbaotang.cn/tags/mcu/"/>
+    
+  </entry>
   
   <entry>
     <title>基于openssl实现tls+socket的安全通信-2</title>
@@ -53,7 +116,7 @@
     <link href="https://jinbaotang.cn/2021/06/05/refactor-1/"/>
     <id>https://jinbaotang.cn/2021/06/05/refactor-1/</id>
     <published>2021-06-05T14:13:00.000Z</published>
-    <updated>2021-06-05T07:44:43.496Z</updated>
+    <updated>2021-06-06T13:05:16.194Z</updated>
     
     
       
@@ -69,7 +132,7 @@
     
     
     
-    <category term="个人" scheme="https://jinbaotang.cn/categories/%E4%B8%AA%E4%BA%BA/"/>
+    <category term="随笔" scheme="https://jinbaotang.cn/categories/%E9%9A%8F%E7%AC%94/"/>
     
     
     <category term="refactor" scheme="https://jinbaotang.cn/tags/refactor/"/>
@@ -111,7 +174,7 @@
     <link href="https://jinbaotang.cn/2021/05/05/tls-socket/"/>
     <id>https://jinbaotang.cn/2021/05/05/tls-socket/</id>
     <published>2021-05-04T17:13:00.000Z</published>
-    <updated>2021-06-06T12:57:47.899Z</updated>
+    <updated>2021-06-06T13:01:48.605Z</updated>
     
     
       

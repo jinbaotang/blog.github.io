@@ -535,7 +535,7 @@
 <p>周五朋友圈突然看到前东家，也写了一篇关于tls的简单科普，突然想起我也有一个半成品文章关于tls的。这段时间由于工作繁忙，不是在refactor就是在baidu/google，不过还是蛮有意思的，等重构完成，想好好的总结一下,在<a href="https://jinbaotang.cn/2021/06/05/tls-socket/">代码重构-1</a>会这次重构带来的一些个人的进步，以及还待改进的地方。</p>
 </blockquote>
 <h1 id="一、-背景"><a href="#一、-背景" class="headerlink" title="一、 背景"></a>一、 背景</h1><p>&emsp;&emsp;由于业务需要，得使用tls来完成安全通信，需求也是借助开源的openssl来实现。整了好几天，才实现openssl+socket来进行安全通信。目前是证书都已经生成，但是server获取client证书出错。</p>
-<p>&emsp;&emsp;其中在生成证书的过程中，也走了不少弯路，网上没有找到一篇介绍<br>加密通信、证书原理以及使用openssl的文章，所以就萌生了自己在尝试的过程中，记录一下自己的解决轨迹。</p>
+<p>&emsp;&emsp;其中在生成证书的过程中，也走了不少弯路，网上没有找到一篇介绍关于加密通信、证书原理以及使用openssl讲的比较全的文章，特别是基于C/C++ socket的就更少了，所以就萌生了自己在尝试的过程中，记录一下自己的解决轨迹。</p>
 <h1 id="二、关于tls"><a href="#二、关于tls" class="headerlink" title="二、关于tls"></a>二、关于tls</h1><h2 id="1-tls的介绍"><a href="#1-tls的介绍" class="headerlink" title="1. tls的介绍"></a>1. tls的介绍</h2><p>&emsp;&emsp;tls是transport layer security的缩写，顾名思义就是安全传输层协议。关于tls的介绍网上有特别多了，开头也提到了，前东家发表一篇关于<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/AnqZkYdk8XQZVT4MRidIEA">tls的文章</a>，觉得是少有的这么短篇幅介绍这么详细、生动的了。关于tls的作用主要是在解决网络安全的几个问题：</p>
 <ol>
 <li>保密(message privacy)，保密通过加密encryption实现，所有信息都加密传输，第三方无法嗅探；</li>
@@ -1597,7 +1597,7 @@
                                     <a href="https://github.com/jinbaotang/jinbaotang.githuh.io" target="_blank">jinbao-matery-modify</a>
                                     <br>
                                     
-                                        &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span class="white-color">10.8k</span>&nbsp;字
+                                        &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span class="white-color">11k</span>&nbsp;字
                                         
                                             
                                                 
