@@ -4,7 +4,7 @@
 
     <head>
         <meta charset="utf-8">
-        <meta name="keywords" content="linux间网络通信无界面抓包和文件同步, Ethernet stack, embeded software, dignostic">
+        <meta name="keywords" content="linux间网络通信无界面实时抓包、分析以及文件同步, Ethernet stack, embeded software, dignostic">
         <meta name="description" content="唐金宝 | 车辆工程 | 软件工程师">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -18,7 +18,7 @@
 
 
             <title>
-                linux间网络通信无界面抓包和文件同步 | 金宝的博客
+                linux间网络通信无界面实时抓包、分析以及文件同步 | 金宝的博客
             </title>
             <link rel="icon" type="image/png" href="/medias/logo.png">
 
@@ -326,12 +326,12 @@
 
         
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">linux间网络通信无界面抓包和文件同步</h1>
+                    <h1 class="description center-align post-title">linux间网络通信无界面实时抓包、分析以及文件同步</h1>
                 </div>
             </div>
         </div>
@@ -491,21 +491,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-06-06
+                    2021-06-07
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    52
+                    2.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    7 分
                 </div>
                 
 
@@ -531,7 +531,29 @@
                 <blockquote>
 <p>这周四、五折腾来了两天，实现了wireshark远程抓包，以及两个linux之间文件同步。也许没多难，但是我折腾了好久，觉得可以记录下。</p>
 </blockquote>
-<h1 id="一、-背景"><a href="#一、-背景" class="headerlink" title="一、 背景"></a>一、 背景</h1>
+<h1 id="一、-背景"><a href="#一、-背景" class="headerlink" title="一、 背景"></a>一、 背景</h1><p>&emsp;&emsp;现在都基本都是以linux上的开发为主，然后日常开发环境在部门的两台服务器（都是ubuntu）上，但是主要还是在一台服务器上，因为我本身暂时是以网络相关的开发为主，这就避免不了的需要抓包分析，报文交互基本上能够分析出问题所在。我是远程ssh登录来做日常开发工作，如果使用tcpdump来抓包分析，一个是不是特别的直观，还有就是灵活不是特别够，所以就想着能够使用远程或者本地来使用wireshark来分析报文。如下图所示，是我实际工作网络拓扑示意图，<img src="/medias/linux-develop-tips/server_and_mypc.png" alt="工作网络拓扑"></p>
+<p>&emsp;&emsp;上面提到了主要是在一台服务器完成开发，但是有时候跑client/server时，还是要在两台电脑通过物理网络通道测试一下。这就涉及到了在两台电脑同步开发的问题，就会涉及到文件同步的问题。</p>
+<h1 id="二、解决方案"><a href="#二、解决方案" class="headerlink" title="二、解决方案"></a>二、解决方案</h1><p>&emsp;&emsp;工欲善其事必先利其器，所以针对前面提到痛点，还是想解决点，想了不少解决思路，并且都进行了尝试，针对失败的问题进行了分析。</p>
+<h2 id="1-网络抓包"><a href="#1-网络抓包" class="headerlink" title="1. 网络抓包"></a>1. 网络抓包</h2><p>&emsp;&emsp;针对网络抓包，分别尝试了：</p>
+<ol>
+<li>在我的个人工作电脑上，使用远程桌面，服务器的ubuntu上安装上linux版的wireshark，这样我就可以实时对着报文分析了。但是失败了。</li>
+<li>将我的个人pc连接到上图中的交换机上，wireshark使用混杂模式将交换机上的所有报文都抓到，再通过过滤，过滤（显示过滤和抓包过滤）掉不必要的报文。结果失败</li>
+<li>使用wireshark上的远程抓包。结果成功</li>
+</ol>
+<p>最终只有<em>方法3</em>成功了，但是却是我最后想到的，下面将稍微展开的分析下每个方法，我觉得后续有时间，都是能够成功的。</p>
+<h3 id="1-远程桌面"><a href="#1-远程桌面" class="headerlink" title="1). 远程桌面"></a>1). 远程桌面</h3><p>&emsp;&emsp;针对远程桌面这种办法，一开始用的是VNC，其中xfor4是最能满足我的需求，因为我们的服务器上并没有外接显示器，这样就会有一个弊端，如果我将桌面输出到xfore4上去了，后面服务器即使外接了显示器也会没用，这就给别人带来不便利。咱也不能干这样<strong>损人利己</strong>的事，在简单的挣扎后（**其实不简单，尝试了好多种办法~~**），还是放弃了这样做。想要实现远程桌面的同志可以参考下这篇文章，<a target="_blank" rel="noopener" href="https://blog.csdn.net/u012911347/article/details/90267252">使用RealVNC连接无外接显示器的Ubuntu18.04</a>，这篇文章还是亲测有用的。<br>&emsp;&emsp;后面又试了下，teamviewer，能够连接上，但是不显示桌面，通过查资料，基本上可以判定，是需要外接显示器的。<br>&emsp;&emsp;经过上述折腾后，果断放弃了这个方法。</p>
+<h3 id="2-将pc直接连接到交换机上"><a href="#2-将pc直接连接到交换机上" class="headerlink" title="2). 将pc直接连接到交换机上"></a>2). 将pc直接连接到交换机上</h3><p>&emsp;&emsp;之前我调试网络时，都是自己的电脑通过网线接到交换机上，剩余其他的网络终端都连接到交换机，这样我就能从我的电脑上抓到所有的报文，简单方便、快捷，所以我这次我也想这样。正好我有两个笔记本，我可以将我的其中一个<em>笔记本电脑1</em>通过网线接入到交换机上，然后另一个<em>笔记本2</em>远程<em>笔记本1</em>，达到我的想法。如下图所示:<img src="/medias/linux-develop-tips/doublepc.png" alt="双电脑方案"><br>然而理想很丰满，现实很残酷，部门小组里的交换机虽然跟我以前一样是个二层交换机，但是上图的<strong>my_pc1</strong>并没有能够抓到server1和server2的网络报文，搜过官网，找过淘宝，聊过京东，依然没有找到答案。后面还以为wireshark没开<em>混杂模式</em>，最后发现也不是这个原因。没有解决这个问题，总觉心里有根刺，后面找交换机资料时，才得到答案，现在的交换机变聪明了，如果不是发给你的报文，mac就给你过滤掉了，并且这个交换机还不支持配置成混杂模式。欲哭无泪~~~。<br>&emsp;&emsp;曾经沧海难为水，经历过以前交换机的便利，咋能容忍这种拉低工作效率的存在。果断买网线买交互机，后面直接从我的电脑网口怼到交换机上。</p>
+<h3 id="3-wireshark远程抓包"><a href="#3-wireshark远程抓包" class="headerlink" title="3). wireshark远程抓包"></a>3). wireshark远程抓包</h3><p>&emsp;&emsp;虽然经历上面两个方法的失败，但是心里还是挂念着，最终于在使用wireshark捕获时，突然看到有一个<strong>远程接口</strong>，技术敏感告诉我，问题应该得到解决了，一阵baidu/google后，终于成功的远程抓到了两个服务器的网络报文了。如下图所示：<img src="/medias/linux-develop-tips/" alt="windows wireshark远程抓包"><br>想要实现windows 环境下wireshark远程抓包，需要在服务器端linux上另外安装rpcap来做server（tcpdump相关的自然是需要的）。<br>关于安装rpcap，直接参考<a target="_blank" rel="noopener" href="https://github.com/rpcapd-linux/rpcapd-linux">github仓库上的教程</a>即可,如下图所示：<img src="/medias/linux-develop-tips/rpcap_install.png" alt="rpcap build and use">。<br>针对使用，其实也蛮简单的，<code>sudo ./rpcapd -4 -n -p [your port] -deamon</code>，端口的就是自己自定义的，后面在wireshark上需要输入，比如我我设置的是<em>55555</em>。另外最好将<em>rpcapd</em>设置成开机自启动了，因为万一服务器重启了，你还要手动开启<em>rpcapd</em>，岂不是很low。</p>
+<p>&emsp;&emsp;由于windows电脑反应迟钝，主要是以mac为主，想着还是用mac端的wireshark也实现远程抓包，发现mac上的wireshark没有<strong>远程接口</strong>这个东西了（我的是m1 macbookpro）。但是一顿摸索后，发现有这个<strong>SSH remote capture: sshdump</strong>，如下图所示，意思也很明显了，剩下就交给baidu/google了。<img src="/medias/linux-develop-tips/mac_wireshark.png" alt="mac wireshark"><br>但是一顿操作下来，发现不是报这个错<img src="/medias/linux-develop-tips/mac_wireshark_cannotfind.png" alt="can&#39;t find .."><br>就是报权限不够的错误，类似下图这个错误：<img src="/medias/linux-develop-tips/mac_wireshark_permission.png" alt="permission invalid"><br>由于任务紧张，只能暂且搁置折腾了，等后面在试试了咯。暂时先用windows实时抓包用着了呗。</p>
+<h2 id="2-文件同步"><a href="#2-文件同步" class="headerlink" title="2. 文件同步"></a>2. 文件同步</h2><p>&emsp;&emsp;文件同步，我们用的比较多的有系统（windows、mac os）自带的局域网同步，或者onedriver这样的云同步。但是在linux上我只想针对某些文件进行网络同步即可，用onedriver除了有可能违反公司安全规定外，未免也太大材小用了，所以就考虑其他方案。</p>
+<ol>
+<li>通过git。需要不停的<code>add, commit, push, pull</code>，太繁琐，<strong>pass</strong>。</li>
+<li>scp，会出现全部拷贝，不能增量拷贝，多了之后，效率特别低，对磁盘也是频繁读写，<strong>pass</strong>。</li>
+<li>rsync_inotify，实时、增量同步，<strong>amazing</strong>。如下图：<img src="/medias/linux-develop-tips/rsync_inotify.png"></li>
+</ol>
+<p>&emsp;&emsp;针对这个方案，我主要参考了这篇文章<a target="_blank" rel="noopener" href="https://www.cnblogs.com/qinhir/p/6589403.html">实现rsync+inotify 实时同步文件</a>，但是对着这篇文章，我没有成功，再结合这篇文章<a target="_blank" rel="noopener" href="http://blog.chinaunix.net/uid-13954085-id-158637.html">把rsync错误报告说清楚</a>,就基本把问题解决了，当然过程还是挺不容易的，因为都是网上搜索+自己摸索的，暂时也就不去记录了，如果小伙伴有疑问，可以在评论区留言，基本能够保证短时间内收到评论。<br>&emsp;&emsp;最终我没用inotify来实时同步，但是亲测是可行的，因为我怕其他同事也要同步，会影响他们，不过我通过设置命令行别名的方式<code>alias sync_xxxx=&#39;xxxxx&#39;</code>,就能一个命令同步过去了。如下图所示，我能在意位置直接就<code>rsync_BWG</code>就能将我事先配置的文件同步过去。<img src="/medias/linux-develop-tips/alias_rsync.png" alt="alias rsync"></p>
+<h1 id="三、写在最后"><a href="#三、写在最后" class="headerlink" title="三、写在最后"></a>三、写在最后</h1><p>&emsp;&emsp;虽然说工欲善其事必先利其器，但是关键的是还需要平衡利弊，如果改进一点效率反而会浪费你更多的时间，我觉得反而是得不偿失的。不过，要是利用自己玩手机刷剧的时间，用来去折腾这个技术，我觉得是值当的，因为表面是折腾这一项，拔出萝卜带出泥，遇到问题了，想解决，基本上会涉及到很多知识面，针对我这种还需大量学习的人说，简直是成长的<em>兴奋剂</em>.</p>
+
                 
             </div>
             <hr/>
@@ -1075,72 +1097,9 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
-            <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
-            <div class="card">
-                <a href="/2021/06/06/linux-develop-tips1/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="linux间网络通信无界面抓包和文件同步">
-                        
-                        <span class="card-title">linux间网络通信无界面抓包和文件同步</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-06-06
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/linux/" class="post-category">
-                                    linux
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/linux/">
-                        <span class="chip bg-color">linux</span>
-                    </a>
-                    
-                    <a href="/tags/wireshark/">
-                        <span class="chip bg-color">wireshark</span>
-                    </a>
-                    
-                    <a href="/tags/rsync/">
-                        <span class="chip bg-color">rsync</span>
-                    </a>
-                    
-                    <a href="/tags/pcap/">
-                        <span class="chip bg-color">pcap</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
         <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
                 <a href="/2021/06/06/how-mcu2linux/">
                     <div class="card-image">
@@ -1158,9 +1117,9 @@
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-06-06
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-06-06
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1176,12 +1135,73 @@
                 
                 <div class="card-action article-tags">
                     
+                    <a href="/tags/mcu/">
+                        <span class="chip bg-color">mcu</span>
+                    </a>
+                    
                     <a href="/tags/linux/">
                         <span class="chip bg-color">linux</span>
                     </a>
                     
-                    <a href="/tags/mcu/">
-                        <span class="chip bg-color">mcu</span>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/06/06/tls-socket2/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="基于openssl实现tls+socket的安全通信-2">
+                        
+                        <span class="card-title">基于openssl实现tls+socket的安全通信-2</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-06-06
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%8D%8F%E8%AE%AE%E6%A0%88/" class="post-category">
+                                    协议栈
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/socket/">
+                        <span class="chip bg-color">socket</span>
+                    </a>
+                    
+                    <a href="/tags/tls/">
+                        <span class="chip bg-color">tls</span>
+                    </a>
+                    
+                    <a href="/tags/openssl/">
+                        <span class="chip bg-color">openssl</span>
+                    </a>
+                    
+                    <a href="/tags/ethernet/">
+                        <span class="chip bg-color">ethernet</span>
                     </a>
                     
                 </div>
@@ -1462,7 +1482,7 @@
                                     <a href="https://github.com/jinbaotang/jinbaotang.githuh.io" target="_blank">jinbao-matery-modify</a>
                                     <br>
                                     
-                                        &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span class="white-color">11k</span>&nbsp;字
+                                        &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span class="white-color">13.6k</span>&nbsp;字
                                         
                                             
                                                 

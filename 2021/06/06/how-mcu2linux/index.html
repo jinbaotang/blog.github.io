@@ -447,12 +447,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/linux/">
-                                <span class="chip bg-color">linux</span>
-                            </a>
-                        
                             <a href="/tags/mcu/">
                                 <span class="chip bg-color">mcu</span>
+                            </a>
+                        
+                            <a href="/tags/linux/">
+                                <span class="chip bg-color">linux</span>
                             </a>
                         
                     </div>
@@ -483,21 +483,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-06-06
+                    2021-06-07
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    95
+                    644
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    2 分
                 </div>
                 
 
@@ -521,9 +521,11 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <blockquote>
-<p>从大二开始玩单片机，2019年想转linux开发，但是无从下手，在工作中，终于在2020年中无缝、平滑过渡到linux上开发，想会议下自己转变之路，同时也希望后面自己进一步成长后，现在的认知是对，然后能够帮助同样迷惑小伙伴。</p>
+<p>从大二开始玩单片机，2019年想转linux开发，但是无从下手；在工作中，终于在2020年中无缝、平滑过渡到linux上开发，想会议下自己转变之路，同时也希望后面自己进一步成长后，现在的认知是对，然后能够帮助同样迷惑小伙伴。至于linux转mcu，前两年合作的小伙伴就是纯linux出生，感觉转mcu也是需要改变固有认知，但是毕竟没有经历过，则不再展开叙述。<br><em>注： 19领证结婚，20年喜迎我的小宝贝</em></p>
 </blockquote>
-<h1 id="一、-曾经的迷惑-迷茫"><a href="#一、-曾经的迷惑-迷茫" class="headerlink" title="一、 曾经的迷惑/迷茫"></a>一、 曾经的迷惑/迷茫</h1>
+<h1 id="一、-曾经的迷茫"><a href="#一、-曾经的迷茫" class="headerlink" title="一、 曾经的迷茫"></a>一、 曾经的迷茫</h1><p>&emsp;&emsp;2019年的时候，就像慢慢的学linux开发，由于那时候工作才不到一年，自己本身又不是科班出生，在学校的是基本是以单片机（MCU）开发为主，所以那时候想学，但是感觉想学的有特别多。就挺迷茫的。感觉还挺像linux的那个企鹅，就无奈~~<img src="/medias/how-mcu2linux/linux.jpeg" alt="linux logo"><br>后面又做了一个<strong>协议栈评估项目</strong>，自己从<em>项目成员</em>变成了<em>技术负责人</em>，其中很多时间都投入到了项目里。虽然我是<em>技术负责人</em>，但主要是负责mcu这块的工作，由于项目目标不明确，从梳理需求到完成需求，花费了很多时间，就跟没有时间去按部就班的学linux了。记得19年，看过《linux就该这样学》，但是感觉里面都是八股文，以运维、考试为主，所以最后也不了了之；也看过《鸟哥的Linux私房菜》，不知道是语言关系还是咋地，最后也开了个头而已。但是还是得感谢<strong>协议栈评估项目</strong>，在这个项目里，作为<em>技术负责人</em>多少还是需要了解一下linux、Android和qnx，同时也熟悉git，进一步的学习计算机网络，也更加的实操了编译相关的问题，这在我后面平滑的过渡到linux奠定了很少的基础，后面也会分析到。</p>
+<h1 id="二、-MCU2linux"><a href="#二、-MCU2linux" class="headerlink" title="二、 MCU2linux"></a>二、 MCU2linux</h1><p>&emsp;&emsp;如果能够回到过去，开天眼，也许能够做的更好，但是自恋的说，觉得当初的做法也是挺正确（毕竟工作还是需要完成的），并没有想着一蹴而就，也没有就此放弃。在这，以我现在的认知分析一下mcu和linux的差别，以及从mcu转到linux</p>
+<h2 id="1-mcu和linux、os"><a href="#1-mcu和linux、os" class="headerlink" title="1. mcu和linux、os"></a>1. mcu和linux、os</h2><h2 id="2-代码获取-版本管理–git"><a href="#2-代码获取-版本管理–git" class="headerlink" title="2. 代码获取/版本管理–git"></a>2. 代码获取/版本管理–git</h2><h2 id="3-编译、链接"><a href="#3-编译、链接" class="headerlink" title="3. 编译、链接"></a>3. 编译、链接</h2><h2 id="4-虚拟内存"><a href="#4-虚拟内存" class="headerlink" title="4. 虚拟内存"></a>4. 虚拟内存</h2><h2 id="5-进程-线程"><a href="#5-进程-线程" class="headerlink" title="5. 进程/线程"></a>5. 进程/线程</h2><h2 id="6"><a href="#6" class="headerlink" title="6."></a>6.</h2><h2 id="7"><a href="#7" class="headerlink" title="7."></a>7.</h2>
                 
             </div>
             <hr/>
@@ -587,12 +589,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/linux/">
-                                    <span class="chip bg-color">linux</span>
-                                </a>
-                            
                                 <a href="/tags/mcu/">
                                     <span class="chip bg-color">mcu</span>
+                                </a>
+                            
+                                <a href="/tags/linux/">
+                                    <span class="chip bg-color">linux</span>
                                 </a>
                             
                         </div>
@@ -1059,17 +1061,18 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2021/06/06/linux-develop-tips1/">
+                <a href="/2021/06/06/how-mcu2linux/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="linux间网络通信无界面抓包和文件同步">
+                        <img src="/medias/featureimages/25.jpg" class="responsive-img" alt="我是如何从MCU开发转到linux开发">
                         
-                        <span class="card-title">linux间网络通信无界面抓包和文件同步</span>
+                        <span class="card-title">我是如何从MCU开发转到linux开发</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1079,9 +1082,63 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-06-06
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-06-06
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/linux/" class="post-category">
+                                    linux
+                                </a>
+                            
+                            
                         </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/mcu/">
+                        <span class="chip bg-color">mcu</span>
+                    </a>
+                    
+                    <a href="/tags/linux/">
+                        <span class="chip bg-color">linux</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/06/06/linux-develop-tips1/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="linux间网络通信无界面实时抓包、分析以及文件同步">
+                        
+                        <span class="card-title">linux间网络通信无界面实时抓包、分析以及文件同步</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-06-06
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1111,67 +1168,6 @@
                     
                     <a href="/tags/pcap/">
                         <span class="chip bg-color">pcap</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2021/06/06/tls-socket2/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="基于openssl实现tls+socket的安全通信-2">
-                        
-                        <span class="card-title">基于openssl实现tls+socket的安全通信-2</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-06-06
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E5%8D%8F%E8%AE%AE%E6%A0%88/" class="post-category">
-                                    协议栈
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/socket/">
-                        <span class="chip bg-color">socket</span>
-                    </a>
-                    
-                    <a href="/tags/tls/">
-                        <span class="chip bg-color">tls</span>
-                    </a>
-                    
-                    <a href="/tags/openssl/">
-                        <span class="chip bg-color">openssl</span>
-                    </a>
-                    
-                    <a href="/tags/ethernet/">
-                        <span class="chip bg-color">ethernet</span>
                     </a>
                     
                 </div>
@@ -1452,7 +1448,7 @@
                                     <a href="https://github.com/jinbaotang/jinbaotang.githuh.io" target="_blank">jinbao-matery-modify</a>
                                     <br>
                                     
-                                        &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span class="white-color">11k</span>&nbsp;字
+                                        &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span class="white-color">13.6k</span>&nbsp;字
                                         
                                             
                                                 
