@@ -6,7 +6,7 @@
   <link href="https://jinbaotang.cn/atom.xml" rel="self"/>
   
   <link href="https://jinbaotang.cn/"/>
-  <updated>2021-06-06T17:37:31.326Z</updated>
+  <updated>2021-06-07T01:40:56.758Z</updated>
   <id>https://jinbaotang.cn/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://jinbaotang.cn/2021/06/06/how-mcu2linux/"/>
     <id>https://jinbaotang.cn/2021/06/06/how-mcu2linux/</id>
     <published>2021-06-06T13:00:38.000Z</published>
-    <updated>2021-06-06T17:37:31.326Z</updated>
+    <updated>2021-06-07T01:40:56.758Z</updated>
     
     
       
@@ -49,7 +49,7 @@
     <link href="https://jinbaotang.cn/2021/06/06/linux-develop-tips1/"/>
     <id>https://jinbaotang.cn/2021/06/06/linux-develop-tips1/</id>
     <published>2021-06-06T13:00:38.000Z</published>
-    <updated>2021-06-06T17:14:10.571Z</updated>
+    <updated>2021-06-07T01:57:15.630Z</updated>
     
     
       
@@ -100,9 +100,9 @@
     <category term="协议栈" scheme="https://jinbaotang.cn/categories/%E5%8D%8F%E8%AE%AE%E6%A0%88/"/>
     
     
-    <category term="socket" scheme="https://jinbaotang.cn/tags/socket/"/>
-    
     <category term="tls" scheme="https://jinbaotang.cn/tags/tls/"/>
+    
+    <category term="socket" scheme="https://jinbaotang.cn/tags/socket/"/>
     
     <category term="openssl" scheme="https://jinbaotang.cn/tags/openssl/"/>
     
@@ -190,9 +190,9 @@
     <category term="协议栈" scheme="https://jinbaotang.cn/categories/%E5%8D%8F%E8%AE%AE%E6%A0%88/"/>
     
     
-    <category term="socket" scheme="https://jinbaotang.cn/tags/socket/"/>
-    
     <category term="tls" scheme="https://jinbaotang.cn/tags/tls/"/>
+    
+    <category term="socket" scheme="https://jinbaotang.cn/tags/socket/"/>
     
     <category term="openssl" scheme="https://jinbaotang.cn/tags/openssl/"/>
     
