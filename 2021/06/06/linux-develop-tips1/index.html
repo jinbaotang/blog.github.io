@@ -505,7 +505,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    7 分
+                    8 分
                 </div>
                 
 
@@ -531,7 +531,7 @@
                 <blockquote>
 <p>这周四、五趁着工作间隙以及加班折腾了两天，实现了wireshark远程实时抓包和显示，以及两个linux之间文件同步。也许没多难，又或者有更好的办法，但是我折腾了好久，觉得可以记录下。</p>
 </blockquote>
-<h1 id="一、-背景"><a href="#一、-背景" class="headerlink" title="一、 背景"></a>一、 背景</h1><p>&emsp;&emsp;现在都基本都是以linux上的开发为主，然后日常开发环境在部门的两台服务器（都是ubuntu）上，但是主要还是在一台服务器上，因为我本身暂时是以网络相关的开发为主，这就避免不了的需要抓包分析，报文交互基本上能够分析出问题所在。我是远程ssh登录来做日常开发工作，如果使用tcpdump来抓包分析，一个是不是特别的直观，还有就是灵活不是特别够，所以就想着能够使用远程或者本地来使用wireshark来分析报文。如下图所示，是我实际工作网络拓扑示意图，<img src="/medias/linux-develop-tips/server_and_mypc.png" alt="工作网络拓扑"></p>
+<h1 id="一、-背景"><a href="#一、-背景" class="headerlink" title="一、 背景"></a>一、 背景</h1><p>&emsp;&emsp;现在都基本都是以linux上的开发为主，然后日常开发环境在部门的两台服务器（都是ubuntu）上，但是主要还是在一台服务器上，因为我本身暂时是以网络相关的开发为主，这就避免不了的需要抓包分析，报文交互基本上能够分析出问题所在。我是远程ssh登录来做日常开发工作，如果使用tcpdump来抓包分析，一个是不是特别的直观，还有就是灵活性不是特别够，要是直接在屏幕上显示，根据不同的需求，需要一直该改命令，所以就想着能够使用远程或者本地来使用wireshark来分析报文。如下图所示，是我实际工作网络拓扑示意图，<img src="/medias/linux-develop-tips/server_and_mypc.png" alt="工作网络拓扑"></p>
 <p>&emsp;&emsp;上面提到了主要是在一台服务器完成开发，但是有时候跑client/server时，还是要在两台电脑通过物理网络通道测试一下。这就涉及到了在两台电脑同步开发的问题，就会涉及到文件同步的问题。</p>
 <h1 id="二、解决方案"><a href="#二、解决方案" class="headerlink" title="二、解决方案"></a>二、解决方案</h1><p>&emsp;&emsp;工欲善其事必先利其器，所以针对前面提到痛点，还是想解决点，想了不少解决思路，并且都进行了尝试，针对失败的问题进行了分析。</p>
 <h2 id="1-网络抓包"><a href="#1-网络抓包" class="headerlink" title="1. 网络抓包"></a>1. 网络抓包</h2><p>&emsp;&emsp;针对网络抓包，分别尝试了：</p>
@@ -1097,72 +1097,9 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
-            <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
-            <div class="card">
-                <a href="/2021/06/06/linux-develop-tips1/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="linux间网络通信无界面实时抓包、分析以及文件同步">
-                        
-                        <span class="card-title">linux间网络通信无界面实时抓包、分析以及文件同步</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-06-06
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/linux/" class="post-category">
-                                    linux
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/linux/">
-                        <span class="chip bg-color">linux</span>
-                    </a>
-                    
-                    <a href="/tags/wireshark/">
-                        <span class="chip bg-color">wireshark</span>
-                    </a>
-                    
-                    <a href="/tags/rsync/">
-                        <span class="chip bg-color">rsync</span>
-                    </a>
-                    
-                    <a href="/tags/pcap/">
-                        <span class="chip bg-color">pcap</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
         <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
                 <a href="/2021/06/06/how-mcu2linux/">
                     <div class="card-image">
@@ -1180,9 +1117,9 @@
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-06-06
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-06-06
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1198,12 +1135,73 @@
                 
                 <div class="card-action article-tags">
                     
+                    <a href="/tags/mcu/">
+                        <span class="chip bg-color">mcu</span>
+                    </a>
+                    
                     <a href="/tags/linux/">
                         <span class="chip bg-color">linux</span>
                     </a>
                     
-                    <a href="/tags/mcu/">
-                        <span class="chip bg-color">mcu</span>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/06/06/tls-socket2/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="基于openssl实现tls+socket的安全通信-2">
+                        
+                        <span class="card-title">基于openssl实现tls+socket的安全通信-2</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-06-06
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%8D%8F%E8%AE%AE%E6%A0%88/" class="post-category">
+                                    协议栈
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/socket/">
+                        <span class="chip bg-color">socket</span>
+                    </a>
+                    
+                    <a href="/tags/tls/">
+                        <span class="chip bg-color">tls</span>
+                    </a>
+                    
+                    <a href="/tags/openssl/">
+                        <span class="chip bg-color">openssl</span>
+                    </a>
+                    
+                    <a href="/tags/ethernet/">
+                        <span class="chip bg-color">ethernet</span>
                     </a>
                     
                 </div>
