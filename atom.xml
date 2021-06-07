@@ -6,7 +6,7 @@
   <link href="https://jinbaotang.cn/atom.xml" rel="self"/>
   
   <link href="https://jinbaotang.cn/"/>
-  <updated>2021-06-07T01:40:56.758Z</updated>
+  <updated>2021-06-07T02:02:08.173Z</updated>
   <id>https://jinbaotang.cn/</id>
   
   <author>
@@ -15,6 +15,40 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>linux间网络通信无界面实时抓包、分析以及文件同步</title>
+    <link href="https://jinbaotang.cn/2021/06/06/linux-develop-tips1/"/>
+    <id>https://jinbaotang.cn/2021/06/06/linux-develop-tips1/</id>
+    <published>2021-06-06T13:00:38.000Z</published>
+    <updated>2021-06-07T02:02:08.173Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;这周四、五趁着工作间隙以及加班折腾了两天，实现了wireshark远程实时抓包和显示，以及两个linux之间文件同步。也许没多难，又或者有更好的办法，但是我折腾了好久，觉得可以记录下。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1</summary>
+        
+      
+    
+    
+    
+    <category term="linux" scheme="https://jinbaotang.cn/categories/linux/"/>
+    
+    
+    <category term="linux" scheme="https://jinbaotang.cn/tags/linux/"/>
+    
+    <category term="wireshark" scheme="https://jinbaotang.cn/tags/wireshark/"/>
+    
+    <category term="rsync" scheme="https://jinbaotang.cn/tags/rsync/"/>
+    
+    <category term="pcap" scheme="https://jinbaotang.cn/tags/pcap/"/>
+    
+  </entry>
   
   <entry>
     <title>我是如何从MCU开发转到linux开发</title>
@@ -38,43 +72,9 @@
     <category term="linux" scheme="https://jinbaotang.cn/categories/linux/"/>
     
     
+    <category term="linux" scheme="https://jinbaotang.cn/tags/linux/"/>
+    
     <category term="mcu" scheme="https://jinbaotang.cn/tags/mcu/"/>
-    
-    <category term="linux" scheme="https://jinbaotang.cn/tags/linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>linux间网络通信无界面实时抓包、分析以及文件同步</title>
-    <link href="https://jinbaotang.cn/2021/06/06/linux-develop-tips1/"/>
-    <id>https://jinbaotang.cn/2021/06/06/linux-develop-tips1/</id>
-    <published>2021-06-06T13:00:38.000Z</published>
-    <updated>2021-06-07T01:57:15.630Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;这周四、五折腾来了两天，实现了wireshark远程抓包，以及两个linux之间文件同步。也许没多难，但是我折腾了好久，觉得可以记录下。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h1 id=&quot;一、-背景&quot;&gt;&lt;a href=&quot;#一、-背景&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="linux" scheme="https://jinbaotang.cn/categories/linux/"/>
-    
-    
-    <category term="linux" scheme="https://jinbaotang.cn/tags/linux/"/>
-    
-    <category term="wireshark" scheme="https://jinbaotang.cn/tags/wireshark/"/>
-    
-    <category term="rsync" scheme="https://jinbaotang.cn/tags/rsync/"/>
-    
-    <category term="pcap" scheme="https://jinbaotang.cn/tags/pcap/"/>
     
   </entry>
   
@@ -100,9 +100,9 @@
     <category term="协议栈" scheme="https://jinbaotang.cn/categories/%E5%8D%8F%E8%AE%AE%E6%A0%88/"/>
     
     
-    <category term="tls" scheme="https://jinbaotang.cn/tags/tls/"/>
-    
     <category term="socket" scheme="https://jinbaotang.cn/tags/socket/"/>
+    
+    <category term="tls" scheme="https://jinbaotang.cn/tags/tls/"/>
     
     <category term="openssl" scheme="https://jinbaotang.cn/tags/openssl/"/>
     
@@ -190,9 +190,9 @@
     <category term="协议栈" scheme="https://jinbaotang.cn/categories/%E5%8D%8F%E8%AE%AE%E6%A0%88/"/>
     
     
-    <category term="tls" scheme="https://jinbaotang.cn/tags/tls/"/>
-    
     <category term="socket" scheme="https://jinbaotang.cn/tags/socket/"/>
+    
+    <category term="tls" scheme="https://jinbaotang.cn/tags/tls/"/>
     
     <category term="openssl" scheme="https://jinbaotang.cn/tags/openssl/"/>
     

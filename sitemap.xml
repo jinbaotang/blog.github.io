@@ -65,7 +65,7 @@
   </url>
   
   <url>
-    <loc>https://jinbaotang.cn/categories/index.html</loc>
+    <loc>https://jinbaotang.cn/archives/index.html</loc>
     
     <lastmod>2021-05-08</lastmod>
     
@@ -86,14 +86,14 @@
   </url>
   
   <url>
-    <loc>https://jinbaotang.cn/tags/index.html</loc>
+    <loc>https://jinbaotang.cn/categories/index.html</loc>
     
     <lastmod>2021-05-08</lastmod>
     
   </url>
   
   <url>
-    <loc>https://jinbaotang.cn/archives/index.html</loc>
+    <loc>https://jinbaotang.cn/tags/index.html</loc>
     
     <lastmod>2021-05-08</lastmod>
     
@@ -121,13 +121,6 @@
     <priority>1.0</priority>
   </url>
 
-  
-  <url>
-    <loc>https://jinbaotang.cn/tags/mcu/</loc>
-    <lastmod>2021-06-07</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
   
   <url>
     <loc>https://jinbaotang.cn/tags/linux/</loc>
@@ -158,6 +151,13 @@
   </url>
   
   <url>
+    <loc>https://jinbaotang.cn/tags/mcu/</loc>
+    <lastmod>2021-06-07</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://jinbaotang.cn/tags/refactor/</loc>
     <lastmod>2021-06-07</lastmod>
     <changefreq>daily</changefreq>
@@ -165,7 +165,14 @@
   </url>
   
   <url>
-    <loc>https://jinbaotang.cn/tags/%E4%B8%AA%E4%BA%BA/</loc>
+    <loc>https://jinbaotang.cn/tags/socket/</loc>
+    <lastmod>2021-06-07</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jinbaotang.cn/tags/can/</loc>
     <lastmod>2021-06-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -173,13 +180,6 @@
   
   <url>
     <loc>https://jinbaotang.cn/tags/tls/</loc>
-    <lastmod>2021-06-07</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://jinbaotang.cn/tags/socket/</loc>
     <lastmod>2021-06-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -200,7 +200,7 @@
   </url>
   
   <url>
-    <loc>https://jinbaotang.cn/tags/can/</loc>
+    <loc>https://jinbaotang.cn/tags/%E4%B8%AA%E4%BA%BA/</loc>
     <lastmod>2021-06-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
