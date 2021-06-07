@@ -553,6 +553,7 @@
 </ol>
 <p>&emsp;&emsp;针对这个方案，我主要参考了这篇文章<a target="_blank" rel="noopener" href="https://www.cnblogs.com/qinhir/p/6589403.html">实现rsync+inotify 实时同步文件</a>，但是对着这篇文章，我没有成功，再结合这篇文章<a target="_blank" rel="noopener" href="http://blog.chinaunix.net/uid-13954085-id-158637.html">把rsync错误报告说清楚</a>,就基本把问题解决了，当然过程还是挺不容易的，因为都是网上搜索+自己摸索的，暂时也就不去记录了，如果小伙伴有疑问，可以在评论区留言，基本能够保证短时间内收到评论。<br>&emsp;&emsp;最终我没用inotify来实时同步，但是亲测是可行的，因为我怕其他同事也要同步，会影响他们，不过我通过设置命令行别名的方式<code>alias sync_xxxx=&#39;xxxxx&#39;</code>,就能一个命令同步过去了。如下图所示，我能在意位置直接就<code>rsync_BWG</code>就能将我事先配置的文件同步过去。<img src="/medias/linux-develop-tips/alias_rsync.png" alt="alias rsync"></p>
 <h1 id="三、写在最后"><a href="#三、写在最后" class="headerlink" title="三、写在最后"></a>三、写在最后</h1><p>&emsp;&emsp;虽然说工欲善其事必先利其器，但是关键的是还需要平衡利弊，如果改进一点效率反而会浪费你更多的时间，我觉得反而是得不偿失的。不过，要是利用自己玩手机刷剧的时间，用来去折腾这个技术，我觉得是值当的，因为表面是折腾这一项，拔出萝卜带出泥，遇到问题了，想解决，基本上会涉及到很多知识面，针对我这种还需大量学习的人说，简直是成长的<em>兴奋剂</em>。因为linux上有很多可以折腾的，所以我就转到了linux开发，有兴趣可以参考下<a href="https://jinbaotang.cn/2021/06/06/how-mcu2linux/">我是如何从MCU开发转到linux开发</a>，不过当前（2021.06.07 02:13）未完成。</p>
+<p>&emsp;&emsp;针对上面有些地方不够详细，可以评论区留言~~</p>
 
                 
             </div>
