@@ -498,7 +498,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.3k
+                    2.4k
                 </div>
                 
 
@@ -551,8 +551,9 @@
 <li>scp，会出现全部拷贝，不能增量拷贝，多了之后，效率特别低，对磁盘也是频繁读写，<strong>pass</strong>。</li>
 <li>rsync_inotify，实时、增量同步，<strong>amazing</strong>。如下图：<img src="/medias/linux-develop-tips/rsync_inotify.png"></li>
 </ol>
-<p>&emsp;&emsp;针对这个方案，我主要参考了这篇文章<a target="_blank" rel="noopener" href="https://www.cnblogs.com/qinhir/p/6589403.html">实现rsync+inotify 实时同步文件</a>，但是对着这篇文章，我没有成功，再结合这篇文章<a target="_blank" rel="noopener" href="http://blog.chinaunix.net/uid-13954085-id-158637.html">把rsync错误报告说清楚</a>,就基本把问题解决了，当然过程还是挺不容易的，因为都是网上搜索+自己摸索的，暂时也就不去记录了，如果小伙伴有疑问，可以在评论区留言，基本能够保证短时间内收到评论。<br>&emsp;&emsp;最终我没用inotify来实时同步，但是亲测是可行的，因为我怕其他同事也要同步，会影响他们，不过我通过设置命令行别名的方式<code>alias sync_xxxx=&#39;xxxxx&#39;</code>,就能一个命令同步过去了。如下图所示，我能在意位置直接就<code>rsync_BWG</code>就能将我事先配置的文件同步过去。<img src="/medias/linux-develop-tips/alias_rsync.png" alt="alias rsync"></p>
-<h1 id="三、写在最后"><a href="#三、写在最后" class="headerlink" title="三、写在最后"></a>三、写在最后</h1><p>&emsp;&emsp;虽然说工欲善其事必先利其器，但是关键的是还需要平衡利弊，如果改进一点效率反而会浪费你更多的时间，我觉得反而是得不偿失的。不过，要是利用自己玩手机刷剧的时间，用来去折腾这个技术，我觉得是值当的，因为表面是折腾这一项，拔出萝卜带出泥，遇到问题了，想解决，基本上会涉及到很多知识面，针对我这种还需大量学习的人说，简直是成长的<em>兴奋剂</em>。因为linux上有很多可以折腾的，所以我就转到了linux开发，有兴趣可以参考下<a href="https://jinbaotang.cn/2021/06/06/how-mcu2linux/">我是如何从MCU开发转到linux开发</a>，不过当前（2021.06.07 02:13）未完成。</p>
+<p><strong>文件同步</strong><br>&emsp;&emsp;针对这个方案，我主要参考了这篇文章<a target="_blank" rel="noopener" href="https://www.cnblogs.com/qinhir/p/6589403.html">实现rsync+inotify 实时同步文件</a>，但是对着这篇文章，我没有成功，再结合这篇文章<a target="_blank" rel="noopener" href="http://blog.chinaunix.net/uid-13954085-id-158637.html">把rsync错误报告说清楚</a>,就基本把问题解决了，当然过程还是挺不容易的，因为都是网上搜索+自己摸索的，暂时也就不去记录了，如果小伙伴有疑问，可以在评论区留言，基本能够保证短时间内收到评论。<br>&emsp;&emsp;最终我没用inotify来实时同步，但是亲测是可行的，因为我怕其他同事也要同步，会影响他们，不过我通过设置命令行别名的方式<code>alias sync_xxxx=&#39;xxxxx&#39;</code>,就能一个命令同步过去了。如下图所示，我能在意位置直接就<code>rsync_BWG</code>就能将我事先配置的文件同步过去。<img src="/medias/linux-develop-tips/alias_rsync.png" alt="alias rsync"></p>
+<p><strong>同步时忽略某些文件或者文件夹</strong><br>&emsp;&emsp;在同步时，有时我们并不需要将所有文件同步过去。<img src="/medias/linux-develop-tips/bgw_tree_l1.png" alt="BGW"> <img src="/medias/linux-develop-tips/uds_component_tree_l1.png" alt="uds-component"><br>上述俩图，<code>ironman-imx8-buildroot</code>和<code>.vscode</code>我就不想同步过去，此时我就可以通过<code>--exclude</code>这个option来达到目的，<strong>文件是使用相对路径哦</strong>。示例如下图：<img src="/medias/linux-develop-tips/use_exclude.png" alt="use --exclude"></p>
+<h1 id="三、写在最后"><a href="#三、写在最后" class="headerlink" title="三、写在最后"></a>三、写在最后</h1><p>&emsp;&emsp;虽然说工欲善其事必先利其器，但是关键的是还需要平衡利弊，如果改进一点效率反而会浪费你更多的时间，我觉得反而是得不偿失的。不过，要是利用自己玩手机刷剧的时间，用来去折腾这个技术，我觉得是值当的，因为表面是折腾这一项，拔出萝卜带出泥，遇到问题了，想解决，基本上会涉及到很多知识面，针对我这种还需大量学习的人说，简直是成长的<em>兴奋剂</em>。以前玩单片机时，就各种折腾windows系统；后面因为linux上有很多可以折腾的，所以我就转到了linux开发，有兴趣可以参考下<a href="https://jinbaotang.cn/2021/06/06/how-mcu2linux/">我是如何从MCU开发转到linux开发</a>，不过当前（2021.06.07 02:13）未完成。</p>
 <p>&emsp;&emsp;针对上面有些地方不够详细，可以评论区留言~~</p>
 
                 
@@ -1098,9 +1099,72 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2021/06/06/linux-develop-tips1/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="linux间网络通信无界面实时抓包、分析以及文件同步">
+                        
+                        <span class="card-title">linux间网络通信无界面实时抓包、分析以及文件同步</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-06-06
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/linux/" class="post-category">
+                                    linux
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/linux/">
+                        <span class="chip bg-color">linux</span>
+                    </a>
+                    
+                    <a href="/tags/wireshark/">
+                        <span class="chip bg-color">wireshark</span>
+                    </a>
+                    
+                    <a href="/tags/rsync/">
+                        <span class="chip bg-color">rsync</span>
+                    </a>
+                    
+                    <a href="/tags/pcap/">
+                        <span class="chip bg-color">pcap</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/2021/06/06/how-mcu2linux/">
                     <div class="card-image">
@@ -1118,9 +1182,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-06-06
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-06-06
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1136,73 +1200,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/mcu/">
-                        <span class="chip bg-color">mcu</span>
-                    </a>
-                    
                     <a href="/tags/linux/">
                         <span class="chip bg-color">linux</span>
                     </a>
                     
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2021/06/06/tls-socket2/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="基于openssl实现tls+socket的安全通信-2">
-                        
-                        <span class="card-title">基于openssl实现tls+socket的安全通信-2</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-06-06
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E5%8D%8F%E8%AE%AE%E6%A0%88/" class="post-category">
-                                    协议栈
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/socket/">
-                        <span class="chip bg-color">socket</span>
-                    </a>
-                    
-                    <a href="/tags/tls/">
-                        <span class="chip bg-color">tls</span>
-                    </a>
-                    
-                    <a href="/tags/openssl/">
-                        <span class="chip bg-color">openssl</span>
-                    </a>
-                    
-                    <a href="/tags/ethernet/">
-                        <span class="chip bg-color">ethernet</span>
+                    <a href="/tags/mcu/">
+                        <span class="chip bg-color">mcu</span>
                     </a>
                     
                 </div>
@@ -1483,7 +1486,7 @@
                                     <a href="https://github.com/jinbaotang/jinbaotang.githuh.io" target="_blank">jinbao-matery-modify</a>
                                     <br>
                                     
-                                        &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span class="white-color">14.2k</span>&nbsp;字
+                                        &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span class="white-color">14.3k</span>&nbsp;字
                                         
                                             
                                                 
