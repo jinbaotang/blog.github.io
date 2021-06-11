@@ -6,7 +6,7 @@
   <link href="https://jinbaotang.cn/atom.xml" rel="self"/>
   
   <link href="https://jinbaotang.cn/"/>
-  <updated>2021-06-07T01:40:56.758Z</updated>
+  <updated>2021-06-10T06:55:07.098Z</updated>
   <id>https://jinbaotang.cn/</id>
   
   <author>
@@ -15,34 +15,6 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>我是如何从MCU开发转到linux开发</title>
-    <link href="https://jinbaotang.cn/2021/06/06/how-mcu2linux/"/>
-    <id>https://jinbaotang.cn/2021/06/06/how-mcu2linux/</id>
-    <published>2021-06-06T13:00:38.000Z</published>
-    <updated>2021-06-07T01:40:56.758Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;从大二开始玩单片机，2019年想转linux开发，但是无从下手；在工作中，终于在2020年中无缝、平滑过渡到linux上开发，想会议下自己转变之路，同时也希望后面自己进一步成长后，现在的认知是对，然后能够帮助同样迷惑小伙伴。至于linux转mcu，</summary>
-        
-      
-    
-    
-    
-    <category term="linux" scheme="https://jinbaotang.cn/categories/linux/"/>
-    
-    
-    <category term="mcu" scheme="https://jinbaotang.cn/tags/mcu/"/>
-    
-    <category term="linux" scheme="https://jinbaotang.cn/tags/linux/"/>
-    
-  </entry>
   
   <entry>
     <title>linux间网络通信无界面实时抓包、分析以及文件同步</title>
@@ -75,6 +47,34 @@
     <category term="rsync" scheme="https://jinbaotang.cn/tags/rsync/"/>
     
     <category term="pcap" scheme="https://jinbaotang.cn/tags/pcap/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>我是如何从MCU开发转到linux开发</title>
+    <link href="https://jinbaotang.cn/2021/06/06/how-mcu2linux/"/>
+    <id>https://jinbaotang.cn/2021/06/06/how-mcu2linux/</id>
+    <published>2021-06-06T13:00:38.000Z</published>
+    <updated>2021-06-07T01:40:56.758Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;从大二开始玩单片机，2019年想转linux开发，但是无从下手；在工作中，终于在2020年中无缝、平滑过渡到linux上开发，想会议下自己转变之路，同时也希望后面自己进一步成长后，现在的认知是对，然后能够帮助同样迷惑小伙伴。至于linux转mcu，</summary>
+        
+      
+    
+    
+    
+    <category term="linux" scheme="https://jinbaotang.cn/categories/linux/"/>
+    
+    
+    <category term="linux" scheme="https://jinbaotang.cn/tags/linux/"/>
+    
+    <category term="mcu" scheme="https://jinbaotang.cn/tags/mcu/"/>
     
   </entry>
   
@@ -115,7 +115,7 @@
     <link href="https://jinbaotang.cn/2021/06/05/refactor-1/"/>
     <id>https://jinbaotang.cn/2021/06/05/refactor-1/</id>
     <published>2021-06-05T14:13:00.000Z</published>
-    <updated>2021-06-10T13:18:59.087Z</updated>
+    <updated>2021-06-11T02:22:02.069Z</updated>
     
     
       
