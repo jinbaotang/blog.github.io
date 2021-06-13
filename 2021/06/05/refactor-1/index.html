@@ -479,21 +479,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-06-11
+                    2021-06-13
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.4k
+                    2.5k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    8 分
+                    9 分
                 </div>
                 
 
@@ -573,7 +573,7 @@
     stomach<span class="token punctuation">.</span><span class="token function">digest</span><span class="token punctuation">(</span>mango<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>&emsp;&emsp;不知道看完上述示例后，有没有更清楚。从最后的处理流程来看，都是需要顺序调用的，不同的是一开始的思考过程，面向过程更多是做完这一步，才会去想我下一步要用什么东西来干什么，最终一步一步完成整个操作。面向对象呢，一开始就想好完成这个任务，我要用什么工具来做什么，给每个工具以特定的功能，比如手可以用来<strong>找、洗、切</strong>，有了对象并且有了操作后，就可以按照流程完后整个任务了。<br>&emsp;&emsp;看完上述代码，可能很多人会说，我觉得没啥多大区别啊。是的，上面这个任务的确没啥多大区别，甚至用面向过程还更简单。但是，你可以参考这个<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/27468564/answer/757537214">力扣官方解答面向过程和面向对象</a>，就清楚了。或者又会说，我用c也能完成c++那样的啊，对的，完全没问题哦，linux内核就是这么做的呢。但是你去看这些代码，别说些写出那样的宏了，就是无障碍看懂就是大神了，更别说c++还有虚函数、重载这样秒杀使用函数指针来实现<strong>类虚函数的做法</strong>。另外，更为关键的是，使用c++，<strong>它可以用语法规则上来尽量保证你按照面向对象来实现</strong>，比如我可以在<em>类</em>里面定义<em>私有成员变量</em>，外部想要访问这些变量就必须通过接口来实现，这样你就不得不思考如何先定义对应的操作；若你是用c的，就不会一定这样做，通过结构体变量直接就访问了。不过，其实使用c也能实现类似于<em>私有成员</em>。比如下述操作（我也是看别人这么实现，当时觉得好神奇，着实惊艳）：</p>
+<p>&emsp;&emsp;不知道看完上述示例后，有没有更清楚。从最后的处理流程来看，都是需要顺序调用的，不同的是一开始的思考过程，面向过程更多是做完这一步，才会去想我下一步要用什么东西来干什么，最终一步一步完成整个操作。面向对象呢，一开始就想好完成这个任务，我要用什么工具来做什么，给每个工具以特定的功能，比如手可以用来<strong>找、洗、切</strong>，有了对象并且有了操作后，就可以按照流程完后整个任务了。<br>&emsp;&emsp;看完上述代码，可能很多人会说，我觉得没啥多大区别啊。是的，上面这个任务的确没啥多大区别，甚至用面向过程还更简单。但是，你可以参考这个<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/27468564/answer/757537214">力扣官方解答面向过程和面向对象</a>，就清楚了。或者又会说，我用c也能完成c++那样的啊，对的，完全没问题哦，linux内核就是这么做的呢。但是你去看这些代码，别说些写出那样的宏了，就是无障碍看懂就是大神了，更别说c++还有虚函数、重载这样秒杀使用函数指针来实现<strong>类虚函数的做法</strong>。另外，更为关键的是，使用c++，<strong>它可以用语法规则上来尽量保证你按照面向对象来实现</strong>，比如我可以在<em>类</em>里面定义<em>私有成员变量</em>，外部想要访问这些变量就必须通过接口来实现，这样你就不得不思考如何先定义对应的操作；若你是用c的，就不会一定这样做，大概率你会直接通过结构体变量直接就访问了，因为给每个变量都写个get和set。。。。不过，使用c也能实现类似于<em>私有成员</em>，但是这时候的做法更多是不让外部看到里面的成员，而不是为了不让外部直接通过结构体变量来访问。比如下述操作（我也是看别人这么实现，当时觉得好神奇，着实惊艳）：</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/* test.h */</span>
 
 <span class="token keyword">struct</span> <span class="token class-name">test_s</span><span class="token punctuation">&#123;</span>
@@ -585,7 +585,7 @@
 
 <span class="token keyword">void</span> <span class="token function">test_handle</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">test_s</span> <span class="token operator">*</span>test<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword">struct</span> <span class="token class-name">test_s</span> <span class="token operator">*</span><span class="token function">alloc_test</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">void</span> <span class="token function">free_test</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">test_s</span> <span class="token operator">*</span>test<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token keyword">void</span> <span class="token function">free_test</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">test_s</span> <span class="token operator">*</span>test<span class="token punctuation">)</span><span class="token punctuation">;</span>s<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/* test.c */</span>
 
@@ -1526,7 +1526,7 @@
                                     <a href="https://github.com/jinbaotang/jinbaotang.githuh.io" target="_blank">jinbao-matery-modify</a>
                                     <br>
                                     
-                                        &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span class="white-color">16.4k</span>&nbsp;字
+                                        &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span class="white-color">16.6k</span>&nbsp;字
                                         
                                             
                                                 
