@@ -1,0 +1,2561 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="keywords" content="c++笔记, Ethernet stack, embeded software, dignostic">
+        <meta name="description" content="唐金宝 | 车辆工程 | 软件工程师">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <meta name="renderer" content="webkit|ie-stand|ie-comp">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <meta name="baidu-site-verification" content="code-N7k3G0CKsp" />
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+            <title>
+                c++笔记 | 金宝的博客
+            </title>
+            <link rel="icon" type="image/png" href="/medias/logo.png">
+
+            <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+            <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+            <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+            <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+            <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+            <link rel="stylesheet" type="text/css" href="/css/matery.css">
+            <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+            <script src="/libs/jquery/jquery.min.js"></script>
+
+    <meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="金宝的博客" type="application/atom+xml">
+</head>
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">金宝的博客</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">金宝的博客</div>
+        <div class="logo-desc">
+            
+            唐金宝 | 车辆工程 | 软件工程师
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/jinbaotang/jinbaotang.github.io" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/jinbaotang/jinbaotang.github.io" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+    <script src="/libs/cryptojs/crypto-js.min.js"></script>
+    <script>
+        (function() {
+            let pwd = '';
+            if (pwd && pwd.length > 0) {
+                if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                    alert('密码错误，将返回主页！');
+                    location.href = '/';
+                }
+            }
+        })();
+    </script>
+    
+
+        
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">c++笔记</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+            
+
+                <main class="post-container content">
+
+                    
+                        <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/c/">
+                                <span class="chip bg-color">c++</span>
+                            </a>
+                        
+                            <a href="/tags/coding/">
+                                <span class="chip bg-color">coding</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/cpp/" class="post-category">
+                                cpp
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-04-10
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2021-06-16
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    4.6k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    17 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <blockquote>
+<p>所有文章暂时均来自<a target="_blank" rel="noopener" href="https://github.com/applenob/Cpp_Primer_Practice">搞定C++👊。C++ Primer 中文版第5版学习仓库，包括笔记和课后练习答案</a>。直接上传仅为了方便自己容易阅读和更改。侵权请直接联系随着自己学习，会将笔记替换成自己的。</p>
+</blockquote>
+<h1 id="第十七章-标准库特殊设施"><a href="#第十七章-标准库特殊设施" class="headerlink" title="第十七章 标准库特殊设施"></a>第十七章 标准库特殊设施</h1><h2 id="tuple类型"><a href="#tuple类型" class="headerlink" title="tuple类型"></a>tuple类型</h2><ul>
+<li><code>tuple</code>是类似<code>pair</code>的模板，每个成员类型都可以不同，但<code>tuple</code>可以有任意数量的成员。</li>
+<li>但每个确定的<code>tuple</code>类型的成员数目是固定的。</li>
+<li>我们可以将<code>tuple</code>看做一个“快速而随意”的数据结构。</li>
+</ul>
+<p><strong>tuple支持的操作</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>tuple&lt;T1, T2, ..., Tn&gt; t;</code></td>
+<td><code>t</code>是一个<code>tuple</code>，成员数为<code>n</code>，第<code>i</code>个成员的类型是<code>Ti</code>所有成员都进行值初始化。</td>
+</tr>
+<tr>
+<td><code>tuple&lt;T1, T2, ..., Tn&gt; t(v1, v2, ..., vn);</code></td>
+<td>每个成员用对应的初始值<code>vi</code>进行初始化。此构造函数是<code>explicit</code>的。</td>
+</tr>
+<tr>
+<td><code>make_tuple(v1, v2, ..., vn)</code></td>
+<td>返回一个用给定初始值初始化的<code>tuple</code>。<code>tuple</code>的类型从初始值的类型<strong>推断</strong>。</td>
+</tr>
+<tr>
+<td><code>t1 == t2</code></td>
+<td>当两个<code>tuple</code>具有相同数量的成员且成员对应相等时，两个<code>tuple</code>相等。</td>
+</tr>
+<tr>
+<td><code>t1 relop t2</code></td>
+<td><code>tuple</code>的关系运算使用<strong>字典序</strong>。两个<code>tuple</code>必须具有相同数量的成员。</td>
+</tr>
+<tr>
+<td><code>get&lt;i&gt;(t)</code></td>
+<td>返回<code>t</code>的第<code>i</code>个数据成员的引用：如果<code>t</code>是一个左值，结果是一个左值引用；否则，结果是一个右值引用。<code>tuple</code>的所有成员都是<code>public</code>的。</td>
+</tr>
+<tr>
+<td><code>tuple_size&lt;tupleType&gt;::value</code></td>
+<td>一个类模板，可以通过一个<code>tuple</code>类型来初始化。它有一个名为<code>value</code>的<code>public constexpr static</code>数据成员，类型为<code>size_t</code>，表示给定<code>tuple</code>类型中成员的数量。</td>
+</tr>
+<tr>
+<td><code>tuple_element&lt;i, tupleType&gt;::type</code></td>
+<td>一个类模板，可以通过一个整型常量和一个<code>tuple</code>类型来初始化。它有一个名为<code>type</code>的<code>public</code>成员，表示给定<code>tuple</code>类型中指定成员的类型。</td>
+</tr>
+</tbody></table>
+<h3 id="定义和初始化tuple"><a href="#定义和初始化tuple" class="headerlink" title="定义和初始化tuple"></a>定义和初始化tuple</h3><p>定义和初始化示例：</p>
+<ul>
+<li><code>tuple&lt;size_t, size_t, size_t&gt; threeD;</code></li>
+<li><code>tuple&lt;size_t, size_t, size_t&gt; threeD&#123;1,2,3&#125;;</code></li>
+<li><code>auto item = make_tuple(&quot;0-999-78345-X&quot;, 3, 2.00)；</code></li>
+</ul>
+<p>访问tuple成员：</p>
+<ul>
+<li><code>auto book = get&lt;0&gt;(item);</code></li>
+<li><code>get&lt;2&gt;(item) *= 0.8;</code></li>
+</ul>
+<h3 id="使用tuple返回多个值"><a href="#使用tuple返回多个值" class="headerlink" title="使用tuple返回多个值"></a>使用tuple返回多个值</h3><ul>
+<li><code>tuple</code>最常见的用途是从一个函数返回多个值。</li>
+</ul>
+<h2 id="bitset类型"><a href="#bitset类型" class="headerlink" title="bitset类型"></a>bitset类型</h2><ul>
+<li>处理二进制位的有序集；</li>
+<li><code>bitset</code>也是类模板，但尖括号中输入的是<code>bitset</code>的长度而不是元素类型，因为元素类型是固定的，都是一个二进制位。</li>
+</ul>
+<p>初始化<code>bitset</code>的方法：</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>bitset&lt;n&gt; b;</code></td>
+<td><code>b</code>有<code>n</code>位；每一位均是0.此构造函数是一个<code>constexpr</code>。</td>
+</tr>
+<tr>
+<td><code>bitset&lt;n&gt; b(u);</code></td>
+<td><code>b</code>是<code>unsigned long long</code>值<code>u</code>的低<code>n</code>位的拷贝。如果<code>n</code>大于<code>unsigned long long</code>的大小，则<code>b</code>中超出<code>unsigned long long</code>的高位被置为0。此构造函数是一个<code>constexpr</code>。</td>
+</tr>
+<tr>
+<td><code>bitset&lt;n&gt; b(s, pos, m, zero, one);</code></td>
+<td><code>b</code>是<code>string s</code>从位置<code>pos</code>开始<code>m</code>个字符的拷贝。<code>s</code>只能包含字符<code>zero</code>或<code>one</code>：如果<code>s</code>包含任何其他字符，构造函数会抛出<code>invalid_argument</code>异常。字符在<code>b</code>中分别保存为<code>zero</code>和<code>one</code>。<code>pos</code>默认为0，<code>m</code>默认为<code>string::npos</code>，<code>zero</code>默认为’0’，<code>one</code>默认为’1’。</td>
+</tr>
+<tr>
+<td><code>bitset&lt;n&gt; b(cp, pos, m, zero, one);</code></td>
+<td>和上一个构造函数相同，但从<code>cp</code>指向的字符数组中拷贝字符。如果未提供<code>m</code>，则<code>cp</code>必须指向一个<code>C</code>风格字符串。如果提供了<code>m</code>，则从<code>cp</code>开始必须至少有<code>m</code>个<code>zero</code>或<code>one</code>字符。</td>
+</tr>
+</tbody></table>
+<p>初始化案例；</p>
+<ul>
+<li><code>bitset&lt;13&gt; bitvec1(0xbeef);</code></li>
+<li><code>bitset&lt;32&gt; bitvec4(&quot;1100&quot;);</code></li>
+</ul>
+<p><code>bitset</code>操作：</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>b.any()</code></td>
+<td><code>b</code>中是否存在1。</td>
+</tr>
+<tr>
+<td><code>b.all()</code></td>
+<td><code>b</code>中都是1。</td>
+</tr>
+<tr>
+<td><code>b.none()</code></td>
+<td><code>b</code>中是否没有1。</td>
+</tr>
+<tr>
+<td><code>b.count()</code></td>
+<td><code>b</code>中1的个数。</td>
+</tr>
+<tr>
+<td><code>b.size()</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>b.test(pos)</code></td>
+<td><code>pos</code>下标是否是1</td>
+</tr>
+<tr>
+<td><code>b.set(pos)</code></td>
+<td><code>pos</code>置1</td>
+</tr>
+<tr>
+<td><code>b.set()</code></td>
+<td>所有都置1</td>
+</tr>
+<tr>
+<td><code>b.reset(pos)</code></td>
+<td>将位置<code>pos</code>处的位复位</td>
+</tr>
+<tr>
+<td><code>b.reset()</code></td>
+<td>将<code>b</code>中所有位复位</td>
+</tr>
+<tr>
+<td><code>b.flip(pos)</code></td>
+<td>将位置<code>pos</code>处的位取反</td>
+</tr>
+<tr>
+<td><code>b.flip()</code></td>
+<td>将<code>b</code>中所有位取反</td>
+</tr>
+<tr>
+<td><code>b[pos]</code></td>
+<td>访问<code>b</code>中位置<code>pos</code>处的位；如果<code>b</code>是<code>const</code>的，则当该位置位时，返回<code>true</code>；否则返回<code>false</code>。</td>
+</tr>
+<tr>
+<td><code>b.to_ulong()</code></td>
+<td>返回一个<code>unsigned long</code>值，其位模式和<code>b</code>相同。如果<code>b</code>中位模式不能放入指定的结果类型，则抛出一个<code>overflow_error</code>异常。</td>
+</tr>
+<tr>
+<td><code>b.to_ullong()</code></td>
+<td>类似上面，返回一个<code>unsigned long long</code>值。</td>
+</tr>
+<tr>
+<td><code>b.to_string(zero, one)</code></td>
+<td>返回一个<code>string</code>，表示<code>b</code>中位模式。<code>zero</code>和<code>one</code>默认为0和1。</td>
+</tr>
+<tr>
+<td><code>os &lt;&lt; b</code></td>
+<td>将<code>b</code>中二进制位打印为字符<code>1</code>或<code>0</code>，打印到流<code>os</code>。</td>
+</tr>
+<tr>
+<td><code>is &gt;&gt; b</code></td>
+<td>从<code>is</code>读取字符存入<code>b</code>。当下一个字符不是1或0时，或是已经读入<code>b.size()</code>个位时，读取过程停止。</td>
+</tr>
+</tbody></table>
+<h2 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h2><ul>
+<li>正则表达式（reqular expression）是一种描述字符序列的方法，是一种很强大的工具。</li>
+</ul>
+<p>正则表达式库组件：</p>
+<table>
+<thead>
+<tr>
+<th>组件</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>regex</code></td>
+<td>表示一个正则表达式的类</td>
+</tr>
+<tr>
+<td><code>regex_match</code></td>
+<td>将一个字符序列与一个正则表达式匹配</td>
+</tr>
+<tr>
+<td><code>regex_search</code></td>
+<td>寻找第一个与正则表达式匹配的子序列</td>
+</tr>
+<tr>
+<td><code>regex_replace</code></td>
+<td>使用给定格式替换一个正则表达式</td>
+</tr>
+<tr>
+<td><code>sregex_iterator</code></td>
+<td>迭代器适配器，调用<code>regex_searcg</code>来遍历一个<code>string</code>中所有匹配的子串</td>
+</tr>
+<tr>
+<td><code>smatch</code></td>
+<td>容器类，保存在<code>string</code>中搜索的结果</td>
+</tr>
+<tr>
+<td><code>ssub_match</code></td>
+<td><code>string</code>中匹配的子表达式的结果</td>
+</tr>
+</tbody></table>
+<p><code>regex_match</code>和<code>regex_search</code>的参数：</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>(seq, m, r, mft)</code></td>
+<td>在字符序列<code>seq</code>中查找<code>regex</code>对象<code>r</code>中的正则表达式。<code>seq</code>可以是一个<code>string</code>、标识范围的一对迭代器、一个指向空字符结尾的字符数组的指针。</td>
+</tr>
+<tr>
+<td><code>(seq, r, mft)</code></td>
+<td><code>m</code>是一个<code>match</code>对象，用来保存匹配结果的相关细节。<code>m</code>和<code>seq</code>必须具有兼容的类型。<code>mft</code>是一个可选的<code>regex_constants::match_flag_type</code>值。</td>
+</tr>
+</tbody></table>
+<ul>
+<li>这些操作会返回<code>bool</code>值，指出是否找到匹配。</li>
+</ul>
+<h3 id="使用正则表达式库"><a href="#使用正则表达式库" class="headerlink" title="使用正则表达式库"></a>使用正则表达式库</h3><ul>
+<li><code>regex</code>使用的正则表达式语言是<code>ECMAScript</code>，模式<code>[[::alpha::]]</code>匹配任意字母。</li>
+<li>由于反斜线是C++中的特殊字符，在模式中每次出现<code>\</code>的地方，必须用一个额外的反斜线<code>\\</code>告知C++我们需要一个反斜线字符。</li>
+<li>简单案例：<ul>
+<li><code>string pattern(&quot;[^c]ei&quot;); pattern = &quot;[[:alpha:]]*&quot; + pattern + &quot;[[:alpha:]]*&quot;</code> 查找不在字符c之后的字符串ei</li>
+<li><code>regex r(pattern);</code> 构造一个用于查找模式的regex</li>
+<li><code>smatch results;</code> 定义一个对象保存搜索结果</li>
+<li><code>string test_str = &quot;receipt freind theif receive&quot;;</code></li>
+<li><code>if (regex_search(test_str, results, r)) cout &lt;&lt; results.str() &lt;&lt; endl;</code> 如有匹配子串，打印匹配的单词。</li>
+</ul>
+</li>
+</ul>
+<p><code>regex</code>（和<code>wregex</code>）选项：</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>regex r(re)</code> <code>regex r(re, f)</code></td>
+<td><code>re</code>表示一个正则表达式，它可以是一个<code>string</code>、一对表示字符范围的迭代器、一个指向空字符结尾的字符数组的指针、一个字符指针和一个计数器、一个花括号包围的字符列表。<code>f</code>是指出对象如何处理的标志。<code>f</code>通过下面列出来的值来设置。如果未指定<code>f</code>，其默认值为<code>ECMAScript</code>。</td>
+</tr>
+<tr>
+<td><code>r1 = re</code></td>
+<td>将<code>r1</code>中的正则表达式替换Wie<code>re</code>。<code>re</code>表示一个正则表达式，它可以是另一个<code>regex</code>对象、一个<code>string</code>、一个指向空字符结尾的字符数组的指针或是一个花括号包围的字符列表。</td>
+</tr>
+<tr>
+<td><code>r1.assign(re, f)</code></td>
+<td>和使用赋值运算符（=）的效果相同：可选的标志<code>f</code>也和<code>regex</code>的构造函数中对应的参数含义相同。</td>
+</tr>
+<tr>
+<td><code>r.mark_count()</code></td>
+<td><code>r</code>中子表达式的数目</td>
+</tr>
+<tr>
+<td><code>r.flags()</code></td>
+<td>返回<code>r</code>的标志集</td>
+</tr>
+</tbody></table>
+<p>定义<code>regex</code>时指定的标志：</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>icase</code></td>
+<td>在匹配过程中忽略大小写</td>
+</tr>
+<tr>
+<td><code>nosubs</code></td>
+<td>不保存匹配的子表达式</td>
+</tr>
+<tr>
+<td><code>optimize</code></td>
+<td>执行速度优先于构造速度</td>
+</tr>
+<tr>
+<td><code>ECMAScript</code></td>
+<td>使用<code>ECMA-262</code>指定的语法</td>
+</tr>
+<tr>
+<td><code>basic</code></td>
+<td>使用<code>POSIX</code>基本的正则表达式语法</td>
+</tr>
+<tr>
+<td><code>extended</code></td>
+<td>使用<code>POSIX</code>扩展的正则表达式语法</td>
+</tr>
+<tr>
+<td><code>awk</code></td>
+<td>使用<code>POSIX</code>版本的<code>awk</code>语言的语法</td>
+</tr>
+<tr>
+<td><code>grep</code></td>
+<td>使用<code>POSIX</code>版本的<code>grep</code>的语法</td>
+</tr>
+<tr>
+<td><code>egrep</code></td>
+<td>使用<code>POSIX</code>版本的<code>egrep</code>的语法</td>
+</tr>
+</tbody></table>
+<ul>
+<li>可以将正则表达式本身看做是一种简单程序语言设计的程序。在运行时，当一个<code>regex</code>对象被初始化或被赋予新模式时，才被“编译”。</li>
+<li>如果编写的正则表达式存在错误，会在运行时抛出一个<code>regex_error</code>的异常。</li>
+<li>避免创建不必要的正则表达式。构建一个<code>regex</code>对象可能比较耗时。</li>
+</ul>
+<h3 id="匹配与regex迭代器类型"><a href="#匹配与regex迭代器类型" class="headerlink" title="匹配与regex迭代器类型"></a>匹配与regex迭代器类型</h3><p><code>sregex_iterator</code>操作（用来获得所有匹配）：</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>sregex_iterator it(b, e, r);</code></td>
+<td>一个<code>sregex_iterator</code>，遍历迭代器<code>b</code>和<code>e</code>表示的<code>string</code>。它调用<code>sregex_search(b, e, r)</code>将<code>it</code>定位到输入中第一个匹配的位置。</td>
+</tr>
+<tr>
+<td><code>sregex_iterator end;</code></td>
+<td><code>sregex_iterator</code>的尾后迭代器</td>
+</tr>
+<tr>
+<td><code>*it</code>， <code>it-&gt;</code></td>
+<td>根据最后一个调用<code>regex_search</code>的结果，返回一个<code>smatch</code>对象的引用或一个指向<code>smatch</code>对象的指针。</td>
+</tr>
+<tr>
+<td><code>++it</code> ， <code>it++</code></td>
+<td>从输入序列当前匹配位置开始调用<code>regex_search</code>。前置版本返回递增后迭代器；后置版本返回旧值。</td>
+</tr>
+<tr>
+<td><code>it1 == it2</code></td>
+<td>如果两个<code>sregex_iterator</code>都是尾后迭代器，则它们相等。两个非尾后迭代器是从相同的输入序列和<code>regex</code>对象构造，则它们相等。</td>
+</tr>
+</tbody></table>
+<p>示例：</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// 将字符串file中所有匹配模式r的子串输出</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span>sregex_iterator <span class="token function">it</span><span class="token punctuation">(</span>file<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> file<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> r<span class="token punctuation">)</span><span class="token punctuation">,</span> end_it<span class="token punctuation">;</span> it <span class="token operator">!=</span> end_it<span class="token punctuation">;</span> <span class="token operator">++</span>it<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    cout <span class="token operator">&lt;&lt;</span> it <span class="token operator">-></span><span class="token function">str</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><code>smatch</code>操作：</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>m.ready()</code></td>
+<td>如果已经通过调用<code>regex_search</code>或<code>regex_match</code>设置了<code>m</code>，则返回<code>true</code>；否则返回<code>false</code>。如果<code>ready</code>返回<code>false</code>，则对<code>m</code>进行操作是未定义的。</td>
+</tr>
+<tr>
+<td><code>m.size()</code></td>
+<td>如果匹配失败，则返回0，；否则返回最近一次匹配的正则表达式中子表达式的数目。</td>
+</tr>
+<tr>
+<td><code>m.empty()</code></td>
+<td>等价于<code>m.size() == 0</code></td>
+</tr>
+<tr>
+<td><code>m.prefix()</code></td>
+<td>一个<code>ssub_match</code>对象，标识当前匹配之前的序列</td>
+</tr>
+<tr>
+<td><code>m.suffix()</code></td>
+<td>一个<code>ssub_match</code>对象，标识当前匹配之后的部分</td>
+</tr>
+<tr>
+<td><code>m.format(...)</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>m.length(n)</code></td>
+<td>第<code>n</code>个匹配的子表达式的大小</td>
+</tr>
+<tr>
+<td><code>m.position(n)</code></td>
+<td>第<code>n</code>个子表达式距离序列开始的长度</td>
+</tr>
+<tr>
+<td><code>m.str(n)</code></td>
+<td>第<code>n</code>个子表达式匹配的<code>string</code></td>
+</tr>
+<tr>
+<td><code>m[n]</code></td>
+<td>对应第<code>n</code>个子表达式的<code>ssub_match</code>对象</td>
+</tr>
+<tr>
+<td><code>m.begin(), m.end()</code></td>
+<td>表示<code>m</code>中<code>ssub_match</code>元素范围的迭代器。</td>
+</tr>
+<tr>
+<td><code>m.cbegin(), m.cend()</code></td>
+<td>常量迭代器</td>
+</tr>
+</tbody></table>
+<h3 id="使用子表达式"><a href="#使用子表达式" class="headerlink" title="使用子表达式"></a>使用子表达式</h3><ul>
+<li>正则表达式语法通常用括号表示子表达式。</li>
+<li>子表达式的索引从1开始。</li>
+<li>在<code>fmt</code>中用<code>$</code>后跟子表达式的索引号来标识一个特定的子表达式。</li>
+</ul>
+<p>示例：</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">regex_search</span><span class="token punctuation">(</span>filename<span class="token punctuation">,</span> results<span class="token punctuation">,</span> r<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    cout <span class="token operator">&lt;&lt;</span> results<span class="token punctuation">.</span><span class="token function">str</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>  <span class="token comment">// .str(1)获取第一个子表达式匹配结果</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p><code>ssub_match</code>子匹配操作：</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>matched</code></td>
+<td>一个<code>public bool</code>数据成员，指出<code>ssub_match</code>是否匹配了</td>
+</tr>
+<tr>
+<td><code>first</code>， <code>second</code></td>
+<td><code>public</code>数据成员，指向匹配序列首元素和尾后位置的迭代器。如果未匹配，则<code>first</code>和<code>second</code>是相等的。</td>
+</tr>
+<tr>
+<td><code>length()</code></td>
+<td>匹配的大小，如果<code>matched</code>为<code>false</code>，则返回0。</td>
+</tr>
+<tr>
+<td><code>str()</code></td>
+<td>返回一个包含输入中匹配部分的<code>string</code>。如果<code>matched</code>为<code>false</code>，则返回空<code>string</code>。</td>
+</tr>
+<tr>
+<td><code>s = ssub</code></td>
+<td>将<code>ssub_match</code>对象<code>ssub</code>转化为<code>string</code>对象<code>s</code>。等价于<code>s=ssub.str()</code>，转换运算符不是<code>explicit</code>的。</td>
+</tr>
+</tbody></table>
+<h3 id="使用regex-replace"><a href="#使用regex-replace" class="headerlink" title="使用regex_replace"></a>使用regex_replace</h3><p>正则表达式替换操作：</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>m.format(dest, fmt, mft)</code>, <code>m.format(fmt, mft)</code></td>
+<td>使用格式字符串<code>fmt</code>生成格式化输出，匹配在<code>m</code>中，可选的<code>match_flag_type</code>标志在<code>mft</code>中。第一个版本写入迭代器<code>dest</code>指向的目的为止，并接受<code>fmt</code>参数，可以是一个<code>string</code>，也可以是一个指向空字符结尾的字符数组的指针。<code>mft</code>的默认值是<code>format_default</code>。</td>
+</tr>
+<tr>
+<td><code>rege_replace(dest, seq, r, fmt, mft)</code>，  <code>regex_replace(seq, r, fmt, mft)</code></td>
+<td>遍历<code>seq</code>，用<code>regex_search</code>查找与<code>regex</code>对象<code>r</code>相匹配的子串，使用格式字符串<code>fmt</code>和可选的<code>match_flag_type</code>标志来生成输出。<code>mft</code>的默认值是<code>match_default</code></td>
+</tr>
+</tbody></table>
+<p>示例：</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">string phone <span class="token operator">=</span> <span class="token string">"(\\()?(\\d&#123;3&#125;)(\\))?([-. ])?(\\d&#123;3&#125;)([-. ]?)(\\d&#123;4&#125;)"</span>
+string fmt <span class="token operator">=</span> <span class="token string">"$2.$5.$7"</span><span class="token punctuation">;</span>  <span class="token comment">// 将号码格式改为ddd.ddd.dddd</span>
+regex <span class="token function">r</span><span class="token punctuation">(</span>phone<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 用来寻找模式的regex对象</span>
+string number <span class="token operator">=</span> <span class="token string">"(908) 555-1800"</span><span class="token punctuation">;</span>
+cout <span class="token operator">&lt;&lt;</span> <span class="token function">regex_replace</span><span class="token punctuation">(</span>number<span class="token punctuation">,</span> r<span class="token punctuation">,</span> fmt<span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>匹配标志：</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>match_default</code></td>
+<td>等价于<code>format_default</code></td>
+</tr>
+<tr>
+<td><code>match_not_bol</code></td>
+<td>不将首字符作为行首处理</td>
+</tr>
+<tr>
+<td><code>match_not_eol</code></td>
+<td>不将尾字符作为行尾处理</td>
+</tr>
+<tr>
+<td><code>match_not_bow</code></td>
+<td>不将首字符作为单词首处理</td>
+</tr>
+<tr>
+<td><code>match_not_eow</code></td>
+<td>不将尾字符作为单词尾处理</td>
+</tr>
+<tr>
+<td><code>match_any</code></td>
+<td>如果存在多于一个匹配，则可以返回任意一个匹配</td>
+</tr>
+<tr>
+<td><code>match_not_null</code></td>
+<td>不匹配任何空序列</td>
+</tr>
+<tr>
+<td><code>match_continuous</code></td>
+<td>匹配必须从输入的首字符开始</td>
+</tr>
+<tr>
+<td><code>match_prev_avail</code></td>
+<td>输入序列包含第一个匹配之前的内容</td>
+</tr>
+<tr>
+<td><code>format_default</code></td>
+<td>用<code>ECMAScript</code>规则替换字符串</td>
+</tr>
+<tr>
+<td><code>format_sed</code></td>
+<td>用<code>POSIX sed</code>规则替换字符串</td>
+</tr>
+<tr>
+<td><code>format_no_copy</code></td>
+<td>不输出输入序列中未匹配的部分</td>
+</tr>
+<tr>
+<td><code>format_first_only</code></td>
+<td>只替换子表达式的第一次出现</td>
+</tr>
+</tbody></table>
+<h2 id="随机数"><a href="#随机数" class="headerlink" title="随机数"></a>随机数</h2><ul>
+<li>新标准之前，C和C++都依赖一个简单的C库函数<code>rand</code>来生成随机数，且只符合均匀分布。</li>
+<li>新标准：<strong>随机数引擎</strong> + <strong>随机数分布类</strong>， 定义在   <code>random</code>头文件中。</li>
+<li>C++程序应该使用<code>default_random_engine</code>类和恰当的分布类对象。</li>
+</ul>
+<h3 id="随机数引擎和分布"><a href="#随机数引擎和分布" class="headerlink" title="随机数引擎和分布"></a>随机数引擎和分布</h3><p>随机数引擎操作</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Engine e;</code></td>
+<td>默认构造函数；使用该引擎类型默认的种子</td>
+</tr>
+<tr>
+<td><code>Engine e(s);</code></td>
+<td>使用整型值<code>s</code>作为种子</td>
+</tr>
+<tr>
+<td><code>e.seed(s)</code></td>
+<td>使用种子<code>s</code>重置引擎的状态</td>
+</tr>
+<tr>
+<td><code>e.min()</code>，<code>e.max()</code></td>
+<td>此引擎可生成的最小值和最大值</td>
+</tr>
+<tr>
+<td><code>Engine::result_type</code></td>
+<td>此引擎生成的<code>unsigned</code>整型类型</td>
+</tr>
+<tr>
+<td><code>e.discard(u)</code></td>
+<td>将引擎推进<code>u</code>步；<code>u</code>的类型为<code>unsigned long long</code></td>
+</tr>
+</tbody></table>
+<p>示例：</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// 初始化分布类型</span>
+uniform_int_distribution<span class="token operator">&lt;</span><span class="token keyword">unsigned</span><span class="token operator">></span> <span class="token function">u</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 初始化引擎</span>
+default_random_engine e<span class="token punctuation">;</span>
+<span class="token comment">// 随机生成0-9的无符号整数</span>
+cout <span class="token operator">&lt;&lt;</span> <span class="token function">u</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>设置随机数发生器种子</strong>：</p>
+<ul>
+<li>种子就是一个数值，引擎可以利用它从序列中一个新位置重新开始生成随机数。</li>
+<li>种子可以使用系统函数<code>time(0)</code>。</li>
+</ul>
+<h3 id="其他随机数分布"><a href="#其他随机数分布" class="headerlink" title="其他随机数分布"></a>其他随机数分布</h3><p>分布类型的操作：</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Dist d;</code></td>
+<td>默认够赞函数；使<code>d</code>准备好被使用。其他构造函数依赖于<code>Dist</code>的类型；分布类型的构造函数是<code>explicit</code>的。</td>
+</tr>
+<tr>
+<td><code>d(e)</code></td>
+<td>用相同的<code>e</code>连续调用<code>d</code>的话，会根据<code>d</code>的分布式类型生成一个随机数序列；<code>e</code>是一个随机数引擎对象。</td>
+</tr>
+<tr>
+<td><code>d.min()</code>,<code>d.max()</code></td>
+<td>返回<code>d(e)</code>能生成的最小值和最大值。</td>
+</tr>
+<tr>
+<td><code>d.reset()</code></td>
+<td>重建<code>d</code>的状态，是的随后对<code>d</code>的使用不依赖于<code>d</code>已经生成的值。</td>
+</tr>
+</tbody></table>
+<h2 id="IO库再探"><a href="#IO库再探" class="headerlink" title="IO库再探"></a>IO库再探</h2><h3 id="格式化输入与输出"><a href="#格式化输入与输出" class="headerlink" title="格式化输入与输出"></a>格式化输入与输出</h3><ul>
+<li>使用操纵符改变格式状态。</li>
+<li>控制布尔值的格式： <code>cout &lt;&lt; boolalpha &lt;&lt; true &lt;&lt; endl;</code></li>
+<li>指定整型的进制：<code>cout &lt;&lt; dec &lt;&lt; 20 &lt;&lt; endl;</code></li>
+</ul>
+<p>定义在<code>iostream</code>中的操纵符：</p>
+<table>
+<thead>
+<tr>
+<th>操纵符</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>boolalpha</code></td>
+<td>将<code>true</code>和<code>false</code>输出为字符串</td>
+</tr>
+<tr>
+<td><code>* noboolalpha</code></td>
+<td>将<code>true</code>和<code>false</code>输出为1,0</td>
+</tr>
+<tr>
+<td><code>showbase</code></td>
+<td>对整型值输出表示进制的前缀</td>
+</tr>
+<tr>
+<td><code>* noshowbase</code></td>
+<td>不生成表示进制的前缀</td>
+</tr>
+<tr>
+<td><code>showpoint</code></td>
+<td>对浮点值总是显示小数点</td>
+</tr>
+<tr>
+<td><code>* noshowpoint</code></td>
+<td>只有当浮点值包含小数部分时才显示小数点</td>
+</tr>
+<tr>
+<td><code>showpos</code></td>
+<td>对非负数显示<code>+</code></td>
+</tr>
+<tr>
+<td><code>* noshowpos</code></td>
+<td>对非负数不显示<code>+</code></td>
+</tr>
+<tr>
+<td><code>uppercase</code></td>
+<td>在十六进制中打印<code>0X</code>，在科学计数法中打印<code>E</code></td>
+</tr>
+<tr>
+<td><code>* nouppercase</code></td>
+<td>在十六进制中打印<code>0x</code>，在科学计数法中打印<code>e</code></td>
+</tr>
+<tr>
+<td><code>* dec</code></td>
+<td>整型值显示为十进制</td>
+</tr>
+<tr>
+<td><code>hex</code></td>
+<td>整型值显示为十六进制</td>
+</tr>
+<tr>
+<td><code>oct</code></td>
+<td>整型值显示为八进制</td>
+</tr>
+<tr>
+<td><code>left</code></td>
+<td>在值的右侧添加填充字符</td>
+</tr>
+<tr>
+<td><code>right</code></td>
+<td>在值的左侧添加填充字符</td>
+</tr>
+<tr>
+<td><code>internal</code></td>
+<td>在符号和值之间添加填充字符</td>
+</tr>
+<tr>
+<td><code>fixed</code></td>
+<td>浮点值显示为定点十进制</td>
+</tr>
+<tr>
+<td><code>scientific</code></td>
+<td>浮点值显示为科学计数法</td>
+</tr>
+<tr>
+<td><code>hexfloat</code></td>
+<td>浮点值显示为十六进制（C++11）</td>
+</tr>
+<tr>
+<td><code>defaultfloat</code></td>
+<td>充值浮点数格式为十进制（C++11）</td>
+</tr>
+<tr>
+<td><code>unitbuf</code></td>
+<td>每次输出操作后都刷新缓冲区</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>* nounitbuf</code></td>
+</tr>
+<tr>
+<td><code>* skipws</code></td>
+<td>输入运算符跳过空白符</td>
+</tr>
+<tr>
+<td><code>noskipws</code></td>
+<td>输入运算符不跳过空白符</td>
+</tr>
+<tr>
+<td><code>flush</code></td>
+<td>刷新<code>ostream</code>缓冲区</td>
+</tr>
+<tr>
+<td><code>ends</code></td>
+<td>插入空字符，然后刷新<code>ostream</code>缓冲区</td>
+</tr>
+<tr>
+<td><code>endl</code></td>
+<td>插入换行，然后刷新<code>ostream</code>缓冲区</td>
+</tr>
+</tbody></table>
+<p>其中<code>*</code>表示默认的流状态。</p>
+<h3 id="未格式化的输入-输出操作"><a href="#未格式化的输入-输出操作" class="headerlink" title="未格式化的输入/输出操作"></a>未格式化的输入/输出操作</h3><p>单字节低层IO操作：</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>is.get(ch)</code></td>
+<td>从<code>istream is</code>读取下一个字节存入字符<code>cn</code>中。返回<code>is</code>。</td>
+</tr>
+<tr>
+<td><code>os.put(ch)</code></td>
+<td>将字符<code>ch</code>输出到<code>ostream os</code>。返回<code>os</code>。</td>
+</tr>
+<tr>
+<td><code>is.get()</code></td>
+<td>将<code>is</code>的下一个字节作为<code>int</code>返回</td>
+</tr>
+<tr>
+<td><code>is.putback(ch)</code></td>
+<td>将字符<code>ch</code>放回<code>is</code>。返回<code>is</code>。</td>
+</tr>
+<tr>
+<td><code>is.unget()</code></td>
+<td>将<code>is</code>向后移动一个字节。返回<code>is</code>。</td>
+</tr>
+<tr>
+<td><code>is.peek()</code></td>
+<td>将下一个字节作为<code>int</code>返回，但不从流中删除它。</td>
+</tr>
+</tbody></table>
+<p>多字节低层IO操作：</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>is.get(sink, size, delim)</code></td>
+<td>从<code>is</code>中读取最多<code>size</code>个字节，并保存在字符数组中，字符数组的起始地址由<code>sink</code>给出。读取过程直到遇到字符<code>delim</code>或读取了<code>size</code>个字节或遇到文件尾时停止。如果遇到了<code>delim</code>，则将其留在输入流中，不读取出来存入<code>sink</code>。</td>
+</tr>
+<tr>
+<td><code>is.getline(sink, size, delim)</code></td>
+<td>与接收三个参数的<code>get</code>版本类似，但会读取并丢弃<code>delim</code>。</td>
+</tr>
+<tr>
+<td><code>is.read(sink, size)</code></td>
+<td>读取最多<code>size</code>个字节，存入字符数组<code>sink</code>中。返回<code>is</code>。</td>
+</tr>
+<tr>
+<td><code>is.gcount()</code></td>
+<td>返回上一个未格式化读取从<code>is</code>读取的字节数</td>
+</tr>
+<tr>
+<td><code>os.write(source, size)</code></td>
+<td>将字符数组<code>source</code>中的<code>size</code>个字节写入<code>os</code>。返回<code>os</code>。</td>
+</tr>
+<tr>
+<td><code>is.ignore(size, delim)</code></td>
+<td>读取并忽略最多<code>size</code>个字符，包括<code>delim</code>。与其他未格式化函数不同，<code>ignore</code>有默认参数：<code>size</code>默认值是1，<code>delim</code>的默认值为文件尾。</td>
+</tr>
+</tbody></table>
+<ul>
+<li>注意：一般情况下，主张使用标准库提供的高层抽象，低层函数容易出错。</li>
+</ul>
+<h3 id="流随机访问"><a href="#流随机访问" class="headerlink" title="流随机访问"></a>流随机访问</h3><ul>
+<li>只适用于<code>fstream</code>和<code>sstream</code>。</li>
+<li>通过将标记<code>seek</code>到一个给定位置来重定位它。</li>
+<li><code>tell</code>告诉我们标记的当前位置。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>tellg()</code>，<code>tellp</code></td>
+<td>返回一个输入流中（<code>tellg</code>）或输出流中（<code>tellp</code>）标记的当前位置。</td>
+</tr>
+<tr>
+<td><code>seekg(pos)</code>，<code>seekp(pos)</code></td>
+<td>在一个输入流或输出流中将标记重定位到给定的绝对地址。<code>pos</code>通常是一个当前<code>teelg</code>或<code>tellp</code>返回的值。</td>
+</tr>
+<tr>
+<td><code>seekp(off, from)</code>，<code>seekg(off, from)</code></td>
+<td>在一个输入流或输出流中将标记定位到<code>from</code>之前或之后<code>off</code>个字符，<code>from</code>可以是下列值之一：<code>beg</code>，偏移量相对于流开始位置；<code>cur</code>，偏移量相对于流当前位置；<code>end</code>，偏移量相对于流结尾位置。</td>
+</tr>
+</tbody></table>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">金宝</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://jinbaotang.cn/2021/04/10/notes/ch17/">https://jinbaotang.cn/2021/04/10/notes/ch17/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">金宝</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/c/">
+                                    <span class="chip bg-color">c++</span>
+                                </a>
+                            
+                                <a href="/tags/coding/">
+                                    <span class="chip bg-color">coding</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: 'f2b2a69ea8b8fe7f47f9',
+        clientSecret: '70e5efd1c9338799338122d631c9d24f93b9dcb7',
+        repo: 'jinbaotang.github.io',
+        owner: 'jinbaotang',
+        admin: "jinbaotang",
+        id: '2021-04-10T20-35-38',
+        distractionFreeMode: true, // Facebook-like distraction free mode
+        createIssueManually: true,
+        proxy: 'https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token',
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments textarea {
+        box-sizing: border-box;
+        background: url("/medias/comment_bg.png") 100% 100% no-repeat;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #4cbf30;
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="vcomments" class="card-content" style="display: grid">
+    </div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="https://unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'u8mcnI498PEQRk7z9pjH3rzE-gzGzoHsz',
+        appKey: 'rdOVQCGteA094mRYaD9bAitn',
+        notify: 'false' === 'true',
+        verify: 'false' === 'true',
+        visitor: 'false' === 'true',
+        avatar: 'wavatar',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: '如果你没有GitHub账号，还可以在这里评论啦！'
+    });
+</script>
+
+<!--酷Q推送-->
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2021/04/10/notes/ch09/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="c++笔记">
+                        
+                        <span class="card-title">c++笔记</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-04-10
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/cpp/" class="post-category">
+                                    cpp
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/c/">
+                        <span class="chip bg-color">c++</span>
+                    </a>
+                    
+                    <a href="/tags/coding/">
+                        <span class="chip bg-color">coding</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                本篇&nbsp;<i class="far fa-dot-circle"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/04/10/notes/ch17/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="c++笔记">
+                        
+                        <span class="card-title">c++笔记</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-04-10
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/cpp/" class="post-category">
+                                    cpp
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/c/">
+                        <span class="chip bg-color">c++</span>
+                    </a>
+                    
+                    <a href="/tags/coding/">
+                        <span class="chip bg-color">coding</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: 金宝的博客<br />'
+            + '文章作者: 金宝<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h1, h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+                            
+
+                </main>
+
+                
+                    <script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+                    <script>
+                        MathJax.Hub.Config({
+                            tex2jax: {
+                                inlineMath: [
+                                    ['$', '$'],
+                                    ['\(', '\)']
+                                ]
+                            }
+                        });
+                    </script>
+                    <script>
+                        (function() {
+                            var bp = document.createElement('script');
+                            var curProtocol = window.location.protocol.split(':')[0];
+                            if (curProtocol === 'https') {
+                                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+                            } else {
+                                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+                            }
+                            var s = document.getElementsByTagName("script")[0];
+                            s.parentNode.insertBefore(bp, s);
+                        })();
+                    </script>
+                    <script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+                    <!-- 代码语言 -->
+                    <script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+                    <!-- 代码块复制 -->
+                    <script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+                    <script type="text/javascript" src="/libs/codeBlock/clipboard.min.js"></script>
+                    <!-- 代码块收缩 -->
+                    <script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+                    <!-- 代码块折行 -->
+                    <style type="text/css">
+                        code[class*="language-"],
+                        pre[class*="language-"] {
+                            white-space: pre !important;
+                        }
+                    </style>
+
+                    
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+            
+                <div class="container row center-align" style="margin-bottom: 15px !important;">
+                    <div class="col s12 m8 l8 copy-right">
+                        Copyright&nbsp;&copy;
+                        
+                                <span id="year">2021</span>
+                                
+                                    <span id="year">2021</span>
+                                    <a href="/about" target="_blank">
+                                        金宝
+                                    </a>
+                                    |&nbsp;Powered by&nbsp;<a href="https://github.com/jinbaotang/" target="_blank">jinbao</a> |&nbsp;Theme&nbsp;
+                                    <a href="https://github.com/jinbaotang/jinbaotang.githuh.io" target="_blank">jinbao-matery-modify</a>
+                                    <br>
+                                    
+                                        &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span class="white-color">148.4k</span>&nbsp;字
+                                        
+                                            
+                                                
+                                                    
+                                                        
+                                                            
+                                                                <span id="busuanzi_container_site_pv" style='display:none'>
+                                                                <i class="fa fa-heart-o"></i>
+                                                                本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+                                                                </span>
+                                                                
+                                                                    
+                                                                        <span id="busuanzi_container_site_uv" style='display:none'>
+                                                                人次,&nbsp;访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+                                                                        </span>
+                                                                        
+                                                                            <br>
+                                                                            
+                                                                                <span id="sitetime">载入运行时间...</span>
+                                                                                <script>
+                                                                                    function siteTime() {
+                                                                                        var seconds = 1000;
+                                                                                        var minutes = seconds * 60;
+                                                                                        var hours = minutes * 60;
+                                                                                        var days = hours * 24;
+                                                                                        var years = days * 365;
+                                                                                        var today = new Date();
+                                                                                        var startYear = "2021";
+                                                                                        var startMonth = "4";
+                                                                                        var startDate = "1";
+                                                                                        var startHour = "0";
+                                                                                        var startMinute = "0";
+                                                                                        var startSecond = "0";
+                                                                                        var todayYear = today.getFullYear();
+                                                                                        var todayMonth = today.getMonth() + 1;
+                                                                                        var todayDate = today.getDate();
+                                                                                        var todayHour = today.getHours();
+                                                                                        var todayMinute = today.getMinutes();
+                                                                                        var todaySecond = today.getSeconds();
+                                                                                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                                                                                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                                                                                        var diff = t2 - t1;
+                                                                                        var diffYears = Math.floor(diff / years);
+                                                                                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+                                                                                        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                                                                                        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                                                                                            minutes);
+                                                                                        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                                                                                            diffMinutes * minutes) / seconds);
+                                                                                        if (startYear == todayYear) {
+                                                                                            document.getElementById("year").innerHTML = todayYear;
+                                                                                            document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                                                                                                " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                                                                                        } else {
+                                                                                            document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                                                                                            document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                                                                                                " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                                                                                        }
+                                                                                    }
+                                                                                    setInterval(siteTime, 1000);
+                                                                                </script>
+                                                                                
+                                                                                    <br>
+                                                                                    
+                    </div>
+                    <div class="col s12 m4 l4 social-link social-statis">
+                        
+    <a href="https://github.com/jinbaotang" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:jinbao.tang@foxmail.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=995339765" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 995339765" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+
+                    </div>
+                </div>
+</footer>
+
+
+<script>
+    $(document).ready(function() {
+
+        var int = setInterval(fixCount, 50); // 50ms周期检测函数
+        var pvcountOffset = 80000; // 初始化首次数据
+        var uvcountOffset = 20000;
+
+        function fixCount() {
+            if (document.getElementById("busuanzi_container_site_pv").style.display != "none") {
+                $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + pvcountOffset);
+                clearInterval(int);
+            }
+            if ($("#busuanzi_container_site_pv").css("display") != "none") {
+                $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + uvcountOffset); // 加上初始数据 
+                clearInterval(int); // 停止检测
+            }
+        }
+    });
+</script>
+<div class="progress-bar"></div>
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
