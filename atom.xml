@@ -6,7 +6,7 @@
   <link href="https://jinbaotang.cn/atom.xml" rel="self"/>
   
   <link href="https://jinbaotang.cn/"/>
-  <updated>2021-06-10T06:55:07.098Z</updated>
+  <updated>2021-06-13T09:01:10.264Z</updated>
   <id>https://jinbaotang.cn/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>我是如何从MCU开发转到linux开发</title>
+    <link href="https://jinbaotang.cn/2021/06/06/how-mcu2linux/"/>
+    <id>https://jinbaotang.cn/2021/06/06/how-mcu2linux/</id>
+    <published>2021-06-06T13:00:38.000Z</published>
+    <updated>2021-06-13T09:01:10.264Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;从大二开始玩单片机，2019年想转linux开发，但是无从下手；在工作中，终于在2020年中无缝、平滑过渡到linux上开发，想会议下自己转变之路，同时也希望后面自己进一步成长后，现在的认知是对，然后能够帮助同样迷惑小伙伴。至于linux转mcu，</summary>
+        
+      
+    
+    
+    
+    <category term="linux" scheme="https://jinbaotang.cn/categories/linux/"/>
+    
+    
+    <category term="mcu" scheme="https://jinbaotang.cn/tags/mcu/"/>
+    
+    <category term="linux" scheme="https://jinbaotang.cn/tags/linux/"/>
+    
+  </entry>
   
   <entry>
     <title>linux间网络通信无界面实时抓包、分析以及文件同步</title>
@@ -47,34 +75,6 @@
     <category term="rsync" scheme="https://jinbaotang.cn/tags/rsync/"/>
     
     <category term="pcap" scheme="https://jinbaotang.cn/tags/pcap/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>我是如何从MCU开发转到linux开发</title>
-    <link href="https://jinbaotang.cn/2021/06/06/how-mcu2linux/"/>
-    <id>https://jinbaotang.cn/2021/06/06/how-mcu2linux/</id>
-    <published>2021-06-06T13:00:38.000Z</published>
-    <updated>2021-06-13T09:01:10.264Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;从大二开始玩单片机，2019年想转linux开发，但是无从下手；在工作中，终于在2020年中无缝、平滑过渡到linux上开发，想会议下自己转变之路，同时也希望后面自己进一步成长后，现在的认知是对，然后能够帮助同样迷惑小伙伴。至于linux转mcu，</summary>
-        
-      
-    
-    
-    
-    <category term="linux" scheme="https://jinbaotang.cn/categories/linux/"/>
-    
-    
-    <category term="linux" scheme="https://jinbaotang.cn/tags/linux/"/>
-    
-    <category term="mcu" scheme="https://jinbaotang.cn/tags/mcu/"/>
     
   </entry>
   
@@ -263,11 +263,11 @@
   </entry>
   
   <entry>
-    <title>c++课后答案1</title>
+    <title>c++ primer课后答案1</title>
     <link href="https://jinbaotang.cn/2021/04/10/excersize/ch01/"/>
     <id>https://jinbaotang.cn/2021/04/10/excersize/ch01/</id>
     <published>2021-04-10T12:35:38.000Z</published>
-    <updated>2021-06-16T12:54:07.537Z</updated>
+    <updated>2021-06-16T12:55:00.926Z</updated>
     
     
       
@@ -291,11 +291,11 @@
   </entry>
   
   <entry>
-    <title>c++课后答案4</title>
+    <title>c++ primer课后答案4</title>
     <link href="https://jinbaotang.cn/2021/04/10/excersize/ch04/"/>
     <id>https://jinbaotang.cn/2021/04/10/excersize/ch04/</id>
     <published>2021-04-10T12:35:38.000Z</published>
-    <updated>2021-06-16T12:54:07.538Z</updated>
+    <updated>2021-06-16T12:55:00.926Z</updated>
     
     
       
@@ -319,11 +319,11 @@
   </entry>
   
   <entry>
-    <title>c++课后答案8</title>
+    <title>c++ primer课后答案8</title>
     <link href="https://jinbaotang.cn/2021/04/10/excersize/ch08/"/>
     <id>https://jinbaotang.cn/2021/04/10/excersize/ch08/</id>
     <published>2021-04-10T12:35:38.000Z</published>
-    <updated>2021-06-16T12:54:07.538Z</updated>
+    <updated>2021-06-16T12:55:00.926Z</updated>
     
     
       
@@ -347,11 +347,11 @@
   </entry>
   
   <entry>
-    <title>c++课后答案18</title>
+    <title>c++ primer课后答案18</title>
     <link href="https://jinbaotang.cn/2021/04/10/excersize/ch18/"/>
     <id>https://jinbaotang.cn/2021/04/10/excersize/ch18/</id>
     <published>2021-04-10T12:35:38.000Z</published>
-    <updated>2021-06-16T12:54:07.537Z</updated>
+    <updated>2021-06-16T12:55:00.926Z</updated>
     
     
       
@@ -375,11 +375,11 @@
   </entry>
   
   <entry>
-    <title>c++课后答案19</title>
+    <title>c++ primer课后答案19</title>
     <link href="https://jinbaotang.cn/2021/04/10/excersize/ch19/"/>
     <id>https://jinbaotang.cn/2021/04/10/excersize/ch19/</id>
     <published>2021-04-10T12:35:38.000Z</published>
-    <updated>2021-06-16T12:54:07.537Z</updated>
+    <updated>2021-06-16T12:55:00.926Z</updated>
     
     
       
@@ -403,11 +403,11 @@
   </entry>
   
   <entry>
-    <title>c++笔记1</title>
+    <title>c++ primer笔记1</title>
     <link href="https://jinbaotang.cn/2021/04/10/notes/ch01/"/>
     <id>https://jinbaotang.cn/2021/04/10/notes/ch01/</id>
     <published>2021-04-10T12:35:38.000Z</published>
-    <updated>2021-06-16T12:54:07.538Z</updated>
+    <updated>2021-06-16T12:55:00.928Z</updated>
     
     
       
@@ -431,95 +431,11 @@
   </entry>
   
   <entry>
-    <title>c++笔记4</title>
-    <link href="https://jinbaotang.cn/2021/04/10/notes/ch04/"/>
-    <id>https://jinbaotang.cn/2021/04/10/notes/ch04/</id>
-    <published>2021-04-10T12:35:38.000Z</published>
-    <updated>2021-06-16T12:54:07.742Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;所有文章暂时均来自&lt;a href=&quot;https://github.com/applenob/Cpp_Primer_Practice&quot;&gt;搞定C++👊。C++ Primer</summary>
-        
-      
-    
-    
-    
-    <category term="cpp" scheme="https://jinbaotang.cn/categories/cpp/"/>
-    
-    
-    <category term="c++" scheme="https://jinbaotang.cn/tags/c/"/>
-    
-    <category term="coding" scheme="https://jinbaotang.cn/tags/coding/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>c++笔记3</title>
-    <link href="https://jinbaotang.cn/2021/04/10/notes/ch03/"/>
-    <id>https://jinbaotang.cn/2021/04/10/notes/ch03/</id>
-    <published>2021-04-10T12:35:38.000Z</published>
-    <updated>2021-06-16T12:54:07.742Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;所有文章暂时均来自&lt;a href=&quot;https://github.com/applenob/Cpp_Primer_Practice&quot;&gt;搞定C++👊。C++ Primer</summary>
-        
-      
-    
-    
-    
-    <category term="cpp" scheme="https://jinbaotang.cn/categories/cpp/"/>
-    
-    
-    <category term="c++" scheme="https://jinbaotang.cn/tags/c/"/>
-    
-    <category term="coding" scheme="https://jinbaotang.cn/tags/coding/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>c++笔记6</title>
-    <link href="https://jinbaotang.cn/2021/04/10/notes/ch06/"/>
-    <id>https://jinbaotang.cn/2021/04/10/notes/ch06/</id>
-    <published>2021-04-10T12:35:38.000Z</published>
-    <updated>2021-06-16T12:54:07.742Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;所有文章暂时均来自&lt;a href=&quot;https://github.com/applenob/Cpp_Primer_Practice&quot;&gt;搞定C++👊。C++ Primer</summary>
-        
-      
-    
-    
-    
-    <category term="cpp" scheme="https://jinbaotang.cn/categories/cpp/"/>
-    
-    
-    <category term="c++" scheme="https://jinbaotang.cn/tags/c/"/>
-    
-    <category term="coding" scheme="https://jinbaotang.cn/tags/coding/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>c++笔记2</title>
+    <title>c++ primer笔记2</title>
     <link href="https://jinbaotang.cn/2021/04/10/notes/ch02/"/>
     <id>https://jinbaotang.cn/2021/04/10/notes/ch02/</id>
     <published>2021-04-10T12:35:38.000Z</published>
-    <updated>2021-06-16T12:54:07.742Z</updated>
+    <updated>2021-06-16T12:55:01.213Z</updated>
     
     
       
@@ -543,11 +459,11 @@
   </entry>
   
   <entry>
-    <title>c++笔记7</title>
-    <link href="https://jinbaotang.cn/2021/04/10/notes/ch07/"/>
-    <id>https://jinbaotang.cn/2021/04/10/notes/ch07/</id>
+    <title>c++ primer笔记3</title>
+    <link href="https://jinbaotang.cn/2021/04/10/notes/ch03/"/>
+    <id>https://jinbaotang.cn/2021/04/10/notes/ch03/</id>
     <published>2021-04-10T12:35:38.000Z</published>
-    <updated>2021-06-16T12:54:07.742Z</updated>
+    <updated>2021-06-16T12:55:01.213Z</updated>
     
     
       
@@ -571,11 +487,95 @@
   </entry>
   
   <entry>
-    <title>c++笔记5</title>
+    <title>c++ primer笔记5</title>
     <link href="https://jinbaotang.cn/2021/04/10/notes/ch05/"/>
     <id>https://jinbaotang.cn/2021/04/10/notes/ch05/</id>
     <published>2021-04-10T12:35:38.000Z</published>
-    <updated>2021-06-16T12:54:07.742Z</updated>
+    <updated>2021-06-16T12:55:01.213Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;所有文章暂时均来自&lt;a href=&quot;https://github.com/applenob/Cpp_Primer_Practice&quot;&gt;搞定C++👊。C++ Primer</summary>
+        
+      
+    
+    
+    
+    <category term="cpp" scheme="https://jinbaotang.cn/categories/cpp/"/>
+    
+    
+    <category term="c++" scheme="https://jinbaotang.cn/tags/c/"/>
+    
+    <category term="coding" scheme="https://jinbaotang.cn/tags/coding/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>c++ primer笔记6</title>
+    <link href="https://jinbaotang.cn/2021/04/10/notes/ch06/"/>
+    <id>https://jinbaotang.cn/2021/04/10/notes/ch06/</id>
+    <published>2021-04-10T12:35:38.000Z</published>
+    <updated>2021-06-16T12:55:01.213Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;所有文章暂时均来自&lt;a href=&quot;https://github.com/applenob/Cpp_Primer_Practice&quot;&gt;搞定C++👊。C++ Primer</summary>
+        
+      
+    
+    
+    
+    <category term="cpp" scheme="https://jinbaotang.cn/categories/cpp/"/>
+    
+    
+    <category term="c++" scheme="https://jinbaotang.cn/tags/c/"/>
+    
+    <category term="coding" scheme="https://jinbaotang.cn/tags/coding/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>c++ primer笔记4</title>
+    <link href="https://jinbaotang.cn/2021/04/10/notes/ch04/"/>
+    <id>https://jinbaotang.cn/2021/04/10/notes/ch04/</id>
+    <published>2021-04-10T12:35:38.000Z</published>
+    <updated>2021-06-16T12:55:01.213Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;所有文章暂时均来自&lt;a href=&quot;https://github.com/applenob/Cpp_Primer_Practice&quot;&gt;搞定C++👊。C++ Primer</summary>
+        
+      
+    
+    
+    
+    <category term="cpp" scheme="https://jinbaotang.cn/categories/cpp/"/>
+    
+    
+    <category term="c++" scheme="https://jinbaotang.cn/tags/c/"/>
+    
+    <category term="coding" scheme="https://jinbaotang.cn/tags/coding/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>c++ primer笔记7</title>
+    <link href="https://jinbaotang.cn/2021/04/10/notes/ch07/"/>
+    <id>https://jinbaotang.cn/2021/04/10/notes/ch07/</id>
+    <published>2021-04-10T12:35:38.000Z</published>
+    <updated>2021-06-16T12:55:01.213Z</updated>
     
     
       
