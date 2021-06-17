@@ -479,14 +479,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-06-13
+                    2021-06-17
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.5k
+                    2.7k
                 </div>
                 
 
@@ -520,7 +520,9 @@
 <p>记录第一次稍大规模的重构。这是我第三次写DoIP, 第1.5次写UDS，第一次写CANTP、router。</p>
 </blockquote>
 <h1 id="一、-背景"><a href="#一、-背景" class="headerlink" title="一、 背景"></a>一、 背景</h1><p>&emsp;&emsp;在<a href="https://jinbaotang.cn/2021/04/11/why-write/">为什么要写博客</a>里提到了，由于个人关系，换工作了。新工作的首要任务就是优化已有代码，在花了一段时间阅读代码整体框架后，发现已有的代码框架层次不太清楚，如果要优化的话，总感觉是在做错误的事。进而跟领导提出重构的想法，领导也赞同。就开始<strong>浴火重生</strong>之路了，跟之前的工作背景相关，重构了就想做成可迭代、跨平台的，所以在过去的一两个月不是就是在设计就是在验证了，这段时间，无论是在车上、洗澡还是睡觉前都是在脑子里跑流程，也真正的体会到了<em>面向对象</em>（虽然我是用c）带来的好处了。也终于一点点的体会到了，原来之前老虞（<strong>技术偶像之一</strong>）看着规范写代码也没有这么的神奇，<em>注：离老虞的水平当然还有很远的路，梦想还是要有的嘛，莫欺少年穷。</em>—记于2021.06.05 <img src="/medias/refactor-1/dream.jpeg"></p>
-<h1 id="二、-关于面向对象"><a href="#二、-关于面向对象" class="headerlink" title="二、 关于面向对象"></a>二、 关于面向对象</h1><p>&emsp;&emsp;自己目前是主<strong>c</strong>，暂时略懂一点c++，有一段时间一直挺想进一步学c++的，虽然自己工作之余也写过一个webserver的小程序，但是暂时受限工作内容，也谈不上能够熟练使用c++了。之前想学c++的原因也比较单纯，很多人都说c是面向过程的语言，c++是面向对象的语言，而面向对象是人正常的思维方式。所以觉得必须得学会c++，无论是为了做知识储备，还是为了学会面向对象的思维方式。可是后面学了一段时间的c++后，其实还是不知道面向对象和面向对象有什么区别，直到有一天看<strong>vsomeip</strong>的源码（并不是第一次看），突然就<strong>顿悟了</strong>，很神奇的一件事。<em>无论任何事，即使遇到了很大的困难，我都相信这些困难和问题会在某一个时间点解决</em>，这是在困境中，一直激励着自己的话。<br>&emsp;&emsp;关于面向对象和面向过程，网上有铺天盖地的解释，比如：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/27468564/answer/226691160">如何通俗易懂地举例说明「面向对象」和「面向过程」有什么区别？</a>。但是我还是想谈谈自己的理解。我觉上面链接说的我挺认可的一句话就是：<strong>首先是命名冲突，英文单词也就那么几个，可能写着写着取名时就没合适的短词用了，为了避免冲突，只能把函数名取得越来越长。</strong>当然这不是面向对象就能解决的，因为比如C语言，由于没有命名空间的概念，有些函数不想弄成<strong>static</strong>，以为有其他的文件可能会用到这个函数，这就到导致了，你的整个工程/动态库都只能有这个一个函数名了；还有就是类型了，用c/c++难免会自己构造一些自己的类型，还是像函数一样，由于了没有像<strong>命名空间</strong>这样作用域的限制，在一个程序里如果有同样的命名，即使不会带来编译、链接出错，也会给代码可读性带来灾难。但是另一方面，如果有了面向对象的思想后，就会自动的对一些数据结构打包（struct）在一起，这就像一个类了，再添加几个函数指针就像是<em>弱化版虚函数</em>，打包的在一起后，也会不自觉地对一些变量和函数添加<strong>static</strong>来修饰了，这样限制了作用域，提高了代码可读性；也减少了上面提到的命名冲突。当然对于稍大规模，又有相近概念的在一个程序里是，上面问题依然会存在，比如我曾经写过的<strong>someip</strong>代码，即使我已经划分了好几个模块，但是由于上面相近概念的太多了，也有点命名词穷（可能还是太菜），去看<strong>vsomeip</strong>代码（c++）时，就发现里面很多都是一样的名字，但是由于作用域的问题，既不会带来冲突，也不会给可读性带来问题。<br>&emsp;&emsp;上面分析了这么多，介绍了面向对象带来的好处，那到底什么是面向对象呢？有什么区别呢？<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/27468564/answer/101951302">编程发展史谈面向对象</a>这位答主讲的我觉得特别适合没咋写过代码，又有一定个概念的人；<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/27468564/answer/757537214">力扣官方解答面向过程和面向对象</a>的，早我写了大概2万行两场代码后，看到的，觉得就特别适合一直主要用面向过程写c的人，图文并茂的将面向过程相对面向过程的好处讲解的很清楚。但是我觉得都不够抽象，我自己有一天吃芒果，结合自己一开始提到的<strong>顿悟</strong>，感觉可以更形象的说明<em>面向过程</em>和<em>面向对象</em>的区别：<br>如果我要吃一个芒果，面向过程就是：</p>
+<h1 id="二、-关于面向对象"><a href="#二、-关于面向对象" class="headerlink" title="二、 关于面向对象"></a>二、 关于面向对象</h1><h2 id="1-关于我自己"><a href="#1-关于我自己" class="headerlink" title="1. 关于我自己"></a>1. 关于我自己</h2><p>&emsp;&emsp;自己目前是主<strong>c</strong>，暂时略懂一点c++，有一段时间一直挺想进一步学c++的，虽然自己工作之余也写过一个webserver的小程序，但是暂时受限工作内容，也谈不上能够熟练使用c++了。之前想学c++的原因也比较单纯，很多人都说c是面向过程的语言，c++是面向对象的语言，而面向对象是人正常的思维方式。所以觉得必须得学会c++，无论是为了做知识储备，还是为了学会面向对象的思维方式。可是后面学了一段时间的c++后，其实还是不知道面向对象和面向对象有什么区别，直到有一天看<strong>vsomeip</strong>的源码（并不是第一次看），突然就<strong>顿悟了</strong>，很神奇的一件事。所以我相信，<em>无论任何事，即使遇到了很大的困难，我都相信这些困难和问题会在某一个时间点解决</em>，这是在困境中，一直激励着自己的话。</p>
+<h2 id="2-什么是面向对象"><a href="#2-什么是面向对象" class="headerlink" title="2. 什么是面向对象"></a>2. 什么是面向对象</h2><p>&emsp;&emsp;关于面向对象和面向过程，网上有铺天盖地的解释，比如：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/27468564/answer/226691160">如何通俗易懂地举例说明「面向对象」和「面向过程」有什么区别？</a>。但是我还是想谈谈自己的理解。我觉上面链接说的我挺认可的一句话就是：<strong>首先是命名冲突，英文单词也就那么几个，可能写着写着取名时就没合适的短词用了，为了避免冲突，只能把函数名取得越来越长。</strong>当然这不是面向对象就能解决的，因为比如C语言，由于没有命名空间的概念，有些函数不想弄成<strong>static</strong>，以为有其他的文件可能会用到这个函数，这就到导致了，你的整个工程/动态库都只能有这个一个函数名了；还有就是类型了，用c/c++难免会自己构造一些自己的类型，还是像函数一样，由于了没有像<strong>命名空间</strong>这样作用域的限制，在一个程序里如果有同样的命名，即使不会带来编译、链接出错，也会给代码可读性带来灾难。但是另一方面，如果有了面向对象的思想后，就会自动的对一些数据结构打包（struct）在一起，这就像一个类了，再添加几个函数指针就像是<em>弱化版虚函数</em>，打包的在一起后，也会不自觉地对一些变量和函数添加<strong>static</strong>来修饰了，这样限制了作用域，提高了代码可读性；也减少了上面提到的命名冲突。当然对于稍大规模，又有相近概念的在一个程序里是，上面问题依然会存在，比如我曾经写过的<strong>someip</strong>代码，即使我已经划分了好几个模块，但是由于上面相近概念的太多了，也有点命名词穷（可能还是太菜），去看<strong>vsomeip</strong>代码（c++）时，就发现里面很多都是一样的名字，但是由于作用域的问题，既不会带来冲突，也不会给可读性带来问题。</p>
+<h2 id="3-我理解的面向对象"><a href="#3-我理解的面向对象" class="headerlink" title="3. 我理解的面向对象"></a>3. 我理解的面向对象</h2><p>&emsp;&emsp;上面分析了这么多，介绍了面向对象带来的好处，那到底什么是面向对象呢？有什么区别呢？<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/27468564/answer/101951302">编程发展史谈面向对象</a>这位答主讲的我觉得特别适合没咋写过代码，又有一定个概念的人；<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/27468564/answer/757537214">力扣官方解答面向过程和面向对象</a>的，早我写了大概2万行两场代码后，看到的，觉得就特别适合一直主要用面向过程写c的人，图文并茂的将面向过程相对面向过程的好处讲解的很清楚。但是我觉得都不够抽象，我自己有一天吃芒果，结合自己一开始提到的<strong>顿悟</strong>，感觉可以更形象的说明<em>面向过程</em>和<em>面向对象</em>的区别：<br>如果我要吃一个芒果，面向过程就是：</p>
 <ol>
 <li>找到芒果</li>
 <li>洗芒果</li>
@@ -573,8 +575,8 @@
     stomach<span class="token punctuation">.</span><span class="token function">digest</span><span class="token punctuation">(</span>mango<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>&emsp;&emsp;不知道看完上述示例后，有没有更清楚。从最后的处理流程来看，都是需要顺序调用的，不同的是一开始的思考过程，面向过程更多是做完这一步，才会去想我下一步要用什么东西来干什么，最终一步一步完成整个操作。面向对象呢，一开始就想好完成这个任务，我要用什么工具来做什么，给每个工具以特定的功能，比如手可以用来<strong>找、洗、切</strong>，有了对象并且有了操作后，就可以按照流程完后整个任务了。<br>&emsp;&emsp;看完上述代码，可能很多人会说，我觉得没啥多大区别啊。是的，上面这个任务的确没啥多大区别，甚至用面向过程还更简单。但是，你可以参考这个<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/27468564/answer/757537214">力扣官方解答面向过程和面向对象</a>，就清楚了。或者又会说，我用c也能完成c++那样的啊，对的，完全没问题哦，linux内核就是这么做的呢。但是你去看这些代码，别说些写出那样的宏了，就是无障碍看懂就是大神了，更别说c++还有虚函数、重载这样秒杀使用函数指针来实现<strong>类虚函数的做法</strong>。另外，更为关键的是，使用c++，<strong>它可以用语法规则上来尽量保证你按照面向对象来实现</strong>，比如我可以在<em>类</em>里面定义<em>私有成员变量</em>，外部想要访问这些变量就必须通过接口来实现，这样你就不得不思考如何先定义对应的操作；若你是用c的，就不会一定这样做，大概率你会直接通过结构体变量直接就访问了，因为给每个变量都写个get和set。。。。不过，使用c也能实现类似于<em>私有成员</em>，但是这时候的做法更多是不让外部看到里面的成员，而不是为了不让外部直接通过结构体变量来访问。比如下述操作（我也是看别人这么实现，当时觉得好神奇，着实惊艳）：</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/* test.h */</span>
+<p>&emsp;&emsp;不知道看完上述示例后，有没有更清楚。从最后的处理流程来看，都是需要顺序调用的，不同的是一开始的思考过程，面向过程更多是做完这一步，才会去想我下一步要用什么东西来干什么，最终一步一步完成整个操作。面向对象呢，一开始就想好完成这个任务，我要用什么工具来做什么，给每个工具以特定的功能，比如手可以用来<strong>找、洗、切</strong>，有了对象并且有了操作后，就可以按照流程完后整个任务了。<br>&emsp;&emsp;看完上述代码，可能很多人会说，我觉得没啥多大区别啊。是的，上面这个任务的确没啥多大区别，甚至用面向过程还更简单。但是，你可以参考这个<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/27468564/answer/757537214">力扣官方解答面向过程和面向对象</a>，就清楚了。或者又会说，我用c也能完成c++那样的啊，对的，完全没问题哦，linux内核就是这么做的呢。但是你去看这些代码，别说些写出那样的宏了，就是无障碍看懂就是大神了，更别说c++还有虚函数、重载这样秒杀使用函数指针来实现<strong>类虚函数的做法</strong>。另外，更为关键的是，使用c++，<strong>它可以用语法规则上来尽量保证你按照面向对象规范来实现</strong>，比如我可以在<em>类</em>里面定义<em>私有成员变量</em>，外部想要访问这些变量就必须通过接口来实现，这样你就不得不思考如何先定义对应的操作；若你是用c的，就不一定会这样做，大概率你会直接通过结构体变量直接就访问了，因为给每个变量都写个get和set。。。。，着实太繁琐了。<strong>不过</strong>，使用c也能实现类似于<em>私有成员</em>，这样的做法一个是为了不让外部看到里面的成员，另一个是可以减少模块间的耦合度。比如下述操作（我也是看别人这么实现，当时觉得好神奇，着实惊艳）：</p>
+<h2 id="4-c语言实现私有成员"><a href="#4-c语言实现私有成员" class="headerlink" title="4. c语言实现私有成员"></a>4. c语言实现私有成员</h2><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/* test.h */</span>
 
 <span class="token keyword">struct</span> <span class="token class-name">test_s</span><span class="token punctuation">&#123;</span>
     <span class="token comment">/* public member */</span>
@@ -608,7 +610,7 @@
 
     <span class="token function">free</span><span class="token punctuation">(</span>test<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>&emsp;&emsp;上述test_value3就是一个私有变量了，在test.c文件内是可用的，但是文件外就不可见了，其实说白了，还是<strong>指针永远的神</strong>。随着自己c的代码量直线上升和慢慢更多接触c++，对它俩的区别会越来越有体会，技术成就感一直是鞭策学习的最大动力。</p>
+<p>&emsp;&emsp;上述<code>test_value3</code>就是一个私有变量了，在test.c文件内是可用的，但是文件外就不可见了，其实说白了，还是<strong>指针永远的神</strong>。拓展一下，如果<code>test_value3</code>是一个自定义类型，所以在test.c里面就不得不引入自定义的头文件（eg: custom_demo.h），但是针对<code>test_value3</code>，只有test.c文件用的着，完全没必要将其定义在头文件上了；<strong>否则</strong>，如果其他文件(比如模块C )，需要包含test.h，那就不得不将custom_demo.h也包含进去，这样明显会增加代码的耦合度；但是若使用私有成员，明显将<code>custom demo</code>模块和<code>C</code>模块进行解耦了。将随着自己c的代码量直线上升和慢慢更多接触c++，对它俩的区别会越来越有体会，也会更加的注意代码结构、耦合度，比如私有成员，我已经应用到好多个模块了，这真的是一个特别有成就感的事情。对我来说，技术成就感一直是鞭策我学习的最大动力。</p>
 
                 
             </div>
@@ -1526,7 +1528,7 @@
                                     <a href="https://github.com/jinbaotang/jinbaotang.githuh.io" target="_blank">jinbao-matery-modify</a>
                                     <br>
                                     
-                                        &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span class="white-color">146.4k</span>&nbsp;字
+                                        &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span class="white-color">146.6k</span>&nbsp;字
                                         
                                             
                                                 
