@@ -51,7 +51,7 @@
     <link href="https://jinbaotang.cn/2021/06/06/how-mcu2linux/"/>
     <id>https://jinbaotang.cn/2021/06/06/how-mcu2linux/</id>
     <published>2021-06-06T13:00:38.000Z</published>
-    <updated>2021-06-22T01:19:54.576Z</updated>
+    <updated>2021-06-22T12:07:51.889Z</updated>
     
     
       
@@ -79,7 +79,7 @@
     <link href="https://jinbaotang.cn/2021/06/06/linux-develop-tips1/"/>
     <id>https://jinbaotang.cn/2021/06/06/linux-develop-tips1/</id>
     <published>2021-06-06T13:00:38.000Z</published>
-    <updated>2021-06-10T06:55:07.098Z</updated>
+    <updated>2021-06-22T12:08:44.407Z</updated>
     
     
       
@@ -113,7 +113,7 @@
     <link href="https://jinbaotang.cn/2021/06/06/tls-socket2/"/>
     <id>https://jinbaotang.cn/2021/06/06/tls-socket2/</id>
     <published>2021-06-06T12:46:00.000Z</published>
-    <updated>2021-06-06T12:50:34.359Z</updated>
+    <updated>2021-06-22T12:12:27.813Z</updated>
     
     
       
@@ -145,7 +145,7 @@
     <link href="https://jinbaotang.cn/2021/06/05/refactor-1/"/>
     <id>https://jinbaotang.cn/2021/06/05/refactor-1/</id>
     <published>2021-06-05T14:13:00.000Z</published>
-    <updated>2021-06-17T08:06:47.030Z</updated>
+    <updated>2021-06-22T12:10:20.293Z</updated>
     
     
       
@@ -173,7 +173,7 @@
     <link href="https://jinbaotang.cn/2021/05/07/socket-can/"/>
     <id>https://jinbaotang.cn/2021/05/07/socket-can/</id>
     <published>2021-05-07T14:13:00.000Z</published>
-    <updated>2021-05-07T08:55:11.000Z</updated>
+    <updated>2021-06-22T12:11:01.406Z</updated>
     
     
       
@@ -203,7 +203,7 @@
     <link href="https://jinbaotang.cn/2021/05/05/tls-socket/"/>
     <id>https://jinbaotang.cn/2021/05/05/tls-socket/</id>
     <published>2021-05-04T17:13:00.000Z</published>
-    <updated>2021-06-06T13:01:48.605Z</updated>
+    <updated>2021-06-22T12:11:51.404Z</updated>
     
     
       
@@ -235,7 +235,7 @@
     <link href="https://jinbaotang.cn/2021/04/12/lwip-close-socket-select/"/>
     <id>https://jinbaotang.cn/2021/04/12/lwip-close-socket-select/</id>
     <published>2021-04-12T10:56:38.000Z</published>
-    <updated>2021-05-09T13:49:16.000Z</updated>
+    <updated>2021-06-22T12:09:40.887Z</updated>
     
     
       
@@ -266,7 +266,7 @@
     <link href="https://jinbaotang.cn/2021/04/11/why-write/"/>
     <id>https://jinbaotang.cn/2021/04/11/why-write/</id>
     <published>2021-04-11T07:27:31.000Z</published>
-    <updated>2021-05-09T13:49:32.000Z</updated>
+    <updated>2021-06-22T12:12:51.808Z</updated>
     
     
       
@@ -319,9 +319,9 @@
   </entry>
   
   <entry>
-    <title>cpp-primer课后答案4</title>
-    <link href="https://jinbaotang.cn/2021/04/10/excersize/ch04/"/>
-    <id>https://jinbaotang.cn/2021/04/10/excersize/ch04/</id>
+    <title>cpp-primer课后答案1</title>
+    <link href="https://jinbaotang.cn/2021/04/10/excersize/ch01/"/>
+    <id>https://jinbaotang.cn/2021/04/10/excersize/ch01/</id>
     <published>2021-04-10T12:35:38.000Z</published>
     <updated>2021-06-22T01:37:27.740Z</updated>
     
@@ -330,7 +330,7 @@
       
         
         
-    <summary type="html">&lt;h1 id=&quot;第四章-表达式&quot;&gt;&lt;a href=&quot;#第四章-表达式&quot; class=&quot;headerlink&quot; title=&quot;第四章 表达式&quot;&gt;&lt;/a&gt;第四章 表达式&lt;/h1&gt;&lt;h2 id=&quot;练习4-1&quot;&gt;&lt;a href=&quot;#练习4-1&quot; class=&quot;headerlink&quot;</summary>
+    <summary type="html">&lt;h1 id=&quot;第一章-开始&quot;&gt;&lt;a href=&quot;#第一章-开始&quot; class=&quot;headerlink&quot; title=&quot;第一章 开始&quot;&gt;&lt;/a&gt;第一章 开始&lt;/h1&gt;&lt;h2 id=&quot;练习1-1&quot;&gt;&lt;a href=&quot;#练习1-1&quot; class=&quot;headerlink&quot;</summary>
         
       
     
@@ -348,9 +348,9 @@
   </entry>
   
   <entry>
-    <title>cpp-primer课后答案1</title>
-    <link href="https://jinbaotang.cn/2021/04/10/excersize/ch01/"/>
-    <id>https://jinbaotang.cn/2021/04/10/excersize/ch01/</id>
+    <title>cpp-primer课后答案4</title>
+    <link href="https://jinbaotang.cn/2021/04/10/excersize/ch04/"/>
+    <id>https://jinbaotang.cn/2021/04/10/excersize/ch04/</id>
     <published>2021-04-10T12:35:38.000Z</published>
     <updated>2021-06-22T01:37:27.740Z</updated>
     
@@ -359,7 +359,7 @@
       
         
         
-    <summary type="html">&lt;h1 id=&quot;第一章-开始&quot;&gt;&lt;a href=&quot;#第一章-开始&quot; class=&quot;headerlink&quot; title=&quot;第一章 开始&quot;&gt;&lt;/a&gt;第一章 开始&lt;/h1&gt;&lt;h2 id=&quot;练习1-1&quot;&gt;&lt;a href=&quot;#练习1-1&quot; class=&quot;headerlink&quot;</summary>
+    <summary type="html">&lt;h1 id=&quot;第四章-表达式&quot;&gt;&lt;a href=&quot;#第四章-表达式&quot; class=&quot;headerlink&quot; title=&quot;第四章 表达式&quot;&gt;&lt;/a&gt;第四章 表达式&lt;/h1&gt;&lt;h2 id=&quot;练习4-1&quot;&gt;&lt;a href=&quot;#练习4-1&quot; class=&quot;headerlink&quot;</summary>
         
       
     
@@ -493,35 +493,6 @@
   </entry>
   
   <entry>
-    <title>cpp-primer笔记3</title>
-    <link href="https://jinbaotang.cn/2021/04/10/notes/ch03/"/>
-    <id>https://jinbaotang.cn/2021/04/10/notes/ch03/</id>
-    <published>2021-04-10T12:35:38.000Z</published>
-    <updated>2021-06-22T01:37:27.983Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;第三章-字符串、向量和数组&quot;&gt;&lt;a href=&quot;#第三章-字符串、向量和数组&quot; class=&quot;headerlink&quot; title=&quot;第三章 字符串、向量和数组&quot;&gt;&lt;/a&gt;第三章 字符串、向量和数组&lt;/h1&gt;&lt;h2 id=&quot;using声明&quot;&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    <category term="cpp笔记" scheme="https://jinbaotang.cn/categories/cpp%E7%AC%94%E8%AE%B0/"/>
-    
-    
-    <category term="exclude" scheme="https://jinbaotang.cn/tags/exclude/"/>
-    
-    <category term="c++" scheme="https://jinbaotang.cn/tags/c/"/>
-    
-    <category term="coding" scheme="https://jinbaotang.cn/tags/coding/"/>
-    
-  </entry>
-  
-  <entry>
     <title>cpp-primer笔记2</title>
     <link href="https://jinbaotang.cn/2021/04/10/notes/ch02/"/>
     <id>https://jinbaotang.cn/2021/04/10/notes/ch02/</id>
@@ -551,18 +522,18 @@
   </entry>
   
   <entry>
-    <title>cpp-primer笔记6</title>
-    <link href="https://jinbaotang.cn/2021/04/10/notes/ch06/"/>
-    <id>https://jinbaotang.cn/2021/04/10/notes/ch06/</id>
+    <title>cpp-primer笔记3</title>
+    <link href="https://jinbaotang.cn/2021/04/10/notes/ch03/"/>
+    <id>https://jinbaotang.cn/2021/04/10/notes/ch03/</id>
     <published>2021-04-10T12:35:38.000Z</published>
-    <updated>2021-06-22T01:37:27.740Z</updated>
+    <updated>2021-06-22T01:37:27.983Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1 id=&quot;第六章-函数&quot;&gt;&lt;a href=&quot;#第六章-函数&quot; class=&quot;headerlink&quot; title=&quot;第六章 函数&quot;&gt;&lt;/a&gt;第六章 函数&lt;/h1&gt;&lt;h2 id=&quot;函数基础&quot;&gt;&lt;a href=&quot;#函数基础&quot; class=&quot;headerlink&quot;</summary>
+    <summary type="html">&lt;h1 id=&quot;第三章-字符串、向量和数组&quot;&gt;&lt;a href=&quot;#第三章-字符串、向量和数组&quot; class=&quot;headerlink&quot; title=&quot;第三章 字符串、向量和数组&quot;&gt;&lt;/a&gt;第三章 字符串、向量和数组&lt;/h1&gt;&lt;h2 id=&quot;using声明&quot;&gt;&lt;a</summary>
         
       
     
@@ -580,9 +551,9 @@
   </entry>
   
   <entry>
-    <title>cpp-primer笔记7</title>
-    <link href="https://jinbaotang.cn/2021/04/10/notes/ch07/"/>
-    <id>https://jinbaotang.cn/2021/04/10/notes/ch07/</id>
+    <title>cpp-primer笔记5</title>
+    <link href="https://jinbaotang.cn/2021/04/10/notes/ch05/"/>
+    <id>https://jinbaotang.cn/2021/04/10/notes/ch05/</id>
     <published>2021-04-10T12:35:38.000Z</published>
     <updated>2021-06-22T01:37:27.983Z</updated>
     
@@ -591,7 +562,36 @@
       
         
         
-    <summary type="html">&lt;h1 id=&quot;第七章-类-（Class）&quot;&gt;&lt;a href=&quot;#第七章-类-（Class）&quot; class=&quot;headerlink&quot; title=&quot;第七章 类 （Class）&quot;&gt;&lt;/a&gt;第七章 类 （Class）&lt;/h1&gt;&lt;h2 id=&quot;定义抽象数据类型&quot;&gt;&lt;a</summary>
+    <summary type="html">&lt;h1 id=&quot;第五章-语句&quot;&gt;&lt;a href=&quot;#第五章-语句&quot; class=&quot;headerlink&quot; title=&quot;第五章 语句&quot;&gt;&lt;/a&gt;第五章 语句&lt;/h1&gt;&lt;h2 id=&quot;简单语句&quot;&gt;&lt;a href=&quot;#简单语句&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="cpp笔记" scheme="https://jinbaotang.cn/categories/cpp%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="exclude" scheme="https://jinbaotang.cn/tags/exclude/"/>
+    
+    <category term="c++" scheme="https://jinbaotang.cn/tags/c/"/>
+    
+    <category term="coding" scheme="https://jinbaotang.cn/tags/coding/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>cpp-primer笔记4</title>
+    <link href="https://jinbaotang.cn/2021/04/10/notes/ch04/"/>
+    <id>https://jinbaotang.cn/2021/04/10/notes/ch04/</id>
+    <published>2021-04-10T12:35:38.000Z</published>
+    <updated>2021-06-22T01:37:27.983Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;第四章-表达式&quot;&gt;&lt;a href=&quot;#第四章-表达式&quot; class=&quot;headerlink&quot; title=&quot;第四章 表达式&quot;&gt;&lt;/a&gt;第四章 表达式&lt;/h1&gt;&lt;h2 id=&quot;表达式基础&quot;&gt;&lt;a href=&quot;#表达式基础&quot; class=&quot;headerlink&quot;</summary>
         
       
     

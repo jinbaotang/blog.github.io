@@ -486,12 +486,7 @@
                         <div class="card-content article-content">
                             <div class="summary block-with-text">
                                 
-                                    
-这篇文章本应该在4月就写好的，但是博客评论系统一直没有搭建好，走了很多弯路，现在好了，delay这么久，终于要要补过来了。
-
-
-该文章完全原创，除通用、广泛的知识点外，均为个人总结，如需转载还望备注出处，同时如有错误还请指出，虚心接受。
-
+                                    LwIP使用select时，调用close关闭socket，资源释放不完全问题分析以及解决方案
                                 
                             </div>
                             <div class="publish-info">
@@ -552,13 +547,7 @@
                         <div class="card-content article-content">
                             <div class="summary block-with-text">
                                 
-                                    
-关于这篇博客，想记录下自己当前写博客的原因，同时也希望记录自己当前自己的一些看法，后面持续更新。
-
-
-记于2021.4
-
-为什么要写博客 &emsp;&emsp;一直挺想用文字记录记录自己的成长轨迹，第一份工作在经纬恒润时，部门要求每天都
+                                    搭建博客的原因，记录自己当前的一些想法
                                 
                             </div>
                             <div class="publish-info">
@@ -667,22 +656,25 @@ Cpp Primer 学习简介《c
             <article class="cd-timeline-content" data-aos="fade-up">
                 <div class="article col s12 m6">
                     <div class="card">
-                        <a href="/2021/04/10/excersize/ch04/">
+                        <a href="/2021/04/10/excersize/ch01/">
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/featureimages/26.jpg" class="responsive-img" alt="cpp-primer课后答案4">
+                                <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="cpp-primer课后答案1">
                                 
-                                <span class="card-title">cpp-primer课后答案4</span>
+                                <span class="card-title">cpp-primer课后答案1</span>
                             </div>
                         </a>
                         <div class="card-content article-content">
                             <div class="summary block-with-text">
                                 
-                                    第四章 表达式练习4.1表达式5 + 10 * 20 / 2的求值结果是多少？
+                                    第一章 开始练习1.1查阅你使用的编译器的文档，确定它所使用的文件名约定。编译并运行第2页的main程序。
 解：
-等价于5 + ((10 * 20) / 2) = 105
-练习4.2根据4.12节中的表，在下述表达式的合理位置添加括号，使得添加括号后运算对象的组合顺序
+
+g++ --std=c++11 ch1.cpp -o main
+./main
+
+练习1.2改写程序，让它返回-1。返回值-1
                                 
                             </div>
                             <div class="publish-info">
@@ -733,25 +725,22 @@ Cpp Primer 学习简介《c
             <article class="cd-timeline-content" data-aos="fade-up">
                 <div class="article col s12 m6">
                     <div class="card">
-                        <a href="/2021/04/10/excersize/ch01/">
+                        <a href="/2021/04/10/excersize/ch04/">
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="cpp-primer课后答案1">
+                                <img src="/medias/featureimages/26.jpg" class="responsive-img" alt="cpp-primer课后答案4">
                                 
-                                <span class="card-title">cpp-primer课后答案1</span>
+                                <span class="card-title">cpp-primer课后答案4</span>
                             </div>
                         </a>
                         <div class="card-content article-content">
                             <div class="summary block-with-text">
                                 
-                                    第一章 开始练习1.1查阅你使用的编译器的文档，确定它所使用的文件名约定。编译并运行第2页的main程序。
+                                    第四章 表达式练习4.1表达式5 + 10 * 20 / 2的求值结果是多少？
 解：
-
-g++ --std=c++11 ch1.cpp -o main
-./main
-
-练习1.2改写程序，让它返回-1。返回值-1
+等价于5 + ((10 * 20) / 2) = 105
+练习4.2根据4.12节中的表，在下述表达式的合理位置添加括号，使得添加括号后运算对象的组合顺序
                                 
                             </div>
                             <div class="publish-info">
@@ -1070,74 +1059,6 @@ g++ --std=c++11 ch1.cpp -o main
             <article class="cd-timeline-content" data-aos="fade-up">
                 <div class="article col s12 m6">
                     <div class="card">
-                        <a href="/2021/04/10/notes/ch03/">
-                            <div class="card-image">
-                                
-                                
-                                <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="cpp-primer笔记3">
-                                
-                                <span class="card-title">cpp-primer笔记3</span>
-                            </div>
-                        </a>
-                        <div class="card-content article-content">
-                            <div class="summary block-with-text">
-                                
-                                    第三章 字符串、向量和数组using声明
-使用某个命名空间：例如 using std::cin表示使用命名空间std中的名字cin。
-头文件中不应该包含using声明。这样使用了该头文件的源码也会使用这个声明，会带来风险。
-
-string
-
-                                
-                            </div>
-                            <div class="publish-info">
-                                <span class="publish-date">
-                                    <i class="far fa-clock fa-fw icon-date"></i>2021-04-10
-                                </span>
-                                <span class="publish-author">
-                                    
-                                    <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                    
-                                    <a href="/categories/cpp%E7%AC%94%E8%AE%B0/" class="post-category">
-                                    cpp笔记
-                                    </a>
-                                    
-                                    
-                                </span>
-                            </div>
-                        </div>
-
-                        
-                        <div class="card-action article-tags">
-                            
-                            <a href="/tags/exclude/"><span class="chip bg-color">exclude</span></a>
-                            
-                            <a href="/tags/c/"><span class="chip bg-color">c++</span></a>
-                            
-                            <a href="/tags/coding/"><span class="chip bg-color">coding</span></a>
-                            
-                        </div>
-                        
-                    </div>
-                </div>
-            </article>
-        </div>
-        
-        <div class="cd-timeline-block">
-
-            
-            
-
-            
-            
-
-            
-            <div class="cd-timeline-img day" data-aos="zoom-in-up">
-                <span>10</span>
-            </div>
-            <article class="cd-timeline-content" data-aos="fade-up">
-                <div class="article col s12 m6">
-                    <div class="card">
                         <a href="/2021/04/10/notes/ch02/">
                             <div class="card-image">
                                 
@@ -1228,22 +1149,93 @@ Unicode字符
             <article class="cd-timeline-content" data-aos="fade-up">
                 <div class="article col s12 m6">
                     <div class="card">
-                        <a href="/2021/04/10/notes/ch06/">
+                        <a href="/2021/04/10/notes/ch03/">
                             <div class="card-image">
                                 
                                 
-                                <img src="/medias/featureimages/25.jpg" class="responsive-img" alt="cpp-primer笔记6">
+                                <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="cpp-primer笔记3">
                                 
-                                <span class="card-title">cpp-primer笔记6</span>
+                                <span class="card-title">cpp-primer笔记3</span>
                             </div>
                         </a>
                         <div class="card-content article-content">
                             <div class="summary block-with-text">
                                 
-                                    第六章 函数函数基础
-函数定义：包括返回类型、函数名字和0个或者多个形参（parameter）组成的列表和函数体。
-调用运算符：调用运算符的形式是一对圆括号 ()，作用于一个表达式，该表达式是函数或者指向函数的指针。
-圆括号内是用逗号隔开的
+                                    第三章 字符串、向量和数组using声明
+使用某个命名空间：例如 using std::cin表示使用命名空间std中的名字cin。
+头文件中不应该包含using声明。这样使用了该头文件的源码也会使用这个声明，会带来风险。
+
+string
+
+                                
+                            </div>
+                            <div class="publish-info">
+                                <span class="publish-date">
+                                    <i class="far fa-clock fa-fw icon-date"></i>2021-04-10
+                                </span>
+                                <span class="publish-author">
+                                    
+                                    <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                    
+                                    <a href="/categories/cpp%E7%AC%94%E8%AE%B0/" class="post-category">
+                                    cpp笔记
+                                    </a>
+                                    
+                                    
+                                </span>
+                            </div>
+                        </div>
+
+                        
+                        <div class="card-action article-tags">
+                            
+                            <a href="/tags/exclude/"><span class="chip bg-color">exclude</span></a>
+                            
+                            <a href="/tags/c/"><span class="chip bg-color">c++</span></a>
+                            
+                            <a href="/tags/coding/"><span class="chip bg-color">coding</span></a>
+                            
+                        </div>
+                        
+                    </div>
+                </div>
+            </article>
+        </div>
+        
+        <div class="cd-timeline-block">
+
+            
+            
+
+            
+            
+
+            
+            <div class="cd-timeline-img day" data-aos="zoom-in-up">
+                <span>10</span>
+            </div>
+            <article class="cd-timeline-content" data-aos="fade-up">
+                <div class="article col s12 m6">
+                    <div class="card">
+                        <a href="/2021/04/10/notes/ch05/">
+                            <div class="card-image">
+                                
+                                
+                                <img src="/medias/featureimages/24.jpg" class="responsive-img" alt="cpp-primer笔记5">
+                                
+                                <span class="card-title">cpp-primer笔记5</span>
+                            </div>
+                        </a>
+                        <div class="card-content article-content">
+                            <div class="summary block-with-text">
+                                
+                                    第五章 语句简单语句
+表达式语句：一个表达式末尾加上分号，就变成了表达式语句。
+空语句：只有一个单独的分号。
+复合语句（块）：用花括号 &#123;&#125;包裹起来的语句和声明的序列。一个块就是一个作用域。
+
+条件语句
+悬垂else（d
                                 
                             </div>
                             <div class="publish-info">
