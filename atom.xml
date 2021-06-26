@@ -47,39 +47,11 @@
   </entry>
   
   <entry>
-    <title>我是如何从MCU开发转到linux开发</title>
-    <link href="https://jinbaotang.cn/2021/06/06/how-mcu2linux/"/>
-    <id>https://jinbaotang.cn/2021/06/06/how-mcu2linux/</id>
-    <published>2021-06-06T13:00:38.000Z</published>
-    <updated>2021-06-22T12:07:51.889Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;从大二开始玩单片机，2019年想转linux开发，但是无从下手；在工作中，终于在2020年中无缝、平滑过渡到linux上开发，想会议下自己转变之路，同时也希望后面自己进一步成长后，现在的认知是对，然后能够帮助同样迷惑小伙伴。至于linux转mcu，</summary>
-        
-      
-    
-    
-    
-    <category term="linux" scheme="https://jinbaotang.cn/categories/linux/"/>
-    
-    
-    <category term="mcu" scheme="https://jinbaotang.cn/tags/mcu/"/>
-    
-    <category term="linux" scheme="https://jinbaotang.cn/tags/linux/"/>
-    
-  </entry>
-  
-  <entry>
     <title>linux间网络通信无界面实时抓包、分析以及文件同步</title>
     <link href="https://jinbaotang.cn/2021/06/06/linux-develop-tips1/"/>
     <id>https://jinbaotang.cn/2021/06/06/linux-develop-tips1/</id>
     <published>2021-06-06T13:00:38.000Z</published>
-    <updated>2021-06-22T12:08:44.407Z</updated>
+    <updated>2021-06-26T05:28:53.309Z</updated>
     
     
       
@@ -105,6 +77,34 @@
     <category term="rsync" scheme="https://jinbaotang.cn/tags/rsync/"/>
     
     <category term="pcap" scheme="https://jinbaotang.cn/tags/pcap/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>我是如何从MCU开发转到linux开发</title>
+    <link href="https://jinbaotang.cn/2021/06/06/how-mcu2linux/"/>
+    <id>https://jinbaotang.cn/2021/06/06/how-mcu2linux/</id>
+    <published>2021-06-06T13:00:38.000Z</published>
+    <updated>2021-06-22T12:07:51.889Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;从大二开始玩单片机，2019年想转linux开发，但是无从下手；在工作中，终于在2020年中无缝、平滑过渡到linux上开发，想会议下自己转变之路，同时也希望后面自己进一步成长后，现在的认知是对，然后能够帮助同样迷惑小伙伴。至于linux转mcu，</summary>
+        
+      
+    
+    
+    
+    <category term="linux" scheme="https://jinbaotang.cn/categories/linux/"/>
+    
+    
+    <category term="linux" scheme="https://jinbaotang.cn/tags/linux/"/>
+    
+    <category term="mcu" scheme="https://jinbaotang.cn/tags/mcu/"/>
     
   </entry>
   
@@ -551,9 +551,9 @@
   </entry>
   
   <entry>
-    <title>cpp-primer笔记5</title>
-    <link href="https://jinbaotang.cn/2021/04/10/notes/ch05/"/>
-    <id>https://jinbaotang.cn/2021/04/10/notes/ch05/</id>
+    <title>cpp-primer笔记4</title>
+    <link href="https://jinbaotang.cn/2021/04/10/notes/ch04/"/>
+    <id>https://jinbaotang.cn/2021/04/10/notes/ch04/</id>
     <published>2021-04-10T12:35:38.000Z</published>
     <updated>2021-06-22T01:37:27.983Z</updated>
     
@@ -562,7 +562,7 @@
       
         
         
-    <summary type="html">&lt;h1 id=&quot;第五章-语句&quot;&gt;&lt;a href=&quot;#第五章-语句&quot; class=&quot;headerlink&quot; title=&quot;第五章 语句&quot;&gt;&lt;/a&gt;第五章 语句&lt;/h1&gt;&lt;h2 id=&quot;简单语句&quot;&gt;&lt;a href=&quot;#简单语句&quot; class=&quot;headerlink&quot;</summary>
+    <summary type="html">&lt;h1 id=&quot;第四章-表达式&quot;&gt;&lt;a href=&quot;#第四章-表达式&quot; class=&quot;headerlink&quot; title=&quot;第四章 表达式&quot;&gt;&lt;/a&gt;第四章 表达式&lt;/h1&gt;&lt;h2 id=&quot;表达式基础&quot;&gt;&lt;a href=&quot;#表达式基础&quot; class=&quot;headerlink&quot;</summary>
         
       
     
@@ -580,18 +580,18 @@
   </entry>
   
   <entry>
-    <title>cpp-primer笔记4</title>
-    <link href="https://jinbaotang.cn/2021/04/10/notes/ch04/"/>
-    <id>https://jinbaotang.cn/2021/04/10/notes/ch04/</id>
+    <title>cpp-primer笔记6</title>
+    <link href="https://jinbaotang.cn/2021/04/10/notes/ch06/"/>
+    <id>https://jinbaotang.cn/2021/04/10/notes/ch06/</id>
     <published>2021-04-10T12:35:38.000Z</published>
-    <updated>2021-06-22T01:37:27.983Z</updated>
+    <updated>2021-06-22T01:37:27.740Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1 id=&quot;第四章-表达式&quot;&gt;&lt;a href=&quot;#第四章-表达式&quot; class=&quot;headerlink&quot; title=&quot;第四章 表达式&quot;&gt;&lt;/a&gt;第四章 表达式&lt;/h1&gt;&lt;h2 id=&quot;表达式基础&quot;&gt;&lt;a href=&quot;#表达式基础&quot; class=&quot;headerlink&quot;</summary>
+    <summary type="html">&lt;h1 id=&quot;第六章-函数&quot;&gt;&lt;a href=&quot;#第六章-函数&quot; class=&quot;headerlink&quot; title=&quot;第六章 函数&quot;&gt;&lt;/a&gt;第六章 函数&lt;/h1&gt;&lt;h2 id=&quot;函数基础&quot;&gt;&lt;a href=&quot;#函数基础&quot; class=&quot;headerlink&quot;</summary>
         
       
     

@@ -491,21 +491,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-06-22
+                    2021-06-26
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.4k
+                    2.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    8 分
+                    9 分
                 </div>
                 
 
@@ -543,7 +543,20 @@
 <p>最终只有<em>方法3</em>成功了，但是却是我最后想到的，下面将稍微展开的分析下每个方法，我觉得后续有时间，都是能够成功的。</p>
 <h3 id="1-远程桌面"><a href="#1-远程桌面" class="headerlink" title="1). 远程桌面"></a>1). 远程桌面</h3><p>&emsp;&emsp;针对远程桌面这种办法，一开始用的是VNC，其中xfor4是最能满足我的需求，因为我们的服务器上并没有外接显示器，这样就会有一个弊端，如果我将桌面输出到xfore4上去了，后面服务器即使外接了显示器也会没用，这就给别人带来不便利。咱也不能干这样<strong>损人利己</strong>的事，在简单的挣扎后（**其实不简单，尝试了好多种办法~~**），还是放弃了这样做。想要实现远程桌面的同志可以参考下这篇文章，<a target="_blank" rel="noopener" href="https://blog.csdn.net/u012911347/article/details/90267252">使用RealVNC连接无外接显示器的Ubuntu18.04</a>，这篇文章还是亲测有用的。<br>&emsp;&emsp;后面又试了下，teamviewer，能够连接上，但是不显示桌面，通过查资料，基本上可以判定，是需要外接显示器的。<br>&emsp;&emsp;经过上述折腾后，果断放弃了这个方法。</p>
 <h3 id="2-将pc直接连接到交换机上"><a href="#2-将pc直接连接到交换机上" class="headerlink" title="2). 将pc直接连接到交换机上"></a>2). 将pc直接连接到交换机上</h3><p>&emsp;&emsp;之前我调试网络时，都是自己的电脑通过网线接到交换机上，剩余其他的网络终端都连接到交换机，这样我就能从我的电脑上抓到所有的报文，简单方便、快捷，所以我这次我也想这样。正好我有两个笔记本，我可以将我的其中一个<em>笔记本电脑1</em>通过网线接入到交换机上，然后另一个<em>笔记本2</em>远程<em>笔记本1</em>，达到我的想法。如下图所示:<img src="/medias/linux-develop-tips/doublepc.png" alt="双电脑方案"><br>然而理想很丰满，现实很残酷，部门小组里的交换机虽然跟我以前一样是个二层交换机，但是上图的<strong>my_pc1</strong>并没有能够抓到server1和server2的网络报文，搜过官网，找过淘宝，聊过京东，依然没有找到答案。后面还以为wireshark没开<em>混杂模式</em>，最后发现也不是这个原因。没有解决这个问题，总觉心里有根刺，后面找交换机资料时，才得到答案，现在的交换机变聪明了，如果不是发给你的报文，mac就给你过滤掉了，并且这个交换机还不支持配置成混杂模式。欲哭无泪~~~。<br>&emsp;&emsp;曾经沧海难为水，经历过以前交换机的便利，咋能容忍这种拉低工作效率的存在。果断买网线买交互机，后面直接从我的电脑网口怼到交换机上。</p>
-<h3 id="3-wireshark远程抓包"><a href="#3-wireshark远程抓包" class="headerlink" title="3). wireshark远程抓包"></a>3). wireshark远程抓包</h3><p>&emsp;&emsp;虽然经历上面两个方法的失败，但是心里还是挂念着，最终于在使用wireshark捕获时，突然看到有一个<strong>远程接口</strong>，技术敏感告诉我，问题应该得到解决了，一阵baidu/google后，终于成功的远程抓到了两个服务器的网络报文了。如下图所示：<img src="/medias/linux-develop-tips/win_wireshark_rpcap.png" alt="windows wireshark远程抓包"><br>想要达到上述效果，首先需要在windows wireshark上在管理接口/远程接口上添加远程设备，如下图所示：<img src="/medias/linux-develop-tips/win_wireshark_r_if.png" alt="远程接口"><br>想要实现windows 环境下wireshark远程抓包，需要在服务器端linux上另外安装rpcap来做server（tcpdump相关的自然是需要的）。<br>关于安装rpcap，直接参考<a target="_blank" rel="noopener" href="https://github.com/rpcapd-linux/rpcapd-linux">github仓库上的教程</a>即可,如下图所示：<img src="/medias/linux-develop-tips/rpcap_install.png" alt="rpcap build and use">。<br>针对使用，其实也蛮简单的，<code>sudo ./rpcapd -4 -n -p [your port] -deamon</code>，端口的就是自己自定义的，后面在wireshark上需要输入，比如我我设置的是<em>55555</em>，如下图所示。另外最好将<em>rpcapd</em>设置成开机自启动了，因为万一服务器重启了，你还要手动开启<em>rpcapd</em>，岂不是很low。<img src="/medias/linux-develop-tips/linux_rpcap.png" alt="linux rpcap配置"></p>
+<h3 id="3-wireshark远程抓包"><a href="#3-wireshark远程抓包" class="headerlink" title="3). wireshark远程抓包"></a>3). wireshark远程抓包</h3><p>&emsp;&emsp;虽然经历上面两个方法的失败，但是心里还是挂念着，最终于在使用wireshark捕获时，突然看到有一个<strong>远程接口</strong>，技术敏感告诉我，问题应该得到解决了，一阵baidu/google后，终于成功的远程抓到了两个服务器的网络报文了。如下图所示：<img src="/medias/linux-develop-tips/win_wireshark_rpcap.png" alt="windows wireshark远程抓包"><br>想要达到上述效果，首先需要在windows wireshark上在管理接口/远程接口上添加远程设备，如下图所示：<img src="/medias/linux-develop-tips/win_wireshark_r_if.png" alt="远程接口"><br>想要实现windows 环境下wireshark远程抓包，需要在服务器端linux上另外安装rpcap来做server（tcpdump相关的自然是需要的）。<br>关于安装rpcap，直接参考<a target="_blank" rel="noopener" href="https://github.com/rpcapd-linux/rpcapd-linux">github仓库上的教程</a>即可,如下图所示：<img src="/medias/linux-develop-tips/rpcap_install.png" alt="rpcap build and use"></p>
+<h4 id="ubuntu16上的一些问题"><a href="#ubuntu16上的一些问题" class="headerlink" title="ubuntu16上的一些问题"></a>ubuntu16上的一些问题</h4><p>&emsp;&emsp;上述操作，我都是在ubuntu18上操作的，一切都很顺利。但是我后面在ubuntu16上就又遇到一些问题了，首先是可能会使用<code>sudo apt-get build-dep libpcap</code>这个命令下载不下来东西，因为缺少<code>URL sources.list</code>，解决办法, 一个是在sources.list中添加上，但是服务器并不是我一个人用，所以我选择的是第二种办法，<code>git clone https://github.com/rpcapd-linux/rpcapd-linux</code>，然后按上图的办法来编译出libpcap。<br>&emsp;&emsp;此时依然有可能出问题，那就是会出现如下错误：</p>
+<pre class="line-numbers language-none"><code class="language-none">yacc -d grammar.y
+make: yacc: Command not found
+Makefile:365: recipe for target &#39;grammar.c&#39; failed
+make: *** [grammar.c] Error 127<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>&emsp;&emsp;这是缺少依赖项，<code>flex</code>，只需执行<code> sudo apt-get install flex bison</code>，安装上依赖项。如上图所示就能个很顺利的安装好<code>rpcap</code>了。</p>
+<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><p>针对使用，其实也蛮简单的，<code>sudo ./rpcapd -4 -n -p [your port] -deamon</code>，端口的就是自己自定义的，后面在wireshark上需要输入，比如我我设置的是<em>55555</em>，如下图所示。另外最好将<em>rpcapd</em>设置成开机自启动了，因为万一服务器重启了，你还要手动开启<em>rpcapd</em>，岂不是很low。所以实现一个脚，并将该脚本设为开机启动，这样就不用担心前面提到的问题了。如下所示：</p>
+<pre class="line-numbers language-run_rpcapd.sh" data-language="run_rpcapd.sh"><code class="language-run_rpcapd.sh">#run_rpcapd.sh
+#! &#x2F;bin&#x2F;sh
+# command content
+  echo &#39;xxx&#39; | sudo &#x2F;home&#x2F;jinbao&#x2F;software&#x2F;rpcapd-linux&#x2F;rpcapd -4 -n -p 8888
+  exit 0<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>&emsp;&emsp;由于windows电脑略有反应迟钝，主要是以mac为主，想着还是用mac端的wireshark也实现远程抓包，发现mac上的wireshark没有<strong>远程接口</strong>这个东西了（我的是m1 macbookpro）。但是一顿摸索后，发现有这个<strong>SSH remote capture: sshdump</strong>，如下图所示，意思也很明显了，剩下就交给baidu/google了。<img src="/medias/linux-develop-tips/mac_wireshark.png" alt="mac wireshark"><br>但是一顿操作下来，发现不是报这个错<img src="/medias/linux-develop-tips/mac_wireshark_cannotfind.png" alt="can&#39;t find .."><br>就是报权限不够的错误，类似下图这个错误：<img src="/medias/linux-develop-tips/mac_wireshark_permission.png" alt="permission invalid"><br>由于任务紧张，只能暂且搁置折腾了，等后面在试试了咯。暂时先用windows实时抓包用着了呗。</p>
 <h2 id="2-文件同步"><a href="#2-文件同步" class="headerlink" title="2. 文件同步"></a>2. 文件同步</h2><p>&emsp;&emsp;文件同步，我们用的比较多的有系统（windows、mac os）自带的局域网同步，或者onedriver这样的云同步。但是在linux上我只想针对某些文件进行网络同步即可，用onedriver除了有可能违反公司安全规定外，未免也太大材小用了，所以就考虑其他方案。</p>
 <ol>
@@ -1103,6 +1116,59 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
+                <a href="/2021/06/20/cmake1/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="cmake--动态库之配置（第一篇）">
+                        
+                        <span class="card-title">cmake--动态库之配置（第一篇）</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            关于cmake的的第一篇文章---使用cmake构建动态库遇到的一些问题
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-06-20
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/cmake/" class="post-category">
+                                    cmake
+                                </a>
+                            
+                            <a href="/categories/cmake/linux/" class="post-category">
+                                    linux
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/cmake/">
+                        <span class="chip bg-color">cmake</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
                 <a href="/2021/06/06/how-mcu2linux/">
                     <div class="card-image">
                         
@@ -1118,9 +1184,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-06-06
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-06-06
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1136,73 +1202,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/mcu/">
-                        <span class="chip bg-color">mcu</span>
-                    </a>
-                    
                     <a href="/tags/linux/">
                         <span class="chip bg-color">linux</span>
                     </a>
                     
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2021/06/06/tls-socket2/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="基于openssl实现tls+socket的安全通信-2">
-                        
-                        <span class="card-title">基于openssl实现tls+socket的安全通信-2</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            openssl生成证书示例，以及使用openssl来实现加密通信的代码示例。
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-06-06
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E5%8D%8F%E8%AE%AE%E6%A0%88/" class="post-category">
-                                    协议栈
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/socket/">
-                        <span class="chip bg-color">socket</span>
-                    </a>
-                    
-                    <a href="/tags/tls/">
-                        <span class="chip bg-color">tls</span>
-                    </a>
-                    
-                    <a href="/tags/openssl/">
-                        <span class="chip bg-color">openssl</span>
-                    </a>
-                    
-                    <a href="/tags/ethernet/">
-                        <span class="chip bg-color">ethernet</span>
+                    <a href="/tags/mcu/">
+                        <span class="chip bg-color">mcu</span>
                     </a>
                     
                 </div>
@@ -1483,7 +1488,7 @@
                                     <a href="https://github.com/jinbaotang/jinbaotang.githuh.io" target="_blank">jinbao-matery-modify</a>
                                     <br>
                                     
-                                        &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span class="white-color">149.5k</span>&nbsp;字
+                                        &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span class="white-color">149.8k</span>&nbsp;字
                                         
                                             
                                                 
