@@ -6,7 +6,7 @@
   <link href="https://jinbaotang.cn/atom.xml" rel="self"/>
   
   <link href="https://jinbaotang.cn/"/>
-  <updated>2021-06-22T12:06:51.891Z</updated>
+  <updated>2021-08-29T14:41:10.496Z</updated>
   <id>https://jinbaotang.cn/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>可视化debug linux系统的ECU</title>
+    <link href="https://jinbaotang.cn/2021/08/29/use-vscode-debug-ecu/"/>
+    <id>https://jinbaotang.cn/2021/08/29/use-vscode-debug-ecu/</id>
+    <published>2021-08-29T14:13:00.000Z</published>
+    <updated>2021-08-29T14:41:10.496Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;前段时间真的是太没时间了，耽误了好久，还记得有两个博客没写完的，一个就是&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="linux" scheme="https://jinbaotang.cn/categories/linux/"/>
+    
+    
+    <category term="vscode" scheme="https://jinbaotang.cn/tags/vscode/"/>
+    
+    <category term="gdb" scheme="https://jinbaotang.cn/tags/gdb/"/>
+    
+  </entry>
   
   <entry>
     <title>cmake--动态库之配置（第一篇）</title>
@@ -47,11 +75,39 @@
   </entry>
   
   <entry>
+    <title>我是如何从MCU开发转到linux开发</title>
+    <link href="https://jinbaotang.cn/2021/06/06/how-mcu2linux/"/>
+    <id>https://jinbaotang.cn/2021/06/06/how-mcu2linux/</id>
+    <published>2021-06-06T13:00:38.000Z</published>
+    <updated>2021-07-01T15:08:19.450Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;从大二开始玩单片机，2019年想转linux开发，但是无从下手；在工作中，终于在2020年中无缝、平滑过渡到linux上开发，想会议下自己转变之路，同时也希望后面自己进一步成长后，现在的认知是对，然后能够帮助同样迷惑小伙伴。至于linux转mcu，</summary>
+        
+      
+    
+    
+    
+    <category term="linux" scheme="https://jinbaotang.cn/categories/linux/"/>
+    
+    
+    <category term="mcu" scheme="https://jinbaotang.cn/tags/mcu/"/>
+    
+    <category term="linux" scheme="https://jinbaotang.cn/tags/linux/"/>
+    
+  </entry>
+  
+  <entry>
     <title>linux间网络通信无界面实时抓包、分析以及文件同步</title>
     <link href="https://jinbaotang.cn/2021/06/06/linux-develop-tips1/"/>
     <id>https://jinbaotang.cn/2021/06/06/linux-develop-tips1/</id>
     <published>2021-06-06T13:00:38.000Z</published>
-    <updated>2021-06-26T05:28:53.309Z</updated>
+    <updated>2021-07-23T01:12:34.566Z</updated>
     
     
       
@@ -81,34 +137,6 @@
   </entry>
   
   <entry>
-    <title>我是如何从MCU开发转到linux开发</title>
-    <link href="https://jinbaotang.cn/2021/06/06/how-mcu2linux/"/>
-    <id>https://jinbaotang.cn/2021/06/06/how-mcu2linux/</id>
-    <published>2021-06-06T13:00:38.000Z</published>
-    <updated>2021-06-22T12:07:51.889Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;从大二开始玩单片机，2019年想转linux开发，但是无从下手；在工作中，终于在2020年中无缝、平滑过渡到linux上开发，想会议下自己转变之路，同时也希望后面自己进一步成长后，现在的认知是对，然后能够帮助同样迷惑小伙伴。至于linux转mcu，</summary>
-        
-      
-    
-    
-    
-    <category term="linux" scheme="https://jinbaotang.cn/categories/linux/"/>
-    
-    
-    <category term="linux" scheme="https://jinbaotang.cn/tags/linux/"/>
-    
-    <category term="mcu" scheme="https://jinbaotang.cn/tags/mcu/"/>
-    
-  </entry>
-  
-  <entry>
     <title>基于openssl实现tls+socket的安全通信-2</title>
     <link href="https://jinbaotang.cn/2021/06/06/tls-socket2/"/>
     <id>https://jinbaotang.cn/2021/06/06/tls-socket2/</id>
@@ -130,9 +158,9 @@
     <category term="协议栈" scheme="https://jinbaotang.cn/categories/%E5%8D%8F%E8%AE%AE%E6%A0%88/"/>
     
     
-    <category term="socket" scheme="https://jinbaotang.cn/tags/socket/"/>
-    
     <category term="tls" scheme="https://jinbaotang.cn/tags/tls/"/>
+    
+    <category term="socket" scheme="https://jinbaotang.cn/tags/socket/"/>
     
     <category term="openssl" scheme="https://jinbaotang.cn/tags/openssl/"/>
     
@@ -220,9 +248,9 @@
     <category term="协议栈" scheme="https://jinbaotang.cn/categories/%E5%8D%8F%E8%AE%AE%E6%A0%88/"/>
     
     
-    <category term="socket" scheme="https://jinbaotang.cn/tags/socket/"/>
-    
     <category term="tls" scheme="https://jinbaotang.cn/tags/tls/"/>
+    
+    <category term="socket" scheme="https://jinbaotang.cn/tags/socket/"/>
     
     <category term="openssl" scheme="https://jinbaotang.cn/tags/openssl/"/>
     
@@ -493,35 +521,6 @@
   </entry>
   
   <entry>
-    <title>cpp-primer笔记2</title>
-    <link href="https://jinbaotang.cn/2021/04/10/notes/ch02/"/>
-    <id>https://jinbaotang.cn/2021/04/10/notes/ch02/</id>
-    <published>2021-04-10T12:35:38.000Z</published>
-    <updated>2021-06-22T01:37:27.983Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;第二章-变量和基本类型&quot;&gt;&lt;a href=&quot;#第二章-变量和基本类型&quot; class=&quot;headerlink&quot; title=&quot;第二章 变量和基本类型&quot;&gt;&lt;/a&gt;第二章 变量和基本类型&lt;/h1&gt;&lt;h3 id=&quot;基本内置类型&quot;&gt;&lt;a href=&quot;#基本内置类型&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="cpp笔记" scheme="https://jinbaotang.cn/categories/cpp%E7%AC%94%E8%AE%B0/"/>
-    
-    
-    <category term="exclude" scheme="https://jinbaotang.cn/tags/exclude/"/>
-    
-    <category term="c++" scheme="https://jinbaotang.cn/tags/c/"/>
-    
-    <category term="coding" scheme="https://jinbaotang.cn/tags/coding/"/>
-    
-  </entry>
-  
-  <entry>
     <title>cpp-primer笔记3</title>
     <link href="https://jinbaotang.cn/2021/04/10/notes/ch03/"/>
     <id>https://jinbaotang.cn/2021/04/10/notes/ch03/</id>
@@ -580,18 +579,18 @@
   </entry>
   
   <entry>
-    <title>cpp-primer笔记6</title>
-    <link href="https://jinbaotang.cn/2021/04/10/notes/ch06/"/>
-    <id>https://jinbaotang.cn/2021/04/10/notes/ch06/</id>
+    <title>cpp-primer笔记2</title>
+    <link href="https://jinbaotang.cn/2021/04/10/notes/ch02/"/>
+    <id>https://jinbaotang.cn/2021/04/10/notes/ch02/</id>
     <published>2021-04-10T12:35:38.000Z</published>
-    <updated>2021-06-22T01:37:27.740Z</updated>
+    <updated>2021-06-22T01:37:27.983Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1 id=&quot;第六章-函数&quot;&gt;&lt;a href=&quot;#第六章-函数&quot; class=&quot;headerlink&quot; title=&quot;第六章 函数&quot;&gt;&lt;/a&gt;第六章 函数&lt;/h1&gt;&lt;h2 id=&quot;函数基础&quot;&gt;&lt;a href=&quot;#函数基础&quot; class=&quot;headerlink&quot;</summary>
+    <summary type="html">&lt;h1 id=&quot;第二章-变量和基本类型&quot;&gt;&lt;a href=&quot;#第二章-变量和基本类型&quot; class=&quot;headerlink&quot; title=&quot;第二章 变量和基本类型&quot;&gt;&lt;/a&gt;第二章 变量和基本类型&lt;/h1&gt;&lt;h3 id=&quot;基本内置类型&quot;&gt;&lt;a href=&quot;#基本内置类型&quot;</summary>
         
       
     
