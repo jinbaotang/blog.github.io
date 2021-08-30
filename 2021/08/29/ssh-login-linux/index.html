@@ -4,7 +4,7 @@
 
     <head>
         <meta charset="utf-8">
-        <meta name="keywords" content="cpp-primer笔记4, Ethernet stack, embeded software, dignostic">
+        <meta name="keywords" content="ssh登录linux及失败解决方案, Ethernet stack, embeded software, dignostic">
         <meta name="description" content="唐金宝 | 车辆工程 | 软件工程师">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -18,7 +18,7 @@
 
 
             <title>
-                cpp-primer笔记4 | 金宝的博客
+                ssh登录linux及失败解决方案 | 金宝的博客
             </title>
             <link rel="icon" type="image/png" href="/medias/logo.png">
 
@@ -326,12 +326,12 @@
 
         
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">cpp-primer笔记4</h1>
+                    <h1 class="description center-align post-title">ssh登录linux及失败解决方案</h1>
                 </div>
             </div>
         </div>
@@ -447,16 +447,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/exclude/">
-                                <span class="chip bg-color">exclude</span>
+                            <a href="/tags/vscode/">
+                                <span class="chip bg-color">vscode</span>
                             </a>
                         
-                            <a href="/tags/c/">
-                                <span class="chip bg-color">c++</span>
-                            </a>
-                        
-                            <a href="/tags/coding/">
-                                <span class="chip bg-color">coding</span>
+                            <a href="/tags/ssh/">
+                                <span class="chip bg-color">ssh</span>
                             </a>
                         
                     </div>
@@ -467,8 +463,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/cpp%E7%AC%94%E8%AE%B0/" class="post-category">
-                                cpp笔记
+                            <a href="/categories/linux/" class="post-category">
+                                linux
                             </a>
                         
                     </div>
@@ -480,28 +476,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-04-10
+                    2021-08-29
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-06-22
+                    2021-08-29
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    642
+                    187
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    1 分
                 </div>
                 
 
@@ -524,51 +520,11 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="第四章-表达式"><a href="#第四章-表达式" class="headerlink" title="第四章 表达式"></a>第四章 表达式</h1><h2 id="表达式基础"><a href="#表达式基础" class="headerlink" title="表达式基础"></a>表达式基础</h2><ul>
-<li><strong>重载运算符</strong>：当运算符作用在类类型的运算对象时，用户可以自行定义其含义。</li>
-<li><strong>左值和右值</strong>：<ul>
-<li>C中原意：左值<strong>可以</strong>在表达式左边，右值不能。</li>
-<li><code>C++</code>：当一个对象被用作<strong>右值</strong>的时候，用的是对象的<strong>值</strong>（内容）；</li>
-<li>被用做<strong>左值</strong>时，用的是对象的<strong>身份</strong>（在内存中的位置）。</li>
-</ul>
-</li>
-</ul>
-<h2 id="算术运算符"><a href="#算术运算符" class="headerlink" title="算术运算符"></a>算术运算符</h2><ul>
-<li><strong>溢出</strong>：当计算的结果超出该类型所能表示的范围时就会产生溢出。</li>
-</ul>
-<h2 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h2><ul>
-<li><strong>短路求值</strong>：逻辑与运算符和逻辑或运算符都是先求左侧运算对象的值再求右侧运算对象的值，当且仅当左侧运算对象无法确定表达式的结果时才会计算右侧运算对象的值。</li>
-</ul>
-<h2 id="赋值运算符"><a href="#赋值运算符" class="headerlink" title="赋值运算符"></a>赋值运算符</h2><ul>
-<li>如果赋值运算的左右侧运算对象类型不同，则右侧运算对象将转换成左侧运算对象的类型。</li>
-<li>赋值运算符满足右结合律，这点和其他二元运算符不一样。 <code>ival = jval = 0;</code>等价于<code>ival = (jval = 0);</code></li>
-<li>赋值运算优先级比较低。</li>
-</ul>
-<h2 id="条件运算符"><a href="#条件运算符" class="headerlink" title="条件运算符"></a>条件运算符</h2><ul>
-<li>条件运算符（<code>?:</code>）允许我们把简单的<code>if-else</code>逻辑嵌入到单个表达式中去，按照如下形式：<code>cond? expr1: expr2</code></li>
-</ul>
-<h2 id="位运算符"><a href="#位运算符" class="headerlink" title="位运算符"></a>位运算符</h2><ul>
-<li>位运算符是作用于<strong>整数类型</strong>的运算对象。</li>
-<li>二进制位向左移（<code>&lt;&lt;</code>）或者向右移（<code>&gt;&gt;</code>），移出边界外的位就被舍弃掉了。</li>
-<li>位取反（<code>~</code>）、与（<code>&amp;</code>）、或（<code>|</code>）、异或（<code>^</code>）</li>
-</ul>
-<h2 id="sizeof运算符"><a href="#sizeof运算符" class="headerlink" title="sizeof运算符"></a>sizeof运算符</h2><ul>
-<li>返回一条表达式或一个类型名字所占的<strong>字节数</strong>。返回的类型是 <code>size_t</code>。</li>
-<li>两种形式： <code>sizeof (type)</code>和 <code>sizeof expr</code></li>
-</ul>
-<h2 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h2><h3 id="隐式类型转换"><a href="#隐式类型转换" class="headerlink" title="隐式类型转换"></a>隐式类型转换</h3><ul>
-<li>比 <code>int</code>类型小的整数值先提升为较大的整数类型。</li>
-<li>条件中，非布尔转换成布尔。</li>
-<li>初始化中，初始值转换成变量的类型。</li>
-<li>算术运算或者关系运算的运算对象有多种类型，要转换成同一种类型。</li>
-<li>函数调用时。</li>
-</ul>
-<h3 id="显式类型转换（尽量避免）"><a href="#显式类型转换（尽量避免）" class="headerlink" title="显式类型转换（尽量避免）"></a>显式类型转换（尽量避免）</h3><ul>
-<li><strong>static_cast</strong>：任何明确定义的类型转换，只要不包含底层const，都可以使用。 <code>double slope = static_cast&lt;double&gt;(j);</code></li>
-<li><strong>dynamic_cast</strong>：支持运行时类型识别。</li>
-<li><strong>const_cast</strong>：只能改变运算对象的底层const，一般可用于去除const性质。 <code>const char *pc; char *p = const_cast&lt;char*&gt;(pc)</code></li>
-<li><strong>reinterpret_cast</strong>：通常为运算对象的位模式提供低层次上的重新解释。</li>
-</ul>
+                <blockquote>
+<p><a href="https://jinbaotang.cn/2021/08/29/use-vscode-debug-ecu/">使用vscode可视化调试ECU</a>中提到，我最近一直在mac通过vscode登录到linux来进行代码开发。</p>
+</blockquote>
+<h1 id="一、vscode远程到linux上开发"><a href="#一、vscode远程到linux上开发" class="headerlink" title="一、vscode远程到linux上开发"></a>一、vscode远程到linux上开发</h1><p>&emsp;&emsp;在vscode上装上Remote-SSH，并在linux上装vscode sever就可以在其他电脑上（mac，linux，windows）来无感的进行”远程开发了“。既然是通过ssh的方式登录到远程，默认就有两种方式了，一个是密码的方式，一个ssh公钥私钥的方式了，前者很简单，只要不要将sshd的密码登录禁用（默认不禁用），可以在linux<code>/etc/ssh/sshd_config</code>查看<code>PasswordAuthentication</code>获取是否禁用。</p>
+<h1 id="二、问题解决"><a href="#二、问题解决" class="headerlink" title="二、问题解决"></a>二、问题解决</h1><p>&emsp;&emsp;参考<a target="_blank" rel="noopener" href="https://www.cnblogs.com/li-mzx/p/13140061.html">ssh 免密登录配置 （配置后还需要密码输入密码问题解决</a></p>
 
                 
             </div>
@@ -595,7 +551,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://jinbaotang.cn/2021/04/10/notes/ch04/">https://jinbaotang.cn/2021/04/10/notes/ch04/</a>
+                    <a href="https://jinbaotang.cn/2021/08/29/ssh-login-linux/">https://jinbaotang.cn/2021/08/29/ssh-login-linux/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -633,16 +589,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/exclude/">
-                                    <span class="chip bg-color">exclude</span>
+                                <a href="/tags/vscode/">
+                                    <span class="chip bg-color">vscode</span>
                                 </a>
                             
-                                <a href="/tags/c/">
-                                    <span class="chip bg-color">c++</span>
-                                </a>
-                            
-                                <a href="/tags/coding/">
-                                    <span class="chip bg-color">coding</span>
+                                <a href="/tags/ssh/">
+                                    <span class="chip bg-color">ssh</span>
                                 </a>
                             
                         </div>
@@ -813,7 +765,7 @@
         repo: 'jinbaotang.github.io',
         owner: 'jinbaotang',
         admin: "jinbaotang",
-        id: '2021-04-10T20-35-38',
+        id: '2021-08-29T22-22-00',
         distractionFreeMode: true, // Facebook-like distraction free mode
         createIssueManually: true,
         proxy: 'https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token',
@@ -1109,54 +1061,52 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2021/04/10/notes/ch03/">
+                <a href="/2021/08/29/ssh-login-linux/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="cpp-primer笔记3">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="ssh登录linux及失败解决方案">
                         
-                        <span class="card-title">cpp-primer笔记3</span>
+                        <span class="card-title">ssh登录linux及失败解决方案</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            使用ssh秘钥登录linux，以及不能正确登录时的解决办法，从此告别密码输入
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-04-10
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-29
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/cpp%E7%AC%94%E8%AE%B0/" class="post-category">
-                                    cpp笔记
+                            <a href="/categories/linux/" class="post-category">
+                                    linux
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/exclude/">
-                        <span class="chip bg-color">exclude</span>
+                    <a href="/tags/vscode/">
+                        <span class="chip bg-color">vscode</span>
                     </a>
                     
-                    <a href="/tags/c/">
-                        <span class="chip bg-color">c++</span>
-                    </a>
-                    
-                    <a href="/tags/coding/">
-                        <span class="chip bg-color">coding</span>
+                    <a href="/tags/ssh/">
+                        <span class="chip bg-color">ssh</span>
                     </a>
                     
                 </div>
@@ -1170,31 +1120,31 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/04/10/notes/ch02/">
+                <a href="/2021/08/29/use-vscode-debug-ecu/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="cpp-primer笔记2">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="可视化debug linux系统的ECU">
                         
-                        <span class="card-title">cpp-primer笔记2</span>
+                        <span class="card-title">可视化debug linux系统的ECU</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            使用vscode结合gdb达到可视化debug ECU，断点、监视变量等
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-04-10
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-29
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/cpp%E7%AC%94%E8%AE%B0/" class="post-category">
-                                    cpp笔记
+                            <a href="/categories/linux/" class="post-category">
+                                    linux
                                 </a>
                             
                             
@@ -1204,16 +1154,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/exclude/">
-                        <span class="chip bg-color">exclude</span>
+                    <a href="/tags/vscode/">
+                        <span class="chip bg-color">vscode</span>
                     </a>
                     
-                    <a href="/tags/c/">
-                        <span class="chip bg-color">c++</span>
-                    </a>
-                    
-                    <a href="/tags/coding/">
-                        <span class="chip bg-color">coding</span>
+                    <a href="/tags/gdb/">
+                        <span class="chip bg-color">gdb</span>
                     </a>
                     
                 </div>

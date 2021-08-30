@@ -1,3 +1,4 @@
+https://jinbaotang.cn/2021/08/29/ssh-login-linux/
 https://jinbaotang.cn/2021/08/29/use-vscode-debug-ecu/
 https://jinbaotang.cn/2021/06/20/cmake1/
 https://jinbaotang.cn/2021/06/06/how-mcu2linux/
