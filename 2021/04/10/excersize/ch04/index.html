@@ -646,9 +646,9 @@ pi <span class="token operator">=</span> <span class="token number">0</span><spa
 <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;vector></span></span>
 
-<span class="token keyword">using</span> std<span class="token operator">::</span>cout<span class="token punctuation">;</span>
-<span class="token keyword">using</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
-<span class="token keyword">using</span> std<span class="token operator">::</span>vector<span class="token punctuation">;</span>
+<span class="token keyword">using</span> std<span class="token double-colon punctuation">::</span>cout<span class="token punctuation">;</span>
+<span class="token keyword">using</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+<span class="token keyword">using</span> std<span class="token double-colon punctuation">::</span>vector<span class="token punctuation">;</span>
 
 <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">&#123;</span>
@@ -666,7 +666,7 @@ pi <span class="token operator">=</span> <span class="token number">0</span><spa
 <h2 id="练习4-22"><a href="#练习4-22" class="headerlink" title="练习4.22"></a>练习4.22</h2><p>本节的示例程序将成绩划分为<code>high pass</code>、<code>pass</code> 和 <code>fail</code> 三种，扩展该程序使其进一步将 60 分到 75 分之间的成绩设定为<code>low pass</code>。要求程序包含两个版本：一个版本只使用条件运算符；另一个版本使用1个或多个<code>if</code>语句。哪个版本的程序更容易理解呢？为什么？</p>
 <p>解：</p>
 <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
-<span class="token keyword">using</span> std<span class="token operator">::</span>cout<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token operator">::</span>cin<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
+<span class="token keyword">using</span> std<span class="token double-colon punctuation">::</span>cout<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token double-colon punctuation">::</span>cin<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
 
 <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">&#123;</span>
@@ -833,7 +833,7 @@ cout <span class="token operator">&lt;&lt;</span> <span class="token keyword">si
 </ul>
 <h2 id="练习4-36"><a href="#练习4-36" class="headerlink" title="练习4.36"></a>练习4.36</h2><p>假设 <code>i</code> 是<code>int</code>类型，<code>d</code> 是<code>double</code>类型，书写表达式 <code>i*=d</code> 使其执行整数类型的乘法而非浮点类型的乘法。</p>
 <p>解：</p>
-<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">i <span class="token operator">*=</span> <span class="token keyword">static_cast</span><span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token punctuation">(</span>d<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">i <span class="token operator">*=</span> <span class="token generic-function"><span class="token function">static_cast</span><span class="token generic class-name"><span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span></span></span><span class="token punctuation">(</span>d<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <h2 id="练习4-37"><a href="#练习4-37" class="headerlink" title="练习4.37"></a>练习4.37</h2><p>练习4.37<br>用命名的强制类型转换改写下列旧式的转换语句。</p>
 <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">int</span> i<span class="token punctuation">;</span> <span class="token keyword">double</span> d<span class="token punctuation">;</span> <span class="token keyword">const</span> string <span class="token operator">*</span>ps<span class="token punctuation">;</span> <span class="token keyword">char</span> <span class="token operator">*</span>pc<span class="token punctuation">;</span> <span class="token keyword">void</span> <span class="token operator">*</span>pv<span class="token punctuation">;</span>
@@ -843,13 +843,13 @@ cout <span class="token operator">&lt;&lt;</span> <span class="token keyword">si
 <span class="token punctuation">(</span>d<span class="token punctuation">)</span> pc <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">char</span><span class="token operator">*</span><span class="token punctuation">)</span>pv<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>解：</p>
-<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token punctuation">(</span>a<span class="token punctuation">)</span> pv <span class="token operator">=</span> <span class="token keyword">static_cast</span><span class="token operator">&lt;</span><span class="token keyword">void</span><span class="token operator">*</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token keyword">const_cast</span><span class="token operator">&lt;</span>string<span class="token operator">*</span><span class="token operator">></span><span class="token punctuation">(</span>ps<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">(</span>b<span class="token punctuation">)</span> i <span class="token operator">=</span> <span class="token keyword">static_cast</span><span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token operator">*</span>pc<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">(</span>c<span class="token punctuation">)</span> pv <span class="token operator">=</span> <span class="token keyword">static_cast</span><span class="token operator">&lt;</span><span class="token keyword">void</span><span class="token operator">*</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token operator">&amp;</span>d<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">(</span>d<span class="token punctuation">)</span> pc <span class="token operator">=</span> <span class="token keyword">static_cast</span><span class="token operator">&lt;</span><span class="token keyword">char</span><span class="token operator">*</span><span class="token operator">></span><span class="token punctuation">(</span>pv<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token punctuation">(</span>a<span class="token punctuation">)</span> pv <span class="token operator">=</span> <span class="token generic-function"><span class="token function">static_cast</span><span class="token generic class-name"><span class="token operator">&lt;</span><span class="token keyword">void</span><span class="token operator">*</span><span class="token operator">></span></span></span><span class="token punctuation">(</span><span class="token generic-function"><span class="token function">const_cast</span><span class="token generic class-name"><span class="token operator">&lt;</span>string<span class="token operator">*</span><span class="token operator">></span></span></span><span class="token punctuation">(</span>ps<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">(</span>b<span class="token punctuation">)</span> i <span class="token operator">=</span> <span class="token generic-function"><span class="token function">static_cast</span><span class="token generic class-name"><span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span></span></span><span class="token punctuation">(</span><span class="token operator">*</span>pc<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">(</span>c<span class="token punctuation">)</span> pv <span class="token operator">=</span> <span class="token generic-function"><span class="token function">static_cast</span><span class="token generic class-name"><span class="token operator">&lt;</span><span class="token keyword">void</span><span class="token operator">*</span><span class="token operator">></span></span></span><span class="token punctuation">(</span><span class="token operator">&amp;</span>d<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">(</span>d<span class="token punctuation">)</span> pc <span class="token operator">=</span> <span class="token generic-function"><span class="token function">static_cast</span><span class="token generic class-name"><span class="token operator">&lt;</span><span class="token keyword">char</span><span class="token operator">*</span><span class="token operator">></span></span></span><span class="token punctuation">(</span>pv<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="练习4-38"><a href="#练习4-38" class="headerlink" title="练习4.38"></a>练习4.38</h2><p>说明下面这条表达式的含义。</p>
-<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">double</span> slope <span class="token operator">=</span> <span class="token keyword">static_cast</span><span class="token operator">&lt;</span><span class="token keyword">double</span><span class="token operator">></span><span class="token punctuation">(</span>j<span class="token operator">/</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">double</span> slope <span class="token operator">=</span> <span class="token generic-function"><span class="token function">static_cast</span><span class="token generic class-name"><span class="token operator">&lt;</span><span class="token keyword">double</span><span class="token operator">></span></span></span><span class="token punctuation">(</span>j<span class="token operator">/</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>解：</p>
 <p>将<code>j/i</code>的结果值转换为<code>double</code>，然后赋值给<code>slope</code>。</p>
@@ -1397,13 +1397,13 @@ cout <span class="token operator">&lt;&lt;</span> <span class="token keyword">si
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/04/10/excersize/ch01/">
+                <a href="/2021/04/10/notes/ch19/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="cpp-primer课后答案1">
+                        <img src="/medias/featureimages/27.jpg" class="responsive-img" alt="cpp-primer笔记19">
                         
-                        <span class="card-title">cpp-primer课后答案1</span>
+                        <span class="card-title">cpp-primer笔记19</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1420,8 +1420,8 @@ cout <span class="token operator">&lt;&lt;</span> <span class="token keyword">si
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/cpp-primer%E7%AD%94%E6%A1%88/" class="post-category">
-                                    cpp-primer答案
+                            <a href="/categories/cpp%E7%AC%94%E8%AE%B0/" class="post-category">
+                                    cpp笔记
                                 </a>
                             
                             
@@ -1778,7 +1778,7 @@ cout <span class="token operator">&lt;&lt;</span> <span class="token keyword">si
                                     <a href="https://github.com/jinbaotang/jinbaotang.githuh.io" target="_blank">jinbao-matery-modify</a>
                                     <br>
                                     
-                                        &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span class="white-color">155k</span>&nbsp;字
+                                        &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span class="white-color">162.8k</span>&nbsp;字
                                         
                                             
                                                 

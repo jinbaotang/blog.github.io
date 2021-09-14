@@ -556,15 +556,15 @@
 <span class="token punctuation">&#123;</span>
     <span class="token keyword">if</span><span class="token punctuation">(</span>i<span class="token operator">&lt;</span><span class="token number">0</span><span class="token punctuation">)</span>
     <span class="token punctuation">&#123;</span>
-        std<span class="token operator">::</span>runtime_error <span class="token function">err</span><span class="token punctuation">(</span><span class="token string">"Input cannot be a negative number"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> err<span class="token punctuation">.</span><span class="token function">what</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
+        std<span class="token double-colon punctuation">::</span>runtime_error <span class="token function">err</span><span class="token punctuation">(</span><span class="token string">"Input cannot be a negative number"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> err<span class="token punctuation">.</span><span class="token function">what</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span>
     <span class="token keyword">return</span> i <span class="token operator">></span> <span class="token number">1</span> <span class="token operator">?</span> i <span class="token operator">*</span> <span class="token function">fact</span><span class="token punctuation">(</span> i <span class="token operator">-</span> <span class="token number">1</span> <span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span>
 
 <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">&#123;</span>
-    std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>boolalpha <span class="token operator">&lt;&lt;</span> <span class="token punctuation">(</span><span class="token number">120</span> <span class="token operator">==</span> <span class="token function">fact</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
+    std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>boolalpha <span class="token operator">&lt;&lt;</span> <span class="token punctuation">(</span><span class="token number">120</span> <span class="token operator">==</span> <span class="token function">fact</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
@@ -580,16 +580,16 @@
 
 <span class="token keyword">void</span> <span class="token function">interactive_fact</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">&#123;</span>
-    std<span class="token operator">::</span>string <span class="token keyword">const</span> prompt <span class="token operator">=</span> <span class="token string">"Enter a number within [1, 13) :\n"</span><span class="token punctuation">;</span>
-    std<span class="token operator">::</span>string <span class="token keyword">const</span> out_of_range <span class="token operator">=</span> <span class="token string">"Out of range, please try again.\n"</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token punctuation">;</span> std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> prompt<span class="token punctuation">,</span> std<span class="token operator">::</span>cin <span class="token operator">>></span> i<span class="token punctuation">;</span> <span class="token punctuation">)</span>
+    std<span class="token double-colon punctuation">::</span>string <span class="token keyword">const</span> prompt <span class="token operator">=</span> <span class="token string">"Enter a number within [1, 13) :\n"</span><span class="token punctuation">;</span>
+    std<span class="token double-colon punctuation">::</span>string <span class="token keyword">const</span> out_of_range <span class="token operator">=</span> <span class="token string">"Out of range, please try again.\n"</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token punctuation">;</span> std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> prompt<span class="token punctuation">,</span> std<span class="token double-colon punctuation">::</span>cin <span class="token operator">>></span> i<span class="token punctuation">;</span> <span class="token punctuation">)</span>
     <span class="token punctuation">&#123;</span>
         <span class="token keyword">if</span> <span class="token punctuation">(</span>i <span class="token operator">&lt;</span> <span class="token number">1</span> <span class="token operator">||</span> i <span class="token operator">></span> <span class="token number">12</span><span class="token punctuation">)</span>
         <span class="token punctuation">&#123;</span>
-            std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> out_of_range<span class="token punctuation">;</span> 
+            std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> out_of_range<span class="token punctuation">;</span> 
             <span class="token keyword">continue</span><span class="token punctuation">;</span>
         <span class="token punctuation">&#125;</span>
-        std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token function">fact</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
+        std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token function">fact</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span>
 
@@ -609,7 +609,7 @@
 
 <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">&#123;</span>
-   std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token function">abs</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">5</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
+   std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token function">abs</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">5</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
@@ -668,8 +668,8 @@ T <span class="token function">abs</span><span class="token punctuation">(</span
 <span class="token keyword">int</span> <span class="token function">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">&#123;</span>
     <span class="token keyword">int</span> n<span class="token punctuation">,</span> ret <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
-    std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"input a number: "</span><span class="token punctuation">;</span>
-    std<span class="token operator">::</span>cin <span class="token operator">>></span> n<span class="token punctuation">;</span>
+    std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"input a number: "</span><span class="token punctuation">;</span>
+    std<span class="token double-colon punctuation">::</span>cin <span class="token operator">>></span> n<span class="token punctuation">;</span>
     <span class="token keyword">while</span> <span class="token punctuation">(</span>n <span class="token operator">></span> <span class="token number">1</span><span class="token punctuation">)</span> ret <span class="token operator">*=</span> n<span class="token operator">--</span><span class="token punctuation">;</span>
     <span class="token keyword">return</span> ret<span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span>
@@ -681,9 +681,9 @@ T <span class="token function">abs</span><span class="token punctuation">(</span
 
 <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">&#123;</span>
-    std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"5! is "</span> <span class="token operator">&lt;&lt;</span> <span class="token function">fact</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span> 
-    std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token function">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span> 
-    std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token function">abs</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">9.78</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
+    std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"5! is "</span> <span class="token operator">&lt;&lt;</span> <span class="token function">fact</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span> 
+    std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token function">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span> 
+    std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token function">abs</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">9.78</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>编译： <code>g++ factMain.cpp fact.cpp -o main</code></p>
@@ -702,10 +702,10 @@ T <span class="token function">abs</span><span class="token punctuation">(</span
 
 <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">&#123;</span>
-	<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> lft<span class="token punctuation">,</span> rht<span class="token punctuation">;</span> std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Please Enter:\n"</span><span class="token punctuation">,</span> std<span class="token operator">::</span>cin <span class="token operator">>></span> lft <span class="token operator">>></span> rht<span class="token punctuation">;</span><span class="token punctuation">)</span>
+	<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> lft<span class="token punctuation">,</span> rht<span class="token punctuation">;</span> std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Please Enter:\n"</span><span class="token punctuation">,</span> std<span class="token double-colon punctuation">::</span>cin <span class="token operator">>></span> lft <span class="token operator">>></span> rht<span class="token punctuation">;</span><span class="token punctuation">)</span>
 	<span class="token punctuation">&#123;</span>
 		<span class="token function">swap</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>lft<span class="token punctuation">,</span> <span class="token operator">&amp;</span>rht<span class="token punctuation">)</span><span class="token punctuation">;</span>
-		std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> lft <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> rht <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
+		std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> lft <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> rht <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
 	<span class="token punctuation">&#125;</span>
 
 	<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
@@ -724,7 +724,7 @@ T <span class="token function">abs</span><span class="token punctuation">(</span
 <span class="token punctuation">&#123;</span>
     <span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">42</span><span class="token punctuation">;</span>
     <span class="token function">reset</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> i  <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
+    std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> i  <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
@@ -742,10 +742,10 @@ T <span class="token function">abs</span><span class="token punctuation">(</span
 
 <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">&#123;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> left<span class="token punctuation">,</span> right<span class="token punctuation">;</span> std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Please Enter:\n"</span><span class="token punctuation">,</span> std<span class="token operator">::</span>cin <span class="token operator">>></span> left <span class="token operator">>></span> right<span class="token punctuation">;</span> <span class="token punctuation">)</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> left<span class="token punctuation">,</span> right<span class="token punctuation">;</span> std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Please Enter:\n"</span><span class="token punctuation">,</span> std<span class="token double-colon punctuation">::</span>cin <span class="token operator">>></span> left <span class="token operator">>></span> right<span class="token punctuation">;</span> <span class="token punctuation">)</span>
     <span class="token punctuation">&#123;</span>
         <span class="token function">swap</span><span class="token punctuation">(</span>left<span class="token punctuation">,</span> right<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> left <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> right <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
+        std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> left <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> right <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span>
 
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
@@ -808,12 +808,12 @@ T <span class="token function">abs</span><span class="token punctuation">(</span
 </ul>
 <p>解：</p>
 <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token punctuation">(</span>a<span class="token punctuation">)</span> <span class="token keyword">bool</span> <span class="token function">compare</span><span class="token punctuation">(</span>matrix <span class="token operator">&amp;</span>m1<span class="token punctuation">,</span> matrix <span class="token operator">&amp;</span>m2<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">(</span>b<span class="token punctuation">)</span> vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">::</span>iterator <span class="token function">change_val</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">,</span> vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">::</span>iterator<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<span class="token punctuation">(</span>b<span class="token punctuation">)</span> vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token double-colon punctuation">::</span>iterator <span class="token function">change_val</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">,</span> vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token double-colon punctuation">::</span>iterator<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <h2 id="练习6-19"><a href="#练习6-19" class="headerlink" title="练习6.19"></a>练习6.19</h2><p>假定有如下声明，判断哪个调用合法、哪个调用不合法。对于不合法的函数调用，说明原因。</p>
 <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">double</span> <span class="token function">calc</span><span class="token punctuation">(</span><span class="token keyword">double</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword">int</span> <span class="token function">count</span><span class="token punctuation">(</span><span class="token keyword">const</span> string <span class="token operator">&amp;</span><span class="token punctuation">,</span> <span class="token keyword">char</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">int</span> <span class="token function">sum</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">::</span>iterator<span class="token punctuation">,</span> vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">::</span>iterator<span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> <span class="token function">sum</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token double-colon punctuation">::</span>iterator<span class="token punctuation">,</span> vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token double-colon punctuation">::</span>iterator<span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token function">vec</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">(</span>a<span class="token punctuation">)</span> <span class="token function">calc</span><span class="token punctuation">(</span><span class="token number">23.4</span><span class="token punctuation">,</span> <span class="token number">55.1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">(</span>b<span class="token punctuation">)</span> <span class="token function">count</span><span class="token punctuation">(</span><span class="token string">"abcda"</span><span class="token punctuation">,</span><span class="token string">'a'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -833,7 +833,7 @@ vector<span class="token operator">&lt;</span><span class="token keyword">int</s
 <h2 id="练习6-21"><a href="#练习6-21" class="headerlink" title="练习6.21"></a>练习6.21</h2><p>编写一个函数，令其接受两个参数：一个是<code>int</code>型的数，另一个是<code>int</code>指针。<br>函数比较<code>int</code>的值和指针所指的值，返回较大的那个。<br>在该函数中指针的类型应该是什么？</p>
 <p>解：</p>
 <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
-<span class="token keyword">using</span> std<span class="token operator">::</span>cout<span class="token punctuation">;</span>
+<span class="token keyword">using</span> std<span class="token double-colon punctuation">::</span>cout<span class="token punctuation">;</span>
 
 <span class="token keyword">int</span> <span class="token function">larger_one</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">int</span> i<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">int</span> <span class="token operator">*</span><span class="token keyword">const</span> p<span class="token punctuation">)</span>
 <span class="token punctuation">&#123;</span>
@@ -867,7 +867,7 @@ vector<span class="token operator">&lt;</span><span class="token keyword">int</s
     <span class="token keyword">auto</span> lft <span class="token operator">=</span> <span class="token operator">&amp;</span>i<span class="token punctuation">;</span>
     <span class="token keyword">auto</span> rht <span class="token operator">=</span> <span class="token operator">&amp;</span>j<span class="token punctuation">;</span>
     <span class="token function">swap</span><span class="token punctuation">(</span>lft<span class="token punctuation">,</span> rht<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token operator">*</span>lft <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> <span class="token operator">*</span>rht <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
+    std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token operator">*</span>lft <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> <span class="token operator">*</span>rht <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
 
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
@@ -877,7 +877,7 @@ vector<span class="token operator">&lt;</span><span class="token keyword">int</s
 
 <p>解：</p>
 <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
-<span class="token keyword">using</span> std<span class="token operator">::</span>cout<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token operator">::</span>begin<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token operator">::</span>end<span class="token punctuation">;</span>
+<span class="token keyword">using</span> std<span class="token double-colon punctuation">::</span>cout<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token double-colon punctuation">::</span>begin<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token double-colon punctuation">::</span>end<span class="token punctuation">;</span>
 
 <span class="token keyword">void</span> <span class="token function">print</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">int</span> <span class="token operator">*</span>pi<span class="token punctuation">)</span>
 <span class="token punctuation">&#123;</span>
@@ -949,11 +949,11 @@ vector<span class="token operator">&lt;</span><span class="token keyword">int</s
 
 <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token operator">*</span>argv<span class="token punctuation">)</span>
 <span class="token punctuation">&#123;</span>
-    std<span class="token operator">::</span>string str<span class="token punctuation">;</span>
+    std<span class="token double-colon punctuation">::</span>string str<span class="token punctuation">;</span>
     <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">!=</span> argc<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
-        str <span class="token operator">+=</span> std<span class="token operator">::</span><span class="token function">string</span><span class="token punctuation">(</span>argv<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">" "</span><span class="token punctuation">;</span>
+        str <span class="token operator">+=</span> std<span class="token double-colon punctuation">::</span><span class="token function">string</span><span class="token punctuation">(</span>argv<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">" "</span><span class="token punctuation">;</span>
 
-    std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> str <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
+    std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> str <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
@@ -962,7 +962,7 @@ vector<span class="token operator">&lt;</span><span class="token keyword">int</s
 <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;initializer_list></span></span>
 
-<span class="token keyword">int</span> <span class="token function">sum</span><span class="token punctuation">(</span>std<span class="token operator">::</span>initializer_list<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token keyword">const</span><span class="token operator">&amp;</span> il<span class="token punctuation">)</span>
+<span class="token keyword">int</span> <span class="token function">sum</span><span class="token punctuation">(</span>std<span class="token double-colon punctuation">::</span>initializer_list<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token keyword">const</span><span class="token operator">&amp;</span> il<span class="token punctuation">)</span>
 <span class="token punctuation">&#123;</span>
     <span class="token keyword">int</span> sum <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
     <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">auto</span> i <span class="token operator">:</span> il<span class="token punctuation">)</span> sum <span class="token operator">+=</span> i<span class="token punctuation">;</span>
@@ -972,7 +972,7 @@ vector<span class="token operator">&lt;</span><span class="token keyword">int</s
 <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
 <span class="token punctuation">&#123;</span>
     <span class="token keyword">auto</span> il <span class="token operator">=</span> <span class="token punctuation">&#123;</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">9</span> <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
-    std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token function">sum</span><span class="token punctuation">(</span>il<span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
+    std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token function">sum</span><span class="token punctuation">(</span>il<span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
 
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
@@ -1009,8 +1009,8 @@ vector<span class="token operator">&lt;</span><span class="token keyword">int</s
 <p>解：</p>
 <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;vector></span></span>
-<span class="token keyword">using</span> std<span class="token operator">::</span>vector<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token operator">::</span>cout<span class="token punctuation">;</span>
-<span class="token keyword">using</span> Iter <span class="token operator">=</span> vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">::</span>const_iterator<span class="token punctuation">;</span>
+<span class="token keyword">using</span> std<span class="token double-colon punctuation">::</span>vector<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token double-colon punctuation">::</span>cout<span class="token punctuation">;</span>
+<span class="token keyword">using</span> Iter <span class="token operator">=</span> vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token double-colon punctuation">::</span>const_iterator<span class="token punctuation">;</span>
 
 <span class="token keyword">void</span> <span class="token function">print</span><span class="token punctuation">(</span>Iter first<span class="token punctuation">,</span> Iter last<span class="token punctuation">)</span>
 <span class="token punctuation">&#123;</span>
@@ -1094,9 +1094,9 @@ string s<span class="token punctuation">[</span><span class="token number">10</s
 <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string></span></span>
 
-<span class="token keyword">using</span> std<span class="token operator">::</span>string<span class="token punctuation">;</span>
-<span class="token keyword">using</span> std<span class="token operator">::</span>cout<span class="token punctuation">;</span>
-<span class="token keyword">using</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
+<span class="token keyword">using</span> std<span class="token double-colon punctuation">::</span>string<span class="token punctuation">;</span>
+<span class="token keyword">using</span> std<span class="token double-colon punctuation">::</span>cout<span class="token punctuation">;</span>
+<span class="token keyword">using</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
 
 string <span class="token function">make_plural</span><span class="token punctuation">(</span>size_t ctr<span class="token punctuation">,</span> <span class="token keyword">const</span> string<span class="token operator">&amp;</span> word<span class="token punctuation">,</span> <span class="token keyword">const</span> string<span class="token operator">&amp;</span> ending <span class="token operator">=</span> <span class="token string">"s"</span><span class="token punctuation">)</span>
 <span class="token punctuation">&#123;</span>
@@ -1136,7 +1136,7 @@ string <span class="token function">make_plural</span><span class="token punctua
 <p>解：</p>
 <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;vector></span></span>
-<span class="token keyword">using</span> std<span class="token operator">::</span>vector<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token operator">::</span>cout<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
+<span class="token keyword">using</span> std<span class="token double-colon punctuation">::</span>vector<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token double-colon punctuation">::</span>cout<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
 
 <span class="token keyword">void</span> <span class="token function">printVec</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token operator">&amp;</span>vec<span class="token punctuation">)</span>
 <span class="token punctuation">&#123;</span>
@@ -1189,7 +1189,7 @@ string <span class="token function">make_plural</span><span class="token punctua
 <h2 id="练习6-51"><a href="#练习6-51" class="headerlink" title="练习6.51"></a>练习6.51</h2><p>编写函数<code>f</code>的4版本，令其各输出一条可以区分的消息。<br>验证上一个练习的答案，如果你的回答错了，反复研究本节内容直到你弄清自己错在何处。</p>
 <p>解：</p>
 <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
-<span class="token keyword">using</span> std<span class="token operator">::</span>cout<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
+<span class="token keyword">using</span> std<span class="token double-colon punctuation">::</span>cout<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
 
 <span class="token keyword">void</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">&#123;</span>
@@ -1262,9 +1262,9 @@ v<span class="token punctuation">.</span><span class="token function">push_back<
 
 <h2 id="练习6-56"><a href="#练习6-56" class="headerlink" title="练习6.56"></a>练习6.56</h2><p>调用上述<code>vector</code>对象中的每个元素并输出结果。</p>
 <p>解：</p>
-<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">std<span class="token operator">::</span>vector<span class="token operator">&lt;</span><span class="token keyword">decltype</span><span class="token punctuation">(</span>func<span class="token punctuation">)</span> <span class="token operator">*</span><span class="token operator">></span> vec<span class="token punctuation">&#123;</span> add<span class="token punctuation">,</span> subtract<span class="token punctuation">,</span> multiply<span class="token punctuation">,</span> divide <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">std<span class="token double-colon punctuation">::</span>vector<span class="token operator">&lt;</span><span class="token keyword">decltype</span><span class="token punctuation">(</span>func<span class="token punctuation">)</span> <span class="token operator">*</span><span class="token operator">></span> vec<span class="token punctuation">&#123;</span> add<span class="token punctuation">,</span> subtract<span class="token punctuation">,</span> multiply<span class="token punctuation">,</span> divide <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
 <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">auto</span> f <span class="token operator">:</span> vec<span class="token punctuation">)</span>
-          std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+          std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
                 
             </div>
             <hr/>
@@ -1808,13 +1808,13 @@ v<span class="token punctuation">.</span><span class="token function">push_back<
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/04/10/excersize/ch09/">
+                <a href="/2021/04/10/excersize/ch03/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="cpp-primer课后答案9">
+                        <img src="/medias/featureimages/27.jpg" class="responsive-img" alt="cpp-primer课后答案3">
                         
-                        <span class="card-title">cpp-primer课后答案9</span>
+                        <span class="card-title">cpp-primer课后答案3</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1865,13 +1865,13 @@ v<span class="token punctuation">.</span><span class="token function">push_back<
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/04/10/excersize/ch10/">
+                <a href="/2021/04/10/excersize/ch05/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/27.jpg" class="responsive-img" alt="cpp-primer课后答案10">
+                        <img src="/medias/featureimages/25.jpg" class="responsive-img" alt="cpp-primer课后答案5">
                         
-                        <span class="card-title">cpp-primer课后答案10</span>
+                        <span class="card-title">cpp-primer课后答案5</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -2189,7 +2189,7 @@ v<span class="token punctuation">.</span><span class="token function">push_back<
                                     <a href="https://github.com/jinbaotang/jinbaotang.githuh.io" target="_blank">jinbao-matery-modify</a>
                                     <br>
                                     
-                                        &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span class="white-color">155k</span>&nbsp;字
+                                        &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span class="white-color">162.8k</span>&nbsp;字
                                         
                                             
                                                 

@@ -549,10 +549,10 @@
 <h3 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h3><p>处理构造函数初始值异常的唯一方法是将构造函数协程函数<code>try</code>语句块。</p>
 <p>示例：</p>
 <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">template</span> <span class="token operator">&lt;</span><span class="token keyword">typename</span> <span class="token class-name">T</span><span class="token operator">></span>
-<span class="token class-name">Blob</span><span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token operator">::</span><span class="token function">Blob</span><span class="token punctuation">(</span>std<span class="token operator">::</span>initializer_list<span class="token operator">&lt;</span>T<span class="token operator">></span> il<span class="token punctuation">)</span> <span class="token keyword">try</span><span class="token operator">:</span> 
-    <span class="token function">data</span><span class="token punctuation">(</span>std<span class="token operator">::</span>make_shared<span class="token operator">&lt;</span>std<span class="token operator">::</span>vector<span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token operator">></span><span class="token punctuation">(</span>il<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+<span class="token class-name">Blob</span><span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token double-colon punctuation">::</span><span class="token function">Blob</span><span class="token punctuation">(</span>std<span class="token double-colon punctuation">::</span>initializer_list<span class="token operator">&lt;</span>T<span class="token operator">></span> il<span class="token punctuation">)</span> <span class="token keyword">try</span><span class="token operator">:</span> 
+    <span class="token function">data</span><span class="token punctuation">(</span>std<span class="token double-colon punctuation">::</span><span class="token generic-function"><span class="token function">make_shared</span><span class="token generic class-name"><span class="token operator">&lt;</span>std<span class="token double-colon punctuation">::</span>vector<span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token operator">></span></span></span><span class="token punctuation">(</span>il<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
         <span class="token comment">/*函数体*/</span>
-    <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span><span class="token punctuation">(</span><span class="token keyword">const</span> std<span class="token operator">::</span>bad_alloc <span class="token operator">&amp;</span>e<span class="token punctuation">)</span><span class="token punctuation">&#123;</span> <span class="token function">handle_out_of_memory</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span><span class="token punctuation">(</span><span class="token keyword">const</span> std<span class="token double-colon punctuation">::</span>bad_alloc <span class="token operator">&amp;</span>e<span class="token punctuation">)</span><span class="token punctuation">&#123;</span> <span class="token function">handle_out_of_memory</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="noexcept异常说明"><a href="#noexcept异常说明" class="headerlink" title="noexcept异常说明"></a>noexcept异常说明</h3><p>使用<code>noexcept</code>说明指定某个函数不会抛出异常。</p>
 <p>示例：</p>
@@ -582,9 +582,9 @@ coid <span class="token function">recoup</span><span class="token punctuation">(
 </ul>
 <p>自定义异常类：</p>
 <p>示例：</p>
-<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">out_of_stock</span><span class="token operator">:</span> <span class="token base-clause"><span class="token keyword">public</span> std<span class="token operator">::</span><span class="token class-name">runtime_error</span></span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">explicit</span> <span class="token function">out_of_stock</span><span class="token punctuation">(</span><span class="token keyword">const</span> std<span class="token operator">::</span>string <span class="token operator">&amp;</span>s<span class="token punctuation">)</span><span class="token operator">:</span>
-    std<span class="token operator">::</span><span class="token function">runtime_error</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">&#123;</span> <span class="token punctuation">&#125;</span>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">out_of_stock</span><span class="token operator">:</span> <span class="token base-clause"><span class="token keyword">public</span> std<span class="token double-colon punctuation">::</span><span class="token class-name">runtime_error</span></span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">explicit</span> <span class="token function">out_of_stock</span><span class="token punctuation">(</span><span class="token keyword">const</span> std<span class="token double-colon punctuation">::</span>string <span class="token operator">&amp;</span>s<span class="token punctuation">)</span><span class="token operator">:</span>
+    std<span class="token double-colon punctuation">::</span><span class="token function">runtime_error</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">&#123;</span> <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="命名空间"><a href="#命名空间" class="headerlink" title="命名空间"></a>命名空间</h2><p>多个库将名字放置在全局命名空间中将引发<strong>命名空间污染</strong>（namespace pollution）。<strong>命名空间</strong>（namespace）分割了全局命名空间，其中每个命名空间是一个作用域。</p>
@@ -606,7 +606,7 @@ coid <span class="token function">recoup</span><span class="token punctuation">(
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span>
 
-cplusplus_primer<span class="token operator">::</span>Query_base qb<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+cplusplus_primer<span class="token double-colon punctuation">::</span>Query_base qb<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><strong>未命名的命名空间</strong>：</p>
 <p>指关键字<code>namespace</code>后面紧跟花括号的用法。未命名的命名空间中定义的变量拥有静态的声明周期：在第一次使用前创建，直到程序结束才销毁。不能跨越多个文件。</p>
@@ -616,7 +616,7 @@ cplusplus_primer<span class="token operator">::</span>Query_base qb<span class="
 
 <p><strong>using声明</strong>（using declaration）：</p>
 <p>一条<code>using</code>声明语句一次只引入命名空间的一个成员。</p>
-<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">using</span> std<span class="token operator">::</span>string<span class="token punctuation">;</span>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">using</span> std<span class="token double-colon punctuation">::</span>string<span class="token punctuation">;</span>
 
 string s <span class="token operator">=</span> <span class="token string">"hello"</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
@@ -633,7 +633,7 @@ string s <span class="token operator">=</span> <span class="token string">"hello
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span>
 
-A<span class="token operator">::</span>C1<span class="token operator">::</span>f3<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+A<span class="token double-colon punctuation">::</span>C1<span class="token double-colon punctuation">::</span>f3<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="重载与命名空间"><a href="#重载与命名空间" class="headerlink" title="重载与命名空间"></a>重载与命名空间</h3><p><code>using</code>声明语句声明的是一个名字，而非特定的函数，也就是包括该函数的所有版本，都被引入到当前作用域中。</p>
 <h2 id="多重继承与虚继承"><a href="#多重继承与虚继承" class="headerlink" title="多重继承与虚继承"></a>多重继承与虚继承</h2><h3 id="多重继承"><a href="#多重继承" class="headerlink" title="多重继承"></a>多重继承</h3><h3 id="类型转换与多个基类"><a href="#类型转换与多个基类" class="headerlink" title="类型转换与多个基类"></a>类型转换与多个基类</h3><h3 id="多重继承下的类作用域"><a href="#多重继承下的类作用域" class="headerlink" title="多重继承下的类作用域"></a>多重继承下的类作用域</h3><ul>
@@ -1191,13 +1191,13 @@ A<span class="token operator">::</span>C1<span class="token operator">::</span>f
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/04/10/notes/ch15/">
+                <a href="/2021/04/10/excersize/ch01/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="cpp-primer笔记15">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="cpp-primer课后答案1">
                         
-                        <span class="card-title">cpp-primer笔记15</span>
+                        <span class="card-title">cpp-primer课后答案1</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1214,8 +1214,8 @@ A<span class="token operator">::</span>C1<span class="token operator">::</span>f
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/cpp%E7%AC%94%E8%AE%B0/" class="post-category">
-                                    cpp笔记
+                            <a href="/categories/cpp-primer%E7%AD%94%E6%A1%88/" class="post-category">
+                                    cpp-primer答案
                                 </a>
                             
                             
@@ -1248,13 +1248,13 @@ A<span class="token operator">::</span>C1<span class="token operator">::</span>f
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/04/10/notes/ch19/">
+                <a href="/2021/04/10/notes/ch15/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/27.jpg" class="responsive-img" alt="cpp-primer笔记19">
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="cpp-primer笔记15">
                         
-                        <span class="card-title">cpp-primer笔记19</span>
+                        <span class="card-title">cpp-primer笔记15</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1572,7 +1572,7 @@ A<span class="token operator">::</span>C1<span class="token operator">::</span>f
                                     <a href="https://github.com/jinbaotang/jinbaotang.githuh.io" target="_blank">jinbao-matery-modify</a>
                                     <br>
                                     
-                                        &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span class="white-color">155k</span>&nbsp;字
+                                        &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span class="white-color">162.8k</span>&nbsp;字
                                         
                                             
                                                 

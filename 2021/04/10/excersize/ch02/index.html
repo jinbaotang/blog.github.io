@@ -532,13 +532,13 @@
 <p>使用<code>double</code>。需要进行浮点计算。</p>
 <h2 id="练习2-3"><a href="#练习2-3" class="headerlink" title="练习2.3"></a>练习2.3</h2><p>读程序写结果。</p>
 <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">unsigned</span> u <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">,</span> u2 <span class="token operator">=</span> <span class="token number">42</span><span class="token punctuation">;</span>
-std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> u2 <span class="token operator">-</span> u <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
-std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> u <span class="token operator">-</span> u2 <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
+std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> u2 <span class="token operator">-</span> u <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> u <span class="token operator">-</span> u2 <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
 <span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">,</span> i2 <span class="token operator">=</span> <span class="token number">42</span><span class="token punctuation">;</span>
-std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> i2 <span class="token operator">-</span> i <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
-std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> i <span class="token operator">-</span> i2 <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
-std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> i <span class="token operator">-</span> u <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
-std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> u <span class="token operator">-</span> i <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> i2 <span class="token operator">-</span> i <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> i <span class="token operator">-</span> i2 <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> i <span class="token operator">-</span> u <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> u <span class="token operator">-</span> i <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>解：</p>
 <p>输出：</p>
@@ -586,8 +586,8 @@ std<span class="token operator">::</span>cout <span class="token operator">&lt;&
 <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
 <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">&#123;</span>
-   std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token number">2</span> <span class="token operator">&lt;&lt;</span> <span class="token string">"\115\012"</span><span class="token punctuation">;</span>
-   std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token number">2</span> <span class="token operator">&lt;&lt;</span> <span class="token string">"\t\115\012"</span><span class="token punctuation">;</span>
+   std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token number">2</span> <span class="token operator">&lt;&lt;</span> <span class="token string">"\115\012"</span><span class="token punctuation">;</span>
+   std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token number">2</span> <span class="token operator">&lt;&lt;</span> <span class="token string">"\t\115\012"</span><span class="token punctuation">;</span>
    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span>
 ```   
@@ -595,7 +595,7 @@ std<span class="token operator">::</span>cout <span class="token operator">&lt;&
 ## 练习<span class="token number">2.9</span>
 解释下列定义的含义，对于非法的定义，请说明错在何处并将其改正。
 
-<span class="token operator">-</span> <span class="token punctuation">(</span>a<span class="token punctuation">)</span> std<span class="token operator">::</span>cin <span class="token operator">>></span> <span class="token keyword">int</span> input_value<span class="token punctuation">;</span>
+<span class="token operator">-</span> <span class="token punctuation">(</span>a<span class="token punctuation">)</span> std<span class="token double-colon punctuation">::</span>cin <span class="token operator">>></span> <span class="token keyword">int</span> input_value<span class="token punctuation">;</span>
 <span class="token operator">-</span> <span class="token punctuation">(</span>b<span class="token punctuation">)</span> <span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token punctuation">&#123;</span> <span class="token number">3.14</span> <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
 <span class="token operator">-</span> <span class="token punctuation">(</span>c<span class="token punctuation">)</span> <span class="token keyword">double</span> salary <span class="token operator">=</span> wage <span class="token operator">=</span> <span class="token number">9999.99</span><span class="token punctuation">;</span>
 <span class="token operator">-</span> <span class="token punctuation">(</span>d<span class="token punctuation">)</span> <span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">3.14</span><span class="token punctuation">;</span>
@@ -605,7 +605,7 @@ std<span class="token operator">::</span>cout <span class="token operator">&lt;&
 <span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token operator">:</span> 应该先定义再使用。
 ```cpp
 <span class="token keyword">int</span> input_value <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-std<span class="token operator">::</span>cin <span class="token operator">>></span> input_value<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+std<span class="token double-colon punctuation">::</span>cin <span class="token operator">>></span> input_value<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>(b): 用列表初始化内置类型的变量时，如果存在丢失信息的风险，则编译器将报错。</p>
 <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">double</span> i <span class="token operator">=</span> <span class="token punctuation">&#123;</span> <span class="token number">3.14</span> <span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
@@ -618,12 +618,12 @@ std<span class="token operator">::</span>cin <span class="token operator">>></sp
 <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">double</span> i <span class="token operator">=</span> <span class="token number">3.14</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <h2 id="练习2-10"><a href="#练习2-10" class="headerlink" title="练习2.10"></a>练习2.10</h2><p>下列变量的初值分别是什么？</p>
-<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">std<span class="token operator">::</span>string global_str<span class="token punctuation">;</span>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">std<span class="token double-colon punctuation">::</span>string global_str<span class="token punctuation">;</span>
 <span class="token keyword">int</span> global_int<span class="token punctuation">;</span>
 <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">&#123;</span>
     <span class="token keyword">int</span> local_int<span class="token punctuation">;</span>
-    std<span class="token operator">::</span>string local_str<span class="token punctuation">;</span>
+    std<span class="token double-colon punctuation">::</span>string local_str<span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>解：</p>
@@ -660,7 +660,7 @@ std<span class="token operator">::</span>cin <span class="token operator">>></sp
 <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">100</span><span class="token punctuation">,</span> sum <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">!=</span> <span class="token number">10</span><span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span>
     sum <span class="token operator">+=</span> i<span class="token punctuation">;</span>
-std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> i <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> sum <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> i <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> sum <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>解：</p>
 <p>合法。输出是 100 45 。</p>
@@ -692,7 +692,7 @@ std<span class="token operator">::</span>cout <span class="token operator">&lt;&
 <h2 id="练习2-17"><a href="#练习2-17" class="headerlink" title="练习2.17"></a>练习2.17</h2><p>执行下面的代码段将输出什么结果？</p>
 <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">int</span> i<span class="token punctuation">,</span> <span class="token operator">&amp;</span>ri <span class="token operator">=</span> i<span class="token punctuation">;</span>
 i <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span> ri <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
-std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> i <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> ri <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> i <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> ri <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p>解：</p>
 <p>输出：10, 10</p>
@@ -865,8 +865,8 @@ g<span class="token operator">=</span><span class="token number">42</span><span 
 <h2 id="练习2-40"><a href="#练习2-40" class="headerlink" title="练习2.40"></a>练习2.40</h2><p>根据自己的理解写出 Sales_data 类，最好与书中的例子有所区别。</p>
 <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">struct</span> <span class="token class-name">Sale_data</span>
 <span class="token punctuation">&#123;</span>
-    std<span class="token operator">::</span>string bookNo<span class="token punctuation">;</span>
-    std<span class="token operator">::</span>string bookName<span class="token punctuation">;</span>
+    std<span class="token double-colon punctuation">::</span>string bookNo<span class="token punctuation">;</span>
+    std<span class="token double-colon punctuation">::</span>string bookName<span class="token punctuation">;</span>
     <span class="token keyword">unsigned</span> units_sold <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
     <span class="token keyword">double</span> revenue <span class="token operator">=</span> <span class="token number">0.0</span><span class="token punctuation">;</span>
     <span class="token keyword">double</span> price <span class="token operator">=</span> <span class="token number">0.0</span><span class="token punctuation">;</span>
@@ -881,7 +881,7 @@ g<span class="token operator">=</span><span class="token number">42</span><span 
 
 <span class="token keyword">struct</span> <span class="token class-name">Sale_data</span>
 <span class="token punctuation">&#123;</span>
-    std<span class="token operator">::</span>string bookNo<span class="token punctuation">;</span>
+    std<span class="token double-colon punctuation">::</span>string bookNo<span class="token punctuation">;</span>
     <span class="token keyword">unsigned</span> units_sold <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
     <span class="token keyword">double</span> revenue <span class="token operator">=</span> <span class="token number">0.0</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
@@ -890,9 +890,9 @@ g<span class="token operator">=</span><span class="token number">42</span><span 
 <span class="token punctuation">&#123;</span>
     Sale_data book<span class="token punctuation">;</span>
     <span class="token keyword">double</span> price<span class="token punctuation">;</span>
-    std<span class="token operator">::</span>cin <span class="token operator">>></span> book<span class="token punctuation">.</span>bookNo <span class="token operator">>></span> book<span class="token punctuation">.</span>units_sold <span class="token operator">>></span> price<span class="token punctuation">;</span>
+    std<span class="token double-colon punctuation">::</span>cin <span class="token operator">>></span> book<span class="token punctuation">.</span>bookNo <span class="token operator">>></span> book<span class="token punctuation">.</span>units_sold <span class="token operator">>></span> price<span class="token punctuation">;</span>
     book<span class="token punctuation">.</span>revenue <span class="token operator">=</span> book<span class="token punctuation">.</span>units_sold <span class="token operator">*</span> price<span class="token punctuation">;</span>
-    std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> book<span class="token punctuation">.</span>bookNo <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> book<span class="token punctuation">.</span>units_sold <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> book<span class="token punctuation">.</span>revenue <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> price<span class="token punctuation">;</span>
+    std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> book<span class="token punctuation">.</span>bookNo <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> book<span class="token punctuation">.</span>units_sold <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> book<span class="token punctuation">.</span>revenue <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> price<span class="token punctuation">;</span>
 
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span>
@@ -905,7 +905,7 @@ g<span class="token operator">=</span><span class="token number">42</span><span 
 
 <span class="token keyword">struct</span> <span class="token class-name">Sale_data</span>
 <span class="token punctuation">&#123;</span>
-    std<span class="token operator">::</span>string bookNo<span class="token punctuation">;</span>
+    std<span class="token double-colon punctuation">::</span>string bookNo<span class="token punctuation">;</span>
     <span class="token keyword">unsigned</span> units_sold <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
     <span class="token keyword">double</span> revenue <span class="token operator">=</span> <span class="token number">0.0</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
@@ -914,8 +914,8 @@ g<span class="token operator">=</span><span class="token number">42</span><span 
 <span class="token punctuation">&#123;</span>
     Sale_data book1<span class="token punctuation">,</span> book2<span class="token punctuation">;</span>
     <span class="token keyword">double</span> price1<span class="token punctuation">,</span> price2<span class="token punctuation">;</span>
-    std<span class="token operator">::</span>cin <span class="token operator">>></span> book1<span class="token punctuation">.</span>bookNo <span class="token operator">>></span> book1<span class="token punctuation">.</span>units_sold <span class="token operator">>></span> price1<span class="token punctuation">;</span>
-    std<span class="token operator">::</span>cin <span class="token operator">>></span> book2<span class="token punctuation">.</span>bookNo <span class="token operator">>></span> book2<span class="token punctuation">.</span>units_sold <span class="token operator">>></span> price2<span class="token punctuation">;</span>
+    std<span class="token double-colon punctuation">::</span>cin <span class="token operator">>></span> book1<span class="token punctuation">.</span>bookNo <span class="token operator">>></span> book1<span class="token punctuation">.</span>units_sold <span class="token operator">>></span> price1<span class="token punctuation">;</span>
+    std<span class="token double-colon punctuation">::</span>cin <span class="token operator">>></span> book2<span class="token punctuation">.</span>bookNo <span class="token operator">>></span> book2<span class="token punctuation">.</span>units_sold <span class="token operator">>></span> price2<span class="token punctuation">;</span>
     book1<span class="token punctuation">.</span>revenue <span class="token operator">=</span> book1<span class="token punctuation">.</span>units_sold <span class="token operator">*</span> price1<span class="token punctuation">;</span>
     book2<span class="token punctuation">.</span>revenue <span class="token operator">=</span> book2<span class="token punctuation">.</span>units_sold <span class="token operator">*</span> price2<span class="token punctuation">;</span>
 
@@ -923,16 +923,16 @@ g<span class="token operator">=</span><span class="token number">42</span><span 
     <span class="token punctuation">&#123;</span>
         <span class="token keyword">unsigned</span> totalCnt <span class="token operator">=</span> book1<span class="token punctuation">.</span>units_sold <span class="token operator">+</span> book2<span class="token punctuation">.</span>units_sold<span class="token punctuation">;</span>
         <span class="token keyword">double</span> totalRevenue <span class="token operator">=</span> book1<span class="token punctuation">.</span>revenue <span class="token operator">+</span> book2<span class="token punctuation">.</span>revenue<span class="token punctuation">;</span>
-        std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> book1<span class="token punctuation">.</span>bookNo <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> totalCnt <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> totalRevenue <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span><span class="token punctuation">;</span>
+        std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> book1<span class="token punctuation">.</span>bookNo <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> totalCnt <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> totalRevenue <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span><span class="token punctuation">;</span>
         <span class="token keyword">if</span> <span class="token punctuation">(</span>totalCnt <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span>
-            std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> totalRevenue <span class="token operator">/</span> totalCnt <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
+            std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> totalRevenue <span class="token operator">/</span> totalCnt <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
         <span class="token keyword">else</span>
-            std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"(no sales)"</span> <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
+            std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"(no sales)"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
         <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span>
     <span class="token keyword">else</span>
     <span class="token punctuation">&#123;</span>
-        std<span class="token operator">::</span>cerr <span class="token operator">&lt;&lt;</span> <span class="token string">"Data must refer to same ISBN"</span> <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
+        std<span class="token double-colon punctuation">::</span>cerr <span class="token operator">&lt;&lt;</span> <span class="token string">"Data must refer to same ISBN"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
         <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>  <span class="token comment">// indicate failure</span>
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span>
@@ -945,7 +945,7 @@ g<span class="token operator">=</span><span class="token number">42</span><span 
 
 <span class="token keyword">struct</span> <span class="token class-name">Sale_data</span>
 <span class="token punctuation">&#123;</span>
-    std<span class="token operator">::</span>string bookNo<span class="token punctuation">;</span>
+    std<span class="token double-colon punctuation">::</span>string bookNo<span class="token punctuation">;</span>
     <span class="token keyword">unsigned</span> units_sold <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
     <span class="token keyword">double</span> revenue <span class="token operator">=</span> <span class="token number">0.0</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
@@ -954,13 +954,13 @@ g<span class="token operator">=</span><span class="token number">42</span><span 
 <span class="token punctuation">&#123;</span>
     Sale_data total<span class="token punctuation">;</span>
     <span class="token keyword">double</span> totalPrice<span class="token punctuation">;</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>std<span class="token operator">::</span>cin <span class="token operator">>></span> total<span class="token punctuation">.</span>bookNo <span class="token operator">>></span> total<span class="token punctuation">.</span>units_sold <span class="token operator">>></span> totalPrice<span class="token punctuation">)</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>std<span class="token double-colon punctuation">::</span>cin <span class="token operator">>></span> total<span class="token punctuation">.</span>bookNo <span class="token operator">>></span> total<span class="token punctuation">.</span>units_sold <span class="token operator">>></span> totalPrice<span class="token punctuation">)</span>
     <span class="token punctuation">&#123;</span>
         total<span class="token punctuation">.</span>revenue <span class="token operator">=</span> total<span class="token punctuation">.</span>units_sold <span class="token operator">*</span> totalPrice<span class="token punctuation">;</span>
 
         Sale_data trans<span class="token punctuation">;</span>
         <span class="token keyword">double</span> transPrice<span class="token punctuation">;</span>
-        <span class="token keyword">while</span> <span class="token punctuation">(</span>std<span class="token operator">::</span>cin <span class="token operator">>></span> trans<span class="token punctuation">.</span>bookNo <span class="token operator">>></span> trans<span class="token punctuation">.</span>units_sold <span class="token operator">>></span> transPrice<span class="token punctuation">)</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>std<span class="token double-colon punctuation">::</span>cin <span class="token operator">>></span> trans<span class="token punctuation">.</span>bookNo <span class="token operator">>></span> trans<span class="token punctuation">.</span>units_sold <span class="token operator">>></span> transPrice<span class="token punctuation">)</span>
         <span class="token punctuation">&#123;</span>
             trans<span class="token punctuation">.</span>revenue <span class="token operator">=</span> trans<span class="token punctuation">.</span>units_sold <span class="token operator">*</span> transPrice<span class="token punctuation">;</span>
 
@@ -971,11 +971,11 @@ g<span class="token operator">=</span><span class="token number">42</span><span 
             <span class="token punctuation">&#125;</span>
             <span class="token keyword">else</span>
             <span class="token punctuation">&#123;</span>
-                std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> total<span class="token punctuation">.</span>bookNo <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> total<span class="token punctuation">.</span>units_sold <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> total<span class="token punctuation">.</span>revenue <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span><span class="token punctuation">;</span>
+                std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> total<span class="token punctuation">.</span>bookNo <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> total<span class="token punctuation">.</span>units_sold <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> total<span class="token punctuation">.</span>revenue <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span><span class="token punctuation">;</span>
                 <span class="token keyword">if</span> <span class="token punctuation">(</span>total<span class="token punctuation">.</span>units_sold <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span>
-                    std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> total<span class="token punctuation">.</span>revenue <span class="token operator">/</span> total<span class="token punctuation">.</span>units_sold <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
+                    std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> total<span class="token punctuation">.</span>revenue <span class="token operator">/</span> total<span class="token punctuation">.</span>units_sold <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
                 <span class="token keyword">else</span>
-                    std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"(no sales)"</span> <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
+                    std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"(no sales)"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
 
                 total<span class="token punctuation">.</span>bookNo <span class="token operator">=</span> trans<span class="token punctuation">.</span>bookNo<span class="token punctuation">;</span>
                 total<span class="token punctuation">.</span>units_sold <span class="token operator">=</span> trans<span class="token punctuation">.</span>units_sold<span class="token punctuation">;</span>
@@ -983,17 +983,17 @@ g<span class="token operator">=</span><span class="token number">42</span><span 
             <span class="token punctuation">&#125;</span>
         <span class="token punctuation">&#125;</span>
 
-        std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> total<span class="token punctuation">.</span>bookNo <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> total<span class="token punctuation">.</span>units_sold <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> total<span class="token punctuation">.</span>revenue <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span><span class="token punctuation">;</span>
+        std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> total<span class="token punctuation">.</span>bookNo <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> total<span class="token punctuation">.</span>units_sold <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> total<span class="token punctuation">.</span>revenue <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span><span class="token punctuation">;</span>
         <span class="token keyword">if</span> <span class="token punctuation">(</span>total<span class="token punctuation">.</span>units_sold <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span>
-            std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> total<span class="token punctuation">.</span>revenue <span class="token operator">/</span> total<span class="token punctuation">.</span>units_sold <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
+            std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> total<span class="token punctuation">.</span>revenue <span class="token operator">/</span> total<span class="token punctuation">.</span>units_sold <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
         <span class="token keyword">else</span>
-            std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"(no sales)"</span> <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
+            std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"(no sales)"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
 
         <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span>
     <span class="token keyword">else</span>
     <span class="token punctuation">&#123;</span>
-        std<span class="token operator">::</span>cerr <span class="token operator">&lt;&lt;</span> <span class="token string">"No data?!"</span> <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
+        std<span class="token double-colon punctuation">::</span>cerr <span class="token operator">&lt;&lt;</span> <span class="token string">"No data?!"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
         <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>  <span class="token comment">// indicate failure</span>
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
@@ -1543,13 +1543,13 @@ g<span class="token operator">=</span><span class="token number">42</span><span 
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/04/10/notes/ch16/">
+                <a href="/2021/04/10/notes/ch17/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/24.jpg" class="responsive-img" alt="cpp-primer笔记16">
+                        <img src="/medias/featureimages/25.jpg" class="responsive-img" alt="cpp-primer笔记17">
                         
-                        <span class="card-title">cpp-primer笔记16</span>
+                        <span class="card-title">cpp-primer笔记17</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1924,7 +1924,7 @@ g<span class="token operator">=</span><span class="token number">42</span><span 
                                     <a href="https://github.com/jinbaotang/jinbaotang.githuh.io" target="_blank">jinbao-matery-modify</a>
                                     <br>
                                     
-                                        &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span class="white-color">155k</span>&nbsp;字
+                                        &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span class="white-color">162.8k</span>&nbsp;字
                                         
                                             
                                                 

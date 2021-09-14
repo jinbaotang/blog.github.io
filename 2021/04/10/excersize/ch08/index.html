@@ -528,11 +528,11 @@
 <p>编写函数，接受一个<code>istream&amp;</code>参数，返回值类型也是<code>istream&amp;</code>。此函数须从给定流中读取数据，直至遇到文件结束标识时停止。它将读取的数据打印在标准输出上。完成这些操作后，在返回流之前，对流进行复位，使其处于有效状态。</p>
 </blockquote>
 <p>解：</p>
-<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">std<span class="token operator">::</span>istream<span class="token operator">&amp;</span> <span class="token function">func</span><span class="token punctuation">(</span>std<span class="token operator">::</span>istream <span class="token operator">&amp;</span>is<span class="token punctuation">)</span>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">std<span class="token double-colon punctuation">::</span>istream<span class="token operator">&amp;</span> <span class="token function">func</span><span class="token punctuation">(</span>std<span class="token double-colon punctuation">::</span>istream <span class="token operator">&amp;</span>is<span class="token punctuation">)</span>
 <span class="token punctuation">&#123;</span>
-    std<span class="token operator">::</span>string buf<span class="token punctuation">;</span>
+    std<span class="token double-colon punctuation">::</span>string buf<span class="token punctuation">;</span>
     <span class="token keyword">while</span> <span class="token punctuation">(</span>is <span class="token operator">>></span> buf<span class="token punctuation">)</span>
-        std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> buf <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
+        std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> buf <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
     is<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">return</span> is<span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
@@ -542,21 +542,21 @@
 </blockquote>
 <p>解：</p>
 <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
-<span class="token keyword">using</span> std<span class="token operator">::</span>istream<span class="token punctuation">;</span>
+<span class="token keyword">using</span> std<span class="token double-colon punctuation">::</span>istream<span class="token punctuation">;</span>
 
 istream<span class="token operator">&amp;</span> <span class="token function">func</span><span class="token punctuation">(</span>istream <span class="token operator">&amp;</span>is<span class="token punctuation">)</span>
 <span class="token punctuation">&#123;</span>
-    std<span class="token operator">::</span>string buf<span class="token punctuation">;</span>
+    std<span class="token double-colon punctuation">::</span>string buf<span class="token punctuation">;</span>
     <span class="token keyword">while</span> <span class="token punctuation">(</span>is <span class="token operator">>></span> buf<span class="token punctuation">)</span>
-        std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> buf <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
+        std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> buf <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
     is<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">return</span> is<span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span>
 
 <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">&#123;</span>
-    istream<span class="token operator">&amp;</span> is <span class="token operator">=</span> <span class="token function">func</span><span class="token punctuation">(</span>std<span class="token operator">::</span>cin<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> is<span class="token punctuation">.</span><span class="token function">rdstate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
+    istream<span class="token operator">&amp;</span> is <span class="token operator">=</span> <span class="token function">func</span><span class="token punctuation">(</span>std<span class="token double-colon punctuation">::</span>cin<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> is<span class="token punctuation">.</span><span class="token function">rdstate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
@@ -604,7 +604,7 @@ istream<span class="token operator">&amp;</span> <span class="token function">fu
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
 
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"../ch07/ex7_26.h"</span></span>
-<span class="token keyword">using</span> std<span class="token operator">::</span>ifstream<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token operator">::</span>cout<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token operator">::</span>cerr<span class="token punctuation">;</span>
+<span class="token keyword">using</span> std<span class="token double-colon punctuation">::</span>ifstream<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token double-colon punctuation">::</span>cout<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token double-colon punctuation">::</span>cerr<span class="token punctuation">;</span>
 
 <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token operator">*</span>argv<span class="token punctuation">)</span>
 <span class="token punctuation">&#123;</span>
@@ -642,7 +642,7 @@ istream<span class="token operator">&amp;</span> <span class="token function">fu
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
 
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"../ch07/ex7_26.h"</span></span>
-<span class="token keyword">using</span> std<span class="token operator">::</span>ifstream<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token operator">::</span>ofstream<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token operator">::</span>cerr<span class="token punctuation">;</span>
+<span class="token keyword">using</span> std<span class="token double-colon punctuation">::</span>ifstream<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token double-colon punctuation">::</span>ofstream<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token double-colon punctuation">::</span>cerr<span class="token punctuation">;</span>
 
 <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token operator">*</span>argv<span class="token punctuation">)</span>
 <span class="token punctuation">&#123;</span>
@@ -681,12 +681,12 @@ istream<span class="token operator">&amp;</span> <span class="token function">fu
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
 
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"../ch07/ex7_26.h"</span></span>
-<span class="token keyword">using</span> std<span class="token operator">::</span>ifstream<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token operator">::</span>ofstream<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token operator">::</span>cerr<span class="token punctuation">;</span>
+<span class="token keyword">using</span> std<span class="token double-colon punctuation">::</span>ifstream<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token double-colon punctuation">::</span>ofstream<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token double-colon punctuation">::</span>cerr<span class="token punctuation">;</span>
 
 <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token operator">*</span>argv<span class="token punctuation">)</span>
 <span class="token punctuation">&#123;</span>
     ifstream <span class="token function">input</span><span class="token punctuation">(</span>argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    ofstream <span class="token function">output</span><span class="token punctuation">(</span>argv<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span> ofstream<span class="token operator">::</span>app<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    ofstream <span class="token function">output</span><span class="token punctuation">(</span>argv<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span> ofstream<span class="token double-colon punctuation">::</span>app<span class="token punctuation">)</span><span class="token punctuation">;</span>
     
     Sales_data total<span class="token punctuation">;</span>
     <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">read</span><span class="token punctuation">(</span>input<span class="token punctuation">,</span> total<span class="token punctuation">)</span><span class="token punctuation">)</span>
@@ -719,20 +719,20 @@ istream<span class="token operator">&amp;</span> <span class="token function">fu
 <p>解：</p>
 <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;sstream></span></span>
-<span class="token keyword">using</span> std<span class="token operator">::</span>istream<span class="token punctuation">;</span>
+<span class="token keyword">using</span> std<span class="token double-colon punctuation">::</span>istream<span class="token punctuation">;</span>
 
 istream<span class="token operator">&amp;</span> <span class="token function">func</span><span class="token punctuation">(</span>istream <span class="token operator">&amp;</span>is<span class="token punctuation">)</span>
 <span class="token punctuation">&#123;</span>
-    std<span class="token operator">::</span>string buf<span class="token punctuation">;</span>
+    std<span class="token double-colon punctuation">::</span>string buf<span class="token punctuation">;</span>
     <span class="token keyword">while</span> <span class="token punctuation">(</span>is <span class="token operator">>></span> buf<span class="token punctuation">)</span>
-        std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> buf <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
+        std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> buf <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
     is<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">return</span> is<span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span>
 
 <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">&#123;</span>
-    std<span class="token operator">::</span>istringstream <span class="token function">iss</span><span class="token punctuation">(</span><span class="token string">"hello"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    std<span class="token double-colon punctuation">::</span>istringstream <span class="token function">iss</span><span class="token punctuation">(</span><span class="token string">"hello"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token function">func</span><span class="token punctuation">(</span>iss<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span>
@@ -748,7 +748,7 @@ istream<span class="token operator">&amp;</span> <span class="token function">fu
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;vector></span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string></span></span>
 
-<span class="token keyword">using</span> std<span class="token operator">::</span>vector<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token operator">::</span>string<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token operator">::</span>ifstream<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token operator">::</span>istringstream<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token operator">::</span>cout<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token operator">::</span>cerr<span class="token punctuation">;</span>
+<span class="token keyword">using</span> std<span class="token double-colon punctuation">::</span>vector<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token double-colon punctuation">::</span>string<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token double-colon punctuation">::</span>ifstream<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token double-colon punctuation">::</span>istringstream<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token double-colon punctuation">::</span>cout<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token double-colon punctuation">::</span>cerr<span class="token punctuation">;</span>
 
 <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">&#123;</span>
@@ -783,7 +783,7 @@ istream<span class="token operator">&amp;</span> <span class="token function">fu
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;sstream></span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string></span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;vector></span></span>
-<span class="token keyword">using</span> std<span class="token operator">::</span>vector<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token operator">::</span>string<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token operator">::</span>cin<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token operator">::</span>istringstream<span class="token punctuation">;</span>
+<span class="token keyword">using</span> std<span class="token double-colon punctuation">::</span>vector<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token double-colon punctuation">::</span>string<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token double-colon punctuation">::</span>cin<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token double-colon punctuation">::</span>istringstream<span class="token punctuation">;</span>
 
 <span class="token keyword">struct</span> <span class="token class-name">PersonInfo</span> <span class="token punctuation">&#123;</span>
     string name<span class="token punctuation">;</span>
@@ -808,10 +808,10 @@ istream<span class="token operator">&amp;</span> <span class="token function">fu
     
     <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">auto</span> <span class="token operator">&amp;</span>p <span class="token operator">:</span> people<span class="token punctuation">)</span>
     <span class="token punctuation">&#123;</span>
-        std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> p<span class="token punctuation">.</span>name <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span><span class="token punctuation">;</span>
+        std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> p<span class="token punctuation">.</span>name <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span><span class="token punctuation">;</span>
         <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">auto</span> <span class="token operator">&amp;</span>s <span class="token operator">:</span> p<span class="token punctuation">.</span>phones<span class="token punctuation">)</span>
-            std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> s <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span><span class="token punctuation">;</span>
-        std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
+            std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> s <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span><span class="token punctuation">;</span>
+        std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span>
     
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
@@ -832,9 +832,9 @@ istream<span class="token operator">&amp;</span> <span class="token function">fu
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string></span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;vector></span></span>
 
-<span class="token keyword">using</span> std<span class="token operator">::</span>vector<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token operator">::</span>string<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token operator">::</span>cin<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token operator">::</span>istringstream<span class="token punctuation">;</span>
-<span class="token keyword">using</span> std<span class="token operator">::</span>ostringstream<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token operator">::</span>ifstream<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token operator">::</span>cerr<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token operator">::</span>cout<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
-<span class="token keyword">using</span> std<span class="token operator">::</span>isdigit<span class="token punctuation">;</span>
+<span class="token keyword">using</span> std<span class="token double-colon punctuation">::</span>vector<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token double-colon punctuation">::</span>string<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token double-colon punctuation">::</span>cin<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token double-colon punctuation">::</span>istringstream<span class="token punctuation">;</span>
+<span class="token keyword">using</span> std<span class="token double-colon punctuation">::</span>ostringstream<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token double-colon punctuation">::</span>ifstream<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token double-colon punctuation">::</span>cerr<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token double-colon punctuation">::</span>cout<span class="token punctuation">;</span> <span class="token keyword">using</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+<span class="token keyword">using</span> std<span class="token double-colon punctuation">::</span>isdigit<span class="token punctuation">;</span>
 
 <span class="token keyword">struct</span> <span class="token class-name">PersonInfo</span> <span class="token punctuation">&#123;</span>
     string name<span class="token punctuation">;</span>
@@ -1820,7 +1820,7 @@ string <span class="token function">format</span><span class="token punctuation"
                                     <a href="https://github.com/jinbaotang/jinbaotang.githuh.io" target="_blank">jinbao-matery-modify</a>
                                     <br>
                                     
-                                        &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span class="white-color">155k</span>&nbsp;字
+                                        &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span class="white-color">162.8k</span>&nbsp;字
                                         
                                             
                                                 

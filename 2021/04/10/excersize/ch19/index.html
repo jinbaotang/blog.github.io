@@ -539,16 +539,16 @@
 <span class="token keyword">class</span> <span class="token class-name">D</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword">public</span> <span class="token class-name">B</span><span class="token punctuation">,</span> <span class="token keyword">public</span> <span class="token class-name">A</span></span> <span class="token punctuation">&#123;</span> <span class="token comment">/* ... */</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>下面哪个 dynamic_cast 将失败？</p>
 <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token punctuation">(</span>a<span class="token punctuation">)</span> A <span class="token operator">*</span>pa <span class="token operator">=</span> <span class="token keyword">new</span> C<span class="token punctuation">;</span>
-	B <span class="token operator">*</span>pb <span class="token operator">=</span> <span class="token keyword">dynamic_cast</span><span class="token operator">&lt;</span>B<span class="token operator">*</span><span class="token operator">></span><span class="token punctuation">(</span>pa<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	B <span class="token operator">*</span>pb <span class="token operator">=</span> <span class="token generic-function"><span class="token function">dynamic_cast</span><span class="token generic class-name"><span class="token operator">&lt;</span>B<span class="token operator">*</span><span class="token operator">></span></span></span><span class="token punctuation">(</span>pa<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">(</span>b<span class="token punctuation">)</span> B <span class="token operator">*</span>pb <span class="token operator">=</span> <span class="token keyword">new</span> B<span class="token punctuation">;</span>
-	C <span class="token operator">*</span>pc <span class="token operator">=</span> <span class="token keyword">dynamic_cast</span><span class="token operator">&lt;</span>C<span class="token operator">*</span><span class="token operator">></span><span class="token punctuation">(</span>pb<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	C <span class="token operator">*</span>pc <span class="token operator">=</span> <span class="token generic-function"><span class="token function">dynamic_cast</span><span class="token generic class-name"><span class="token operator">&lt;</span>C<span class="token operator">*</span><span class="token operator">></span></span></span><span class="token punctuation">(</span>pb<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">(</span>c<span class="token punctuation">)</span> A <span class="token operator">*</span>pa <span class="token operator">=</span> <span class="token keyword">new</span> D<span class="token punctuation">;</span>
-	B <span class="token operator">*</span>pb <span class="token operator">=</span> <span class="token keyword">dynamic_cast</span><span class="token operator">&lt;</span>B<span class="token operator">*</span><span class="token operator">></span><span class="token punctuation">(</span>pa<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+	B <span class="token operator">*</span>pb <span class="token operator">=</span> <span class="token generic-function"><span class="token function">dynamic_cast</span><span class="token generic class-name"><span class="token operator">&lt;</span>B<span class="token operator">*</span><span class="token operator">></span></span></span><span class="token punctuation">(</span>pa<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="练习19-4"><a href="#练习19-4" class="headerlink" title="练习19.4"></a>练习19.4</h2><blockquote>
 <p>使用上一个练习定义的类改写下面的代码，将表达式*pa 转换成类型C&amp;：</p>
 </blockquote>
-<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">if</span> <span class="token punctuation">(</span>C <span class="token operator">*</span>pc <span class="token operator">=</span> <span class="token keyword">dynamic_cast</span><span class="token operator">&lt;</span>C<span class="token operator">*</span><span class="token operator">></span><span class="token punctuation">(</span>pa<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">if</span> <span class="token punctuation">(</span>C <span class="token operator">*</span>pc <span class="token operator">=</span> <span class="token generic-function"><span class="token function">dynamic_cast</span><span class="token generic class-name"><span class="token operator">&lt;</span>C<span class="token operator">*</span><span class="token operator">></span></span></span><span class="token punctuation">(</span>pa<span class="token punctuation">)</span><span class="token punctuation">)</span>
 <span class="token punctuation">&#123;</span>
 	<span class="token comment">//使用C的成员</span>
 <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
@@ -597,8 +597,8 @@
 <h2 id="练习19-14"><a href="#练习19-14" class="headerlink" title="练习19.14"></a>练习19.14</h2><blockquote>
 <p>下面的代码合法吗？如果合法，代码的含义是什么？如果不合法，解释原因。</p>
 </blockquote>
-<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">auto</span> pmf <span class="token operator">=</span> <span class="token operator">&amp;</span>Screen<span class="token operator">::</span>get_cursor<span class="token punctuation">;</span>
-pmf <span class="token operator">=</span> <span class="token operator">&amp;</span>Screen<span class="token operator">::</span>get<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">auto</span> pmf <span class="token operator">=</span> <span class="token operator">&amp;</span>Screen<span class="token double-colon punctuation">::</span>get_cursor<span class="token punctuation">;</span>
+pmf <span class="token operator">=</span> <span class="token operator">&amp;</span>Screen<span class="token double-colon punctuation">::</span>get<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <h2 id="练习19-15"><a href="#练习19-15" class="headerlink" title="练习19.15"></a>练习19.15</h2><blockquote>
 <p>普通函数指针和指向成员函数的指针有何区别？</p>
@@ -1238,13 +1238,13 @@ pmf <span class="token operator">=</span> <span class="token operator">&amp;</sp
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/04/10/notes/ch01/">
+                <a href="/2021/04/10/notes/ch09/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="cpp-primer笔记1">
+                        <img src="/medias/featureimages/28.jpg" class="responsive-img" alt="cpp-primer笔记9">
                         
-                        <span class="card-title">cpp-primer笔记1</span>
+                        <span class="card-title">cpp-primer笔记9</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1562,7 +1562,7 @@ pmf <span class="token operator">=</span> <span class="token operator">&amp;</sp
                                     <a href="https://github.com/jinbaotang/jinbaotang.githuh.io" target="_blank">jinbao-matery-modify</a>
                                     <br>
                                     
-                                        &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span class="white-color">155k</span>&nbsp;字
+                                        &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span class="white-color">162.8k</span>&nbsp;字
                                         
                                             
                                                 

@@ -483,7 +483,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-08-29
+                    2021-08-31
                 </div>
                 
 
@@ -529,7 +529,7 @@
 <h2 id="2-vscode调试ECU配置"><a href="#2-vscode调试ECU配置" class="headerlink" title="2. vscode调试ECU配置"></a>2. vscode调试ECU配置</h2><p>&emsp;&emsp;我先是配置好了gdbserver，毕竟在ECU上<code>gdbserver --help</code>一下就都有了，<img src="/medias/use-vscode-debug/gdbservercfg.png" alt="gdbserver --help">.<br>所以我一下就讲ecu端的给配置好了:<code>gdbserver 172.20.1.199:21314 udsd</code>，运行后如下图所示：<img src="/medias/use-vscode-debug/rungdbserver.png" alt="rungdbserver"><br>然后就是配置vscode端了，也就是gbd client端，期间也有很好多次的试错，具体过程不表了，总结如下：</p>
 <ol>
 <li>gdbserver –help图中显示的HOST是client端的IP，而不是gdbserver端的IP。</li>
-<li>miDebuggerPath中的路径是指的vscode实际运行的机器上的工具，而不是ECU端能够运行的工具，交叉编译环境下需要及其的注意这一点。ps:我自己用源码编译出来的工具也没成功，最后找供应商用yocto制作出来的工具链上带的x86_64的工具就可以了。<br>vscode上的配置如下图，默认读者已经会vscode上的debug了：<img src="/medias/use-vscode-debug/gdbclientcfg.png" alt="vscode gbd配置">.</li>
+<li>miDebuggerPath中的路径是指的vscode实际运行的机器上的工具，而不是ECU端能够运行的工具，交叉编译环境下需要及其的注意这一点。ps:我自己用源码编译出来的工具试了也没成功，最后找供应商用yocto制作出来的工具链上带的x86_64的工具就可以了。<br>vscode上的配置如下图，默认读者已经会vscode上的debug了：<img src="/medias/use-vscode-debug/gdbclientcfg.png" alt="vscode gbd配置">.</li>
 </ol>
 <h2 id="3-调试前的最后障碍"><a href="#3-调试前的最后障碍" class="headerlink" title="3. 调试前的最后障碍"></a>3. 调试前的最后障碍</h2><p>&emsp;&emsp;做完上面的配置后，我以为这么简单就可以debug了。发现只能运行但是不能打断点，看了下cmake生成的Makefile，发现生成的Makefile上flag显示的是NDEBUG：<img src="/medias/use-vscode-debug/NDEBUG.png" alt="makefile NDEBUG">。但是我已经在CMakeLists.txt上配置<code>set(CMAKE_BUILD_TYPE Debug)</code>，依然没有生效。后面我就使用了，<code>add_definitions(&quot;-g&quot;)</code>强制来加上-g选项，果然可以debug了。到这就大功搞成了，领导再也不用担心我效率不高了。</p>
 <h2 id="4-最后障碍的刨根问底"><a href="#4-最后障碍的刨根问底" class="headerlink" title="4. 最后障碍的刨根问底"></a>4. 最后障碍的刨根问底</h2><p>&emsp;&emsp;作为有技术洁癖（自大）的人，不太能忍受上面的“肮脏”解决办法，就去了问了大神Ricky（褒义词的全能神），好家伙好家伙，大神敲键盘的速度，在我描述完问题之前就把引发问题的地方打开并且演示完毕了。<code>速度太快了，我不想忍了。</code>在大神的解释下，原因就是交叉编译时会使用toolchain上的cmake配置，即将交叉编译必须的一些选项配置好，而toolchain上默认是发布的release版本而不是debug，并且优先级是最高的，所以会覆盖自己在cmake上的配置。toolchain.cmake配置如下图：<img src="/medias/use-vscode-debug/cmakendebug.png" alt="toolchain.cmake NDEBUG"></p>
@@ -1447,7 +1447,7 @@
                                     <a href="https://github.com/jinbaotang/jinbaotang.githuh.io" target="_blank">jinbao-matery-modify</a>
                                     <br>
                                     
-                                        &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span class="white-color">155k</span>&nbsp;字
+                                        &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span class="white-color">162.8k</span>&nbsp;字
                                         
                                             
                                                 

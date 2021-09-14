@@ -558,7 +558,7 @@
 <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">struct</span> <span class="token class-name">intArray</span>
 <span class="token punctuation">&#123;</span>
     <span class="token function">intArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token function">p</span><span class="token punctuation">(</span><span class="token keyword">nullptr</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token punctuation">&#125;</span>
-    <span class="token keyword">explicit</span>    <span class="token function">intArray</span><span class="token punctuation">(</span>std<span class="token operator">::</span>size_t s<span class="token punctuation">)</span><span class="token operator">:</span>
+    <span class="token keyword">explicit</span>    <span class="token function">intArray</span><span class="token punctuation">(</span>std<span class="token double-colon punctuation">::</span>size_t s<span class="token punctuation">)</span><span class="token operator">:</span>
         <span class="token function">p</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token keyword">int</span><span class="token punctuation">[</span>s<span class="token punctuation">]</span><span class="token punctuation">)</span>       <span class="token punctuation">&#123;</span> <span class="token punctuation">&#125;</span>
 
 
@@ -574,7 +574,7 @@
 intArray <span class="token function">p</span><span class="token punctuation">(</span>v<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>方法二：使用智能指针：</p>
-<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">std<span class="token operator">::</span>shared_ptr<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token function">p</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token keyword">int</span><span class="token punctuation">[</span>v<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span>p<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token keyword">delete</span><span class="token punctuation">[</span><span class="token punctuation">]</span> p<span class="token punctuation">;</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">std<span class="token double-colon punctuation">::</span>shared_ptr<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token function">p</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token keyword">int</span><span class="token punctuation">[</span>v<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span>p<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token keyword">delete</span><span class="token punctuation">[</span><span class="token punctuation">]</span> p<span class="token punctuation">;</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <h2 id="练习18-4"><a href="#练习18-4" class="headerlink" title="练习18.4"></a>练习18.4</h2><blockquote>
 <p>查看图18.1所示的继承体系，说明下面的 <code>try</code> 块有何错误并修改它。</p>
@@ -666,7 +666,7 @@ intArray <span class="token function">p</span><span class="token punctuation">(<
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>请问你应该如何在全局作用域中声明该运算符？</p>
 <p>解：</p>
-<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">mathLib<span class="token operator">::</span>MatrixLib<span class="token operator">::</span>matrix mathLib<span class="token operator">::</span>MatrixLib<span class="token operator">::</span><span class="token keyword">operator</span><span class="token operator">*</span> <span class="token punctuation">(</span><span class="token keyword">const</span> mathLib<span class="token operator">::</span>MatrixLib<span class="token operator">::</span>matrix <span class="token operator">&amp;</span><span class="token punctuation">,</span> <span class="token keyword">const</span> mathLib<span class="token operator">::</span>MatrixLib<span class="token operator">::</span>matrix <span class="token operator">&amp;</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">mathLib<span class="token double-colon punctuation">::</span>MatrixLib<span class="token double-colon punctuation">::</span>matrix mathLib<span class="token double-colon punctuation">::</span>MatrixLib<span class="token double-colon punctuation">::</span><span class="token keyword">operator</span><span class="token operator">*</span> <span class="token punctuation">(</span><span class="token keyword">const</span> mathLib<span class="token double-colon punctuation">::</span>MatrixLib<span class="token double-colon punctuation">::</span>matrix <span class="token operator">&amp;</span><span class="token punctuation">,</span> <span class="token keyword">const</span> mathLib<span class="token double-colon punctuation">::</span>MatrixLib<span class="token double-colon punctuation">::</span>matrix <span class="token operator">&amp;</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <h2 id="练习18-15"><a href="#练习18-15" class="headerlink" title="练习18.15"></a>练习18.15</h2><blockquote>
 <p>说明 <code>using</code> 指示与 <code>using</code> 声明的区别。</p>
@@ -695,7 +695,7 @@ intArray <span class="token function">p</span><span class="token punctuation">(<
 	<span class="token keyword">double</span> dvar <span class="token operator">=</span> <span class="token number">3.1416</span><span class="token punctuation">;</span>
 	<span class="token keyword">int</span> iobj <span class="token operator">=</span> limit <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
 	<span class="token operator">++</span>ivar<span class="token punctuation">;</span>
-	<span class="token operator">++</span><span class="token operator">::</span>ivar<span class="token punctuation">;</span>
+	<span class="token operator">++</span><span class="token double-colon punctuation">::</span>ivar<span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>解：</p>
@@ -710,7 +710,7 @@ intArray <span class="token function">p</span><span class="token punctuation">(<
 </blockquote>
 <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token function">swap</span><span class="token punctuation">(</span>T v1<span class="token punctuation">,</span> T v2<span class="token punctuation">)</span>
 <span class="token punctuation">&#123;</span>
-	<span class="token keyword">using</span> std<span class="token operator">::</span>swap<span class="token punctuation">;</span>
+	<span class="token keyword">using</span> std<span class="token double-colon punctuation">::</span>swap<span class="token punctuation">;</span>
 	<span class="token function">swap</span><span class="token punctuation">(</span>v1<span class="token punctuation">.</span>mem1<span class="token punctuation">,</span> v2<span class="token punctuation">.</span>mem1<span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token comment">//交换类型的其他成员</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
@@ -729,7 +729,7 @@ intArray <span class="token function">p</span><span class="token punctuation">(<
 	<span class="token keyword">void</span> <span class="token function">compute</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token keyword">void</span> <span class="token function">compute</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">void</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span>
-<span class="token keyword">using</span> primerLib<span class="token operator">::</span>compute<span class="token punctuation">;</span>
+<span class="token keyword">using</span> primerLib<span class="token double-colon punctuation">::</span>compute<span class="token punctuation">;</span>
 <span class="token keyword">void</span> <span class="token function">compute</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword">void</span> <span class="token function">compute</span><span class="token punctuation">(</span><span class="token keyword">double</span><span class="token punctuation">,</span> <span class="token keyword">double</span> <span class="token operator">=</span> <span class="token number">3.4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword">void</span> <span class="token function">compute</span><span class="token punctuation">(</span><span class="token keyword">char</span><span class="token operator">*</span><span class="token punctuation">,</span> <span class="token keyword">char</span><span class="token operator">*</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -808,16 +808,16 @@ D2 <span class="token operator">*</span>pd2 <span class="token operator">=</span
 	<span class="token keyword">double</span> dval<span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
 <span class="token keyword">struct</span> <span class="token class-name">Derived</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword">public</span> <span class="token class-name">Base1</span></span> <span class="token punctuation">&#123;</span>
-	<span class="token keyword">void</span> <span class="token function">print</span><span class="token punctuation">(</span>std<span class="token operator">::</span>string<span class="token punctuation">)</span> <span class="token keyword">const</span><span class="token punctuation">;</span>
+	<span class="token keyword">void</span> <span class="token function">print</span><span class="token punctuation">(</span>std<span class="token double-colon punctuation">::</span>string<span class="token punctuation">)</span> <span class="token keyword">const</span><span class="token punctuation">;</span>
 <span class="token keyword">protected</span><span class="token operator">:</span>
-	std<span class="token operator">::</span>string sval<span class="token punctuation">;</span>
+	std<span class="token double-colon punctuation">::</span>string sval<span class="token punctuation">;</span>
 	<span class="token keyword">double</span> dval<span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
 <span class="token keyword">struct</span> <span class="token class-name">MI</span> <span class="token operator">:</span> <span class="token base-clause"><span class="token keyword">public</span> <span class="token class-name">Derived</span><span class="token punctuation">,</span> <span class="token keyword">public</span> <span class="token class-name">Base2</span></span> <span class="token punctuation">&#123;</span>
-	<span class="token keyword">void</span> <span class="token function">print</span><span class="token punctuation">(</span>std<span class="token operator">::</span>vector<span class="token operator">&lt;</span><span class="token keyword">double</span><span class="token operator">></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">void</span> <span class="token function">print</span><span class="token punctuation">(</span>std<span class="token double-colon punctuation">::</span>vector<span class="token operator">&lt;</span><span class="token keyword">double</span><span class="token operator">></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword">protected</span><span class="token operator">:</span>
 	<span class="token keyword">int</span> <span class="token operator">*</span>ival<span class="token punctuation">;</span>
-	std<span class="token operator">::</span>vector<span class="token operator">&lt;</span><span class="token keyword">double</span><span class="token operator">></span> dvec<span class="token punctuation">;</span>
+	std<span class="token double-colon punctuation">::</span>vector<span class="token operator">&lt;</span><span class="token keyword">double</span><span class="token operator">></span> dvec<span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="练习18-26"><a href="#练习18-26" class="headerlink" title="练习18.26"></a>练习18.26</h2><blockquote>
@@ -831,15 +831,15 @@ mi<span class="token punctuation">.</span><span class="token function">print</sp
 </blockquote>
 <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">int</span> ival<span class="token punctuation">;</span>
 <span class="token keyword">double</span> dval<span class="token punctuation">;</span>
-<span class="token keyword">void</span> <span class="token class-name">MI</span><span class="token operator">::</span><span class="token function">foo</span><span class="token punctuation">(</span><span class="token keyword">double</span> cval<span class="token punctuation">)</span>
+<span class="token keyword">void</span> <span class="token class-name">MI</span><span class="token double-colon punctuation">::</span><span class="token function">foo</span><span class="token punctuation">(</span><span class="token keyword">double</span> cval<span class="token punctuation">)</span>
 <span class="token punctuation">&#123;</span>
 	<span class="token keyword">int</span> dval<span class="token punctuation">;</span>
 	<span class="token comment">//练习中的问题发生在此处</span>
 <span class="token punctuation">&#125;</span>
-<span class="token punctuation">(</span>a<span class="token punctuation">)</span> 列出在MI<span class="token operator">::</span>foo中可见的所有名字。
+<span class="token punctuation">(</span>a<span class="token punctuation">)</span> 列出在MI<span class="token double-colon punctuation">::</span>foo中可见的所有名字。
 <span class="token punctuation">(</span>b<span class="token punctuation">)</span> 是否存在某个可见的名字是继承自多个基类的？
 <span class="token punctuation">(</span>c<span class="token punctuation">)</span> 将Base1的dval成员与Derived 的dval 成员求和后赋给dval的局部实例。
-<span class="token punctuation">(</span>d<span class="token punctuation">)</span> 将MI<span class="token operator">::</span>dvec的最后一个元素的值赋给Base2<span class="token operator">::</span>fval。
+<span class="token punctuation">(</span>d<span class="token punctuation">)</span> 将MI<span class="token double-colon punctuation">::</span>dvec的最后一个元素的值赋给Base2<span class="token double-colon punctuation">::</span>fval。
 <span class="token punctuation">(</span>e<span class="token punctuation">)</span> 将从Base1继承的cval赋给从Derived继承的sval的第一个字符。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="练习18-28"><a href="#练习18-28" class="headerlink" title="练习18.28"></a>练习18.28</h2><blockquote>
@@ -1810,7 +1810,7 @@ Base <span class="token operator">*</span>pb<span class="token punctuation">;</s
                                     <a href="https://github.com/jinbaotang/jinbaotang.githuh.io" target="_blank">jinbao-matery-modify</a>
                                     <br>
                                     
-                                        &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span class="white-color">155k</span>&nbsp;字
+                                        &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span class="white-color">162.8k</span>&nbsp;字
                                         
                                             
                                                 
