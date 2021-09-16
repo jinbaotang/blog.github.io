@@ -483,7 +483,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-08-30
+                    2021-09-16
                 </div>
                 
 
@@ -529,10 +529,14 @@
 <pre class="line-numbers language-none"><code class="language-none">1. windows：
 2. mac：&#x2F;Users&#x2F;youraccount&#x2F;.ssh
 3. linux &#x2F;home&#x2F;youraccout&#x2F;.ssh or ~&#x2F;.ssh<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<p>&emsp;&emsp;生成公私钥之后：</p>
+<p>&emsp;&emsp;生成公私钥之后：<br>复杂模式：</p>
 <ol>
 <li>如果目标机器是mac或者linux就可以将公钥拷贝到目标机器上，然后通过<code>cat id_rsa.pub &gt;&gt; xxxx/.ssh/authorized_keys</code>，建议使用<code>&gt;&gt;</code>而不是<code>&gt;</code>，前者是追加，后者是覆盖，有时有多个机器想连一个机器时，不可避免需要多个共存。<code>xxxx</code>代表是用户路径，比如<code>/home/jinbao</code>，如果是自己的独有的机器或者不怕被打，<code>xxxx</code>也可以是<code>/root</code>.</li>
 <li>如果目标机器是windows，就更简单了，在用户目录下的.ssh（没有就新建一个文件夹）下，新建一个authorized_keys文件，打开将前面生成的id_rsa.pub拷贝出来里面的内容，复制到authorized_keys，就ok了。</li>
+</ol>
+<p>简单模式：</p>
+<ol>
+<li>直接执行<code>ssh-copy-id target_host</code>，然后输入密码，下次登录就不用再输入密码了。</li>
 </ol>
 <p>&emsp;&emsp;后面在自己的机器上（生成了密钥的机器上）通过<code>ssh yourname@target host ip</code>，会发现不用输入密码了。当然可以在各个系统上设置<strong>别名</strong>来缩短ssh的命令，比如我mac上的<code>.bash_profile</code>增加了<code>alias sshironman=&#39;ssh ironman@172.20.1.1&#39;</code>，后面我要登录ironman，就只需要输入<code>sshironmman</code>就好了。</p>
 <h2 id="2-想个性自己ssh密钥路径"><a href="#2-想个性自己ssh密钥路径" class="headerlink" title="2. 想个性自己ssh密钥路径"></a>2. 想个性自己ssh密钥路径</h2><p>&emsp;&emsp;ssh的密钥用处很多，可以用在git仓库，也可以用来加解密自己的<strong>秘密文件夹</strong>。为了安全或者方便管理，就想着git一套秘钥、登录linux一套密钥，但是默认路径只有一个，怎么办呢？</p>
@@ -1588,7 +1592,7 @@ jinbao@10.110.16.239&#39;s password:<span aria-hidden="true" class="line-numbers
                                     <a href="https://github.com/jinbaotang/jinbaotang.githuh.io" target="_blank">jinbao-matery-modify</a>
                                     <br>
                                     
-                                        &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span class="white-color">164.1k</span>&nbsp;字
+                                        &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span class="white-color">164.2k</span>&nbsp;字
                                         
                                             
                                                 
