@@ -6,7 +6,7 @@
   <link href="https://jinbaotang.cn/atom.xml" rel="self"/>
   
   <link href="https://jinbaotang.cn/"/>
-  <updated>2021-09-14T14:52:29.756Z</updated>
+  <updated>2021-09-20T15:46:25.061Z</updated>
   <id>https://jinbaotang.cn/</id>
   
   <author>
@@ -15,6 +15,38 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>树莓派安装ubuntu server 18以及netplan使用</title>
+    <link href="https://jinbaotang.cn/2021/09/20/pi-install-and-config/"/>
+    <id>https://jinbaotang.cn/2021/09/20/pi-install-and-config/</id>
+    <published>2021-09-20T04:39:00.000Z</published>
+    <updated>2021-09-20T15:46:25.061Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;一直都坚信：技术太顺利是学到不到东西的，只有遇到了问题了才会去研究原理性的东西，这个过程才是真正学习。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&quot;一、背景&quot;&gt;&lt;a href=&quot;#一、背景&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="linux" scheme="https://jinbaotang.cn/categories/linux/"/>
+    
+    
+    <category term="linux" scheme="https://jinbaotang.cn/tags/linux/"/>
+    
+    <category term="pi" scheme="https://jinbaotang.cn/tags/pi/"/>
+    
+    <category term="ubuntu server" scheme="https://jinbaotang.cn/tags/ubuntu-server/"/>
+    
+  </entry>
   
   <entry>
     <title>什么？你还不懂链接</title>
@@ -45,11 +77,11 @@
   </entry>
   
   <entry>
-    <title>ssh登录linux及失败解决方案</title>
+    <title>ssh(无密码)登录linux及失败解决方案</title>
     <link href="https://jinbaotang.cn/2021/08/29/ssh-login-linux/"/>
     <id>https://jinbaotang.cn/2021/08/29/ssh-login-linux/</id>
     <published>2021-08-29T14:22:00.000Z</published>
-    <updated>2021-09-16T10:08:01.182Z</updated>
+    <updated>2021-09-20T15:31:02.466Z</updated>
     
     
       
@@ -131,6 +163,34 @@
   </entry>
   
   <entry>
+    <title>我是如何从MCU开发转到linux开发</title>
+    <link href="https://jinbaotang.cn/2021/06/06/how-mcu2linux/"/>
+    <id>https://jinbaotang.cn/2021/06/06/how-mcu2linux/</id>
+    <published>2021-06-06T13:00:38.000Z</published>
+    <updated>2021-09-15T13:15:48.881Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;从大二开始玩单片机，2019年想转linux开发，但是无从下手；在工作中，终于在2020年中无缝、平滑过渡到linux上开发，想会议下自己转变之路，同时也希望后面自己进一步成长后，现在的认知是对，然后能够帮助同样迷惑小伙伴。至于linux转mcu，</summary>
+        
+      
+    
+    
+    
+    <category term="linux" scheme="https://jinbaotang.cn/categories/linux/"/>
+    
+    
+    <category term="mcu" scheme="https://jinbaotang.cn/tags/mcu/"/>
+    
+    <category term="linux" scheme="https://jinbaotang.cn/tags/linux/"/>
+    
+  </entry>
+  
+  <entry>
     <title>linux间网络通信无界面实时抓包、分析以及文件同步</title>
     <link href="https://jinbaotang.cn/2021/06/06/linux-develop-tips1/"/>
     <id>https://jinbaotang.cn/2021/06/06/linux-develop-tips1/</id>
@@ -165,34 +225,6 @@
   </entry>
   
   <entry>
-    <title>我是如何从MCU开发转到linux开发</title>
-    <link href="https://jinbaotang.cn/2021/06/06/how-mcu2linux/"/>
-    <id>https://jinbaotang.cn/2021/06/06/how-mcu2linux/</id>
-    <published>2021-06-06T13:00:38.000Z</published>
-    <updated>2021-09-15T13:15:48.881Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;从大二开始玩单片机，2019年想转linux开发，但是无从下手；在工作中，终于在2020年中无缝、平滑过渡到linux上开发，想会议下自己转变之路，同时也希望后面自己进一步成长后，现在的认知是对，然后能够帮助同样迷惑小伙伴。至于linux转mcu，</summary>
-        
-      
-    
-    
-    
-    <category term="linux" scheme="https://jinbaotang.cn/categories/linux/"/>
-    
-    
-    <category term="linux" scheme="https://jinbaotang.cn/tags/linux/"/>
-    
-    <category term="mcu" scheme="https://jinbaotang.cn/tags/mcu/"/>
-    
-  </entry>
-  
-  <entry>
     <title>基于openssl实现tls+socket的安全通信-2</title>
     <link href="https://jinbaotang.cn/2021/06/06/tls-socket2/"/>
     <id>https://jinbaotang.cn/2021/06/06/tls-socket2/</id>
@@ -214,9 +246,9 @@
     <category term="协议栈" scheme="https://jinbaotang.cn/categories/%E5%8D%8F%E8%AE%AE%E6%A0%88/"/>
     
     
-    <category term="tls" scheme="https://jinbaotang.cn/tags/tls/"/>
-    
     <category term="socket" scheme="https://jinbaotang.cn/tags/socket/"/>
+    
+    <category term="tls" scheme="https://jinbaotang.cn/tags/tls/"/>
     
     <category term="openssl" scheme="https://jinbaotang.cn/tags/openssl/"/>
     
@@ -304,9 +336,9 @@
     <category term="协议栈" scheme="https://jinbaotang.cn/categories/%E5%8D%8F%E8%AE%AE%E6%A0%88/"/>
     
     
-    <category term="tls" scheme="https://jinbaotang.cn/tags/tls/"/>
-    
     <category term="socket" scheme="https://jinbaotang.cn/tags/socket/"/>
+    
+    <category term="tls" scheme="https://jinbaotang.cn/tags/tls/"/>
     
     <category term="openssl" scheme="https://jinbaotang.cn/tags/openssl/"/>
     
@@ -432,9 +464,9 @@
   </entry>
   
   <entry>
-    <title>cpp-primer课后答案8</title>
-    <link href="https://jinbaotang.cn/2021/04/10/excersize/ch08/"/>
-    <id>https://jinbaotang.cn/2021/04/10/excersize/ch08/</id>
+    <title>cpp-primer课后答案4</title>
+    <link href="https://jinbaotang.cn/2021/04/10/excersize/ch04/"/>
+    <id>https://jinbaotang.cn/2021/04/10/excersize/ch04/</id>
     <published>2021-04-10T12:35:38.000Z</published>
     <updated>2021-06-22T01:37:27.740Z</updated>
     
@@ -443,7 +475,7 @@
       
         
         
-    <summary type="html">&lt;h1 id=&quot;第八章-IO库&quot;&gt;&lt;a href=&quot;#第八章-IO库&quot; class=&quot;headerlink&quot; title=&quot;第八章 IO库&quot;&gt;&lt;/a&gt;第八章 IO库&lt;/h1&gt;&lt;h2 id=&quot;练习8-1&quot;&gt;&lt;a href=&quot;#练习8-1&quot; class=&quot;headerlink&quot;</summary>
+    <summary type="html">&lt;h1 id=&quot;第四章-表达式&quot;&gt;&lt;a href=&quot;#第四章-表达式&quot; class=&quot;headerlink&quot; title=&quot;第四章 表达式&quot;&gt;&lt;/a&gt;第四章 表达式&lt;/h1&gt;&lt;h2 id=&quot;练习4-1&quot;&gt;&lt;a href=&quot;#练习4-1&quot; class=&quot;headerlink&quot;</summary>
         
       
     
@@ -461,9 +493,9 @@
   </entry>
   
   <entry>
-    <title>cpp-primer课后答案4</title>
-    <link href="https://jinbaotang.cn/2021/04/10/excersize/ch04/"/>
-    <id>https://jinbaotang.cn/2021/04/10/excersize/ch04/</id>
+    <title>cpp-primer课后答案8</title>
+    <link href="https://jinbaotang.cn/2021/04/10/excersize/ch08/"/>
+    <id>https://jinbaotang.cn/2021/04/10/excersize/ch08/</id>
     <published>2021-04-10T12:35:38.000Z</published>
     <updated>2021-06-22T01:37:27.740Z</updated>
     
@@ -472,7 +504,7 @@
       
         
         
-    <summary type="html">&lt;h1 id=&quot;第四章-表达式&quot;&gt;&lt;a href=&quot;#第四章-表达式&quot; class=&quot;headerlink&quot; title=&quot;第四章 表达式&quot;&gt;&lt;/a&gt;第四章 表达式&lt;/h1&gt;&lt;h2 id=&quot;练习4-1&quot;&gt;&lt;a href=&quot;#练习4-1&quot; class=&quot;headerlink&quot;</summary>
+    <summary type="html">&lt;h1 id=&quot;第八章-IO库&quot;&gt;&lt;a href=&quot;#第八章-IO库&quot; class=&quot;headerlink&quot; title=&quot;第八章 IO库&quot;&gt;&lt;/a&gt;第八章 IO库&lt;/h1&gt;&lt;h2 id=&quot;练习8-1&quot;&gt;&lt;a href=&quot;#练习8-1&quot; class=&quot;headerlink&quot;</summary>
         
       
     
@@ -537,35 +569,6 @@
     
     
     <category term="cpp-primer答案" scheme="https://jinbaotang.cn/categories/cpp-primer%E7%AD%94%E6%A1%88/"/>
-    
-    
-    <category term="exclude" scheme="https://jinbaotang.cn/tags/exclude/"/>
-    
-    <category term="c++" scheme="https://jinbaotang.cn/tags/c/"/>
-    
-    <category term="coding" scheme="https://jinbaotang.cn/tags/coding/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>cpp-primer笔记5</title>
-    <link href="https://jinbaotang.cn/2021/04/10/notes/ch05/"/>
-    <id>https://jinbaotang.cn/2021/04/10/notes/ch05/</id>
-    <published>2021-04-10T12:35:38.000Z</published>
-    <updated>2021-06-22T01:37:27.983Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;第五章-语句&quot;&gt;&lt;a href=&quot;#第五章-语句&quot; class=&quot;headerlink&quot; title=&quot;第五章 语句&quot;&gt;&lt;/a&gt;第五章 语句&lt;/h1&gt;&lt;h2 id=&quot;简单语句&quot;&gt;&lt;a href=&quot;#简单语句&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="cpp笔记" scheme="https://jinbaotang.cn/categories/cpp%E7%AC%94%E8%AE%B0/"/>
     
     
     <category term="exclude" scheme="https://jinbaotang.cn/tags/exclude/"/>
