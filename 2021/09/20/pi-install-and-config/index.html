@@ -487,14 +487,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-09-20
+                    2021-09-21
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.8k
+                    1.9k
                 </div>
                 
 
@@ -525,9 +525,9 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <blockquote>
-<p>一直都坚信：技术太顺利是学到不到东西的，只有遇到了问题了才会去研究原理性的东西，这个过程才是真正学习。</p>
+<p>一直都坚信：技术过程太顺利是学到不到东西的，只有遇到了问题了才会去研究原理性的东西，这个过程才是真正学习。</p>
 </blockquote>
-<h1 id="一、背景"><a href="#一、背景" class="headerlink" title="一、背景"></a>一、背景</h1><p>&emsp;&emsp;借用了别人的现成ECU台架，所以板子都放到了别人桌面上了，但是ECU只有局域网ip，并且有线还比较远，最好时能无线，所以就不得不使用一个中间“路由器”转换一下；之前用的是别人的NUC(Next Unit of Computing)，用一个电脑做“路由器”未免太大材小用了，就想着用树莓派来当这个路由器。树莓派是pi3，32bit以及只有1g的内存，做这个路由器再合适不过了。如下图所示：<img src="/medias/pi-install/pi_ecu_map.png" alt="系统示意图"><br>&emsp;&emsp;pi的硬件并不够先进，一开始让同事刷了一个带桌面的ubuntu 18，直接动不了，后面他又想着帮我刷个ubuntu server，由于同事也没做过，不知道要花多少时间，就不了了之了；所以后面就让同事帮我刷了一个<code>Raspberry Pi OS</code>，一开始只是登录上去，虽然无线延时有点高，但仅仅敲敲命令还可以忍受，但是今天要开始debug，就实在受不了了，太慢了。所以想着自己刷个ubuntu server好了，还能看看如何在system boot中配置ssh和ip（之前Raspberry Pi OS我就挺多疑问的。）<br>&emsp;&emsp;本来这个事情完全不值得记录的，因为随便Google搜索一下，顺利的话半小时就解决了。但是因为太不顺利了，就只能深究去查问题了，足足花了我快9个小时，连午休都没了。进而也弄清了netplan和wpa_supplicant是如何工作的；也大概的看了一下wpa_supplicant的源码，在802.11中sched_scan过程（因为出错时一直在打印<code>wlan0: Failed to initiate sched scan</code>）；也趁机了解wifi信道。</p>
+<h1 id="一、背景"><a href="#一、背景" class="headerlink" title="一、背景"></a>一、背景</h1><p>&emsp;&emsp;借用了别人的现成ECU台架，所以板子都放到了别人桌面上了，但是ECU只有局域网ip，并且有线还比较远，最好时能无线，所以就不得不使用一个中间“路由器”转换一下；之前用的是别人的NUC(Next Unit of Computing)，用一个电脑做“路由器”未免太大材小用了，就想着用树莓派来当这个路由器。树莓派是pi3，32bit以及只有1g的内存，做这个路由器再合适不过了。如下图所示：<img src="/medias/pi-install/pi_ecu_map.png" alt="系统示意图"><br>&emsp;&emsp;pi的硬件并不够先进，一开始让同事刷了一个带桌面的ubuntu 18，直接动不了，后面他又想着帮我刷个ubuntu server，由于同事也没做过，不知道要花多少时间，就不了了之了；所以后面就让同事帮我刷了一个<code>Raspberry Pi OS</code>，一开始只是登录上去，虽然无线延时有点高，但仅仅敲敲命令还可以忍受，但是今天要开始debug，就实在受不了了，太慢了。所以想着自己刷个ubuntu server好了，还能看看如何在system boot中配置ssh和ip（之前Raspberry Pi OS我就挺多疑问的。）<br>&emsp;&emsp;本来这个事情完全不值得记录的，因为随便Google搜索一下，顺利的话半小时就解决了。但是因为太不顺利了，就只能深究去查问题了，足足花了我快9个小时，连午休都没了。进而也弄清了netplan和wpa_supplicant是如何工作的；也大概的看了一下wpa_supplicant的源码（也看到了自己的差距），在802.11中sched_scan过程（因为出错时一直在打印<code>wlan0: Failed to initiate sched scan</code>）；也趁机了解wifi信道。</p>
 <h1 id="二、ubuntu-server安装以及网络配置之顺利篇"><a href="#二、ubuntu-server安装以及网络配置之顺利篇" class="headerlink" title="二、ubuntu server安装以及网络配置之顺利篇"></a>二、ubuntu server安装以及网络配置之顺利篇</h1><h2 id="1-ubuntu-server安装过程"><a href="#1-ubuntu-server安装过程" class="headerlink" title="1. ubuntu server安装过程"></a>1. ubuntu server安装过程</h2><ol>
 <li>确定自己的树莓派版本，确定是cpu是32bit还是64bit，准备大于4G的SD卡（安装完才发现需要的空间可真小）</li>
 <li>在下面<a target="_blank" rel="noopener" href="https://cdimage.ubuntu.com/releases/">ubutu nserver image地址</a>找到适用于树莓派的版本<br> 比如树莓派的<code>Ubuntu Server 18.04</code>的最新可用下载,(<strong>点击直接下载</strong>)<br> <strong>树莓派 2</strong><br> <a target="_blank" rel="noopener" href="https://cdimage.ubuntu.com/releases/18.04.5/release/ubuntu-18.04.5-preinstalled-server-armhf+raspi2.img.xz">下载用于树莓派 2 (ARM 32 位) 的 Ubuntu Server 18.04 LTS</a><br> <strong>树莓派 3</strong><br> <a target="_blank" rel="noopener" href="https://cdimage.ubuntu.com/releases/18.04.5/release/ubuntu-18.04.5-preinstalled-server-armhf+raspi3.img.xz">下载用于树莓派 3 (ARM 32 位) 的 Ubuntu Server 18.04 LTS</a><br> <strong>树莓派 4</strong><br> <a target="_blank" rel="noopener" href="https://cdimage.ubuntu.com/releases/18.04.5/release/ubuntu-18.04.5-preinstalled-server-armhf+raspi4.img.xz">下载用于树莓派 4 (ARM 32 位) 的 Ubuntu Server 18.04 LTS</a><br> <strong>树莓派 3（64位）</strong><br> <a target="_blank" rel="noopener" href="https://cdimage.ubuntu.com/releases/18.04.5/release/ubuntu-18.04.5-preinstalled-server-arm64+raspi3.img.xz">下载用于树莓派 3 (ARM 64 位) 的 Ubuntu Server 18.04 LTS</a><br> <strong>树莓派 4（64位）</strong><br> <a target="_blank" rel="noopener" href="https://cdimage.ubuntu.com/releases/18.04.5/release/ubuntu-18.04.5-preinstalled-server-armhf+raspi4.img.xz">下载用于树莓派 4 (ARM 64 位) 的 Ubuntu Server 18.04 LTS</a></li>
@@ -582,7 +582,8 @@ wifis:
 </ol>
 <p>如果上述步骤完，顺利的话，也就不到半小时，如果不用（配置）wifi的话，几乎不会出问题。</p>
 <h1 id="三、痛苦面具之wifi连接不成功"><a href="#三、痛苦面具之wifi连接不成功" class="headerlink" title="三、痛苦面具之wifi连接不成功"></a>三、痛苦面具之wifi连接不成功</h1><p>&emsp;&emsp;安装完ubuntu server，<code>df -h</code>一下，居然只占用1g多的SD卡，如下图，即使将所有软件更新到最新也就多1 200M的空间。在实际用起来更是特别流畅，明显的感觉到，比<code>Raspberry Pi OS</code>手感好多了。但是也遇到了问题了，比如我这边，第一次启动时，我发现pi没有连接上wifi，我先是用<code>iwconfig wlan0 essid xxxx</code>先连上wifi解决bug，由于延时降低了，远程debug起来也得心应手了，等很快的解决完bug，我就开始去折腾wifi为啥连接不成功了，走了巨多弯路，最终干到晚上那个7点半也没解决，但是回到家，发现家里的所有wifi都可以连接成功（真是无语了，我还得再去公司试试）。具体过程不表了，剩下记录我在解决问题时，学到的一些知识了。<br><img src="/medias/pi-install/ubuntu-df-h.png" alt="ubuntu server实际空间占用"></p>
-<h2 id="1-iwconfig连接wifi那些事儿"><a href="#1-iwconfig连接wifi那些事儿" class="headerlink" title="1. iwconfig连接wifi那些事儿"></a>1. iwconfig连接wifi那些事儿</h2><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment"># This file is generated from information provided by the datasource.  Changes</span>
+<h2 id="1-使用ifupdown解决"><a href="#1-使用ifupdown解决" class="headerlink" title="1. 使用ifupdown解决"></a>1. 使用ifupdown解决</h2><p>&emsp;&emsp;在弄了一段时间弄不好后，我其实就想用原始的办法—-通过<code>/etc/network/interface</code>使用ifupdown来解决，一开始<code>Raspberry Pi OS</code>就是通过这种方法的。但是想着放假，怎么玩不是玩，解决解决这个问题，纯属当玩了，实在不行就用这个B计划，尤其我看到使用这种配置并不是默认选项时，如下图，更加坚信我要用netplan的想法。<img src="/medias/pi-install/network_interface.png">。</p>
+<h2 id="2-iwconfig连接wifi那些事儿"><a href="#2-iwconfig连接wifi那些事儿" class="headerlink" title="2. iwconfig连接wifi那些事儿"></a>2. iwconfig连接wifi那些事儿</h2><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment"># This file is generated from information provided by the datasource.  Changes</span>
 <span class="token comment"># to it will not persist across an instance reboot.  To disable cloud-init's</span>
 <span class="token comment"># network configuration capabilities, write a file</span>
 <span class="token comment"># /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg with the following:</span>
@@ -604,7 +605,7 @@ wifis:
             <span class="token key atrule">dhcp4</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
             <span class="token key atrule">optional</span><span class="token punctuation">:</span> <span class="token boolean important">true</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h2 id="2-netplan和wpa-supplicant是咋搞到一起的"><a href="#2-netplan和wpa-supplicant是咋搞到一起的" class="headerlink" title="2. netplan和wpa_supplicant是咋搞到一起的"></a>2. netplan和wpa_supplicant是咋搞到一起的</h2><h2 id="3-netplan和wpa-supplicatn调试"><a href="#3-netplan和wpa-supplicatn调试" class="headerlink" title="3. netplan和wpa_supplicatn调试"></a>3. netplan和wpa_supplicatn调试</h2><h2 id="4-如果信道不匹配是谁的锅"><a href="#4-如果信道不匹配是谁的锅" class="headerlink" title="4. 如果信道不匹配是谁的锅"></a>4. 如果信道不匹配是谁的锅</h2><h2 id="5-网络驱动之没有权限运行"><a href="#5-网络驱动之没有权限运行" class="headerlink" title="5. 网络驱动之没有权限运行"></a>5. 网络驱动之没有权限运行</h2>
+<h2 id="3-netplan和wpa-supplicant是咋搞到一起的"><a href="#3-netplan和wpa-supplicant是咋搞到一起的" class="headerlink" title="3. netplan和wpa_supplicant是咋搞到一起的"></a>3. netplan和wpa_supplicant是咋搞到一起的</h2><h2 id="4-netplan和wpa-supplicatn调试"><a href="#4-netplan和wpa-supplicatn调试" class="headerlink" title="4. netplan和wpa_supplicatn调试"></a>4. netplan和wpa_supplicatn调试</h2><h2 id="5-如果信道不匹配是谁的锅"><a href="#5-如果信道不匹配是谁的锅" class="headerlink" title="5. 如果信道不匹配是谁的锅"></a>5. 如果信道不匹配是谁的锅</h2><h2 id="6-网络驱动之没有权限运行"><a href="#6-网络驱动之没有权限运行" class="headerlink" title="6. 网络驱动之没有权限运行"></a>6. 网络驱动之没有权限运行</h2>
                 
             </div>
             <hr/>
@@ -1526,7 +1527,7 @@ wifis:
                                     <a href="https://github.com/jinbaotang/jinbaotang.githuh.io" target="_blank">jinbao-matery-modify</a>
                                     <br>
                                     
-                                        &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span class="white-color">165.9k</span>&nbsp;字
+                                        &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span class="white-color">166.1k</span>&nbsp;字
                                         
                                             
                                                 
