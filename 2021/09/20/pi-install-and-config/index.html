@@ -4,7 +4,7 @@
 
     <head>
         <meta charset="utf-8">
-        <meta name="keywords" content="树莓派安装ubuntu server 18以及netplan使用, Ethernet stack, embeded software, dignostic">
+        <meta name="keywords" content="树莓派安装ubuntu server 18以及netplan“隐藏”bug, Ethernet stack, embeded software, dignostic">
         <meta name="description" content="唐金宝 | 车辆工程 | 软件工程师">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -18,7 +18,7 @@
 
 
             <title>
-                树莓派安装ubuntu server 18以及netplan使用 | 金宝的博客
+                树莓派安装ubuntu server 18以及netplan“隐藏”bug | 金宝的博客
             </title>
             <link rel="icon" type="image/png" href="/medias/logo.png">
 
@@ -326,12 +326,12 @@
 
         
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">树莓派安装ubuntu server 18以及netplan使用</h1>
+                    <h1 class="description center-align post-title">树莓派安装ubuntu server 18以及netplan“隐藏”bug</h1>
                 </div>
             </div>
         </div>
@@ -494,14 +494,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.9k
+                    3.4k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    7 分
+                    13 分
                 </div>
                 
 
@@ -527,7 +527,7 @@
                 <blockquote>
 <p>一直都坚信：技术过程太顺利是学到不到东西的，只有遇到了问题了才会去研究原理性的东西，这个过程才是真正学习。</p>
 </blockquote>
-<h1 id="一、背景"><a href="#一、背景" class="headerlink" title="一、背景"></a>一、背景</h1><p>&emsp;&emsp;借用了别人的现成ECU台架，所以板子都放到了别人桌面上了，但是ECU只有局域网ip，并且有线还比较远，最好时能无线，所以就不得不使用一个中间“路由器”转换一下；之前用的是别人的NUC(Next Unit of Computing)，用一个电脑做“路由器”未免太大材小用了，就想着用树莓派来当这个路由器。树莓派是pi3，32bit以及只有1g的内存，做这个路由器再合适不过了。如下图所示：<img src="/medias/pi-install/pi_ecu_map.png" alt="系统示意图"><br>&emsp;&emsp;pi的硬件并不够先进，一开始让同事刷了一个带桌面的ubuntu 18，直接动不了，后面他又想着帮我刷个ubuntu server，由于同事也没做过，不知道要花多少时间，就不了了之了；所以后面就让同事帮我刷了一个<code>Raspberry Pi OS</code>，一开始只是登录上去，虽然无线延时有点高，但仅仅敲敲命令还可以忍受，但是今天要开始debug，就实在受不了了，太慢了。所以想着自己刷个ubuntu server好了，还能看看如何在system boot中配置ssh和ip（之前Raspberry Pi OS我就挺多疑问的。）<br>&emsp;&emsp;本来这个事情完全不值得记录的，因为随便Google搜索一下，顺利的话半小时就解决了。但是因为太不顺利了，就只能深究去查问题了，足足花了我快9个小时，连午休都没了。进而也弄清了netplan和wpa_supplicant是如何工作的；也大概的看了一下wpa_supplicant的源码（也看到了自己的差距），在802.11中sched_scan过程（因为出错时一直在打印<code>wlan0: Failed to initiate sched scan</code>）；也趁机了解wifi信道。</p>
+<h1 id="一、背景"><a href="#一、背景" class="headerlink" title="一、背景"></a>一、背景</h1><p>&emsp;&emsp;借用了别人的现成ECU台架，所以板子都放到了别人桌面上了，但是ECU只有局域网ip，并且有线还比较远，最好时能无线，所以就不得不使用一个中间“路由器”转换一下；之前用的是别人的NUC(Next Unit of Computing)，用一个电脑做“路由器”未免太大材小用了，就想着用树莓派来当这个路由器。树莓派是pi3，32bit以及只有1g的内存，做这个路由器再合适不过了。如下图所示：<img src="/medias/pi-install/pi_ecu_map.png" alt="系统示意图"><br>&emsp;&emsp;pi的硬件并不够先进，一开始让同事刷了一个带桌面的ubuntu 18，直接动不了，后面他又想着帮我刷个ubuntu server，由于同事也没做过，不知道要花多少时间，就不了了之了；所以后面就让同事帮我刷了一个<code>Raspberry Pi OS</code>，一开始只是登录上去，虽然无线延时有点高，但仅仅敲敲命令还可以忍受，但是今天要开始debug，就实在受不了了，太慢了。所以想着自己刷个ubuntu server好了，还能看看如何在system boot中配置ssh和ip（之前Raspberry Pi OS我就挺多疑问的。）<br>&emsp;&emsp;本来这个事情完全不值得记录的，因为随便Google搜索一下，顺利的话半小时就解决了。但是因为太不顺利了，就只能深究去查问题了，足足花了我快9个小时，连午休都没了。进而也弄清了netplan和wpa_supplicant是如何工作的；也大概的看了一下wpa_supplicant的源码（也看到了自己的差距），在802.11中sched_scan过程（因为出错时一直在打印<code>wlan0: Failed to initiate sched scan</code>）；也趁机了解wifi信道。<br>&emsp;&emsp;最终在折腾了一天半之后终于找到原因了，是由于netplan配置连接隐藏wifi时有bug导致的，如果想快速解决问题的，可以直接跳到第三章<strong>如何连接隐藏wifi</strong>。</p>
 <h1 id="二、ubuntu-server安装以及网络配置之顺利篇"><a href="#二、ubuntu-server安装以及网络配置之顺利篇" class="headerlink" title="二、ubuntu server安装以及网络配置之顺利篇"></a>二、ubuntu server安装以及网络配置之顺利篇</h1><h2 id="1-ubuntu-server安装过程"><a href="#1-ubuntu-server安装过程" class="headerlink" title="1. ubuntu server安装过程"></a>1. ubuntu server安装过程</h2><ol>
 <li>确定自己的树莓派版本，确定是cpu是32bit还是64bit，准备大于4G的SD卡（安装完才发现需要的空间可真小）</li>
 <li>在下面<a target="_blank" rel="noopener" href="https://cdimage.ubuntu.com/releases/">ubutu nserver image地址</a>找到适用于树莓派的版本<br> 比如树莓派的<code>Ubuntu Server 18.04</code>的最新可用下载,(<strong>点击直接下载</strong>)<br> <strong>树莓派 2</strong><br> <a target="_blank" rel="noopener" href="https://cdimage.ubuntu.com/releases/18.04.5/release/ubuntu-18.04.5-preinstalled-server-armhf+raspi2.img.xz">下载用于树莓派 2 (ARM 32 位) 的 Ubuntu Server 18.04 LTS</a><br> <strong>树莓派 3</strong><br> <a target="_blank" rel="noopener" href="https://cdimage.ubuntu.com/releases/18.04.5/release/ubuntu-18.04.5-preinstalled-server-armhf+raspi3.img.xz">下载用于树莓派 3 (ARM 32 位) 的 Ubuntu Server 18.04 LTS</a><br> <strong>树莓派 4</strong><br> <a target="_blank" rel="noopener" href="https://cdimage.ubuntu.com/releases/18.04.5/release/ubuntu-18.04.5-preinstalled-server-armhf+raspi4.img.xz">下载用于树莓派 4 (ARM 32 位) 的 Ubuntu Server 18.04 LTS</a><br> <strong>树莓派 3（64位）</strong><br> <a target="_blank" rel="noopener" href="https://cdimage.ubuntu.com/releases/18.04.5/release/ubuntu-18.04.5-preinstalled-server-arm64+raspi3.img.xz">下载用于树莓派 3 (ARM 64 位) 的 Ubuntu Server 18.04 LTS</a><br> <strong>树莓派 4（64位）</strong><br> <a target="_blank" rel="noopener" href="https://cdimage.ubuntu.com/releases/18.04.5/release/ubuntu-18.04.5-preinstalled-server-armhf+raspi4.img.xz">下载用于树莓派 4 (ARM 64 位) 的 Ubuntu Server 18.04 LTS</a></li>
@@ -536,7 +536,7 @@
 <h2 id="2-网络配置与使用SSH登录"><a href="#2-网络配置与使用SSH登录" class="headerlink" title="2. 网络配置与使用SSH登录"></a>2. 网络配置与使用SSH登录</h2><p>&emsp;&emsp;上述操作后，借助显示器能够成功登录进去，配置ip（如果将有线接到带有dhcpserver的大网上，默认eth0会通过dhcp分配到ip），使能ssh，后面即可使用ssh登录了。但是可以通过system-boot的文件配置直接在第一次系统启动时就对所有网卡分配ip（包含无线连接），具体如下：</p>
 <ol>
 <li>在system-boot根目录新建<strong>文件</strong><code>ssh</code>；这一步是使能ssh。</li>
-<li>打开system-boot/network-config，如下是我的配置，打开会有配置示例，包含有线网和无线网以及无线网各种连接方式。因为ubuntu 18以后版本默认使用<code>netplan</code>来做网络配置工具，所以<code>network-config</code>可以直接参考<a target="_blank" rel="noopener" href="https://netplan.io/examples/">官网的示例</a>，如下图，感兴趣的还可以研究下<a target="_blank" rel="noopener" href="https://netplan.io/reference">netplan 参考描述</a>，不要去百度/google搜啦，官网写的贼详细了。**强烈建议<code>wifis</code>中<code>optional</code>配置为<code>true</code>,否则要是连接不成功，需要等很长时间才会进入系统，如果配为<code>false</code>，第一次进去后可以<code>/etc/systemd/system.conf</code>改小等待的时间，<a target="_blank" rel="noopener" href="https://askubuntu.com/questions/972215/a-start-job-is-running-for-wait-for-network-to-be-configured-ubuntu-server-17-1">参考链接</a>**（ubuntu 18以前的版本等有时间我也研究研究。）</li>
+<li>打开system-boot/network-config，如下是我的配置，打开会有配置示例，包含有线网和无线网以及无线网各种连接方式。因为ubuntu 18以后版本默认使用<code>netplan</code>来做网络配置工具，所以<code>network-config</code>可以直接参考<a target="_blank" rel="noopener" href="https://netplan.io/examples/">官网的示例</a>，如下图，感兴趣的还可以研究下<a target="_blank" rel="noopener" href="https://netplan.io/reference">netplan 参考描述</a>，不要去百度/google搜啦，官网写的贼详细了。<strong>强烈建议</strong><code>wifis</code>中<code>optional</code>配置为<code>true</code>,否则要是连接不成功，需要等很长时间才会进入系统，如果配为<code>false</code>，第一次进去后可以<code>/etc/systemd/system.conf</code>改小等待的时间，<a target="_blank" rel="noopener" href="https://askubuntu.com/questions/972215/a-start-job-is-running-for-wait-for-network-to-be-configured-ubuntu-server-17-1">参考链接</a>（ubuntu 18以前的版本等有时间我也研究研究。）</li>
 </ol>
 <pre class="line-numbers language-config" data-language="config"><code class="language-config"># This file contains a netplan-compatible configuration which cloud-init
 # will apply on first-boot. Please refer to the cloud-init documentation and
@@ -580,32 +580,110 @@ wifis:
 <li>根据需求改完，保存，弹出SD卡，将SD卡插入树莓派，上电启动，<code>ping</code>配置文件预先配置的ip，<code>ping</code>通后，直接使用<code>ssh ubuntu@your ip</code>，后面输入密码：<code>ubuntu</code>。剩下就自己玩了。可以配合我之前的博客使用更佳：<a href="https://jinbaotang.cn/2021/08/29/ssh-login-linux/">ssh(无密码)登录linux及失败解决方案</a>。</li>
 <li>还有第4条，据官网描述，某些版本可能没有集成openssh，那就只能用显示器接入，联网安装后再使用了。</li>
 </ol>
-<p>如果上述步骤完，顺利的话，也就不到半小时，如果不用（配置）wifi的话，几乎不会出问题。</p>
+<p>如果上述步骤完，顺利的话，也就不到半小时，如果不连接<strong>隐藏</strong>wifi的话，几乎不会出问题；如果是隐藏wifi，还需要看下一章<strong>如何连接隐藏wifi。</strong></p>
 <h1 id="三、痛苦面具之wifi连接不成功"><a href="#三、痛苦面具之wifi连接不成功" class="headerlink" title="三、痛苦面具之wifi连接不成功"></a>三、痛苦面具之wifi连接不成功</h1><p>&emsp;&emsp;安装完ubuntu server，<code>df -h</code>一下，居然只占用1g多的SD卡，如下图，即使将所有软件更新到最新也就多1 200M的空间。在实际用起来更是特别流畅，明显的感觉到，比<code>Raspberry Pi OS</code>手感好多了。但是也遇到了问题了，比如我这边，第一次启动时，我发现pi没有连接上wifi，我先是用<code>iwconfig wlan0 essid xxxx</code>先连上wifi解决bug，由于延时降低了，远程debug起来也得心应手了，等很快的解决完bug，我就开始去折腾wifi为啥连接不成功了，走了巨多弯路，最终干到晚上那个7点半也没解决，但是回到家，发现家里的所有wifi都可以连接成功（真是无语了，我还得再去公司试试）。具体过程不表了，剩下记录我在解决问题时，学到的一些知识了。<br><img src="/medias/pi-install/ubuntu-df-h.png" alt="ubuntu server实际空间占用"></p>
-<h2 id="1-使用ifupdown解决"><a href="#1-使用ifupdown解决" class="headerlink" title="1. 使用ifupdown解决"></a>1. 使用ifupdown解决</h2><p>&emsp;&emsp;在弄了一段时间弄不好后，我其实就想用原始的办法—-通过<code>/etc/network/interface</code>使用ifupdown来解决，一开始<code>Raspberry Pi OS</code>就是通过这种方法的。但是想着放假，怎么玩不是玩，解决解决这个问题，纯属当玩了，实在不行就用这个B计划，尤其我看到使用这种配置并不是默认选项时，如下图，更加坚信我要用netplan的想法。<img src="/medias/pi-install/network_interface.png">。</p>
-<h2 id="2-iwconfig连接wifi那些事儿"><a href="#2-iwconfig连接wifi那些事儿" class="headerlink" title="2. iwconfig连接wifi那些事儿"></a>2. iwconfig连接wifi那些事儿</h2><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment"># This file is generated from information provided by the datasource.  Changes</span>
-<span class="token comment"># to it will not persist across an instance reboot.  To disable cloud-init's</span>
-<span class="token comment"># network configuration capabilities, write a file</span>
-<span class="token comment"># /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg with the following:</span>
-<span class="token comment"># network: &#123;config: disabled&#125;</span>
-<span class="token key atrule">network</span><span class="token punctuation">:</span>
-    <span class="token key atrule">ethernets</span><span class="token punctuation">:</span>
-        <span class="token key atrule">eth0</span><span class="token punctuation">:</span>
-            <span class="token key atrule">dhcp4</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
-            <span class="token key atrule">optional</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
-        <span class="token key atrule">eth1</span><span class="token punctuation">:</span>
-            <span class="token key atrule">addresses</span><span class="token punctuation">:</span>
-            <span class="token punctuation">-</span> 172.20.1.83/24
-            <span class="token key atrule">dhcp4</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
-    <span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token number">2</span>
-    <span class="token key atrule">wifis</span><span class="token punctuation">:</span>
-        <span class="token key atrule">wlan0</span><span class="token punctuation">:</span>
-            <span class="token key atrule">access-points</span><span class="token punctuation">:</span>
-               <span class="token key atrule">NIO-AUTH</span><span class="token punctuation">:</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
-            <span class="token key atrule">dhcp4</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
-            <span class="token key atrule">optional</span><span class="token punctuation">:</span> <span class="token boolean important">true</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="1-使用ifupdown解决"><a href="#1-使用ifupdown解决" class="headerlink" title="1. 使用ifupdown解决"></a>1. 使用ifupdown解决</h2><p>&emsp;&emsp;在弄了一段时间弄不好后，我其实就想用原始的办法—-通过<code>/etc/network/interface</code>使用ifupdown来解决，一开始<code>Raspberry Pi OS</code>就是通过这种方法的。但是想着放假，怎么玩不是玩，解决解决这个问题，纯属当玩了，实在不行就用这个B计划，尤其我看到使用这种配置并不是默认选项时，而是需要再安装ifupdown，如下图，更加坚信我要用netplan的想法。<img src="/medias/pi-install/network_interface.png">。</p>
+<h2 id="2-iwconfig连接wifi那些事儿"><a href="#2-iwconfig连接wifi那些事儿" class="headerlink" title="2. iwconfig连接wifi那些事儿"></a>2. iwconfig连接wifi那些事儿</h2><p>可以直接通过iwconfig来连接wifi：</p>
+<ol>
+<li><code>suod iwconfig wlan0 essid &quot;NAME&quot; key password</code></li>
+<li>使用<code>iwconfig wlan0</code>是否成功</li>
+<li>使用<code>sudo dhclient wlan0</code>向dhcp服务器请求分配ip</li>
+</ol>
+<h2 id="3-netplan和wpa-supplicant是咋搞到一起的"><a href="#3-netplan和wpa-supplicant是咋搞到一起的" class="headerlink" title="3. netplan和wpa_supplicant是咋搞到一起的"></a>3. netplan和wpa_supplicant是咋搞到一起的</h2><p>&emsp;&emsp;快记，以wlan0示例：</p>
+<ol>
+<li>netplan启动，读取<code>/etc/netplan/***.yaml</code>配置文件，并声称wpa_supplicant的配置文件至<code>/run/netplan/***.conf</code>.</li>
+<li>启动<code>/run/systemd/system/netplan-wpa-wlan0.service</code>服务，进而调用wpa_supplicant</li>
+<li>最终执行的就是<code>/sbin/wpa_supplicant -c /run/netplan/wpa-wlan0.conf -iwlan0</code>，</li>
+</ol>
+<h3 id="a-netplan是什么以及如何工作的"><a href="#a-netplan是什么以及如何工作的" class="headerlink" title="a. netplan是什么以及如何工作的"></a>a. netplan是什么以及如何工作的</h3><h3 id="b-wpa-supplicant"><a href="#b-wpa-supplicant" class="headerlink" title="b. wpa_supplicant"></a>b. wpa_supplicant</h3><h3 id="c-netplan和wpa-supplicant"><a href="#c-netplan和wpa-supplicant" class="headerlink" title="c. netplan和wpa_supplicant"></a>c. netplan和wpa_supplicant</h3><h2 id="4-netplan和wpa-supplicatn调试"><a href="#4-netplan和wpa-supplicatn调试" class="headerlink" title="4. netplan和wpa_supplicatn调试"></a>4. netplan和wpa_supplicatn调试</h2><h2 id="5-如果信道不匹配是谁的锅"><a href="#5-如果信道不匹配是谁的锅" class="headerlink" title="5. 如果信道不匹配是谁的锅"></a>5. 如果信道不匹配是谁的锅</h2><h2 id="6-网络驱动之没有权限运行"><a href="#6-网络驱动之没有权限运行" class="headerlink" title="6. 网络驱动之没有权限运行"></a>6. 网络驱动之没有权限运行</h2><h2 id="7-如何连接隐藏wifi"><a href="#7-如何连接隐藏wifi" class="headerlink" title="7. 如何连接隐藏wifi"></a>7. 如何连接隐藏wifi</h2><p>&emsp;&emsp;最终netplan连接不上wifi就是出在了我连的是隐藏wifi的原因了，这就是为什么，我连我家的wifi全部都没有问题的。当然发现的这个过程可太曲折了，主要是两个原因:</p>
+<ol>
+<li>不知道wpa_supplicant连接隐藏wifi的原因，下面我会分析到。</li>
+<li>netplan在这块有bug或者说功能不全<h3 id="a-wpa-supplicant如何连接隐藏wifi"><a href="#a-wpa-supplicant如何连接隐藏wifi" class="headerlink" title="a. wpa_supplicant如何连接隐藏wifi"></a>a. wpa_supplicant如何连接隐藏wifi</h3>wifi隐藏时MAC帧的表现扫描隐藏SSID，和非隐藏SSID，STA端只有在wpa_supplicant.conf有一点不同：</li>
+</ol>
+<pre class="line-numbers language-none"><code class="language-none">network&#x3D;&#123;                                                              
+        ssid&#x3D;&quot;jinbao&quot;                                                                    
+        scan_ssid&#x3D;1        ##这一项表示可以扫描隐藏wifi   
+        psk&#x3D;&quot;12345678&quot;                                                                        
+&#125;                                                                                           <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h2 id="3-netplan和wpa-supplicant是咋搞到一起的"><a href="#3-netplan和wpa-supplicant是咋搞到一起的" class="headerlink" title="3. netplan和wpa_supplicant是咋搞到一起的"></a>3. netplan和wpa_supplicant是咋搞到一起的</h2><h2 id="4-netplan和wpa-supplicatn调试"><a href="#4-netplan和wpa-supplicatn调试" class="headerlink" title="4. netplan和wpa_supplicatn调试"></a>4. netplan和wpa_supplicatn调试</h2><h2 id="5-如果信道不匹配是谁的锅"><a href="#5-如果信道不匹配是谁的锅" class="headerlink" title="5. 如果信道不匹配是谁的锅"></a>5. 如果信道不匹配是谁的锅</h2><h2 id="6-网络驱动之没有权限运行"><a href="#6-网络驱动之没有权限运行" class="headerlink" title="6. 网络驱动之没有权限运行"></a>6. 网络驱动之没有权限运行</h2>
+<p>在不隐藏SSID时，AP广播的Beacon帧中，将携带SSID信息：</p>
+<pre class="line-numbers language-none"><code class="language-none">SSID
+  Element ID:         0  SSID [36]
+  Length:             6 [37]
+  SSID:               jinbao [38-48]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>也就是在Beacon帧中携带本BSS的SSID信息，通知STA。<br>但是设置隐藏SSID的AP在广播的Beacon帧中没有携带SSID信息。通常的利用wpa_supplicant实现的设备搜索到的隐藏SSID的AP的SSID为空，这种为空的SSID被处理的时候被忽略了，就搜索不到。sniffer包表现为：</p>
+<pre class="line-numbers language-none"><code class="language-none">SSID
+  Element ID:         0  SSID [36]
+  Length:             0 [37]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>在STA进行扫描时，如果wpa_supplicant.conf设置了scan_ssid = 1, STA发送probe request帧，会发送两种类型的帧，第一种用来扫描所有AP，其中request帧SSID项不携带信息。同时发送另一种request帧，其中有携带SSID信息，用来搜索隐藏SSID。</p>
+<p>STA设置隐藏后，其中携带要扫描的SSID信息的request帧，在sniffer中的描述：</p>
+<pre class="line-numbers language-none"><code class="language-none">802.11 Management - Probe Request
+  SSID
+    Element ID:         0  SSID [24]
+    Length:             6 [25]
+    SSID:               jinbao [26-36]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>在没有设置扫描隐藏SSID时，STA发送的request帧只有第一种，不能指定获取某种SSID。这个时候隐藏SSID的AP回复的response帧包含的SSID信息为空，于是在wpa_supplicant中看到的SSID为空，framework层就把空SSID忽略了，搜索不到。</p>
+<p>但是对于设置了扫描隐藏SSID的STA，在发送携带特定SSID信息的request后，AP端虽然隐藏了SSID，但是回复的response帧将携带自身SSID信息的，STA通过其SSID项正常扫描到网络。<br>回复的response帧信息：</p>
+<pre class="line-numbers language-none"><code class="language-none">802.11 Management - Probe Response
+  SSID
+    Element ID:         0  SSID [36]
+    Length:             6 [37]
+    SSID:               jinbao [38-48]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>所以综上分析，在使用wpa_supplicant来连接wifi时，针对配置，需要填上<code>scan_ssid=1</code>，如下所示，否则会连接不上wifi，一直提示<code>Failed to initiate sched scan netplan</code>.</p>
+<pre class="line-numbers language-none"><code class="language-none"># &#x2F;etc&#x2F;wpa_supplicant&#x2F;wpa_supplicant.conf
+network&#x3D;&#123;
+    ssid&#x3D;&quot;NIO-AUTH&quot;
+    scan_ssid&#x3D;1
+    key_mgmt&#x3D;NONE
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="b-如何使用netplan连接隐藏wifi"><a href="#b-如何使用netplan连接隐藏wifi" class="headerlink" title="b. 如何使用netplan连接隐藏wifi"></a>b. 如何使用netplan连接隐藏wifi</h3><p>&emsp;&emsp;前面分析了<em>netplan和wpa_supplicant是如何搞到一起的</em>（可能还没写哦，先写教程），所以目的是让netplan通过netplan的配置文件来生成wpa_supplicant的配置文件，并且必须带上<code>scan_ssid=1</code>这一项。之前弄了这么久，也没连上wifi就是因为乜有带上这一项，先说解决方案：</p>
+<ol>
+<li>首先我看netplan的源码，并没有相应的配置可以直接让其可以生成<code>scan_ssid=1</code>，所以从其他地方入手</li>
+<li>我是如下做的，充分利用转义和注释来实现，可能有些抽象；再看下面生成的配置文件，就懂了<pre class="line-numbers language-none"><code class="language-none">wifis:
+    wlan0:
+        access-points:
+           &quot;NIO-AUTH\&quot;\n  scan_ssid&#x3D;1\n# \&quot;jinbao!&quot;: &#123;&#125;
+        dhcp4: true
+        optional: true<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-none"><code class="language-none"># wpa_supplicant.conf, generate by netplan
+
+network&#x3D;&#123;
+  ssid&#x3D;&quot;NIO-AUTH&quot;
+  scan_ssid&#x3D;1
+# &quot;jinbao!&quot;
+  key_mgmt&#x3D;NONE
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&emsp;&emsp;上面基本上是自己看着wpa_supplicant的配置文件突发奇想的琢磨出来（看了源码和官网实在没办法了），一试，真的可以。其实也很好理解的。否则只有wifi名，生成的wpa_supplicant的配置文件就如下，而没有<code>scan_ssid=1</code>，如果仅仅是为了连上隐藏wifi，到此就可以了。下面再分析，还有没有其他办法</li>
+</ol>
+<pre class="line-numbers language-none"><code class="language-none"># wpa_supplicant.conf, generate by netplan
+
+network&#x3D;&#123;
+  ssid&#x3D;&quot;NIO-AUTH&quot;
+  key_mgmt&#x3D;NONE
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>&emsp;&emsp;在自己解决后，我也上网搜了，发现全网还有一个跟我同样的疑问，并且用了一样的解决办法，<a target="_blank" rel="noopener" href="https://askubuntu.com/questions/1111494/netplan-not-connecting-to-hidden-ssid-server-18-04-1-lts">参考链接</a>。然后我又去看了netplan的源码，发现最新的源码加上了，如下代码，也就可以通过设置<code>hidden</code>字段来连接隐藏wifi。但是，我再官网下载的ubuntu server自带的netplan是不支持该字段了，如下图，所以应该是要更高版本才行。</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;....Omit
+            if (ap-&gt;hidden) &#123;
+                g_string_append(s, &quot;  scan_ssid&#x3D;1\n&quot;);
+            &#125;
+&#x2F;.....Omit<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="/medias/pi-install/hidden_not_suuport.png" alt="netplan当前版本不支持hidden"><br>如下图所示，在一年前netplan已经将<code>hidden</code>加入了，所以使用最新的netplan是可以直接如下配置就可以连接隐藏wifi了。</p>
+<pre class="line-numbers language-none"><code class="language-none">wifis:
+    wlan0:
+        access-points:
+           &quot;NIO-AUTH&quot;: 
+               hidden: true
+        dhcp4: true
+        optional: true<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="/medias/pi-install/hidden_support.png" alt="netplan一年前就支持hidden"></p>
+<h1 id="四、写在最后"><a href="#四、写在最后" class="headerlink" title="四、写在最后"></a>四、写在最后</h1><p>&emsp;&emsp;这一天半过充实而又有价值，好在没放弃，最终问题解决了，还留了几个坑没写，等有时间时再回顾再补上。总之经过这次，大概知道了linux配置ip的套路了，知道了后面即使换到其他发行版本也能在system-boot就配置好网络了。另外，学到了如<code>man app | grep xxxx</code>这种套路了，&lt;(<em>￣▽￣</em>)/啊哈哈，以前还觉得<code>man</code>这个命令也太不又好了。</p>
+
                 
             </div>
             <hr/>
@@ -1154,15 +1232,15 @@ wifis:
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="树莓派安装ubuntu server 18以及netplan使用">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="树莓派安装ubuntu server 18以及netplan“隐藏”bug">
                         
-                        <span class="card-title">树莓派安装ubuntu server 18以及netplan使用</span>
+                        <span class="card-title">树莓派安装ubuntu server 18以及netplan“隐藏”bug</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            记录树莓派安装ubuntu server 18，以及使用netplan配置网络遇到的各种问题和解决过程
+                            记录树莓派安装ubuntu server 18，以及使用netplan配置网络遇到的各种问题和解决过程（使用netplan配置连接隐藏wifi有bug）
                         
                     </div>
                     <div class="publish-info">
@@ -1527,7 +1605,7 @@ wifis:
                                     <a href="https://github.com/jinbaotang/jinbaotang.githuh.io" target="_blank">jinbao-matery-modify</a>
                                     <br>
                                     
-                                        &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span class="white-color">166.1k</span>&nbsp;字
+                                        &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span class="white-color">167.5k</span>&nbsp;字
                                         
                                             
                                                 
