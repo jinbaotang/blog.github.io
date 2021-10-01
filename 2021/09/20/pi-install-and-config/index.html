@@ -487,21 +487,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-09-21
+                    2021-09-22
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.4k
+                    3.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    13 分
+                    14 分
                 </div>
                 
 
@@ -550,6 +550,7 @@
 version: 2
 ethernets:
   eth0:
+    dhcp-identifier: mac
     dhcp4: true
     optional: true
   eth1: 
@@ -558,6 +559,7 @@ ethernets:
 
 wifis:
   wlan0:
+    dhcp-identifier: mac
     dhcp4: true
     optional: true
     access-points:
@@ -573,7 +575,7 @@ wifis:
 #          identity: &quot;me@example.com&quot;
 #          password: &quot;passw0rd&quot;
 #          ca-certificate: &#x2F;etc&#x2F;my_ca.pem
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><img src="/medias/pi-install/connect-open-wireless.png" alt="连接不用密码的wifi的官网示例"></p>
 <ol start="3">
@@ -595,7 +597,32 @@ wifis:
 <li>启动<code>/run/systemd/system/netplan-wpa-wlan0.service</code>服务，进而调用wpa_supplicant</li>
 <li>最终执行的就是<code>/sbin/wpa_supplicant -c /run/netplan/wpa-wlan0.conf -iwlan0</code>，</li>
 </ol>
-<h3 id="a-netplan是什么以及如何工作的"><a href="#a-netplan是什么以及如何工作的" class="headerlink" title="a. netplan是什么以及如何工作的"></a>a. netplan是什么以及如何工作的</h3><h3 id="b-wpa-supplicant"><a href="#b-wpa-supplicant" class="headerlink" title="b. wpa_supplicant"></a>b. wpa_supplicant</h3><h3 id="c-netplan和wpa-supplicant"><a href="#c-netplan和wpa-supplicant" class="headerlink" title="c. netplan和wpa_supplicant"></a>c. netplan和wpa_supplicant</h3><h2 id="4-netplan和wpa-supplicatn调试"><a href="#4-netplan和wpa-supplicatn调试" class="headerlink" title="4. netplan和wpa_supplicatn调试"></a>4. netplan和wpa_supplicatn调试</h2><h2 id="5-如果信道不匹配是谁的锅"><a href="#5-如果信道不匹配是谁的锅" class="headerlink" title="5. 如果信道不匹配是谁的锅"></a>5. 如果信道不匹配是谁的锅</h2><h2 id="6-网络驱动之没有权限运行"><a href="#6-网络驱动之没有权限运行" class="headerlink" title="6. 网络驱动之没有权限运行"></a>6. 网络驱动之没有权限运行</h2><h2 id="7-如何连接隐藏wifi"><a href="#7-如何连接隐藏wifi" class="headerlink" title="7. 如何连接隐藏wifi"></a>7. 如何连接隐藏wifi</h2><p>&emsp;&emsp;最终netplan连接不上wifi就是出在了我连的是隐藏wifi的原因了，这就是为什么，我连我家的wifi全部都没有问题的。当然发现的这个过程可太曲折了，主要是两个原因:</p>
+<h3 id="a-netplan是什么以及如何工作的"><a href="#a-netplan是什么以及如何工作的" class="headerlink" title="a. netplan是什么以及如何工作的"></a>a. netplan是什么以及如何工作的</h3><h3 id="b-wpa-supplicant"><a href="#b-wpa-supplicant" class="headerlink" title="b. wpa_supplicant"></a>b. wpa_supplicant</h3><h3 id="c-netplan和wpa-supplicant"><a href="#c-netplan和wpa-supplicant" class="headerlink" title="c. netplan和wpa_supplicant"></a>c. netplan和wpa_supplicant</h3><p>最终，我的配置如下所示，通过<code>dhcp-identifier: mac</code>来指定以mac地址作为dhcp分配ip的标识，这样就可以让网络管理员帮你把mac和ip绑定，保证ip不会一直在改变了。：</p>
+<pre class="line-numbers language-none"><code class="language-none"># This file is generated from information provided by the datasource.  Changes
+# to it will not persist across an instance reboot.  To disable cloud-init&#39;s
+# network configuration capabilities, write a file
+# &#x2F;etc&#x2F;cloud&#x2F;cloud.cfg.d&#x2F;99-disable-network-config.cfg with the following:
+# network: &#123;config: disabled&#125;
+network:
+    ethernets:
+        eth0:
+            dhcp4: true
+            optional: true
+            dhcp-identifier: mac
+        eth1:
+                addresses:
+                        - 172.20.1.83&#x2F;24
+                dhcp4: false
+                optional: true
+    version: 2
+    wifis:
+        wlan0:
+            dhcp-identifier: mac
+            access-points:
+                    &quot;NIO-AUTH\&quot;\n  scan_ssid&#x3D;1\n# \&quot;jinbao!&quot;: &#123;&#125;
+            dhcp4: true
+            optional: true<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="4-netplan和wpa-supplicatn调试"><a href="#4-netplan和wpa-supplicatn调试" class="headerlink" title="4. netplan和wpa_supplicatn调试"></a>4. netplan和wpa_supplicatn调试</h2><h2 id="5-如果信道不匹配是谁的锅"><a href="#5-如果信道不匹配是谁的锅" class="headerlink" title="5. 如果信道不匹配是谁的锅"></a>5. 如果信道不匹配是谁的锅</h2><h2 id="6-网络驱动之没有权限运行"><a href="#6-网络驱动之没有权限运行" class="headerlink" title="6. 网络驱动之没有权限运行"></a>6. 网络驱动之没有权限运行</h2><h2 id="7-如何连接隐藏wifi"><a href="#7-如何连接隐藏wifi" class="headerlink" title="7. 如何连接隐藏wifi"></a>7. 如何连接隐藏wifi</h2><p>&emsp;&emsp;最终netplan连接不上wifi就是出在了我连的是隐藏wifi的原因了，这就是为什么，我连我家的wifi全部都没有问题的。当然发现的这个过程可太曲折了，主要是两个原因:</p>
 <ol>
 <li>不知道wpa_supplicant连接隐藏wifi的原因，下面我会分析到。</li>
 <li>netplan在这块有bug或者说功能不全<h3 id="a-wpa-supplicant如何连接隐藏wifi"><a href="#a-wpa-supplicant如何连接隐藏wifi" class="headerlink" title="a. wpa_supplicant如何连接隐藏wifi"></a>a. wpa_supplicant如何连接隐藏wifi</h3>wifi隐藏时MAC帧的表现扫描隐藏SSID，和非隐藏SSID，STA端只有在wpa_supplicant.conf有一点不同：</li>
@@ -675,11 +702,12 @@ network&#x3D;&#123;
 <p><img src="/medias/pi-install/hidden_not_suuport.png" alt="netplan当前版本不支持hidden"><br>如下图所示，在一年前netplan已经将<code>hidden</code>加入了，所以使用最新的netplan是可以直接如下配置就可以连接隐藏wifi了。</p>
 <pre class="line-numbers language-none"><code class="language-none">wifis:
     wlan0:
+        dhcp-identifier: mac
         access-points:
            &quot;NIO-AUTH&quot;: 
                hidden: true
         dhcp4: true
-        optional: true<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+        optional: true<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><img src="/medias/pi-install/hidden_support.png" alt="netplan一年前就支持hidden"></p>
 <h1 id="四、写在最后"><a href="#四、写在最后" class="headerlink" title="四、写在最后"></a>四、写在最后</h1><p>&emsp;&emsp;这一天半过充实而又有价值，好在没放弃，最终问题解决了，还留了几个坑没写，等有时间时再回顾再补上，发现了netplan真<strong>隐藏</strong>bug，虽然人家早就修复了，如果当初顺手就把netplan给升级了，可能没有这么强的动力还去刨根问底了。总之经过这次，大概知道了linux配置ip的套路了，知道了后面即使换到其他发行版本也能在system-boot就配置好网络了。另外，学到了如<code>man app | grep xxxx</code>这种套路了，&lt;(<em>￣▽￣</em>)/啊哈哈，以前还觉得<code>man</code>这个命令也太不又好了。</p>
@@ -1223,35 +1251,38 @@ network&#x3D;&#123;
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/09/20/pi-install-and-config/">
+                <a href="/2021/09/30/cmake2/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="树莓派安装ubuntu server 18以及netplan“隐藏”bug">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="cmake--动态库之多线程编译与多层动态库嵌套问题（第2篇）">
                         
-                        <span class="card-title">树莓派安装ubuntu server 18以及netplan“隐藏”bug</span>
+                        <span class="card-title">cmake--动态库之多线程编译与多层动态库嵌套问题（第2篇）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            记录树莓派安装ubuntu server 18，以及使用netplan配置网络遇到的各种问题和解决过程（使用netplan配置连接隐藏wifi有bug）
+                            关于cmake的的第二篇文章---如何保证单线程能够编译，在多线程环境下不出错；多层动态库嵌套分析
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-20
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-09-30
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/linux/" class="post-category">
+                            <a href="/categories/cmake/" class="post-category">
+                                    cmake
+                                </a>
+                            
+                            <a href="/categories/cmake/linux/" class="post-category">
                                     linux
                                 </a>
                             
@@ -1259,20 +1290,11 @@ network&#x3D;&#123;
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/linux/">
-                        <span class="chip bg-color">linux</span>
-                    </a>
-                    
-                    <a href="/tags/pi/">
-                        <span class="chip bg-color">pi</span>
-                    </a>
-                    
-                    <a href="/tags/ubuntu-server/">
-                        <span class="chip bg-color">ubuntu server</span>
+                    <a href="/tags/cmake/">
+                        <span class="chip bg-color">cmake</span>
                     </a>
                     
                 </div>
@@ -1605,7 +1627,7 @@ network&#x3D;&#123;
                                     <a href="https://github.com/jinbaotang/jinbaotang.githuh.io" target="_blank">jinbao-matery-modify</a>
                                     <br>
                                     
-                                        &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span class="white-color">167.6k</span>&nbsp;字
+                                        &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span class="white-color">167.7k</span>&nbsp;字
                                         
                                             
                                                 

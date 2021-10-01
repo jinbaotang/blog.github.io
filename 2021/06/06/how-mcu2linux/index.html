@@ -447,12 +447,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/linux/">
-                                <span class="chip bg-color">linux</span>
-                            </a>
-                        
                             <a href="/tags/mcu/">
                                 <span class="chip bg-color">mcu</span>
+                            </a>
+                        
+                            <a href="/tags/linux/">
+                                <span class="chip bg-color">linux</span>
                             </a>
                         
                     </div>
@@ -483,7 +483,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-09-15
+                    2021-10-01
                 </div>
                 
 
@@ -538,8 +538,9 @@
 </ol>
 <p>&emsp;&emsp;所以在linux开发，通过git获取代码和做版本管理是必须的；打开GitHub和gitlab会发现一个新世界。另外就是建议前期使用命令行而是不会一些带gui的软件，因为带gui界面的软件很容易掩盖一些细节；并且提前使用命令行，到了后面在linux上使用命令行时也会更加熟练了。</p>
 <h2 id="3-编译、链接"><a href="#3-编译、链接" class="headerlink" title="3. 编译、链接"></a>3. 编译、链接</h2><blockquote>
-<p>说一下我的理解：编译本质上就是把你写的代码按照芯片的规则最终转成01的格式，而链接就是将O1放置到哪里去（符号解析、重定位）。<br>&emsp;&emsp;具体编译的原理，我也不是很清楚，因为我没学过和看过相关书籍，但听说这个计算机行业的<strong>明珠</strong>。所以我主要还是想聊一下链接相关的。为什么呢？因为我觉得链接器在软件开发中扮演者一个关键的角色，它使得<strong>分离编译</strong>成为可能。我们不需要将应用程序组织为一个巨大的源文件，而是可以把它分解为更小、更好管理的模块，可以独立的修改和编译这些模块。当我们这些模块中的一个时，只需要简单的重新编译它，并重新链接应用，而不必重新编译其他文件。可以参考我的博客<a href="https://jinbaotang.cn/2021/09/05/link/">什么？你还不懂链接</a>(可能还没写/完，记得催我)。<br>&emsp;&emsp;为什么linux开发一定懂链接呢？先说说单片机开发，就我接触到的单片机开发，大部分是在一个IDE上进行开发，然后大部分所有工程都是源码，配置配置，一键点build/rebuild。有error解决error， 很少人会遇到<code>undefined reference xxxx</code>;然后一小部分人可能会分模块，编译成静态库，然后再一起编译成一个可行文件（hex/elf/bin等）。但是anyway最终都是一起生成可执行文件，静态库本质上也是一堆obj文件的集合，静态库编译的过程不会出现<code>undefined reference xxxx</code>。为什么呢？因为这个错误只有链接时才会出现。所以单片机开发有显式链接的过程（使用静态库时），但是重要性相对来说被弱化了，当然并不是说mcu工程师没必要去了解链接，只不过相对来说，即使不了解也不太会影响你去开发，就我了解的大部分mcu工程师了解的都一般。回到linux开发，相对mcu开发，linux的非内核开发很多都是分模块的，一个小模块完成一部分功能，最终某个应用程序在链接时或者运行将不同模块加载进来；链接时加载跟mcu没啥区别，关键大部分都是运行时（包含加载器加载）才将模块加载进来，所以在linux看到绝大部分都是动态库，如果看了我那个关于链接的博客，估计你会有一定的认识。<br>所以在linux开发，<strong>懂链接</strong>:</p>
+<p>说一下我的理解：编译本质上就是把你写的代码按照芯片的规则最终转成01的格式，而链接就是将O1放置到哪里去（符号解析、重定位）。</p>
 </blockquote>
+<p>&emsp;&emsp;具体编译的原理，我也不是很清楚，因为我没学过和看过相关书籍，但听说这个计算机行业的<strong>明珠</strong>。所以我主要还是想聊一下链接相关的。为什么呢？因为我觉得链接器在软件开发中扮演者一个关键的角色，它使得<strong>分离编译</strong>成为可能。我们不需要将应用程序组织为一个巨大的源文件，而是可以把它分解为更小、更好管理的模块，可以独立的修改和编译这些模块。当我们这些模块中的一个时，只需要简单的重新编译它，并重新链接应用，而不必重新编译其他文件。可以参考我的博客<a href="https://jinbaotang.cn/2021/09/05/link/">什么？你还不懂链接</a>(可能还没写/完，记得催我)。<br>&emsp;&emsp;为什么linux开发一定懂链接呢？先说说单片机开发，就我接触到的单片机开发，大部分是在一个IDE上进行开发，然后大部分所有工程都是源码，配置配置，一键点build/rebuild。有error解决error， 很少人会遇到<code>undefined reference xxxx</code>;然后一小部分人可能会分模块，编译成静态库，然后再一起编译成一个可行文件（hex/elf/bin等）。但是anyway最终都是一起生成可执行文件，静态库本质上也是一堆obj文件的集合，静态库编译的过程不会出现<code>undefined reference xxxx</code>。为什么呢？因为这个错误只有链接时才会出现。所以单片机开发有显式链接的过程（使用静态库时），但是重要性相对来说被弱化了，当然并不是说mcu工程师没必要去了解链接，只不过相对来说，即使不了解也不太会影响你去开发，就我了解的大部分mcu工程师了解的都一般。回到linux开发，相对mcu开发，linux的非内核开发很多都是分模块的，一个小模块完成一部分功能，最终某个应用程序在链接时或者运行将不同模块加载进来；链接时加载跟mcu没啥区别，关键大部分都是运行时（包含加载器加载）才将模块加载进来，所以在linux看到绝大部分都是动态库，如果看了我那个关于链接的博客，估计你会有一定的认识。<br>所以在linux开发，<strong>懂链接</strong>:</p>
 <ol>
 <li>无论是在你用的别人的模块还是你的模块给别人用，都是很常见的，如果你对链接不是很清楚，出现了问题，会无从下手；但是懂链接的过程和原理就能快速的解决遇到的问题</li>
 <li>使用动态链接可以让你的代码能更好的解耦，因为动态库本质上跟一个应用程序没啥区别，逼着你必须将相关的东西放到一起，不相关的给剔除出去；进而也会培养你的软件架构设计能力</li>
@@ -612,12 +613,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/linux/">
-                                    <span class="chip bg-color">linux</span>
-                                </a>
-                            
                                 <a href="/tags/mcu/">
                                     <span class="chip bg-color">mcu</span>
+                                </a>
+                            
+                                <a href="/tags/linux/">
+                                    <span class="chip bg-color">linux</span>
                                 </a>
                             
                         </div>
@@ -1088,6 +1089,59 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
+                <a href="/2021/06/20/cmake1/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="cmake--动态库之配置（第一篇）">
+                        
+                        <span class="card-title">cmake--动态库之配置（第一篇）</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            关于cmake的的第一篇文章---使用cmake构建动态库遇到的一些问题
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-06-20
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/cmake/" class="post-category">
+                                    cmake
+                                </a>
+                            
+                            <a href="/categories/cmake/linux/" class="post-category">
+                                    linux
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/cmake/">
+                        <span class="chip bg-color">cmake</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
                 <a href="/2021/06/06/linux-develop-tips1/">
                     <div class="card-image">
                         
@@ -1104,9 +1158,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-06-06
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-06-06
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1136,67 +1190,6 @@
                     
                     <a href="/tags/pcap/">
                         <span class="chip bg-color">pcap</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2021/06/06/tls-socket2/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="基于openssl实现tls+socket的安全通信-2">
-                        
-                        <span class="card-title">基于openssl实现tls+socket的安全通信-2</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            openssl生成证书示例，以及使用openssl来实现加密通信的代码示例。
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-06-06
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E5%8D%8F%E8%AE%AE%E6%A0%88/" class="post-category">
-                                    协议栈
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/tls/">
-                        <span class="chip bg-color">tls</span>
-                    </a>
-                    
-                    <a href="/tags/socket/">
-                        <span class="chip bg-color">socket</span>
-                    </a>
-                    
-                    <a href="/tags/openssl/">
-                        <span class="chip bg-color">openssl</span>
-                    </a>
-                    
-                    <a href="/tags/ethernet/">
-                        <span class="chip bg-color">ethernet</span>
                     </a>
                     
                 </div>
@@ -1477,7 +1470,7 @@
                                     <a href="https://github.com/jinbaotang/jinbaotang.githuh.io" target="_blank">jinbao-matery-modify</a>
                                     <br>
                                     
-                                        &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span class="white-color">167.6k</span>&nbsp;字
+                                        &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span class="white-color">167.7k</span>&nbsp;字
                                         
                                             
                                                 

@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://jinbaotang.cn/2021/09/30/cmake2/</loc>
+    <lastmod>2021-10-01</lastmod>
+  </url>
+  <url>
+    <loc>https://jinbaotang.cn/2021/06/06/how-mcu2linux/</loc>
+    <lastmod>2021-10-01</lastmod>
+  </url>
+  <url>
     <loc>https://jinbaotang.cn/2021/09/20/pi-install-and-config/</loc>
-    <lastmod>2021-09-21</lastmod>
+    <lastmod>2021-09-22</lastmod>
   </url>
   <url>
     <loc>https://jinbaotang.cn/2021/08/29/ssh-login-linux/</loc>
@@ -10,10 +18,6 @@
   </url>
   <url>
     <loc>https://jinbaotang.cn/2021/08/29/use-vscode-debug-ecu/</loc>
-    <lastmod>2021-09-15</lastmod>
-  </url>
-  <url>
-    <loc>https://jinbaotang.cn/2021/06/06/how-mcu2linux/</loc>
     <lastmod>2021-09-15</lastmod>
   </url>
   <url>
@@ -61,15 +65,19 @@
     <lastmod>2021-06-22</lastmod>
   </url>
   <url>
+    <loc>https://jinbaotang.cn/2021/04/10/notes/ch04/</loc>
+    <lastmod>2021-06-22</lastmod>
+  </url>
+  <url>
+    <loc>https://jinbaotang.cn/2021/04/10/notes/ch02/</loc>
+    <lastmod>2021-06-22</lastmod>
+  </url>
+  <url>
     <loc>https://jinbaotang.cn/2021/04/10/notes/ch03/</loc>
     <lastmod>2021-06-22</lastmod>
   </url>
   <url>
     <loc>https://jinbaotang.cn/2021/04/10/notes/ch05/</loc>
-    <lastmod>2021-06-22</lastmod>
-  </url>
-  <url>
-    <loc>https://jinbaotang.cn/2021/04/10/notes/ch02/</loc>
     <lastmod>2021-06-22</lastmod>
   </url>
   <url>
@@ -81,11 +89,15 @@
     <lastmod>2021-06-22</lastmod>
   </url>
   <url>
-    <loc>https://jinbaotang.cn/2021/04/10/notes/ch04/</loc>
+    <loc>https://jinbaotang.cn/2021/04/10/notes/ch10/</loc>
     <lastmod>2021-06-22</lastmod>
   </url>
   <url>
-    <loc>https://jinbaotang.cn/2021/04/10/notes/ch10/</loc>
+    <loc>https://jinbaotang.cn/2021/04/10/notes/ch15/</loc>
+    <lastmod>2021-06-22</lastmod>
+  </url>
+  <url>
+    <loc>https://jinbaotang.cn/2021/04/10/notes/ch12/</loc>
     <lastmod>2021-06-22</lastmod>
   </url>
   <url>
@@ -97,10 +109,6 @@
     <lastmod>2021-06-22</lastmod>
   </url>
   <url>
-    <loc>https://jinbaotang.cn/2021/04/10/notes/ch15/</loc>
-    <lastmod>2021-06-22</lastmod>
-  </url>
-  <url>
     <loc>https://jinbaotang.cn/2021/04/10/notes/ch18/</loc>
     <lastmod>2021-06-22</lastmod>
   </url>
@@ -109,11 +117,15 @@
     <lastmod>2021-06-22</lastmod>
   </url>
   <url>
-    <loc>https://jinbaotang.cn/2021/04/10/notes/ch12/</loc>
+    <loc>https://jinbaotang.cn/2021/04/10/notes/ch16/</loc>
     <lastmod>2021-06-22</lastmod>
   </url>
   <url>
-    <loc>https://jinbaotang.cn/2021/04/10/notes/ch16/</loc>
+    <loc>https://jinbaotang.cn/2021/04/10/excersize/ch10/</loc>
+    <lastmod>2021-06-22</lastmod>
+  </url>
+  <url>
+    <loc>https://jinbaotang.cn/2021/04/10/excersize/ch11/</loc>
     <lastmod>2021-06-22</lastmod>
   </url>
   <url>
@@ -125,27 +137,11 @@
     <lastmod>2021-06-22</lastmod>
   </url>
   <url>
-    <loc>https://jinbaotang.cn/2021/04/10/excersize/ch11/</loc>
-    <lastmod>2021-06-22</lastmod>
-  </url>
-  <url>
-    <loc>https://jinbaotang.cn/2021/04/10/excersize/ch10/</loc>
-    <lastmod>2021-06-22</lastmod>
-  </url>
-  <url>
     <loc>https://jinbaotang.cn/2021/04/10/excersize/ch14/</loc>
     <lastmod>2021-06-22</lastmod>
   </url>
   <url>
     <loc>https://jinbaotang.cn/2021/04/10/excersize/ch05/</loc>
-    <lastmod>2021-06-22</lastmod>
-  </url>
-  <url>
-    <loc>https://jinbaotang.cn/2021/04/10/notes/ch06/</loc>
-    <lastmod>2021-06-22</lastmod>
-  </url>
-  <url>
-    <loc>https://jinbaotang.cn/2021/04/10/notes/ch13/</loc>
     <lastmod>2021-06-22</lastmod>
   </url>
   <url>
@@ -161,11 +157,19 @@
     <lastmod>2021-06-22</lastmod>
   </url>
   <url>
+    <loc>https://jinbaotang.cn/2021/04/10/excersize/ch19/</loc>
+    <lastmod>2021-06-22</lastmod>
+  </url>
+  <url>
     <loc>https://jinbaotang.cn/2021/04/10/excersize/ch18/</loc>
     <lastmod>2021-06-22</lastmod>
   </url>
   <url>
-    <loc>https://jinbaotang.cn/2021/04/10/excersize/ch19/</loc>
+    <loc>https://jinbaotang.cn/2021/04/10/notes/ch06/</loc>
+    <lastmod>2021-06-22</lastmod>
+  </url>
+  <url>
+    <loc>https://jinbaotang.cn/2021/04/10/notes/ch13/</loc>
     <lastmod>2021-06-22</lastmod>
   </url>
   <url>
@@ -185,11 +189,11 @@
     <lastmod>2021-06-22</lastmod>
   </url>
   <url>
-    <loc>https://jinbaotang.cn/2021/04/10/excersize/ch17/</loc>
+    <loc>https://jinbaotang.cn/2021/04/10/excersize/ch15/</loc>
     <lastmod>2021-06-22</lastmod>
   </url>
   <url>
-    <loc>https://jinbaotang.cn/2021/04/10/excersize/ch15/</loc>
+    <loc>https://jinbaotang.cn/2021/04/10/excersize/ch17/</loc>
     <lastmod>2021-06-22</lastmod>
   </url>
   <url>

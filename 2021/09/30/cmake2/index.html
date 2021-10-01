@@ -4,7 +4,7 @@
 
     <head>
         <meta charset="utf-8">
-        <meta name="keywords" content="可视化debug linux系统的ECU, Ethernet stack, embeded software, dignostic">
+        <meta name="keywords" content="cmake--动态库之多线程编译与多层动态库嵌套问题（第2篇）, Ethernet stack, embeded software, dignostic">
         <meta name="description" content="唐金宝 | 车辆工程 | 软件工程师">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -18,7 +18,7 @@
 
 
             <title>
-                可视化debug linux系统的ECU | 金宝的博客
+                cmake--动态库之多线程编译与多层动态库嵌套问题（第2篇） | 金宝的博客
             </title>
             <link rel="icon" type="image/png" href="/medias/logo.png">
 
@@ -326,12 +326,12 @@
 
         
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">可视化debug linux系统的ECU</h1>
+                    <h1 class="description center-align post-title">cmake--动态库之多线程编译与多层动态库嵌套问题（第2篇）</h1>
                 </div>
             </div>
         </div>
@@ -447,12 +447,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/vscode/">
-                                <span class="chip bg-color">vscode</span>
-                            </a>
-                        
-                            <a href="/tags/gdb/">
-                                <span class="chip bg-color">gdb</span>
+                            <a href="/tags/cmake/">
+                                <span class="chip bg-color">cmake</span>
                             </a>
                         
                     </div>
@@ -463,7 +459,11 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/linux/" class="post-category">
+                            <a href="/categories/cmake/" class="post-category">
+                                cmake
+                            </a>
+                        
+                            <a href="/categories/cmake/linux/" class="post-category">
                                 linux
                             </a>
                         
@@ -476,28 +476,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-08-29
+                    2021-09-30
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-09-15
+                    2021-10-01
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.9k
+                    4
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    6 分
+                    1 分
                 </div>
                 
 
@@ -520,20 +520,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <blockquote>
-<p>前段时间真的是太没时间了，耽误了好久，还记得有两个博客没写完的，一个就是<a href="https://jinbaotang.cn/2021/06/06/tls-socket2/">基于openssl实现tls+socket的安全通信-2</a>；还有就是一个<a href="https://jinbaotang.cn/2021/06/06/how-mcu2linux/">我是如何从MCU开发转到linux开发</a>，还想趁着写这篇文章再回顾一下编译链接的原理。前几个月基本都是“纯软件开发”，这周开始了要开始在ECU上实际运行了，虽然我之前在linux服务器已经测试过了，但偶尔还是会出现一些问题，比如coredump。解决这个问题没有比debug更好用的方法了。</p>
-</blockquote>
-<h1 id="一、-关于vscode"><a href="#一、-关于vscode" class="headerlink" title="一、 关于vscode"></a>一、 关于vscode</h1><p>&emsp;&emsp;Visual Studio Code（简称VSCode/vscode）是一款由微软开发且跨平台的免费源代码编辑器。vscode实在太好用了，第二份工作以前一直在用Source Insight，接触到vscode后，就为了AUTOSAR源码时时用过一次了，主要是vscode有各种插件，在工程不大时，搜索、goto简直不要太好用，还可以很简单的在各个平台debug程序。</p>
-<h1 id="二、-我的debug之路"><a href="#二、-我的debug之路" class="headerlink" title="二、 我的debug之路"></a>二、 我的debug之路</h1><p>&emsp;&emsp;关于IDE，我是单片机开发出身，本身是以IDE编译调试为主（最近看很多也开始使用Makefile了），基本上市面上的嵌入式IDE都多多少少用过了，但是我觉得visual studio（简称vs）是独一档的，以前领导要求代码都至少需要具备跨linux、windows平台，所以我都是现在windows上使用开发、调试好后，直接再搬到linux简单测试、修改就ok。vs调试多线程实在太方便了，单步调试时不会因为多线程瞎跑，，更关键的是vs还可以远程调试linux程序，而且基本上和调试windows环境下的没什么区别，还有就是变量改变触发程序停止用来调试异常简直太无敌。我愿称vs上开发代码是飞机导弹。当然即使在windows上我经常使用vscode看代码，尤其阅读不是自己的写代码时。<br>&emsp;&emsp;新公司配的是macbookpro，虽然也申请了windows电脑，但是性能实在太渣，并且跨linux、windows优先级不高，所以就慢慢还是用vscode来开发、调试代码，一直使用的vscode远程登录到linux服务器，然后使用gdb来调试。这个相对vs来说就弱多了，只有变量监控、断点等极少的功能，并且变量还不能很方便的选择16进制显示还是10进制显示，要想16进制显示变量，必须手动将变量(包括局部变量)<code>add watch，然后在变量后面加上,h或则,x</code>，如下图所示：<img src="/medias/use-vscode-debug/decimal.png" alt="10进制显示变量"> <img src="/medias/use-vscode-debug/hex.png" alt="16进制显示变量"><br>虽然比不上vs debug上的飞机导弹，而且多线程单步调试迷之跳转也是很无语，但是用起来还是不错的，怎么也算的坦克飞机了。<br>&emsp;&emsp;这周刚把代码放到板子上就coredump了，，<code>gdb exe core</code>虽然看到了coredump的位置，但是还是没有头绪，因为出现coredump的地方是一个递归函数。先是gdb命令行调试，命令行设断点、单步运行，小米加步枪真是太难了，但是听说大神都是这样来调试的Orz；所以后面又在linux服务器准备测试条件上重新复现了一遍，解决了问题。显然我是不能在ECU上装个vscode server了，我怕领导知道了把我打死，不过好在天生乐观，做好了我要成为gdb命令调试大神的准备，实在不行就日志调试法。但是在某个晚上，突然想起了，既然windows下的vs的能够远程调试linux，那linux是不是也能远程调试linux呢？经过简单分析，只要ECU上能够运行gdb server，linux服务器远程client，不就成了。先是在板子上搜了一下，嘿，好家伙，板子上还是有的。<br><img src="/medias/use-vscode-debug/gdbserver.png" alt="ECU上的gdbserver在发光"></p>
-<h2 id="1-vscode调试ECU验证"><a href="#1-vscode调试ECU验证" class="headerlink" title="1. vscode调试ECU验证"></a>1. vscode调试ECU验证</h2><p>&emsp;&emsp;有了上面想法后，我又经过进一步的分析，真的是可行的，显示在Google搜索了一番，验证了可行性，然后又开始找应该如何做。估计这样做的人并不是很多，所以找了半天也没找到有比较好的教程。我知道调试相关的配置都是在launch.json上，所以我又去vscode官网去了找launch.json的说明，看到了下图，我就开始配置了。<img src="/medias/use-vscode-debug/debugcfg.png" alt="Customizing GDB or LLDB"><br>上图官网链接:<a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/cpp/launch-json-reference">launch-json-reference</a>.</p>
-<h2 id="2-vscode调试ECU配置"><a href="#2-vscode调试ECU配置" class="headerlink" title="2. vscode调试ECU配置"></a>2. vscode调试ECU配置</h2><p>&emsp;&emsp;我先是配置好了gdbserver，毕竟在ECU上<code>gdbserver --help</code>一下就都有了，<img src="/medias/use-vscode-debug/gdbservercfg.png" alt="gdbserver --help">.<br>所以我一下就讲ecu端的给配置好了:<code>gdbserver 172.20.1.199:21314 udsd</code>，运行后如下图所示：<img src="/medias/use-vscode-debug/rungdbserver.png" alt="rungdbserver"><br>然后就是配置vscode端了，也就是gbd client端，期间也有很好多次的试错，具体过程不表了，总结如下：</p>
-<ol>
-<li>gdbserver –help图中显示的HOST是client端的IP，而不是gdbserver端的IP。</li>
-<li>miDebuggerPath中的路径是指的vscode实际运行的机器上的工具，而不是ECU端能够运行的工具，交叉编译环境下需要及其的注意这一点。ps:我自己用源码编译出来的工具试了也没成功，最后找供应商用yocto制作出来的工具链上带的x86_64的工具就可以了。<br>vscode上的配置如下图，默认读者已经会vscode上的debug了：<img src="/medias/use-vscode-debug/gdbclientcfg.png" alt="vscode gbd配置">.</li>
-</ol>
-<h2 id="3-调试前的最后障碍"><a href="#3-调试前的最后障碍" class="headerlink" title="3. 调试前的最后障碍"></a>3. 调试前的最后障碍</h2><p>&emsp;&emsp;做完上面的配置后，我以为这么简单就可以debug了。发现只能运行但是不能打断点，看了下cmake生成的Makefile，发现生成的Makefile上flag显示的是NDEBUG：<img src="/medias/use-vscode-debug/NDEBUG.png" alt="makefile NDEBUG">。但是我已经在CMakeLists.txt上配置<code>set(CMAKE_BUILD_TYPE Debug)</code>，依然没有生效。后面我就使用了，<code>add_definitions(&quot;-g&quot;)</code>强制来加上-g选项，果然可以debug了。到这就大功搞成了，领导再也不用担心我效率不高了。</p>
-<h2 id="4-最后障碍的刨根问底"><a href="#4-最后障碍的刨根问底" class="headerlink" title="4. 最后障碍的刨根问底"></a>4. 最后障碍的刨根问底</h2><p>&emsp;&emsp;作为有技术洁癖（自大）的人，不太能忍受上面的“肮脏”解决办法，就去了问了大神Ricky（褒义词的全能神），好家伙好家伙，大神敲键盘的速度，在我描述完问题之前就把引发问题的地方打开并且演示完毕了。<code>速度太快了，我不想忍了。</code>在大神的解释下，原因就是交叉编译时会使用toolchain上的cmake配置，即将交叉编译必须的一些选项配置好，而toolchain上默认是发布的release版本而不是debug，并且优先级是最高的，所以会覆盖自己在cmake上的配置。toolchain.cmake配置如下图：<img src="/medias/use-vscode-debug/cmakendebug.png" alt="toolchain.cmake NDEBUG"></p>
-<h1 id="三、最后呢"><a href="#三、最后呢" class="headerlink" title="三、最后呢"></a>三、最后呢</h1><p>&emsp;&emsp;这篇文章标志着我要开始在ECU上调试了，也暗示着我4 5个月的重构开始进入了最后阶段了。这几个月其实压力还是蛮大的，统计了下代码量，17000行的代码超过了我去年一年的代码量，目前来看是达到了跳槽的目的，放弃team leader还是很值当的。并且熟能生巧，前段时间没太有时间就是因为我自己写完了也会再思考思考还有没有改进的空间，代码量上来了，关于结构、耦合性是会不由自主就去考虑的。现在进入了新阶段，行百里者半九十，希望能有个好的结果。</p>
+                <p>自动部署。</p>
 
                 
             </div>
@@ -560,7 +547,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://jinbaotang.cn/2021/08/29/use-vscode-debug-ecu/">https://jinbaotang.cn/2021/08/29/use-vscode-debug-ecu/</a>
+                    <a href="https://jinbaotang.cn/2021/09/30/cmake2/">https://jinbaotang.cn/2021/09/30/cmake2/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -598,12 +585,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/vscode/">
-                                    <span class="chip bg-color">vscode</span>
-                                </a>
-                            
-                                <a href="/tags/gdb/">
-                                    <span class="chip bg-color">gdb</span>
+                                <a href="/tags/cmake/">
+                                    <span class="chip bg-color">cmake</span>
                                 </a>
                             
                         </div>
@@ -774,7 +757,7 @@
         repo: 'jinbaotang.github.io',
         owner: 'jinbaotang',
         admin: "jinbaotang",
-        id: '2021-08-29T22-13-00',
+        id: '2021-09-30T19-00-38',
         distractionFreeMode: true, // Facebook-like distraction free mode
         createIssueManually: true,
         proxy: 'https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token',
@@ -1070,81 +1053,29 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2021/08/29/ssh-login-linux/">
+                <a href="/2021/09/30/cmake2/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="ssh(无密码)登录linux及失败解决方案">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="cmake--动态库之多线程编译与多层动态库嵌套问题（第2篇）">
                         
-                        <span class="card-title">ssh(无密码)登录linux及失败解决方案</span>
+                        <span class="card-title">cmake--动态库之多线程编译与多层动态库嵌套问题（第2篇）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            使用ssh密钥登录linux，以及不能正确登录时的解决办法，从此告别密码输入
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-08-29
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/linux/" class="post-category">
-                                    linux
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/vscode/">
-                        <span class="chip bg-color">vscode</span>
-                    </a>
-                    
-                    <a href="/tags/ssh/">
-                        <span class="chip bg-color">ssh</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2021/06/20/cmake1/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="cmake--动态库之配置（第一篇）">
-                        
-                        <span class="card-title">cmake--动态库之配置（第一篇）</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            关于cmake的的第一篇文章---使用cmake构建动态库遇到的一些问题
+                            关于cmake的的第二篇文章---如何保证单线程能够编译，在多线程环境下不出错；多层动态库嵌套分析
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-06-20
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-30
                             </span>
                         <span class="publish-author">
                             
@@ -1162,11 +1093,69 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
                     <a href="/tags/cmake/">
                         <span class="chip bg-color">cmake</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/09/20/pi-install-and-config/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="树莓派安装ubuntu server 18以及netplan“隐藏”bug">
+                        
+                        <span class="card-title">树莓派安装ubuntu server 18以及netplan“隐藏”bug</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            记录树莓派安装ubuntu server 18，以及使用netplan配置网络遇到的各种问题和解决过程（使用netplan配置连接隐藏wifi有bug）
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-20
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/linux/" class="post-category">
+                                    linux
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/linux/">
+                        <span class="chip bg-color">linux</span>
+                    </a>
+                    
+                    <a href="/tags/pi/">
+                        <span class="chip bg-color">pi</span>
+                    </a>
+                    
+                    <a href="/tags/ubuntu-server/">
+                        <span class="chip bg-color">ubuntu server</span>
                     </a>
                     
                 </div>
