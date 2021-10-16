@@ -6,7 +6,7 @@
   <link href="https://jinbaotang.cn/atom.xml" rel="self"/>
   
   <link href="https://jinbaotang.cn/"/>
-  <updated>2021-10-01T02:29:10.715Z</updated>
+  <updated>2021-10-16T15:39:15.574Z</updated>
   <id>https://jinbaotang.cn/</id>
   
   <author>
@@ -15,6 +15,19 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="https://jinbaotang.cn/2021/10/16/linux-develop-tips2/"/>
+    <id>https://jinbaotang.cn/2021/10/16/linux-develop-tips2/</id>
+    <published>2021-10-16T15:39:15.574Z</published>
+    <updated>2021-10-16T15:39:15.574Z</updated>
+    
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>cmake--动态库之多线程编译与多层动态库嵌套问题（第2篇）</title>
@@ -223,7 +236,7 @@
     <link href="https://jinbaotang.cn/2021/06/06/linux-develop-tips1/"/>
     <id>https://jinbaotang.cn/2021/06/06/linux-develop-tips1/</id>
     <published>2021-06-06T13:00:38.000Z</published>
-    <updated>2021-09-04T06:49:26.289Z</updated>
+    <updated>2021-10-16T15:45:25.913Z</updated>
     
     
       
@@ -562,35 +575,6 @@
         
         
     <summary type="html">&lt;h1 id=&quot;第十九章-特殊工具与技术&quot;&gt;&lt;a href=&quot;#第十九章-特殊工具与技术&quot; class=&quot;headerlink&quot; title=&quot;第十九章 特殊工具与技术&quot;&gt;&lt;/a&gt;第十九章 特殊工具与技术&lt;/h1&gt;&lt;h2 id=&quot;练习19-1&quot;&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    <category term="cpp-primer答案" scheme="https://jinbaotang.cn/categories/cpp-primer%E7%AD%94%E6%A1%88/"/>
-    
-    
-    <category term="exclude" scheme="https://jinbaotang.cn/tags/exclude/"/>
-    
-    <category term="c++" scheme="https://jinbaotang.cn/tags/c/"/>
-    
-    <category term="coding" scheme="https://jinbaotang.cn/tags/coding/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>cpp-primer课后答案18</title>
-    <link href="https://jinbaotang.cn/2021/04/10/excersize/ch18/"/>
-    <id>https://jinbaotang.cn/2021/04/10/excersize/ch18/</id>
-    <published>2021-04-10T12:35:38.000Z</published>
-    <updated>2021-06-22T01:37:27.740Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;第十八章-用于大型程序的工具&quot;&gt;&lt;a href=&quot;#第十八章-用于大型程序的工具&quot; class=&quot;headerlink&quot; title=&quot;第十八章 用于大型程序的工具&quot;&gt;&lt;/a&gt;第十八章 用于大型程序的工具&lt;/h1&gt;&lt;h2 id=&quot;练习18-1&quot;&gt;&lt;a</summary>
         
       
     

@@ -1,3 +1,4 @@
+https://jinbaotang.cn/2021/10/16/linux-develop-tips2/
 https://jinbaotang.cn/2021/09/30/cmake2/
 https://jinbaotang.cn/2021/09/20/pi-install-and-config/
 https://jinbaotang.cn/2021/09/05/link/

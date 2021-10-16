@@ -491,14 +491,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-09-04
+                    2021-10-16
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.9k
+                    3k
                 </div>
                 
 
@@ -531,7 +531,7 @@
                 <blockquote>
 <p>这周四、五趁着工作间隙以及加班折腾了两天，实现了wireshark远程实时抓包和显示，以及两个linux之间文件同步。也许没多难，又或者有更好的办法，但是我折腾了好久，觉得可以记录下。</p>
 </blockquote>
-<h1 id="一、-背景"><a href="#一、-背景" class="headerlink" title="一、 背景"></a>一、 背景</h1><p>&emsp;&emsp;现在都基本都是以linux上的开发为主，然后日常开发环境在部门的两台服务器（都是ubuntu）上，但是主要还是在一台服务器上，因为我本身暂时是以网络相关的开发为主，这就避免不了的需要抓包分析，报文交互基本上能够分析出问题所在。我是远程ssh登录来做日常开发工作，如果使用tcpdump来抓包分析，一个是不是特别的直观，还有就是灵活性不是特别够，要是直接在屏幕上显示，根据不同的需求，需要一直该改命令，所以就想着能够使用远程或者本地来使用wireshark来分析报文。如下图所示，是我实际工作网络拓扑示意图，<img src="/medias/linux-develop-tips/server_and_mypc.png" alt="工作网络拓扑"></p>
+<h1 id="一、-背景"><a href="#一、-背景" class="headerlink" title="一、 背景"></a>一、 背景</h1><p>&emsp;&emsp;现在都基本都是以linux上的开发为主，然后日常开发环境在部门的两台服务器（都是ubuntu）上，但是主要还是在一台服务器上，因为我本身暂时是以网络相关的开发为主，这就避免不了的需要抓包分析，报文交互基本上能够分析出问题所在。我是远程ssh登录来做日常开发工作，如果使用tcpdump来抓包分析，一个是不是特别的直观，还有就是灵活性不是特别够，要是直接在屏幕上显示，根据不同的需求，需要一直改命令，wireshark的强大我就不介绍了，所以就想着能够使用远程或者本地来使用wireshark来分析报文。如下图所示，是我实际工作网络拓扑示意图，<img src="/medias/linux-develop-tips/server_and_mypc.png" alt="工作网络拓扑"></p>
 <p>&emsp;&emsp;上面提到了主要是在一台服务器完成开发，但是有时候跑client/server时，还是要在两台电脑通过物理网络通道测试一下。这就涉及到了在两台电脑同步开发的问题，就会涉及到文件同步的问题。</p>
 <h1 id="二、解决方案"><a href="#二、解决方案" class="headerlink" title="二、解决方案"></a>二、解决方案</h1><p>&emsp;&emsp;工欲善其事必先利其器，所以针对前面提到痛点，还是想解决点，想了不少解决思路，并且都进行了尝试，针对失败的问题进行了分析。</p>
 <h2 id="1-网络抓包"><a href="#1-网络抓包" class="headerlink" title="1. 网络抓包"></a>1. 网络抓包</h2><p>&emsp;&emsp;针对网络抓包，分别尝试了：</p>
@@ -566,6 +566,7 @@ vim&#x2F;vi sshd_config
 PermitRootLogin yes
 sudo service sshd restart <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>然后如下图点开设置，配上ip和端口。<br><img src="/medias/linux-develop-tips/mac_wireshark1.png" alt="ssh remote capture"><br>最后在如下图中Authentication中输入root用户名和密码或者使用密钥，建议使用密钥，因为使用密码，他每次不会保存。<br><img src="/medias/linux-develop-tips/auth.png" alt="authentication config"></p>
+<h3 id="4-拓展"><a href="#4-拓展" class="headerlink" title="4). 拓展"></a>4). 拓展</h3><p>&emsp;&emsp;远程抓包在linux嵌入式开发中，也能提供很大的帮助。这样调试网络相关时，就不用将pcap包来回拷贝了；更不用担心ecu重启而导致tcpdump抓的包不全了。另外远程抓包，再加上ssh或者iptables的转发（打洞），可玩就更多了，可以直接透过之间的服务器或者pc直接抓到终端ECU的网络报文。</p>
 <h2 id="2-文件同步"><a href="#2-文件同步" class="headerlink" title="2. 文件同步"></a>2. 文件同步</h2><p>&emsp;&emsp;文件同步，我们用的比较多的有系统（windows、mac os）自带的局域网同步，或者onedriver这样的云同步。但是在linux上我只想针对某些文件进行网络同步即可，用onedriver除了有可能违反公司安全规定外，未免也太大材小用了，所以就考虑其他方案。</p>
 <ol>
 <li>通过git。需要不停的<code>add, commit, push, pull</code>，太繁琐，<strong>pass</strong>。</li>
@@ -1504,7 +1505,7 @@ sudo service sshd restart <span aria-hidden="true" class="line-numbers-rows"><sp
                                     <a href="https://github.com/jinbaotang/jinbaotang.githuh.io" target="_blank">jinbao-matery-modify</a>
                                     <br>
                                     
-                                        &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span class="white-color">167.7k</span>&nbsp;字
+                                        &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span class="white-color">167.9k</span>&nbsp;字
                                         
                                             
                                                 

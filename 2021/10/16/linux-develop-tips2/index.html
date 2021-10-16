@@ -4,7 +4,7 @@
 
     <head>
         <meta charset="utf-8">
-        <meta name="keywords" content="代码重构-1, Ethernet stack, embeded software, dignostic">
+        <meta name="keywords" content="Ethernet stack, embeded software, dignostic">
         <meta name="description" content="唐金宝 | 车辆工程 | 软件工程师">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -18,7 +18,7 @@
 
 
             <title>
-                代码重构-1 | 金宝的博客
+                金宝的博客
             </title>
             <link rel="icon" type="image/png" href="/medias/logo.png">
 
@@ -326,12 +326,12 @@
 
         
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">代码重构-1</h1>
+                    <h1 class="description center-align post-title"></h1>
                 </div>
             </div>
         </div>
@@ -445,25 +445,12 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                    <div class="article-tag">
-                        
-                            <a href="/tags/refactor/">
-                                <span class="chip bg-color">refactor</span>
-                            </a>
-                        
-                    </div>
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
                     
                 </div>
                 <div class="col s5 right-align">
-                    
-                    <div class="post-cate">
-                        <i class="fas fa-bookmark fa-fw icon-category"></i>
-                        
-                            <a href="/categories/%E9%9A%8F%E7%AC%94/" class="post-category">
-                                随笔
-                            </a>
-                        
-                    </div>
                     
                 </div>
             </div>
@@ -472,28 +459,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-06-05
+                    2021-10-16
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-06-22
+                    2021-10-16
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.7k
+                    0
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    9 分
+                    1 分
                 </div>
                 
 
@@ -516,102 +503,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <blockquote>
-<p>记录第一次稍大规模的重构。这是我第三次写DoIP, 第1.5次写UDS，第一次写CANTP、router。</p>
-</blockquote>
-<h1 id="一、-背景"><a href="#一、-背景" class="headerlink" title="一、 背景"></a>一、 背景</h1><p>&emsp;&emsp;在<a href="https://jinbaotang.cn/2021/04/11/why-write/">为什么要写博客</a>里提到了，由于个人关系，换工作了。新工作的首要任务就是优化已有代码，在花了一段时间阅读代码整体框架后，发现已有的代码框架层次不太清楚，如果要优化的话，总感觉是在做错误的事。进而跟领导提出重构的想法，领导也赞同。就开始<strong>浴火重生</strong>之路了，跟之前的工作背景相关，重构了就想做成可迭代、跨平台的，所以在过去的一两个月不是就是在设计就是在验证了，这段时间，无论是在车上、洗澡还是睡觉前都是在脑子里跑流程，也真正的体会到了<em>面向对象</em>（虽然我是用c）带来的好处了。也终于一点点的体会到了，原来之前老虞（<strong>技术偶像之一</strong>）看着规范写代码也没有这么的神奇，<em>注：离老虞的水平当然还有很远的路，梦想还是要有的嘛，莫欺少年穷。</em>—记于2021.06.05 <img src="/medias/refactor-1/dream.jpeg"></p>
-<h1 id="二、-关于面向对象"><a href="#二、-关于面向对象" class="headerlink" title="二、 关于面向对象"></a>二、 关于面向对象</h1><h2 id="1-关于我自己"><a href="#1-关于我自己" class="headerlink" title="1. 关于我自己"></a>1. 关于我自己</h2><p>&emsp;&emsp;自己目前是主<strong>c</strong>，暂时略懂一点c++，有一段时间一直挺想进一步学c++的，虽然自己工作之余也写过一个webserver的小程序，但是暂时受限工作内容，也谈不上能够熟练使用c++了。之前想学c++的原因也比较单纯，很多人都说c是面向过程的语言，c++是面向对象的语言，而面向对象是人正常的思维方式。所以觉得必须得学会c++，无论是为了做知识储备，还是为了学会面向对象的思维方式。可是后面学了一段时间的c++后，其实还是不知道面向对象和面向对象有什么区别，直到有一天看<strong>vsomeip</strong>的源码（并不是第一次看），突然就<strong>顿悟了</strong>，很神奇的一件事。所以我相信，<em>无论任何事，即使遇到了很大的困难，我都相信这些困难和问题会在某一个时间点解决</em>，这是在困境中，一直激励着自己的话。</p>
-<h2 id="2-什么是面向对象"><a href="#2-什么是面向对象" class="headerlink" title="2. 什么是面向对象"></a>2. 什么是面向对象</h2><p>&emsp;&emsp;关于面向对象和面向过程，网上有铺天盖地的解释，比如：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/27468564/answer/226691160">如何通俗易懂地举例说明「面向对象」和「面向过程」有什么区别？</a>。但是我还是想谈谈自己的理解。我觉上面链接说的我挺认可的一句话就是：<strong>首先是命名冲突，英文单词也就那么几个，可能写着写着取名时就没合适的短词用了，为了避免冲突，只能把函数名取得越来越长。</strong>当然这不是面向对象就能解决的，因为比如C语言，由于没有命名空间的概念，有些函数不想弄成<strong>static</strong>，以为有其他的文件可能会用到这个函数，这就到导致了，你的整个工程/动态库都只能有这个一个函数名了；还有就是类型了，用c/c++难免会自己构造一些自己的类型，还是像函数一样，由于了没有像<strong>命名空间</strong>这样作用域的限制，在一个程序里如果有同样的命名，即使不会带来编译、链接出错，也会给代码可读性带来灾难。但是另一方面，如果有了面向对象的思想后，就会自动的对一些数据结构打包（struct）在一起，这就像一个类了，再添加几个函数指针就像是<em>弱化版虚函数</em>，打包的在一起后，也会不自觉地对一些变量和函数添加<strong>static</strong>来修饰了，这样限制了作用域，提高了代码可读性；也减少了上面提到的命名冲突。当然对于稍大规模，又有相近概念的在一个程序里是，上面问题依然会存在，比如我曾经写过的<strong>someip</strong>代码，即使我已经划分了好几个模块，但是由于上面相近概念的太多了，也有点命名词穷（可能还是太菜），去看<strong>vsomeip</strong>代码（c++）时，就发现里面很多都是一样的名字，但是由于作用域的问题，既不会带来冲突，也不会给可读性带来问题。</p>
-<h2 id="3-我理解的面向对象"><a href="#3-我理解的面向对象" class="headerlink" title="3. 我理解的面向对象"></a>3. 我理解的面向对象</h2><p>&emsp;&emsp;上面分析了这么多，介绍了面向对象带来的好处，那到底什么是面向对象呢？有什么区别呢？<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/27468564/answer/101951302">编程发展史谈面向对象</a>这位答主讲的我觉得特别适合没咋写过代码，又有一定个概念的人；<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/27468564/answer/757537214">力扣官方解答面向过程和面向对象</a>的，早我写了大概2万行两场代码后，看到的，觉得就特别适合一直主要用面向过程写c的人，图文并茂的将面向过程相对面向过程的好处讲解的很清楚。但是我觉得都不够抽象，我自己有一天吃芒果，结合自己一开始提到的<strong>顿悟</strong>，感觉可以更形象的说明<em>面向过程</em>和<em>面向对象</em>的区别：<br>如果我要吃一个芒果，面向过程就是：</p>
-<ol>
-<li>找到芒果</li>
-<li>洗芒果</li>
-<li>给芒果扒皮/切盘</li>
-<li>吃芒果</li>
-<li>消化芒果</li>
-<li>我们就完成了吃掉芒果的任务<br>上面就跟流水线一下，过程化，只有做完了上一步才能下一步，不做完上一步，都不知道下一步要干啥。可能会说，我知道啊，我知道我吃一个芒果，要找、洗、切、吃、消化，对啊，这就是面向对象啊，符合人的思维方式。<br>还是以芒果为例，那面向对象：</li>
-<li>首先就要有一个最终对象，芒果</li>
-<li>为了吃芒果，我需要用手洗，用手扒皮，用刀切，用嘴吃，自己消化，所以还需要<em>手对象</em>，<em>刀对象</em>，<em>嘴对象</em>，<em>消化对象–胃</em>。</li>
-<li>准备完这些对象，设置对应属性，用什么水，什么刀，谁的手扒皮，谁的嘴负责最后的吃，芒果是由哪些器官消化。 </li>
-<li>这些都用弄好，就分别一次使用对应的对选完成对应的过程，这就完成了对应吃芒果这个事了。<br>转成代码就是：</li>
-</ol>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">//面向过程 </span>
-<span class="token keyword">typedef</span> <span class="token keyword">struct</span> <span class="token class-name">mango_s</span> <span class="token punctuation">&#123;</span>
-    <span class="token comment">//....</span>
-<span class="token punctuation">&#125;</span><span class="token class-name">mango_t</span><span class="token punctuation">;</span>
-<span class="token class-name">mango_t</span> <span class="token operator">*</span><span class="token function">find_mango</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">void</span> <span class="token function">wash_mango</span><span class="token punctuation">(</span><span class="token class-name">mango_t</span> <span class="token operator">*</span>mango<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">void</span> <span class="token function">peel_mango</span><span class="token punctuation">(</span><span class="token class-name">mango_t</span> <span class="token operator">*</span>mango<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">void</span> <span class="token function">cut_mango</span><span class="token punctuation">(</span><span class="token class-name">mango_t</span> <span class="token operator">*</span>mango<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">void</span> <span class="token function">bite_mango</span><span class="token punctuation">(</span><span class="token class-name">mango_t</span> <span class="token operator">*</span>mango<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">void</span> <span class="token function">digest_mango</span><span class="token punctuation">(</span><span class="token class-name">mango_t</span> <span class="token operator">*</span>mango<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">void</span> <span class="token operator">*</span>argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    <span class="token class-name">mango_t</span> <span class="token operator">*</span>mango<span class="token punctuation">;</span>
-    mango <span class="token operator">=</span> <span class="token function">find_mango</span><span class="token punctuation">(</span>mango<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">wash_mango</span><span class="token punctuation">(</span>mango<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">cut_mango</span><span class="token punctuation">(</span>mango<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">bite_mango</span><span class="token punctuation">(</span>mango<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">digest_mango</span><span class="token punctuation">(</span>mango<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">//面向对象</span>
-<span class="token keyword">class</span> <span class="token class-name">Hand</span> <span class="token punctuation">&#123;</span> <span class="token comment">//... &#125;;</span>
-<span class="token keyword">class</span> <span class="token class-name">Knife</span> <span class="token punctuation">&#123;</span> <span class="token comment">//... &#125;;</span>
-<span class="token keyword">class</span> <span class="token class-name">Mouth</span> <span class="token punctuation">&#123;</span> <span class="token comment">//... &#125;;</span>
-<span class="token keyword">class</span> <span class="token class-name">Stomach</span> <span class="token punctuation">&#123;</span> <span class="token comment">//... &#125;;</span>
-<span class="token keyword">class</span> <span class="token class-name">Mango</span> <span class="token punctuation">&#123;</span> <span class="token comment">//... &#125;;</span>
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">void</span> <span class="token operator">*</span>argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    Hand hand <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">Hand</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    Knife knife <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">Knife</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    Mouth mouth <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">Mouth</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    Stomach stomach <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">Stomach</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    Mango mango <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">Mango</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    hand<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span>mango<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    hand<span class="token punctuation">.</span><span class="token function">wash</span><span class="token punctuation">(</span>mango<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    hand<span class="token punctuation">.</span><span class="token function">peel</span><span class="token punctuation">(</span>mango<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    knife<span class="token punctuation">.</span><span class="token function">cut</span><span class="token punctuation">(</span>mango<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    mouth<span class="token punctuation">.</span><span class="token function">bite</span><span class="token punctuation">(</span>mango<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    stomach<span class="token punctuation">.</span><span class="token function">digest</span><span class="token punctuation">(</span>mango<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>&emsp;&emsp;不知道看完上述示例后，有没有更清楚。从最后的处理流程来看，都是需要顺序调用的，不同的是一开始的思考过程，面向过程更多是做完这一步，才会去想我下一步要用什么东西来干什么，最终一步一步完成整个操作。面向对象呢，一开始就想好完成这个任务，我要用什么工具来做什么，给每个工具以特定的功能，比如手可以用来<strong>找、洗、切</strong>，有了对象并且有了操作后，就可以按照流程完后整个任务了。<br>&emsp;&emsp;看完上述代码，可能很多人会说，我觉得没啥多大区别啊。是的，上面这个任务的确没啥多大区别，甚至用面向过程还更简单。但是，你可以参考这个<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/27468564/answer/757537214">力扣官方解答面向过程和面向对象</a>，就清楚了。或者又会说，我用c也能完成c++那样的啊，对的，完全没问题哦，linux内核就是这么做的呢。但是你去看这些代码，别说些写出那样的宏了，就是无障碍看懂就是大神了，更别说c++还有虚函数、重载这样秒杀使用函数指针来实现<strong>类虚函数的做法</strong>。另外，更为关键的是，使用c++，<strong>它可以用语法规则上来尽量保证你按照面向对象规范来实现</strong>，比如我可以在<em>类</em>里面定义<em>私有成员变量</em>，外部想要访问这些变量就必须通过接口来实现，这样你就不得不思考如何先定义对应的操作；若你是用c的，就不一定会这样做，大概率你会直接通过结构体变量直接就访问了，因为给每个变量都写个get和set。。。。，着实太繁琐了。<strong>不过</strong>，使用c也能实现类似于<em>私有成员</em>，这样的做法一个是为了不让外部看到里面的成员，另一个是可以减少模块间的耦合度。比如下述操作（我也是看别人这么实现，当时觉得好神奇，着实惊艳）：</p>
-<h2 id="4-c语言实现私有成员"><a href="#4-c语言实现私有成员" class="headerlink" title="4. c语言实现私有成员"></a>4. c语言实现私有成员</h2><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/* test.h */</span>
-
-<span class="token keyword">struct</span> <span class="token class-name">test_s</span><span class="token punctuation">&#123;</span>
-    <span class="token comment">/* public member */</span>
-    <span class="token keyword">int</span> test1<span class="token punctuation">;</span>
-    <span class="token keyword">int</span> test2<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
-
-
-<span class="token keyword">void</span> <span class="token function">test_handle</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">test_s</span> <span class="token operator">*</span>test<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">struct</span> <span class="token class-name">test_s</span> <span class="token operator">*</span><span class="token function">alloc_test</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">void</span> <span class="token function">free_test</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">test_s</span> <span class="token operator">*</span>test<span class="token punctuation">)</span><span class="token punctuation">;</span>s<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/* test.c */</span>
-
-<span class="token keyword">struct</span> <span class="token class-name">internal_test_s</span><span class="token punctuation">&#123;</span>
-    <span class="token comment">/* public member */</span>
-    <span class="token keyword">int</span> test_value1<span class="token punctuation">;</span>
-    <span class="token keyword">int</span> test_value2<span class="token punctuation">;</span>
-    <span class="token comment">/* private member */</span>
-    <span class="token keyword">int</span> test_value3
-<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
-
-<span class="token keyword">void</span> <span class="token function">test_handle</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">test_t</span> <span class="token operator">*</span>test<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    <span class="token keyword">struct</span> <span class="token class-name">internal_test_s</span> <span class="token operator">*</span>internal_test <span class="token operator">=</span> test<span class="token punctuation">;</span>
-    <span class="token keyword">int</span> sum <span class="token operator">=</span> internal_test<span class="token operator">-></span>test_value3 <span class="token operator">+</span> test<span class="token operator">-></span>test_value1<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-<span class="token keyword">struct</span> <span class="token class-name">test_s</span> <span class="token operator">*</span><span class="token function">alloc_test</span><span class="token punctuation">(</span>
-    <span class="token keyword">return</span> <span class="token function">malloc</span><span class="token punctuation">(</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">internal_test_s</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">void</span> <span class="token function">free_test</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">test_s</span> <span class="token operator">*</span>test<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-
-    <span class="token function">free</span><span class="token punctuation">(</span>test<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>&emsp;&emsp;上述<code>test_value3</code>就是一个私有变量了，在test.c文件内是可用的，但是文件外就不可见了，其实说白了，还是<strong>指针永远的神</strong>。拓展一下，如果<code>test_value3</code>是一个自定义类型，所以在test.c里面就不得不引入自定义的头文件（eg: custom_demo.h），但是针对<code>test_value3</code>，只有test.c文件用的着，完全没必要将其定义在头文件上了；<strong>否则</strong>，如果其他文件(比如模块C )，需要包含test.h，那就不得不将custom_demo.h也包含进去，这样明显会增加代码的耦合度；但是若使用私有成员，明显将<code>custom demo</code>模块和<code>C</code>模块进行解耦了。将随着自己c的代码量直线上升和慢慢更多接触c++，对它俩的区别会越来越有体会，也会更加的注意代码结构、耦合度，比如私有成员，我已经应用到好多个模块了，这真的是一个特别有成就感的事情。对我来说，技术成就感一直是鞭策我学习的最大动力。</p>
-
+                
                 
             </div>
             <hr/>
@@ -637,7 +529,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://jinbaotang.cn/2021/06/05/refactor-1/">https://jinbaotang.cn/2021/06/05/refactor-1/</a>
+                    <a href="https://jinbaotang.cn/2021/10/16/linux-develop-tips2/">https://jinbaotang.cn/2021/10/16/linux-develop-tips2/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -674,11 +566,7 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            
-                                <a href="/tags/refactor/">
-                                    <span class="chip bg-color">refactor</span>
-                                </a>
-                            
+                            <span class="chip bg-color">无标签</span>
                         </div>
                     
                 </div>
@@ -847,7 +735,7 @@
         repo: 'jinbaotang.github.io',
         owner: 'jinbaotang',
         admin: "jinbaotang",
-        id: '2021-06-05T22-13-00',
+        id: '2021-10-16T23-39-15',
         distractionFreeMode: true, // Facebook-like distraction free mode
         createIssueManually: true,
         proxy: 'https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token',
@@ -1143,61 +1031,39 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2021/06/06/tls-socket2/">
+                <a href="/2021/10/16/linux-develop-tips2/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="基于openssl实现tls+socket的安全通信-2">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
                         
-                        <span class="card-title">基于openssl实现tls+socket的安全通信-2</span>
+                        <span class="card-title"></span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            openssl生成证书示例，以及使用openssl来实现加密通信的代码示例。
+                            
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-06-06
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-16
+                            </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E5%8D%8F%E8%AE%AE%E6%A0%88/" class="post-category">
-                                    协议栈
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            金宝
                             
                         </span>
                     </div>
                 </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/socket/">
-                        <span class="chip bg-color">socket</span>
-                    </a>
-                    
-                    <a href="/tags/tls/">
-                        <span class="chip bg-color">tls</span>
-                    </a>
-                    
-                    <a href="/tags/openssl/">
-                        <span class="chip bg-color">openssl</span>
-                    </a>
-                    
-                    <a href="/tags/ethernet/">
-                        <span class="chip bg-color">ethernet</span>
-                    </a>
-                    
-                </div>
+
                 
             </div>
         </div>
@@ -1208,31 +1074,35 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/05/07/socket-can/">
+                <a href="/2021/09/30/cmake2/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="socket-can基础知识和使用">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="cmake--动态库之多线程编译与多层动态库嵌套问题（第2篇）">
                         
-                        <span class="card-title">socket-can基础知识和使用</span>
+                        <span class="card-title">cmake--动态库之多线程编译与多层动态库嵌套问题（第2篇）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            socket can的基础知识和使用示例，并给出linux上的cantp解决方案。
+                            关于cmake的的第二篇文章---如何保证单线程能够编译，在多线程环境下不出错；多层动态库嵌套分析
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-05-07
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-30
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%8D%8F%E8%AE%AE%E6%A0%88/" class="post-category">
-                                    协议栈
+                            <a href="/categories/cmake/" class="post-category">
+                                    cmake
+                                </a>
+                            
+                            <a href="/categories/cmake/linux/" class="post-category">
+                                    linux
                                 </a>
                             
                             
@@ -1242,12 +1112,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/socket/">
-                        <span class="chip bg-color">socket</span>
-                    </a>
-                    
-                    <a href="/tags/can/">
-                        <span class="chip bg-color">can</span>
+                    <a href="/tags/cmake/">
+                        <span class="chip bg-color">cmake</span>
                     </a>
                     
                 </div>
@@ -1416,47 +1282,6 @@
                 </main>
 
                 
-                    <script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-                    <script>
-                        MathJax.Hub.Config({
-                            tex2jax: {
-                                inlineMath: [
-                                    ['$', '$'],
-                                    ['\(', '\)']
-                                ]
-                            }
-                        });
-                    </script>
-                    <script>
-                        (function() {
-                            var bp = document.createElement('script');
-                            var curProtocol = window.location.protocol.split(':')[0];
-                            if (curProtocol === 'https') {
-                                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-                            } else {
-                                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-                            }
-                            var s = document.getElementsByTagName("script")[0];
-                            s.parentNode.insertBefore(bp, s);
-                        })();
-                    </script>
-                    <script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
-                    <!-- 代码语言 -->
-                    <script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
-                    <!-- 代码块复制 -->
-                    <script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
-                    <script type="text/javascript" src="/libs/codeBlock/clipboard.min.js"></script>
-                    <!-- 代码块收缩 -->
-                    <script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
-                    <!-- 代码块折行 -->
-                    <style type="text/css">
-                        code[class*="language-"],
-                        pre[class*="language-"] {
-                            white-space: pre !important;
-                        }
-                    </style>
-
-                    
 
     <footer class="page-footer bg-color">
     
