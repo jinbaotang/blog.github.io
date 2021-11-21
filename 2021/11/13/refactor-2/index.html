@@ -1,0 +1,1763 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="keywords" content="代码重构(uds)-2, Ethernet stack, embeded software, dignostic">
+        <meta name="description" content="唐金宝 | 车辆工程 | 软件工程师">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <meta name="renderer" content="webkit|ie-stand|ie-comp">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <meta name="baidu-site-verification" content="code-N7k3G0CKsp" />
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+            <title>
+                代码重构(uds)-2 | 金宝的博客
+            </title>
+            <link rel="icon" type="image/png" href="/medias/logo.png">
+
+            <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+            <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+            <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+            <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+            <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+            <link rel="stylesheet" type="text/css" href="/css/matery.css">
+            <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+            <script src="/libs/jquery/jquery.min.js"></script>
+
+    <meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="金宝的博客" type="application/atom+xml">
+</head>
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">金宝的博客</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">金宝的博客</div>
+        <div class="logo-desc">
+            
+            唐金宝 | 车辆工程 | 软件工程师
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/jinbaotang/jinbaotang.github.io" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/jinbaotang/jinbaotang.github.io" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+    <script src="/libs/cryptojs/crypto-js.min.js"></script>
+    <script>
+        (function() {
+            let pwd = '';
+            if (pwd && pwd.length > 0) {
+                if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                    alert('密码错误，将返回主页！');
+                    location.href = '/';
+                }
+            }
+        })();
+    </script>
+    
+
+        
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">代码重构(uds)-2</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+            
+
+                <main class="post-container content">
+
+                    
+                        <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/refactor/">
+                                <span class="chip bg-color">refactor</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E9%9A%8F%E7%AC%94/" class="post-category">
+                                随笔
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-11-13
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2021-11-15
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    4.6k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    16 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <blockquote>
+<p>重构的代码已经正式release一个版本了，从结果上来看，有超过自己预期的部分，也有不尽人意的地方。</p>
+</blockquote>
+<h1 id="一、-背景"><a href="#一、-背景" class="headerlink" title="一、 背景"></a>一、 背景</h1><p>&emsp;&emsp;在<a href="https://jinbaotang.cn/2021/06/05/refactor-1/">代码重构-1</a>中写到的了面向对象的思想，以及如何更好的解耦。里面提到了面向对象的思维以及通过C语言来实现私有变量，这些东西在这次重构中都在大规模使用；基于uds（特指14229）的特性，还使用了较多C语言实现的模板函数，后面会提到。</p>
+<h2 id="1-为什么要重构"><a href="#1-为什么要重构" class="headerlink" title="1. 为什么要重构"></a>1. 为什么要重构</h2><p>&emsp;&emsp;一开始我的任务是优化现有的uds协议栈，然后我花了几天的时间看了一下代码，我发现的代码结构是这样的:<br><img src="/medias/refactor2/old-uds.png" alt="现有uds-stack"><br>&emsp;&emsp;我看到后是崩溃的，doip和cantp的一个结构体从最底下直接传到上面，这其实严重的违背了“高内聚、低耦合”的思想了，在可预想的未来，如果后面需要在doip、cantp与uds之间加入新东西时，一定是痛苦的；后面并行刷写时，果然验证了我的想法。所以咋进行简单的评估后，我给领导的答案是没法优化，要么重构，要么就一直解决bug。我的直线领导爱国真的是一个很nice的人，自己简单看了代码之后，肯定了我的想法，随即给我定下来了重构计划，并取名<strong>浴火重生</strong>，项目过程中遭到PM的battle时也是力排众议的支持我。<br><img src="/medias/refactor2/uds-refactor-plan.png" alt="uds重构计划"></p>
+<h2 id="2-重构的结果（现在的状态）"><a href="#2-重构的结果（现在的状态）" class="headerlink" title="2. 重构的结果（现在的状态）"></a>2. 重构的结果（现在的状态）</h2><p>&emsp;&emsp;现在重构后的uds已经正式的进入了正常的软件版本中，后面也会一直持续的迭代，目前看来的结果至少是超出我的预期，在提前一个版本release、并且只有一周多的部门内部测试的情况下，不仅没有出现以前发现的问题，并且本身有代码带来的问题更是极少。从目前结果来看，主要包含以下方面状态以及原因：</p>
+<ol>
+<li>整个项目将近5万行代码，有将近4万行是完全重写的，uds service移植的现有代码，bug较少（050有22个 issue，其中大部分是需求遗漏问题），因为：<br> a. 因为我在软件划分了很多模块，大模块里面还有很多小模块，每个模块开发完，我都进行了测试，最后一个较大模块开发完后，又用开发后的模块来完成自测，基本保证了再模块开发时即保证提前发现bug<br> b. 自己提前使用测试团队会用的测试步骤、测试工具来完成测试，也就是本应该测试发现的问题，在开发过程中就以前解决了<br> c. 提前使用，由于旧的uds还需要增加功能，所以就提前把代码放到了实际的业务场景上使用了，这对发现尤其有帮助；所以我也一直在推广其他也用，主要是为了发现问题，让软件更稳定。<br> d. 严格follow规范，不做为了减少工作量而投机取巧的行为</li>
+<li>解决bug迅速，虽然bug不多，但是即使出现了bug，很多测试刚发现，甚至还没来及建bug，我这边分析并且解决完了；主要依赖于对模块的解耦，出了问题了，能够很快能从大模块再定位小模块。</li>
+<li>有一些偶发性的bug，不需要测试多次复现，可以依赖日志判断出问题所在，因为：<br>前面提到的模块解耦</li>
+<li>日志，在很前期测试的同事就跟我说，日志需要能够反馈代码运行的轨迹，尤其是数据流的路径，所以在开发过程中，也尤其注意这点</li>
+<li>需求遗漏导致问题，这也是issue的主要来源了，主要是以下原因：<br> a. 因为重构和原有的项目是在并行，需求分析还停留在了较早的阶段，后面没有持续的跟踪需求，导致需求遗漏，又加上提前了一个版本上线，所以最终问题在测试阶段才发现。<br> b. 提前一个版本上线，所以很多需求实现在了旧的代码上了，在移植的过程中遗漏了</li>
+</ol>
+<p>&emsp;&emsp;总之，这次重构的结果是好的，至少我觉得没有辜负领导的信任和投入，真是要人给人，要资源给资源了。</p>
+<h1 id="二-、关于模块解耦"><a href="#二-、关于模块解耦" class="headerlink" title="二 、关于模块解耦"></a>二 、关于模块解耦</h1><p>&emsp;&emsp;前面提到了很多解耦带来的好处，具体在项目实施过程中，是如何做的呢？我觉得模块划分是需要根据功能进行划分，如果开发的是一个在某个领域使用教广泛需求，那么很多时候规范就已经做好了较好的模块划分，此刻只需要根据实际需求进行必要的拓展即可。</p>
+<h2 id="1-整体划分"><a href="#1-整体划分" class="headerlink" title="1. 整体划分"></a>1. 整体划分</h2><p>&emsp;&emsp;如下图所示，首先根据iso规范上对整体协议的划分（协议整体），我整体的软件划分给出如下图2部分的设计，其中大部分是跟ISO给出的7层模型完全匹配。其中我拓展了三处：</p>
+<p>&emsp;&emsp;doip，阅读13400的规范后，我得出的结论时，doip绝不止只会跟uds（或者类似图上的diagnostic router）交互，因为从13400提到的不少东西都是会由应用层来实现，比如路由激活中的验证（需要验签算法）以及确认（甚至需要UI实现），所以我在定义设计前期就确定了doip可以在诊断的应用层访问到<br>&emsp;&emsp;显式的增加了<em>诊断路由</em>模块，这个模块主要两个功能</p>
+<ol>
+<li>完成doip↔doip, doip↔docan以及其他诊断传输协议的路由功能，并且能够很轻松的控制路由策略</li>
+<li>屏蔽不通诊断协议的差异性，比如cantp最大是4095个字节（不包含拓展后的4G字节）基本都会等一个完整包收完才处理或者完整包准备好了才发送了，但是doip不是，它经常是一个大包，如果都是缓存下来会造成的很大延时以及内存浪费，所以最好能够边准备边处理。所以诊断路由这一个模块，我能将cantp、doip都按doip的方式来处理，以后其他的xxxtp也都能这样做。并且不管对cantp还是doip，我最终都是由一个id来标识逻辑通道，类似tcpip的socket id一样，这样站在uds来看，可以最大程度的不关心传输层的差异了，这就很符合uds的Unified了。<br>&emsp;&emsp;在主要实现14229-1的uds上，将server和client的差异放到了更高层（图中lib_server和lib_client），这样就能最大化的复用会话层以及表示层的代码了（图中uds部分）。<br><img src="/medias/refactor2/14229.png" alt="14229的模块划分"><br><img src="/medias/refactor2/uds-refactor.png" alt="uds-stack的设计"><br><img src="/medias/refactor2/refactor2.png" alt="uds数据交互1"><br><img src="/medias/refactor2/refactor3.png" alt="uds数据交互2"><br>&emsp;&emsp;得益于之前的工作经历，在很短的时间内（不到一个月）就想清楚了每个模块的大概实现思路，实现了不少代码，并且给出了更为详细、准确的工作量。考虑到时间关系，最终选择了将淡蓝色框里的模块外包出去了。至此uds-stack的所有基础库都正式进入了开发过程。</li>
+</ol>
+<h2 id="2-大模块里的小模块划分"><a href="#2-大模块里的小模块划分" class="headerlink" title="2. 大模块里的小模块划分"></a>2. 大模块里的小模块划分</h2><p>&emsp;&emsp;上面只是较为简单的整体划分，针对一个大模块里面其实还应该有较小颗粒度的划分，这里就要充分应用面向对象的思维了，这里以上面较为复杂并且稳定性更加重要的doip为例。先看图，由于我们是网关，</p>
+<ol>
+<li>首先确认了doip中的三个小角色，equipment、node和gateway（均出自13400规范里的名字定义）</li>
+<li>另外为了能够更加广泛的应用，我把doip分成了socket adapter和doip core，这样我就能在doip core里专注于实现13400协议的实现，在socket adaptor里专注于socket控制以及数据收发</li>
+<li>将config模块独立出来，这样即使将来配置形式在变化，不影响其他两个模块。ps：中间还真重构过config模块</li>
+</ol>
+<p>&emsp;&emsp;以上三个模块，均是以动态库的形式存在的，利用语言特性，充分保证以保证模块间的解耦。关于动态库为什么可以能够保证解耦，可以参考<a href="https://jinbaotang.cn/2021/09/05/link/">什么？你还不懂链接</a><br><img src="/medias/refactor2/doip-all.png" alt="doip整体设计"><br>&emsp;&emsp;在doip core模块中，我又拆分成了一个个小的模块，每一个小的模块都可以认为是一个对象，所以最终就是所有的对象匹配起来。在这个过程了，同时也定下来一个规则：<strong>一个doip进程最多可以由一个server+n个client组成（分析规范后定下来的基本规则，最终从doip socket adaptor贯穿到uds）</strong>。具体模块作用就不再详细展开了。但是有一点还是想说明下，在doip core中，可以看到有一个chanel，这个小模块的作用主要是将任何平台的socket通信都抽象成了channel（自定义的，没啥特殊含义），也就是最终doip核心实现部分都是跟channel交互了，而不会随着不通的平台，一直在变了。并且，通过语法层面的限制，最小化了 socket adaptor的内容传递到doip core其他模块。<br><img src="/medias/refactor2/doip-core.png" alt="doip core设计"><br>&emsp;&emsp;在socket adaptor模块中，根据基础功能，较为简单的划分成了以下几个模块，这些都是比较好理解了。主要是udp、tcp client以及tcp server组成了，其中包含前面提到的doip=1个server+n个client，并且对这些东西都用endpoint来抽象替代，以更好的拓展；再加上doip最新规范中的tls。<br><img src="/medias/refactor2/socket-adaptor.png" alt="doip socket adaptor设计"></p>
+<p>&emsp;&emsp;这章介绍的主要是我在开发过程中，在拿到一个项目时，是如何根据规范划分成一个个模块，又如何应用面向对象的思维在模块里又抽象出一个个对象来，然后将一个大项目变成了更小颗粒度的对象，最终完成项目变成实现对象以及组合对象了。正是因为这些设计，保证了出现了bug时，能够很短的时间内就定位问题，并且解决问题，毕竟每个小模块的作用域都是有限的。并且每个小模块又是开发过程中经过测试的，最后组合起来的质量自然也不会太低。</p>
+<h1 id="三、关于实现上的技巧"><a href="#三、关于实现上的技巧" class="headerlink" title="三、关于实现上的技巧"></a>三、关于实现上的技巧</h1><p>&emsp;&emsp;由于c本身是面向过程的语言，所以为了能够更好的达到前面提到的效果，还需要巧用一些技巧。就我再项目里用到或者实现了的技巧聊一下。其中在代码重构-1中提到了，如何用c实现私有成员。</p>
+<h2 id="1-指针永远的神"><a href="#1-指针永远的神" class="headerlink" title="1. 指针永远的神"></a>1. 指针永远的神</h2><p>&emsp;&emsp;指针永远的神这个相信嵌入式的工程师就不用了，但是巧用void *能够更好帮助你解耦和实现功能。以上提到了doip上把socket通信变成了channel通信，但是socket adaptor上又是endpoint和channel进行通信，如果不将endpoint传给上层，就需要进一步适配；如果将endpoint传给channel，就将adaptor很多信息暴露给了channel，不利于解耦。此刻void *解千愁，我们可以：</p>
+<p>在初始化时，将void *给到doip core，</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token punctuation">(</span><span class="token operator">*</span>doip_channel_init<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">doip_channel_s</span> <span class="token operator">*</span>dch<span class="token punctuation">,</span> <span class="token class-name">uint16_t</span> remote_la<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">void</span> <span class="token operator">*</span>ud<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>在发送时，把地址原封不动传下来，doip core就实现了“万花丛中过，片叶不沾身”。</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">adaptor_transmit</span><span class="token punctuation">(</span><span class="token keyword">void</span> <span class="token operator">*</span>buf<span class="token punctuation">,</span> <span class="token keyword">int</span> len<span class="token punctuation">,</span> <span class="token keyword">struct</span> <span class="token class-name">peeraddr_s</span> peeraddr<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">void</span> <span class="token operator">*</span>ud<span class="token punctuation">)</span> <span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>void *真的是个好东西，其实不止有这些用户，借助void *可以很容易在C语言中实现某种意义上、类似于c++的多态。</p>
+<h2 id="2-模板函数"><a href="#2-模板函数" class="headerlink" title="2. 模板函数"></a>2. 模板函数</h2><p>&emsp;&emsp;熟悉c++同学对模板可熟悉不过了，其优点也不再细说了；看过linux 内核代码或者商业classic autosar代码，一定会觉得上面宏根本不是给人看的。所以我们也能巧用宏了实现c++的模板函数。<br>&emsp;&emsp;为什么需要这么做？在最前面有简单提到过，基于14229协议的特性，我们使用模板函数，这是因为14229的每个服务的思想都是类似于的，无非就是service id+subfunction(如果有)+payload，那基于此特性，我们就能在某个层次使用模板来实现一个统一的函数。模板函数在实现14229时基本上算是大规模使用了，以下直接拿一个比较简单的实际代码出来分析。</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name function">UDS_CLI_SVC_IS_NULL</span><span class="token expression"><span class="token punctuation">(</span>module<span class="token punctuation">,</span> sid<span class="token punctuation">)</span>                                       </span><span class="token punctuation">\</span>
+    <span class="token expression"><span class="token keyword">if</span> <span class="token punctuation">(</span>connect <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>                                                     </span><span class="token punctuation">\</span>
+        <span class="token expression"><span class="token function">LOG_ERROR</span><span class="token punctuation">(</span></span><span class="token string">"connect is null"</span><span class="token expression"><span class="token punctuation">)</span><span class="token punctuation">;</span>                                          </span><span class="token punctuation">\</span>
+        <span class="token expression"><span class="token keyword">return</span> UDS_SERVICE_RETURN_FAIL<span class="token punctuation">;</span>                                        </span><span class="token punctuation">\</span>
+    <span class="token expression"><span class="token punctuation">&#125;</span>                                                                          </span><span class="token punctuation">\</span>
+    <span class="token expression"><span class="token keyword">if</span> <span class="token punctuation">(</span>connect<span class="token operator">-></span>svc_</span><span class="token punctuation">##</span><span class="token expression">module <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>                                       </span><span class="token punctuation">\</span>
+        <span class="token expression"><span class="token function">LOG_ERROR</span><span class="token punctuation">(</span></span><span class="token string">"connect of svc_%s is null"</span><span class="token expression"><span class="token punctuation">,</span> #module<span class="token punctuation">)</span><span class="token punctuation">;</span>                       </span><span class="token punctuation">\</span>
+        <span class="token expression"><span class="token keyword">return</span> UDS_SERVICE_RETURN_FAIL<span class="token punctuation">;</span>                                        </span><span class="token punctuation">\</span>
+    <span class="token expression"><span class="token punctuation">&#125;</span>                                                                          </span><span class="token punctuation">\</span>
+    <span class="token expression">uds_service_</span><span class="token punctuation">##</span><span class="token expression">sid</span><span class="token punctuation">##</span><span class="token expression">_t <span class="token operator">*</span>service <span class="token operator">=</span> <span class="token operator">&amp;</span>connect<span class="token operator">-></span>svc_</span><span class="token punctuation">##</span><span class="token expression">module<span class="token operator">-></span>svc_</span><span class="token punctuation">##</span><span class="token expression">sid<span class="token punctuation">;</span>        </span><span class="token punctuation">\</span>
+    <span class="token expression"><span class="token keyword">if</span> <span class="token punctuation">(</span>service <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>                                                     </span><span class="token punctuation">\</span>
+        <span class="token expression"><span class="token function">LOG_ERROR</span><span class="token punctuation">(</span></span><span class="token string">"connect(ta=[0x%04x]) svc_%s is null, response data ignore"</span><span class="token expression"><span class="token punctuation">,</span> </span><span class="token punctuation">\</span>
+                  <span class="token expression">connect<span class="token operator">-></span>remote_addr<span class="token punctuation">,</span> #module<span class="token punctuation">)</span><span class="token punctuation">;</span>                              </span><span class="token punctuation">\</span>
+        <span class="token expression"><span class="token keyword">return</span> UDS_SERVICE_RETURN_FAIL<span class="token punctuation">;</span>                                        </span><span class="token punctuation">\</span>
+    <span class="token expression"><span class="token punctuation">&#125;</span>                                                                          </span><span class="token punctuation">\</span>
+    <span class="token expression"><span class="token keyword">if</span> <span class="token punctuation">(</span>service<span class="token operator">-></span>resp <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>                                               </span><span class="token punctuation">\</span>
+        <span class="token expression"><span class="token function">LOG_WARNING</span><span class="token punctuation">(</span></span><span class="token string">"connect(remote addr=[0x%04X]) svc_%s sid=[0x%02X], resp "</span> <span class="token punctuation">\</span>
+                    <span class="token string">"is null, maybe no req, but "</span>                              <span class="token punctuation">\</span>
+                    <span class="token string">"have resp)"</span><span class="token expression"><span class="token punctuation">,</span>                                              </span><span class="token punctuation">\</span>
+                    <span class="token expression">connect<span class="token operator">-></span>remote_addr<span class="token punctuation">,</span> #module<span class="token punctuation">,</span> sid<span class="token punctuation">)</span><span class="token punctuation">;</span>                       </span><span class="token punctuation">\</span>
+    <span class="token expression"><span class="token punctuation">&#125;</span></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="/medias/refactor2/uds.png" alt="uds设计"><br>&emsp;&emsp;14229的实现也是沿用了doip的思路，充分对模块再进行划分，比如最终对所有service都划分成了dcm、dt、ioctl等模块（对应模板函数的module），每个模块都有若干service，但是服务具体在不在就需要判断。如果通过具体函数来做，要么需要实现多个函数（多少个模块多个函数，利于解耦）；实现一个大函数，在里面进行判断（不利于各个module间的解耦）。但若实现成上述的模板函数，上面的两个问题都没有，connect可以在上下文中获取（宏展开后就是语句了），module和service都可以直接根据传入来判别，最终只要如以下形式调用就能够判别了。实现成模板除了有以上好处，还会变相要求你，在设计代码时能够更好划分以及实现“对象”，毕竟如果“对象”没划分好，是很难抽象出类似的模板函数的。<br><img src="/medias/refactor2/Template-use.png" alt="uds模板函数的使用"></p>
+<h3 id="3-选择合适的算法"><a href="#3-选择合适的算法" class="headerlink" title="3. 选择合适的算法"></a>3. 选择合适的算法</h3><p>&emsp;&emsp;很多人会觉得算法是没用的，但是如果你了解算法，你能够很巧妙的将算法在你的项目里应用起来。如下图所示，diagnostic router中一大功能就是路由，但是如何使你的路由能够更有通用性以及随着需求变化能够最小化改动，这是最为关键的问题。我们的ecu模型跟一颗普通树一模一样，借助算法能够很容易将模型在代码中实现，并且树的深度不限，再加上配置文件，最终能够很小很小改动就能应付需求。比如：</p>
+<ol>
+<li>要添加一个ecu路由，我只需要配置文件中，在对应的树中加上一个节点，</li>
+<li>要改变ecu的父节点，比如SA既可以通过aurix再转can来完成诊断通信，也可以直接通过imx使用doip来完成通信，此时我需要将SA分别挂在不同的父节点下就ok<br><img src="/medias/refactor2/router.png" alt="诊断路由算法确定"></li>
+</ol>
+<h1 id="四、日志"><a href="#四、日志" class="headerlink" title="四、日志"></a>四、日志</h1><p>&emsp;&emsp;日志是很多人忽略的一点，在项目前期阶段，测试的同事一直在跟我强调日志的重要性，现在整个项目完成下来，我特别感谢测试同事（jun.kuang）反复提到日志的重要性，不然在解决那几个偶发性bug上，不会这么顺利的。在review供应商代码时，我发现他们这一块就做的不够好，所以产生问题时，查找起来较为费劲。项目总结下来，我认为好的日志必须是：</p>
+<ol>
+<li>等级需要准确（fatal、error和warning一定不需要跟info、debug和trace混了），这样能够方便release时设置等级但关键信息不丢失，并且一定包含了所有异常，比如出现了异常，搜索fatal、error或者warning是一定能够搜的，否则就不是合格日志</li>
+<li>由于这个项目主要还是数据处理，所以日志必须能够体现数据流的路径，比如作为server，收到request再到回复response，日志一定需要能够很好的展示数据都经过了哪些模块，模块处理结果是否符合预期；</li>
+<li>关键分支也一定需要打印当前条件值，这对解决问题尤其重要<h1 id="五、写在最后"><a href="#五、写在最后" class="headerlink" title="五、写在最后"></a>五、写在最后</h1>&emsp;&emsp;重构暂时告一段散落了，因为最起码基础库是整体重构完成了，所以心里也算是石头着地了。但是由于时间关系，肯定还有不少实现还可以再优化、再改进，比如我就有一些记录，如下图。同时我觉得这次重构也算是一个半成品吧，uds service层是移植的现有代码，站在个人角度，uds的service真的特别是应用SOA的思路来完成，我们又刚好将common api的框架应用了起来，所以这部分我目前让大连那部分在重构了。还有就是，重构基础库一个目的就是希望能够更多的用户去使用它，基于当前pyclient的一些痛点，也希望能够应用重构后的基础库将python实现替换掉；另外就是也希望测试sdk也能用起这套来。<br><img src="/medias/refactor2/doip-optimize.png" alt="doip部分待改进项"><br>&emsp;&emsp;最后，真的很感谢这个项目中领导、同事的大力支持，领导们资源上给了最大的支持和信任，让我可以心无旁骛的一直在重构，其他同事也给了很多实际的帮助，在开发过程中，好多次都怀疑自己在et7这个车型上完不成重构了，都是同事们的支持一直让我不减激情的一直做下去。</li>
+</ol>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">金宝</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://jinbaotang.cn/2021/11/13/refactor-2/">https://jinbaotang.cn/2021/11/13/refactor-2/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">金宝</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/refactor/">
+                                    <span class="chip bg-color">refactor</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: 'f2b2a69ea8b8fe7f47f9',
+        clientSecret: '70e5efd1c9338799338122d631c9d24f93b9dcb7',
+        repo: 'jinbaotang.github.io',
+        owner: 'jinbaotang',
+        admin: "jinbaotang",
+        id: '2021-11-13T22-13-00',
+        distractionFreeMode: true, // Facebook-like distraction free mode
+        createIssueManually: true,
+        proxy: 'https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token',
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments textarea {
+        box-sizing: border-box;
+        background: url("/medias/comment_bg.png") 100% 100% no-repeat;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #4cbf30;
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="vcomments" class="card-content" style="display: grid">
+    </div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="https://unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'u8mcnI498PEQRk7z9pjH3rzE-gzGzoHsz',
+        appKey: 'rdOVQCGteA094mRYaD9bAitn',
+        notify: 'false' === 'true',
+        verify: 'false' === 'true',
+        visitor: 'false' === 'true',
+        avatar: 'wavatar',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: '如果你没有GitHub账号，还可以在这里评论啦！'
+    });
+</script>
+
+<!--酷Q推送-->
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2021/11/13/refactor-2/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="代码重构(uds)-2">
+                        
+                        <span class="card-title">代码重构(uds)-2</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            回顾第一次较大规模重构的心得以及可以改进的地方
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-13
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E9%9A%8F%E7%AC%94/" class="post-category">
+                                    随笔
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/refactor/">
+                        <span class="chip bg-color">refactor</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/11/08/vehicle-gw-uds/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
+                        
+                        <span class="card-title"></span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-08
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            金宝
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: 金宝的博客<br />'
+            + '文章作者: 金宝<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h1, h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+                            
+
+                </main>
+
+                
+                    <script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+                    <script>
+                        MathJax.Hub.Config({
+                            tex2jax: {
+                                inlineMath: [
+                                    ['$', '$'],
+                                    ['\(', '\)']
+                                ]
+                            }
+                        });
+                    </script>
+                    <script>
+                        (function() {
+                            var bp = document.createElement('script');
+                            var curProtocol = window.location.protocol.split(':')[0];
+                            if (curProtocol === 'https') {
+                                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+                            } else {
+                                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+                            }
+                            var s = document.getElementsByTagName("script")[0];
+                            s.parentNode.insertBefore(bp, s);
+                        })();
+                    </script>
+                    <script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+                    <!-- 代码语言 -->
+                    <script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+                    <!-- 代码块复制 -->
+                    <script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+                    <script type="text/javascript" src="/libs/codeBlock/clipboard.min.js"></script>
+                    <!-- 代码块收缩 -->
+                    <script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+                    <!-- 代码块折行 -->
+                    <style type="text/css">
+                        code[class*="language-"],
+                        pre[class*="language-"] {
+                            white-space: pre !important;
+                        }
+                    </style>
+
+                    
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+            
+                <div class="container row center-align" style="margin-bottom: 15px !important;">
+                    <div class="col s12 m8 l8 copy-right">
+                        Copyright&nbsp;&copy;
+                        
+                                <span id="year">2021</span>
+                                
+                                    <span id="year">2021</span>
+                                    <a href="/about" target="_blank">
+                                        金宝
+                                    </a>
+                                    |&nbsp;Powered by&nbsp;<a href="https://github.com/jinbaotang/" target="_blank">jinbao</a> |&nbsp;Theme&nbsp;
+                                    <a href="https://github.com/jinbaotang/jinbaotang.githuh.io" target="_blank">jinbao-matery-modify</a>
+                                    <br>
+                                    
+                                        &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span class="white-color">172.4k</span>&nbsp;字
+                                        
+                                            
+                                                
+                                                    
+                                                        
+                                                            
+                                                                <span id="busuanzi_container_site_pv" style='display:none'>
+                                                                <i class="fa fa-heart-o"></i>
+                                                                本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+                                                                </span>
+                                                                
+                                                                    
+                                                                        <span id="busuanzi_container_site_uv" style='display:none'>
+                                                                人次,&nbsp;访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+                                                                        </span>
+                                                                        
+                                                                            <br>
+                                                                            
+                                                                                <span id="sitetime">载入运行时间...</span>
+                                                                                <script>
+                                                                                    function siteTime() {
+                                                                                        var seconds = 1000;
+                                                                                        var minutes = seconds * 60;
+                                                                                        var hours = minutes * 60;
+                                                                                        var days = hours * 24;
+                                                                                        var years = days * 365;
+                                                                                        var today = new Date();
+                                                                                        var startYear = "2021";
+                                                                                        var startMonth = "4";
+                                                                                        var startDate = "1";
+                                                                                        var startHour = "0";
+                                                                                        var startMinute = "0";
+                                                                                        var startSecond = "0";
+                                                                                        var todayYear = today.getFullYear();
+                                                                                        var todayMonth = today.getMonth() + 1;
+                                                                                        var todayDate = today.getDate();
+                                                                                        var todayHour = today.getHours();
+                                                                                        var todayMinute = today.getMinutes();
+                                                                                        var todaySecond = today.getSeconds();
+                                                                                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                                                                                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                                                                                        var diff = t2 - t1;
+                                                                                        var diffYears = Math.floor(diff / years);
+                                                                                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+                                                                                        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                                                                                        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                                                                                            minutes);
+                                                                                        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                                                                                            diffMinutes * minutes) / seconds);
+                                                                                        if (startYear == todayYear) {
+                                                                                            document.getElementById("year").innerHTML = todayYear;
+                                                                                            document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                                                                                                " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                                                                                        } else {
+                                                                                            document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                                                                                            document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                                                                                                " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                                                                                        }
+                                                                                    }
+                                                                                    setInterval(siteTime, 1000);
+                                                                                </script>
+                                                                                
+                                                                                    <br>
+                                                                                    
+                    </div>
+                    <div class="col s12 m4 l4 social-link social-statis">
+                        
+    <a href="https://github.com/jinbaotang" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:jinbao.tang@foxmail.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=995339765" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 995339765" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+
+                    </div>
+                </div>
+</footer>
+
+
+<script>
+    $(document).ready(function() {
+
+        var int = setInterval(fixCount, 50); // 50ms周期检测函数
+        var pvcountOffset = 80000; // 初始化首次数据
+        var uvcountOffset = 20000;
+
+        function fixCount() {
+            if (document.getElementById("busuanzi_container_site_pv").style.display != "none") {
+                $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + pvcountOffset);
+                clearInterval(int);
+            }
+            if ($("#busuanzi_container_site_pv").css("display") != "none") {
+                $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + uvcountOffset); // 加上初始数据 
+                clearInterval(int); // 停止检测
+            }
+        }
+    });
+</script>
+<div class="progress-bar"></div>
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

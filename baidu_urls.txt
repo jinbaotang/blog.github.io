@@ -1,3 +1,5 @@
+https://jinbaotang.cn/2021/11/13/refactor-2/
+https://jinbaotang.cn/2021/11/08/vehicle-gw-uds/
 https://jinbaotang.cn/2021/10/16/linux-develop-tips2/
 https://jinbaotang.cn/2021/09/30/cmake2/
 https://jinbaotang.cn/2021/09/20/pi-install-and-config/

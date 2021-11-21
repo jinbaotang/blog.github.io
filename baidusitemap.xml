@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://jinbaotang.cn/2021/11/13/refactor-2/</loc>
+    <lastmod>2021-11-14</lastmod>
+  </url>
+  <url>
+    <loc>https://jinbaotang.cn/2021/06/05/refactor-1/</loc>
+    <lastmod>2021-11-14</lastmod>
+  </url>
+  <url>
+    <loc>https://jinbaotang.cn/2021/11/08/vehicle-gw-uds/</loc>
+    <lastmod>2021-11-08</lastmod>
+  </url>
+  <url>
     <loc>https://jinbaotang.cn/2021/06/06/linux-develop-tips1/</loc>
     <lastmod>2021-10-16</lastmod>
   </url>
@@ -50,10 +62,6 @@
   </url>
   <url>
     <loc>https://jinbaotang.cn/2021/05/07/socket-can/</loc>
-    <lastmod>2021-06-22</lastmod>
-  </url>
-  <url>
-    <loc>https://jinbaotang.cn/2021/06/05/refactor-1/</loc>
     <lastmod>2021-06-22</lastmod>
   </url>
   <url>
